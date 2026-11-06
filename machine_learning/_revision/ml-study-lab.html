@@ -1,0 +1,319 @@
+<title>ML Study Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a lab notebook on graph paper. One tabbed workspace: playground, sorter, flashcards. */
+:root{
+  --paper:#f3f6fb; --sheet:#ffffff; --grid:#dde5f1; --ink:#14213d; --muted:#5b6782;
+  --line:#e8902a; --dot:#2b59c3; --good:#1f8a5b; --bad:#c2413a; --chip:#e7edf8;
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e1526; --sheet:#151f36; --grid:#23304d; --ink:#e6ecf8; --muted:#9aa7c4;
+  --line:#f2a64a; --dot:#7ea2ff; --good:#45c08a; --bad:#ef6d64; --chip:#1f2b47; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1526; --sheet:#151f36; --grid:#23304d; --ink:#e6ecf8; --muted:#9aa7c4;
+  --line:#f2a64a; --dot:#7ea2ff; --good:#45c08a; --bad:#ef6d64; --chip:#1f2b47; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px}
+.wrap{max-width:1040px;margin:0 auto;padding-block:28px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.1;margin:0;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:22px;margin:0;text-wrap:balance}
+p{margin:0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+.tab{font:600 15px var(--f-body);padding:8px 16px;border-radius:999px;border:1.5px solid var(--ink);
+  background:var(--sheet);color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--sheet)}
+.tab:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--line);outline-offset:2px}
+.sheet{background:var(--sheet);border:1.5px solid var(--grid);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:16px}
+.lead{color:var(--muted);max-width:68ch}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+.panel{display:flex;flex-direction:column;gap:6px;min-width:0}
+.panel .cap{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+canvas{width:100%;max-width:100%;aspect-ratio:4/3;border:1px solid var(--grid);border-radius:6px;background:var(--sheet);display:block}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button.act{font:600 15px var(--f-body);padding:9px 16px;border-radius:8px;border:none;background:var(--line);color:#1b1206;cursor:pointer}
+button.ghost{font:600 15px var(--f-body);padding:8px 14px;border-radius:8px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+label.alpha{display:flex;gap:8px;align-items:center;font-family:var(--f-mono);font-size:14px}
+input[type=range]{accent-color:var(--line);width:150px}
+.readout{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--f-mono);font-size:14px;background:var(--chip);padding:6px 10px;border-radius:6px;font-variant-numeric:tabular-nums}
+.chip b{font-weight:600}
+.status{font-weight:600}
+.status.good{color:var(--good)} .status.bad{color:var(--bad)}
+.calc{overflow-x:auto;min-width:0}
+.calc table{border-collapse:collapse;font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;min-width:480px}
+.calc th,.calc td{padding:5px 10px;border-bottom:1px solid var(--grid);text-align:right}
+.calc th{color:var(--muted);font-weight:600}
+.calc tfoot td{font-weight:600}
+.note{font-size:14px;color:var(--muted)}
+details{border-top:1px dashed var(--grid);padding-top:10px}
+summary{cursor:pointer;font-weight:600}
+/* sorter */
+.bins{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:640px){.bins{grid-template-columns:1fr 1fr}}
+.bin{font:600 15px var(--f-body);padding:12px 8px;border-radius:8px;border:1.5px solid var(--ink);background:var(--sheet);color:var(--ink);cursor:pointer;display:flex;flex-direction:column;gap:2px;align-items:center}
+.bin small{font-weight:400;color:var(--muted);font-size:12px}
+.card{border:1.5px solid var(--ink);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:6px;min-height:120px;justify-content:center}
+.card .var{font-family:var(--f-display);font-size:24px;font-weight:600}
+.card .ex{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.feedback{min-height:48px}
+.score{font-family:var(--f-mono);font-size:14px;color:var(--muted)}
+/* flashcards */
+.flash{border:1.5px solid var(--ink);border-radius:12px;min-height:200px;padding:24px;display:flex;flex-direction:column;justify-content:center;gap:10px;cursor:pointer;background:var(--sheet);text-align:left;color:var(--ink);font:inherit;width:100%}
+.flash .q{font-family:var(--f-display);font-size:22px;font-weight:600;text-wrap:balance}
+.flash .a{font-size:17px;max-width:68ch}
+.flash .hint{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.src{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">Machine Learning · Dr. Youssfi Nouira · PRISTINI 2026/27</span>
+  <h1>ML Study Lab</h1>
+  <p class="lead">Play with the ideas from Chapters 1 and 2 instead of only reading them. Everything uses your course's notation and the professor's own examples.</p>
+</header>
+
+<div class="tabs" role="tablist">
+  <button class="tab" role="tab" id="t-gd" aria-selected="true" data-view="gd">Gradient descent</button>
+  <button class="tab" role="tab" id="t-sort" aria-selected="false" data-view="sort">Variable sorter</button>
+  <button class="tab" role="tab" id="t-cards" aria-selected="false" data-view="cards">Chapter 1 flashcards</button>
+</div>
+
+<!-- GRADIENT DESCENT -->
+<section class="sheet" id="v-gd" role="tabpanel">
+  <h2>Watch the line learn</h2>
+  <p class="lead">Data from Chap 2: (1,2), (2,4), (3,5), (4,8). Model ŷ = wx + b, cost J = 1/(2m)·Σ(ŷ−y)². Each <b>Step</b> is one gradient descent update with simultaneous w and b. Try iteration 2 by hand first, then press Step twice to check yourself.</p>
+  <div class="controls">
+    <button class="act" id="step">Step</button>
+    <button class="ghost" id="run">Run 20 steps</button>
+    <button class="ghost" id="reset">Reset to w=0, b=0</button>
+    <label class="alpha" for="alpha">α = <span id="alphaVal">0.10</span>
+      <input type="range" id="alpha" min="0.01" max="0.30" step="0.01" value="0.10"></label>
+  </div>
+  <div class="readout">
+    <span class="chip">iteration <b id="it">0</b></span>
+    <span class="chip">w = <b id="w">0</b></span>
+    <span class="chip">b = <b id="b">0</b></span>
+    <span class="chip">J = <b id="J">13.625</b></span>
+    <span class="status" id="status"></span>
+  </div>
+  <div class="grid2">
+    <div class="panel"><span class="cap">THE FIT · points = data, orange line = ŷ = wx + b, dashes = residuals</span><canvas id="fit" width="800" height="600"></canvas></div>
+    <div class="panel"><span class="cap">THE VALLEY · cost J(w,b), darker = lower cost, dots = your path</span><canvas id="land" width="800" height="600"></canvas></div>
+  </div>
+  <div class="panel"><span class="cap">J PER ITERATION (log scale)</span><canvas id="hist" width="1000" height="220" style="aspect-ratio:1000/220"></canvas></div>
+  <details>
+    <summary>Show the calculation for the next step (like the slide)</summary>
+    <div class="calc" id="calc"></div>
+  </details>
+  <p class="note">Try this: set α to 0.25 or more and press Run. The cost explodes because the steps overshoot the valley. That's the "α too large → diverges" slide. At α = 0.01 it crawls.</p>
+</section>
+
+<!-- SORTER -->
+<section class="sheet" id="v-sort" role="tabpanel" hidden>
+  <h2>Nominal, ordinal, discrete or continuous?</h2>
+  <p class="lead">Chap 1, "Variable" slides. Pick the type for each variable. Examples marked (course) come from your slides; the others are new so you can test yourself on unseen cases.</p>
+  <div class="card" id="sCard"><span class="var" id="sVar"></span><span class="ex" id="sEx"></span></div>
+  <div class="bins">
+    <button class="bin" data-t="nominal">Nominal<small>categories, no order</small></button>
+    <button class="bin" data-t="ordinal">Ordinal<small>categories with order</small></button>
+    <button class="bin" data-t="discrete">Discrete<small>countable whole numbers</small></button>
+    <button class="bin" data-t="continuous">Continuous<small>any value in a range</small></button>
+  </div>
+  <div class="feedback" id="sFb" aria-live="polite"></div>
+  <div class="controls"><button class="act" id="sNext">Next variable</button><span class="score" id="sScore"></span></div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="sheet" id="v-cards" role="tabpanel" hidden>
+  <h2>Chapter 1 in 12 cards</h2>
+  <p class="lead">Say the answer out loud before flipping. Recalling beats re-reading.</p>
+  <button class="flash" id="flash" aria-live="polite"></button>
+  <div class="controls">
+    <button class="ghost" id="fPrev">Previous</button>
+    <button class="act" id="fNext">Next card</button>
+    <span class="score" id="fPos"></span>
+  </div>
+</section>
+</div>
+
+<script>
+(function(){
+  // ---------- tabs ----------
+  const tabs=[...document.querySelectorAll('.tab')];
+  function show(v){tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.view===v)));
+    ['gd','sort','cards'].forEach(k=>document.getElementById('v-'+k).hidden=(k!==v));
+    if(v==='gd')drawAll();}
+  tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.view)));
+
+  const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const fmt=(v,d=4)=>{if(!isFinite(v))return '∞';const r=Math.abs(v)>=1e5?v.toExponential(2):(+v.toFixed(d)).toString();return r;};
+
+  // ---------- gradient descent ----------
+  const X=[1,2,3,4],Y=[2,4,5,8],m=4;
+  let w=0,b=0,it=0,path=[[0,0]],Jh=[];
+  const cost=(w,b)=>X.reduce((s,x,i)=>s+(w*x+b-Y[i])**2,0)/(2*m);
+  Jh=[cost(0,0)];
+  const alphaEl=document.getElementById('alpha');
+  const alpha=()=>parseFloat(alphaEl.value);
+
+  function step(){
+    const e=X.map((x,i)=>w*x+b-Y[i]);
+    const dw=e.reduce((s,ei,i)=>s+ei*X[i],0)/m, db=e.reduce((s,ei)=>s+ei,0)/m;
+    const tw=w-alpha()*dw, tb=b-alpha()*db; // simultaneous update
+    w=tw;b=tb;it++;path.push([w,b]);Jh.push(cost(w,b));
+  }
+  function update(){
+    document.getElementById('it').textContent=it;
+    document.getElementById('w').textContent=fmt(w);
+    document.getElementById('b').textContent=fmt(b);
+    const J=cost(w,b);document.getElementById('J').textContent=fmt(J);
+    const st=document.getElementById('status');
+    if(!isFinite(J)||J>1e4){st.textContent='Diverging: α is too large';st.className='status bad';}
+    else if(Jh.length>1&&J>Jh[Jh.length-2]){st.textContent='Cost went up: overshooting';st.className='status bad';}
+    else if(it>0&&J<0.0895){st.textContent='Near the minimum';st.className='status good';}
+    else{st.textContent='';st.className='status';}
+    renderCalc();drawAll();
+  }
+  function renderCalc(){
+    const e=X.map((x,i)=>w*x+b-Y[i]);
+    const dw=e.reduce((s,ei,i)=>s+ei*X[i],0)/m, db=e.reduce((s,ei)=>s+ei,0)/m, a=alpha();
+    let h='<table><thead><tr><th>x</th><th>y</th><th>ŷ = wx+b</th><th>ŷ−y</th><th>(ŷ−y)·x</th><th>(ŷ−y)²</th></tr></thead><tbody>';
+    X.forEach((x,i)=>{const p=w*x+b;h+=`<tr><td>${x}</td><td>${Y[i]}</td><td>${fmt(p)}</td><td>${fmt(e[i])}</td><td>${fmt(e[i]*x)}</td><td>${fmt(e[i]**2)}</td></tr>`;});
+    h+=`</tbody><tfoot><tr><td colspan="6" style="text-align:left">J = 1/${2*m} · Σ(ŷ−y)² = ${fmt(cost(w,b))} &nbsp;|&nbsp; ∂J/∂w = 1/${m} · Σ(ŷ−y)x = ${fmt(dw)} &nbsp;|&nbsp; ∂J/∂b = 1/${m} · Σ(ŷ−y) = ${fmt(db)}</td></tr>`;
+    h+=`<tr><td colspan="6" style="text-align:left">next: w = ${fmt(w)} − ${a.toFixed(2)}·(${fmt(dw)}) = ${fmt(w-a*dw)} &nbsp;|&nbsp; b = ${fmt(b)} − ${a.toFixed(2)}·(${fmt(db)}) = ${fmt(b-a*db)}</td></tr></tfoot></table>`;
+    document.getElementById('calc').innerHTML=h;
+  }
+  function ctx(id){const c=document.getElementById(id);return [c,c.getContext('2d')];}
+  function drawFit(){
+    const [c,g]=ctx('fit');const W=c.width,H=c.height,P=56;
+    const sx=x=>P+x/5*(W-P*1.5), sy=y=>H-P-y/10*(H-P*1.6);
+    g.clearRect(0,0,W,H);g.font='22px '+css('--f-mono');g.fillStyle=css('--muted');g.strokeStyle=css('--grid');g.lineWidth=1;
+    for(let x=0;x<=5;x++){g.beginPath();g.moveTo(sx(x),sy(0));g.lineTo(sx(x),sy(10));g.stroke();g.fillText(x,sx(x)-6,H-P+28);}
+    for(let y=0;y<=10;y+=2){g.beginPath();g.moveTo(sx(0),sy(y));g.lineTo(sx(5),sy(y));g.stroke();g.fillText(y,P-34,sy(y)+7);}
+    g.fillText('x',sx(5)-10,H-P+28);g.fillText('y',P-34,sy(10)-14);
+    // residuals
+    g.setLineDash([6,6]);g.strokeStyle=css('--bad');g.lineWidth=2;
+    X.forEach((x,i)=>{const p=Math.max(-50,Math.min(60,w*x+b));g.beginPath();g.moveTo(sx(x),sy(Y[i]));g.lineTo(sx(x),sy(p));g.stroke();});
+    g.setLineDash([]);
+    // line
+    g.save();g.beginPath();g.rect(sx(0),sy(10),sx(5)-sx(0),sy(0)-sy(10));g.clip();
+    g.strokeStyle=css('--line');g.lineWidth=5;g.beginPath();g.moveTo(sx(0),sy(b));g.lineTo(sx(5),sy(w*5+b));g.stroke();g.restore();
+    g.fillStyle=css('--dot');X.forEach((x,i)=>{g.beginPath();g.arc(sx(x),sy(Y[i]),10,0,7);g.fill();});
+  }
+  // landscape
+  const WR=[-1,4],BR=[-3,4];let landImg=null,landKey='';
+  function drawLand(){
+    const [c,g]=ctx('land');const W=c.width,H=c.height,P=56;
+    const sw=v=>P+(v-WR[0])/(WR[1]-WR[0])*(W-P*1.4), sb=v=>H-P-(v-BR[0])/(BR[1]-BR[0])*(H-P*1.5);
+    const key=css('--sheet')+css('--dot');
+    if(landKey!==key){
+      const off=document.createElement('canvas');off.width=W;off.height=H;const o=off.getContext('2d');
+      const n=80,cw=(sw(WR[1])-sw(WR[0]))/n,ch=(sb(BR[0])-sb(BR[1]))/n;
+      for(let i=0;i<n;i++)for(let j=0;j<n;j++){
+        const wv=WR[0]+(i+.5)/n*(WR[1]-WR[0]),bv=BR[0]+(j+.5)/n*(BR[1]-BR[0]);
+        const t=Math.min(1,Math.log10(1+cost(wv,bv))/Math.log10(1+60));
+        o.globalAlpha=0.08+0.8*(1-t);o.fillStyle=css('--dot');
+        o.fillRect(sw(WR[0])+i*cw,sb(bv)-ch/2,cw+1,ch+1);}
+      landImg=off;landKey=key;}
+    g.clearRect(0,0,W,H);g.drawImage(landImg,0,0);
+    g.font='22px '+css('--f-mono');g.fillStyle=css('--muted');
+    for(let v=-1;v<=4;v++)g.fillText(v,sw(v)-6,H-P+28);
+    for(let v=-3;v<=4;v++)g.fillText(v,P-38,sb(v)+7);
+    g.fillText('w',sw(4)-14,H-P+28);g.fillText('b',P-38,sb(4)-16);
+    // min marker (least squares solution)
+    g.strokeStyle=css('--ink');g.lineWidth=3;const mw=1.9,mb=0;
+    g.beginPath();g.moveTo(sw(mw)-10,sb(mb)-10);g.lineTo(sw(mw)+10,sb(mb)+10);g.moveTo(sw(mw)+10,sb(mb)-10);g.lineTo(sw(mw)-10,sb(mb)+10);g.stroke();
+    g.fillStyle=css('--ink');g.fillText('minimum',sw(mw)+14,sb(mb)+30);
+    // path
+    g.save();g.beginPath();g.rect(P,0,W,H-P);g.clip();
+    g.strokeStyle=css('--line');g.lineWidth=3;g.beginPath();
+    path.forEach(([a,c2],k)=>{const px=sw(a),py=sb(c2);k?g.lineTo(px,py):g.moveTo(px,py);});g.stroke();
+    path.forEach(([a,c2],k)=>{g.fillStyle=k===path.length-1?css('--line'):css('--ink');g.beginPath();g.arc(sw(a),sb(c2),k===path.length-1?9:5,0,7);g.fill();});
+    g.restore();
+  }
+  function drawHist(){
+    const [c,g]=ctx('hist');const W=c.width,H=c.height,P=60;g.clearRect(0,0,W,H);
+    const vals=Jh.map(v=>isFinite(v)?Math.min(v,1e6):1e6);
+    const lo=-3,hi=6,ly=v=>H-30-(Math.log10(Math.max(v,1e-3))-lo)/(hi-lo)*(H-50);
+    const n=Math.max(20,vals.length-1),sx=i=>P+i/n*(W-P-20);
+    g.font='18px '+css('--f-mono');g.fillStyle=css('--muted');g.strokeStyle=css('--grid');
+    [0.001,0.1,10,1000,100000].forEach(v=>{g.beginPath();g.moveTo(P,ly(v));g.lineTo(W-20,ly(v));g.stroke();g.fillText(v>=1000?v.toExponential(0):v,4,ly(v)+6);});
+    g.strokeStyle=css('--line');g.lineWidth=3;g.beginPath();vals.forEach((v,i)=>i?g.lineTo(sx(i),ly(v)):g.moveTo(sx(i),ly(v)));g.stroke();
+    g.fillStyle=css('--ink');vals.forEach((v,i)=>{g.beginPath();g.arc(sx(i),ly(v),4,0,7);g.fill();});
+  }
+  function drawAll(){if(document.getElementById('v-gd').hidden)return;drawFit();drawLand();drawHist();}
+  document.getElementById('step').onclick=()=>{step();update();};
+  document.getElementById('run').onclick=()=>{let k=0;const t=setInterval(()=>{step();update();if(++k>=20||!isFinite(cost(w,b)))clearInterval(t);},90);};
+  document.getElementById('reset').onclick=()=>{w=0;b=0;it=0;path=[[0,0]];Jh=[cost(0,0)];update();};
+  alphaEl.oninput=()=>{document.getElementById('alphaVal').textContent=alpha().toFixed(2);renderCalc();};
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{landKey='';drawAll();});
+  new MutationObserver(()=>{landKey='';drawAll();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  update();
+
+  // ---------- sorter ----------
+  const V=[
+    ['Gender','Male, Female','nominal','No natural order between the categories.',1],
+    ['Grade level','Beginner, Intermediate, Advanced','ordinal','Categories with a clear order: Beginner < Intermediate < Advanced.',1],
+    ['Number of courses','2, 3, 4, 5','discrete','You count it: whole numbers only.',1],
+    ['GPA','2.5, 3.4, 3.9','continuous','Takes decimal values anywhere in a range.',1],
+    ['Phone colour','Black, White, Blue','nominal','Colours have no ranking.',1],
+    ['Product rating','Poor, Average, Good','ordinal','Ranked categories, but the gaps between them are not measured numbers.',1],
+    ['Calls made in a day','0, 1, 7, 12','discrete','Countable whole numbers.',1],
+    ['Temperature','21.4 °C, 22.07 °C','continuous','Measured; any value in a range.',1],
+    ['Number of bedrooms','0, 1, 2, 3, 4, 5','discrete','You count bedrooms. This is x₂ in the feature scaling handout.',0],
+    ['House location','San Francisco, Austin, Boston','nominal','Cities have no order, so in Lab 1 you one-hot encode them (dummy variables).',0],
+    ['Energy class','A, B, C, D, E, F, G','ordinal','Letters, but ranked from most to least efficient.',0],
+    ['House area (sq ft)','1450.5, 2003.2','continuous','Measured surface; any value in a range.',0],
+    ['T-shirt size','S, M, L, XL','ordinal','Ordered categories.',0],
+    ['Spam or not spam','spam, not spam','nominal','Two categories with no order. Predicting it is classification, not regression.',0],
+    ['Number of emails received','0, 3, 41','discrete','A count.',0],
+    ['Time to load a page (s)','0.82, 1.375','continuous','Time is measured, so continuous.',0]
+  ];
+  let order=V.map((_,i)=>i).sort(()=>Math.random()-.5),si=0,answered=false,right=0,done=0;
+  function sShow(){const v=V[order[si%order.length]];document.getElementById('sVar').textContent=v[0];
+    document.getElementById('sEx').textContent='values: '+v[1]+(v[4]?'  · (course)':'  · (new)');
+    document.getElementById('sFb').innerHTML='';answered=false;
+    document.getElementById('sScore').textContent=done?`${right} / ${done} correct`:'';}
+  document.querySelectorAll('.bin').forEach(bt=>bt.onclick=()=>{
+    if(answered)return;answered=true;done++;const v=V[order[si%order.length]];const ok=bt.dataset.t===v[2];if(ok)right++;
+    document.getElementById('sFb').innerHTML=`<p class="status ${ok?'good':'bad'}">${ok?'Correct':'Not quite: it is '+v[2]}.</p><p>${v[3]}</p>`;
+    document.getElementById('sScore').textContent=`${right} / ${done} correct`;});
+  document.getElementById('sNext').onclick=()=>{si++;sShow();};
+  sShow();
+
+  // ---------- flashcards ----------
+  const F=[
+    ['Give the formal definition of Machine Learning (Mitchell).','A program learns from experience E with respect to tasks T and performance measure P if its performance at T, measured by P, improves with E.','Chap1 · "What\'s ML"'],
+    ['Spam filter: what are E, T and P?','T = classify emails as spam / not spam. E = a set of emails already labelled. P = % of emails classified correctly.','Applying Chap1 definition'],
+    ['What is generalization?','The ability of a model to perform accurately on new, unseen examples after training on a learning dataset.','Chap1 · Generalization'],
+    ['Supervised learning: data and main drawback?','Labelled data (input + correct output). Drawback: labelling by hand is costly, especially for large datasets.','Chap1 · Supervised'],
+    ['Unsupervised learning: what does it do? Two problem families?','Finds hidden patterns in unlabelled data. Clustering and association.','Chap1 · Unsupervised'],
+    ['Semi-supervised learning?','A small amount of labelled data plus a large amount of unlabelled data. Analogy: teacher explains a few concepts, homework on similar ones.','Chap1 · Semi-supervised'],
+    ['Reinforcement learning?','An agent interacts with an environment, gets a reward for right actions and a penalty for wrong ones, and learns to maximize total reward.','Chap1 · RL'],
+    ['Training vs validation vs test data?','Training: the model learns from it. Validation: frequent evaluation while training (tuning). Test: final unbiased evaluation on unseen data.','Chap1 · How to split data'],
+    ['Data vs information vs knowledge?','Data: raw facts. Information: data interpreted to give meaning. Knowledge: information combined with experience and insight.','Chap1 · Data'],
+    ['Name the 5 V\'s of data.','Volume (scale), Variety (forms), Velocity (speed of generation), Value (usefulness), Veracity (correctness).','Chap1 · Properties of data'],
+    ['Labelled vs unlabelled data, with an example each?','Labelled: has a target variable (patient treatment results). Unlabelled: no target (population data of a state).','Chap1 · Other forms of data'],
+    ['Weakly labelled vs noisy data?','Weakly labelled: labels exist but are imprecise. Noisy: data contains errors, wrong values or irrelevant information.','Chap1 · Other forms of data']
+  ];
+  let fi=0,flipped=false;const fl=document.getElementById('flash');
+  function fShow(){const c=F[fi];fl.innerHTML=flipped?`<span class="hint">ANSWER</span><span class="a">${c[1]}</span><span class="src">${c[2]}</span>`:`<span class="hint">QUESTION · tap to flip</span><span class="q">${c[0]}</span>`;
+    document.getElementById('fPos').textContent=`card ${fi+1} of ${F.length}`;}
+  fl.onclick=()=>{flipped=!flipped;fShow();};
+  document.getElementById('fNext').onclick=()=>{fi=(fi+1)%F.length;flipped=false;fShow();};
+  document.getElementById('fPrev').onclick=()=>{fi=(fi-1+F.length)%F.length;flipped=false;fShow();};
+  fShow();
+})();
+</script>
