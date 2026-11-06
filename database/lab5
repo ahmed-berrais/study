@@ -1,0 +1,52 @@
+ysql> USE chinook_sample;
+Database changed
+mysql> CREATE TABLE media_types(
+    -> media_type_id INTEGER PRIMARY KEY,
+    -> Name VARCHAR(120),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> CREATE TABLE media_types( media_type_id INTEGER PRIMARY KEY, Name VARCHAR(120));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE genres(
+    -> genreID INTEGER PRIMARY KEY,
+    -> Name VARCHAR(120)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE playlists(
+    -> playlistID INTEGER PRIMARY KEY,
+    -> Name VARCHAR 
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> CREATE TABLE playlists( playlistID INTEGER PRIMARY KEY, Name VARCHAR());
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '))' at line 1
+mysql> CREATE TABLE playlists( playlistID INTEGER PRIMARY KEY, Name VARCHAR(120));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE playlistTracks (
+    -> playlistTracksID INTEGER PRIMARY KEY,
+    -> FOREIGN KEY(playlistID) REFERENCES playlists(playlistID),
+    -> FOREIGN KEY(TrackId) REFERENCES Tracks(TrackId));
+ERROR 1072 (42000): Key column 'playlistID' doesn't exist in table
+mysql> CREATE TABLE playlistTracks (
+    ->     playlistTracksID INTEGER PRIMARY KEY,
+    ->     playlistID INTEGER,
+    ->     TrackId INTEGER,
+    ->     FOREIGN KEY (playlistID) REFERENCES playlists(playlistID),
+    ->     FOREIGN KEY (TrackId) REFERENCES Tracks(TrackId)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE TABLE invoice_items (
+    -> invoiceItemID INTEGER PRIMARY KEY,
+    -> InvoiceId INTEGER,
+    -> FOREIGN KEY(InvoiceId) REFERENCES Invoices(InvoiceId),
+    -> TrackId INTEGER,
+    -> FOREIGN KEY (TrackId) REFERENCES Tracks(TrackId),
+    -> UnitPrice NUMERIC,
+    -> Quantity INTEGER);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> 
+

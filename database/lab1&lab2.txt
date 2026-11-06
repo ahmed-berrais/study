@@ -1,0 +1,510 @@
+ahmed@ahmed-Thin-15-B13UDX:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.46-0ubuntu0.24.04.4 (Ubuntu)
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE mz_devices;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_mz_devices |
++----------------------+
+| devices              |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> DESCRIBE devices;
++-------------+-------+------+-----+---------+-------+
+| Field       | Type  | Null | Key | Default | Extra |
++-------------+-------+------+-----+---------+-------+
+| Device_ID   | int   | NO   | PRI | NULL    |       |
+| Device_name | text  | YES  |     | NULL    |       |
+| Price       | float | YES  |     | NULL    |       |
++-------------+-------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO devices (Device_name,Price) VALUES (iPhone XR 1,1500.50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'XR 1,1500.50)' at line 1
+mysql> INSERT INTO devices (Device_name,Price) VALUES ('iPhone XR 1',1500.50);
+ERROR 1364 (HY000): Field 'Device_ID' doesn't have a default value
+mysql> INSERT INTO devices (Device_ID,Device_name,Price) VALUES (1,'iPhone XR 1',1500.50);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO devices (Device_ID,Device_name,Price) VALUES (2,'Samsung SX',1200.50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO devices (Device_ID,Device_name,Price) VALUES (3,'Nokia 730',1050.00);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> DISPLAY devices;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DISPLAY devices' at line 1
+mysql> SELECT * FROM devices;
++-----------+-------------+--------+
+| Device_ID | Device_name | Price  |
++-----------+-------------+--------+
+|         1 | iPhone XR 1 | 1500.5 |
+|         2 | Samsung SX  | 1200.5 |
+|         3 | Nokia 730   |   1050 |
++-----------+-------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_mz_devices |
++----------------------+
+| devices              |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE stock;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> CREATE TABLE stock(Device_ID INT,Quantity INT,Total_price FLOAT);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESCRIBE stock;
++-------------+-------+------+-----+---------+-------+
+| Field       | Type  | Null | Key | Default | Extra |
++-------------+-------+------+-----+---------+-------+
+| Device_ID   | int   | YES  |     | NULL    |       |
+| Quantity    | int   | YES  |     | NULL    |       |
+| Total_price | float | YES  |     | NULL    |       |
++-------------+-------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> INSERT INTO devices (Device_ID,Quantity,Total_price) VALUES (1,5,500.75);
+ERROR 1054 (42S22): Unknown column 'Quantity' in 'field list'
+mysql> INSERT INTO stock (Device_ID,Quantity,Total_price) VALUES (1,5,500.75);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO stock (Device_ID,Quantity,Total_price) VALUES (2,3,3500.50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM stock;
++-----------+----------+-------------+
+| Device_ID | Quantity | Total_price |
++-----------+----------+-------------+
+|         1 |        5 |      500.75 |
+|         2 |        3 |      3500.5 |
++-----------+----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SHOW TABLES;
+ERROR 1046 (3D000): No database selected
+mysql> USE mz_devices;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_mz_devices |
++----------------------+
+| devices              |
+| stock                |
++----------------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE customer(username CHAR(9) NOT NULL,FUll_Name VARCHAR(100) NOT NULL,Email VARCHAR(255),CONSTRAINT CHCK);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> CREATE TABLE customer(username CHAR(9) NOT NULL,FUll_Name VARCHAR(100) NOT NULL,Email VARCHAR(255),CONSTRAINT CHCK
+    -> CHECK (CHAR_LENGTH(username=9)));
+ERROR 3812 (HY000): An expression of non-boolean type specified to a check constraint 'CHCK'.
+mysql> CREATE TABLE customer(username CHAR(9) NOT NULL,FUll_Name VARCHAR(100) NOT NULL,Email VARCHAR(255),CONSTRAINT CHCK CHECK (CHAR_LENGTH(username)=9));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> DESCRIBE customer;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| username  | char(9)      | NO   |     | NULL    |       |
+| FUll_Name | varchar(100) | NO   |     | NULL    |       |
+| Email     | varchar(255) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+3 rows in set (0.05 sec)
+
+mysql> ALTER TABLE customer
+    -> MODIFY Email VARCHAR(255) NOT NULL;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE customer;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| username  | char(9)      | NO   |     | NULL    |       |
+| FUll_Name | varchar(100) | NO   |     | NULL    |       |
+| Email     | varchar(255) | NO   |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM customer;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO customer (username,FULL_Name,Email) VALUES (Custom001,'John Johnson',J.Johnson@email.com);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@email.com)' at line 1
+mysql> INSERT INTO customer (username,FULL_Name,Email) VALUES ('Custom001','John Johnson','J.Johnson@email.com');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO customer (username, Full_Name, Email) VALUES 
+    -> ('Custom003', 'Yara Suliman', 'Yara.Suliman@email.com'),
+    -> ('Custom004', 'Yara Suliman', 'Yara.Suliman@email.com');
+Query OK, 2 rows affected (0.05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM customer;
++-----------+--------------+------------------------+
+| username  | FUll_Name    | Email                  |
++-----------+--------------+------------------------+
+| Custom001 | John Johnson | J.Johnson@email.com    |
+| Custom003 | Yara Suliman | Yara.Suliman@email.com |
+| Custom004 | Yara Suliman | Yara.Suliman@email.com |
++-----------+--------------+------------------------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_mz_devices |
++----------------------+
+| customer             |
+| devices              |
+| stock                |
++----------------------+
+3 rows in set (0.01 sec)
+
+mysql> CREATE TABLE feedback
+    -> feedbackid VARCHAR(8) NOT NULL,
+    -> feedback_type CHAR(100) NOT NULL,
+    -> feedback_comment CHAR(100) NOT NULL,
+    -> CONSTRAINT CHCK
+    -> CHECK(CHAR_LENGTH(feedbackid)=8));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'feedbackid VARCHAR(8) NOT NULL,
+feedback_type CHAR(100) NOT NULL,
+feedback_comme' at line 2
+mysql> CREATE TABLE feedback(feedbackid VARCHAR(8) NOT NULL, feedback_type CHAR(100) NOT NULL, feedback_comment CHAR(500) NOT NULL, CONSTRAINT CHCK CHECK(CHAR_LENGTH(feedbackid)=8));
+ERROR 1074 (42000): Column length too big for column 'feedback_comment' (max = 255); use BLOB or TEXT instead
+mysql> CREATE TABLE feedback(feedbackid VARCHAR(8) NOT NULL, feedback_type CHAR(100) NOT NULL, feedback_comment VARCHAR(500) NOT NULL, CONSTRAINT CHCK CHECK(CHAR_LENGTH(feedbackid)=8));
+ERROR 3822 (HY000): Duplicate check constraint name 'CHCK'.
+mysql> CREATE TABLE feedback(feedbackid VARCHAR(8) NOT NULL, feedback_type CHAR(100) NOT NULL, feedback_comment VARCHAR(500) NOT NULL, CONSTRAINT CHC CHECK(CHAR_LENGTH(feedbackid)=8));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> DESCRIBE feedback;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| feedbackid       | varchar(8)   | NO   |     | NULL    |       |
+| feedback_type    | char(100)    | NO   |     | NULL    |       |
+| feedback_comment | varchar(500) | NO   |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO feedback (feedbackid, feedback_type, feedback_comment) VALUES 
+    -> ('Feed0001', 'Good', 'It is a very good product but the delivery was not great.'),
+    -> ('Feed0002', 'Very good', 'No comment');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE adress (customer_id INT PRIMARY KEY, street VARCHAR NOT NULL , postcode VARCHAR DEFAULT 'HA3 0AE',town VARCHAR DEAFULT 'HARROW');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NOT NULL , postcode VARCHAR DEFAULT 'HA3 0AE',town VARCHAR DEAFULT 'HARROW')' at line 1
+mysql> CREATE TABLE adress (customer_id INT PRIMARY KEY, street VARCHAR(100) NOT NULL , postcode VARCHAR() DEFAULT 'HA3 0AE',town VARCHAR() DEFAULT 'HARROW');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') DEFAULT 'HA3 0AE',town VARCHAR() DEFAULT 'HARROW')' at line 1
+mysql> CREATE TABLE adress (customer_id INT PRIMARY KEY, street VARCHAR(20) NOT NULL , postcode VARCHAR(20) DEFAULT 'HA3 0AE',town VARCHAR(20) DEFAULT 'HARROW');
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESCRIBE adress;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| customer_id | int         | NO   | PRI | NULL    |       |
+| street      | varchar(20) | NO   |     | NULL    |       |
+| postcode    | varchar(20) | YES  |     | HA3 0AE |       |
+| town        | varchar(20) | YES  |     | HARROW  |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM feedback;
++------------+---------------+-----------------------------------------------------------+
+| feedbackid | feedback_type | feedback_comment                                          |
++------------+---------------+-----------------------------------------------------------+
+| Feed0001   | Good          | It is a very good product but the delivery was not great. |
+| Feed0002   | Very good     | No comment                                                |
++------------+---------------+-----------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| mz_devices         |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> USE mz_devices
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> DESCRIBE TABLES;
+ERROR 1146 (42S02): Table 'mz_devices.TABLES' doesn't exist
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_mz_devices |
++----------------------+
+| adress               |
+| customer             |
+| devices              |
+| feedback             |
+| stock                |
++----------------------+
+5 rows in set (0.01 sec)
+
+mysql> INSERT INTO adress (customer_id, street) VALUES
+    -> (1, '10 Carsten Rd.'),
+    -> (2, '15 Denise Ave.'),
+    -> (3, '13 Merkel Ave.'),
+    -> (4, '12 Carsten Rd.'),
+    -> (5, '15 Hellen way'),
+    -> (6, '13 Carsten Rd');
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO adress (customer_id, street, postcode, town) VALUES
+    -> (7, '11 Malika Rd.', 'NW9 0AX', 'Kingsbury');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM adress;
++-------------+----------------+----------+-----------+
+| customer_id | street         | postcode | town      |
++-------------+----------------+----------+-----------+
+|           1 | 10 Carsten Rd. | HA3 0AE  | HARROW    |
+|           2 | 15 Denise Ave. | HA3 0AE  | HARROW    |
+|           3 | 13 Merkel Ave. | HA3 0AE  | HARROW    |
+|           4 | 12 Carsten Rd. | HA3 0AE  | HARROW    |
+|           5 | 15 Hellen way  | HA3 0AE  | HARROW    |
+|           6 | 13 Carsten Rd  | HA3 0AE  | HARROW    |
+|           7 | 11 Malika Rd.  | NW9 0AX  | Kingsbury |
++-------------+----------------+----------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE adress
+    -> ALTER COLUMN postcode DROP DEFAULT;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE adress ALTER COLUMN postcode SET DEFAULT 'HA97DE';
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE adress
+    -> SET postcode='HA97DE'
+    -> WHERE postcode='HA3 0AE';
+Query OK, 6 rows affected (0.02 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> INSERT INTO adress (customer_id, street, town) VALUES (7, '11 Malika Rd.', 'Kingsbury');
+ERROR 1062 (23000): Duplicate entry '7' for key 'adress.PRIMARY'
+mysql> UPDATE adress (customer_id, street, town) VALUES (7, '11 Malika Rd.', 'Kingsbury');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(customer_id, street, town) VALUES (7, '11 Malika Rd.', 'Kingsbury')' at line 1
+mysql> UPDATE adress 
+    -> SET street = '11 Malika Rd.', 
+    ->     town = 'Kingsbury',
+    ->     postcode = DEFAULT 
+    -> WHERE customer_id = 7;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> DESCRIBE adress;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| customer_id | int         | NO   | PRI | NULL    |       |
+| street      | varchar(20) | NO   |     | NULL    |       |
+| postcode    | varchar(20) | YES  |     | HA97DE  |       |
+| town        | varchar(20) | YES  |     | HARROW  |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT * FROM adress;
++-------------+----------------+----------+-----------+
+| customer_id | street         | postcode | town      |
++-------------+----------------+----------+-----------+
+|           1 | 10 Carsten Rd. | HA97DE   | HARROW    |
+|           2 | 15 Denise Ave. | HA97DE   | HARROW    |
+|           3 | 13 Merkel Ave. | HA97DE   | HARROW    |
+|           4 | 12 Carsten Rd. | HA97DE   | HARROW    |
+|           5 | 15 Hellen way  | HA97DE   | HARROW    |
+|           6 | 13 Carsten Rd  | HA97DE   | HARROW    |
+|           7 | 11 Malika Rd.  | HA97DE   | Kingsbury |
++-------------+----------------+----------+-----------+
+7 rows in set (0.01 sec)
+
+mysql> DROP TABLE adress;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_mz_devices |
++----------------------+
+| customer             |
+| devices              |
+| feedback             |
+| stock                |
++----------------------+
+4 rows in set (0.01 sec)
+
+mysql> CREATE TABLE invoice(
+    -> customer_name VARCHAR(100) NOT NULL,
+    -> order_date DATE,
+    -> product_quantity INT ,
+    -> total_price DECIMAL);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> ALTER TABLE invoice 
+    -> MODIFY COLUMN total_price DECIMAL(3,2);
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE invoice;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| customer_name    | varchar(100) | NO   |     | NULL    |       |
+| order_date       | date         | YES  |     | NULL    |       |
+| product_quantity | int          | YES  |     | NULL    |       |
+| total_price      | decimal(3,2) | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> INSERT INTO invoice (customer_name, order_date, product_quantity, total_price) VALUES
+    -> ('Mark Dani', '2022-03-25', 5, 750.50),
+    -> ('Karl Masonry', '2022-03-22', 4, 600.75),
+    -> ('Jack Raymond', '2022-03-20', 3, 978.00);
+ERROR 1264 (22003): Out of range value for column 'total_price' at row 1
+mysql> ALTER TABLE invoice  MODIFY COLUMN total_price DECIMAL(10,2);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO invoice (customer_name, order_date, product_quantity, total_price) VALUES ('Mark Dani', '2022-03-25', 5, 750.50), ('Karl Masonry', '2022-03-22', 4, 600.75), ('Jack Raymond', '2022-03-20', 3, 978.00);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM invoice ;
++---------------+------------+------------------+-------------+
+| customer_name | order_date | product_quantity | total_price |
++---------------+------------+------------------+-------------+
+| Mark Dani     | 2022-03-25 |                5 |      750.50 |
+| Karl Masonry  | 2022-03-22 |                4 |      600.75 |
+| Jack Raymond  | 2022-03-20 |                3 |      978.00 |
++---------------+------------+------------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE contact(
+    -> account_number INT PRIMARY KEY,
+    -> phone_number CHAR(8) NOT NULL CHECK (CHARLENGTH(phone_number)=8),
+    -> email VARCHAR(100) NOT NULL CHECK (email LIKE '%@gmail.com'));
+ERROR 3814 (HY000): An expression of a check constraint 'contact_chk_1' contains disallowed function: `CHARLENGTH`.
+mysql> CREATE TABLE contact( account_number INT PRIMARY KEY, phone_number CHAR(8) NOT NULL
+CHECK (CHAR_LENGTH(phone_number)=8), email VARCHAR(100) NOT NULL CHECK (email LIKE '%@gmail.com'));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> DESCRIBE contact;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| account_number | int          | NO   | PRI | NULL    |       |
+| phone_number   | char(8)      | NO   |     | NULL    |       |
+| email          | varchar(100) | NO   |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+hmed@ahmed-Thin-15-B13UDX:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.46-0ubuntu0.24.04.4 (Ubuntu)
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE bookshop;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> USE bookshop;
+Database changed
+mysql> CREATE TABLE customers (
+    -> customerid INT PRIMARY KEY,
+    -> name VARCHAR(20),
+    -> adress VARCHAR(100) DEFAULT '10 Copland Ave Portsmouth');
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO customers (customerid, name, adress) VALUES
+    -> (1, 'Ines', '115 Old street Belfast'),
+    -> (2, 'Farah', '24 Carlson Rd London'),
+    -> (3, 'Maryem', '5 Fredrik Rd, Bedford'),
+    -> (4, 'Samah', DEFAULT),
+    -> (5, 'Oumayma', '15 Fredrik Rd, Bedford'),
+    -> (6, 'Kalthoum', DEFAULT);
+Query OK, 6 rows affected (0.05 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE customers;
++------------+--------------+------+-----+---------------------------+-------+
+| Field      | Type         | Null | Key | Default                   | Extra |
++------------+--------------+------+-----+---------------------------+-------+
+| customerid | int          | NO   | PRI | NULL                      |       |
+| name       | varchar(20)  | YES  |     | NULL                      |       |
+| adress     | varchar(100) | YES  |     | 10 Copland Ave Portsmouth |       |
++------------+--------------+------+-----+---------------------------+-------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT * FROM customers;
++------------+----------+---------------------------+
+| customerid | name     | adress                    |
++------------+----------+---------------------------+
+|          1 | Ines     | 115 Old street Belfast    |
+|          2 | Farah    | 24 Carlson Rd London      |
+|          3 | Maryem   | 5 Fredrik Rd, Bedford     |
+|          4 | Samah    | 10 Copland Ave Portsmouth |
+|          5 | Oumayma  | 15 Fredrik Rd, Bedford    |
+|          6 | Kalthoum | 10 Copland Ave Portsmouth |
++------------+----------+---------------------------+
+6 rows in set (0.00 sec)
+
+mysql> DELETE FROM customers
+    -> WHERE customerid=3;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM customers;
++------------+----------+---------------------------+
+| customerid | name     | adress                    |
++------------+----------+---------------------------+
+|          1 | Ines     | 115 Old street Belfast    |
+|          2 | Farah    | 24 Carlson Rd London      |
+|          4 | Samah    | 10 Copland Ave Portsmouth |
+|          5 | Oumayma  | 15 Fredrik Rd, Bedford    |
+|          6 | Kalthoum | 10 Copland Ave Portsmouth |
++------------+----------+---------------------------+
+5 rows in set (0.00 sec)
+
+mysql> 
+
+

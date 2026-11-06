@@ -1,0 +1,173 @@
+CREATE DATABASE chinook_sample;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> USE chinook_sample;
+Database changed
+mysql> CREATE TABLE Employee (
+    ->     EmployeeId INTEGER PRIMARY KEY,
+    ->     LastName VARCHAR(20),
+    ->     FirstName VARCHAR(20),
+    ->     Title VARCHAR(30),
+    ->     ReportsTo INTEGER,
+    ->     BirthDate DATE,
+    ->     HireDate DATE,
+    ->     Address VARCHAR(70)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE Customers (
+    ->     CustomerId INTEGER PRIMARY KEY,
+    ->     LastName VARCHAR(20),
+    ->     FirstName VARCHAR(20),
+    ->     Company VARCHAR(30),
+    ->     Phone VARCHAR(20),
+    ->     Email VARCHAR(100),
+    ->     SupportRepId INTEGER,
+    ->     Address VARCHAR(70),
+    ->     FOREIGN KEY (SupportRepId) REFERENCES Employee(EmployeeId)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE TABLE Artists (
+    ->     ArtistId INTEGER PRIMARY KEY,
+    ->     Name VARCHAR(120)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE Albums (
+    ->     AlbumId INTEGER PRIMARY KEY,
+    ->     Title VARCHAR(160),
+    ->     ArtistId INTEGER,
+    ->     FOREIGN KEY (ArtistId) REFERENCES Artists(ArtistId)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE TABLE Tracks (
+    ->     TrackId INTEGER PRIMARY KEY,
+    ->     Name VARCHAR(200),
+    ->     AlbumId INTEGER,
+    ->     UnitePrice DECIMAL(10,2),
+    ->     FOREIGN KEY (AlbumId) REFERENCES Albums(AlbumId)
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> CREATE TABLE Invoices (
+    ->     InvoiceId INTEGER PRIMARY KEY,
+    ->     CustomerId INTEGER,
+    ->     InvoiceDate DATE,
+    ->     BillingAddress VARCHAR(100),
+    ->     TrackId INTEGER,
+    ->     FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId),
+    ->     FOREIGN KEY (TrackId) REFERENCES Tracks(TrackId)
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> USE chinook_sample;
+Database changed
+mysql> SHOW TABLES;
++--------------------------+
+| Tables_in_chinook_sample |
++--------------------------+
+| Albums                   |
+| Artists                  |
+| Customers                |
+| Employee                 |
+| Invoices                 |
+| Tracks                   |
++--------------------------+
+6 rows in set (0.00 sec)
+
+mysql> DESCRIBE Employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| EmployeeId | int         | NO   | PRI | NULL    |       |
+| LastName   | varchar(20) | YES  |     | NULL    |       |
+| FirstName  | varchar(20) | YES  |     | NULL    |       |
+| Title      | varchar(30) | YES  |     | NULL    |       |
+| ReportsTo  | int         | YES  |     | NULL    |       |
+| BirthDate  | date        | YES  |     | NULL    |       |
+| HireDate   | date        | YES  |     | NULL    |       |
+| Address    | varchar(70) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> DESCRIBE Customers;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| CustomerId   | int          | NO   | PRI | NULL    |       |
+| LastName     | varchar(20)  | YES  |     | NULL    |       |
+| FirstName    | varchar(20)  | YES  |     | NULL    |       |
+| Company      | varchar(30)  | YES  |     | NULL    |       |
+| Phone        | varchar(20)  | YES  |     | NULL    |       |
+| Email        | varchar(100) | YES  |     | NULL    |       |
+| SupportRepId | int          | YES  | MUL | NULL    |       |
+| Address      | varchar(70)  | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> DESCRIBE Artists;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| ArtistId | int          | NO   | PRI | NULL    |       |
+| Name     | varchar(120) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESCRIBE Albums;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| AlbumId  | int          | NO   | PRI | NULL    |       |
+| Title    | varchar(160) | YES  |     | NULL    |       |
+| ArtistId | int          | YES  | MUL | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> DESCRIBE Tracks;
++------------+---------------+------+-----+---------+-------+
+| Field      | Type          | Null | Key | Default | Extra |
++------------+---------------+------+-----+---------+-------+
+| TrackId    | int           | NO   | PRI | NULL    |       |
+| Name       | varchar(200)  | YES  |     | NULL    |       |
+| AlbumId    | int           | YES  | MUL | NULL    |       |
+| UnitePrice | decimal(10,2) | YES  |     | NULL    |       |
++------------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> DESCRIBE Invoices;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| InvoiceId      | int          | NO   | PRI | NULL    |       |
+| CustomerId     | int          | YES  | MUL | NULL    |       |
+| InvoiceDate    | date         | YES  |     | NULL    |       |
+| BillingAddress | varchar(100) | YES  |     | NULL    |       |
+| TrackId        | int          | YES  | MUL | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> CREATE TABLE Location (
+    ->     LocationId INTEGER PRIMARY KEY,
+    ->     City VARCHAR(50),
+    ->     Country VARCHAR(50),
+    ->     ArtistId INTEGER UNIQUE,
+    ->     FOREIGN KEY (ArtistId) REFERENCES Artists(ArtistId)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> DESCRIBE Location;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| LocationId | int         | NO   | PRI | NULL    |       |
+| City       | varchar(50) | YES  |     | NULL    |       |
+| Country    | varchar(50) | YES  |     | NULL    |       |
+| ArtistId   | int         | YES  | UNI | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> 
+

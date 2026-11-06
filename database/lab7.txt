@@ -1,0 +1,103 @@
+mysql> USE little_lemon;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++------------------------+
+| Tables_in_little_lemon |
++------------------------+
+| Customers              |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> DESCRIBE Customers;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| CustomerID  | int          | NO   | PRI | NULL    |       |
+| FullName    | varchar(100) | YES  |     | NULL    |       |
+| PhoneNumber | int          | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> INSERT INTO Customers (CustomerID, FullName, PhoneNumber) VALUES (1, 'Vanessa McCarthy', 757536378), (2, 'Marcos Romero', 757536379), (3, 'Hiroki Yamane', 757536376), (4, 'Anna Iversen', 757536375), (5, 'Diana Pinto', 757536374);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Customers;
++------------+------------------+-------------+
+| CustomerID | FullName         | PhoneNumber |
++------------+------------------+-------------+
+|          1 | Vanessa McCarthy |   757536378 |
+|          2 | Marcos Romero    |   757536379 |
+|          3 | Hiroki Yamane    |   757536376 |
+|          4 | Anna Iversen     |   757536375 |
+|          5 | Diana Pinto      |   757536374 |
++------------+------------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Bookings ( BookingID INT PRIMARY KEY, BookingDate DATE, TableNumber INT, NumberOfGuests INT, CustomerID INT );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> DESCRIBE Bookings
+    -> ;
++----------------+------+------+-----+---------+-------+
+| Field          | Type | Null | Key | Default | Extra |
++----------------+------+------+-----+---------+-------+
+| BookingID      | int  | NO   | PRI | NULL    |       |
+| BookingDate    | date | YES  |     | NULL    |       |
+| TableNumber    | int  | YES  |     | NULL    |       |
+| NumberOfGuests | int  | YES  |     | NULL    |       |
+| CustomerID     | int  | YES  |     | NULL    |       |
++----------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO Bookings (BookingID, BookingDate, TableNumber, NumberOfGuests, CustomerID) VALUES (10, '2021-11-11', 7, 5, 1), (11, '2021-11-10', 5, 2, 2), (12, '2021-11-10', 3, 2, 4);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Bookings;
++-----------+-------------+-------------+----------------+------------+
+| BookingID | BookingDate | TableNumber | NumberOfGuests | CustomerID |
++-----------+-------------+-------------+----------------+------------+
+|        10 | 2021-11-11  |           7 |              5 |          1 |
+|        11 | 2021-11-10  |           5 |              2 |          2 |
+|        12 | 2021-11-10  |           3 |              2 |          4 |
++-----------+-------------+-------------+----------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT c.FullName , c.PhoneNumber , b.BookingDate,b.NumberOfGuests
+    -> FROM Customers as c INNER JOIN Bookings as b
+    -> WHERE Customers.CustomerID=Bokkings.CustomerID;
+ERROR 1054 (42S22): Unknown column 'Customers.CustomerID' in 'where clause'
+mysql> SELECT c.FullName , c.PhoneNumber , b.BookingDate,b.NumberOfGuests FROM Customers as c INNER JOIN Bookings as b ON Customers.CustomerID=Bokkings.CustomerID;
+ERROR 1054 (42S22): Unknown column 'Customers.CustomerID' in 'on clause'
+mysql> SELECT c.FullName, c.PhoneNumber, b.BookingDate, b.NumberOfGuests
+    -> FROM Customers AS c INNER JOIN Bookings AS b
+    -> ON c.CustomerID = b.CustomerID;
++------------------+-------------+-------------+----------------+
+| FullName         | PhoneNumber | BookingDate | NumberOfGuests |
++------------------+-------------+-------------+----------------+
+| Vanessa McCarthy |   757536378 | 2021-11-11  |              5 |
+| Marcos Romero    |   757536379 | 2021-11-10  |              2 |
+| Anna Iversen     |   757536375 | 2021-11-10  |              2 |
++------------------+-------------+-------------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT Customers.CustomerID, Bookings.BookingID
+    -> FROM Customers LEFT JOIN Bookings
+    -> ON Customers.CustomerID = Bookings.CustomerID;
++------------+-----------+
+| CustomerID | BookingID |
++------------+-----------+
+|          1 |        10 |
+|          2 |        11 |
+|          3 |      NULL |
+|          4 |        12 |
+|          5 |      NULL |
++------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> 
+

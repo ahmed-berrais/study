@@ -1,0 +1,239 @@
+ahmed@ahmed-Thin-15-B13UDX:~$ mysql -u root -p
+*Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.46-0ubuntu0.24.04.4 (Ubuntu)
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE luckyshrub_db;
+Database changed
+mysql> CREATE TABLE Orders (
+    ->     OrderID INT PRIMARY KEY,
+    ->     ClientID VARCHAR(10),
+    ->     ProductID VARCHAR(10),
+    ->     Quantity INT,
+    ->     Cost DECIMAL(6,2)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO Orders (OrderID, ClientID, ProductID, Quantity, Cost)
+    -> VALUES
+    -> (1, 'Cl1', 'P1', 10, 500.00),
+    -> (2, 'Cl2', 'P2', 5, 100.00),
+    -> (3, 'Cl3', 'P3', 20, 800.00),
+    -> (4, 'Cl4', 'P4', 15, 150.00),
+    -> (5, 'Cl3', 'P3', 10, 450.00),
+    -> (6, 'Cl2', 'P2', 5, 800.00),
+    -> (7, 'Cl1', 'P4', 22, 1200.00),
+    -> (8, 'Cl3', 'P1', 15, 150.00),
+    -> (9, 'Cl1', 'P1', 10, 500.00),
+    -> (10, 'Cl2', 'P2', 5, 100.00);
+Query OK, 10 rows affected (0.03 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE Orders;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| OrderID   | int          | NO   | PRI | NULL    |       |
+| ClientID  | varchar(10)  | YES  |     | NULL    |       |
+| ProductID | varchar(10)  | YES  |     | NULL    |       |
+| Quantity  | int          | YES  |     | NULL    |       |
+| Cost      | decimal(6,2) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> SELECT * FROM Orders;
++---------+----------+-----------+----------+---------+
+| OrderID | ClientID | ProductID | Quantity | Cost    |
++---------+----------+-----------+----------+---------+
+|       1 | Cl1      | P1        |       10 |  500.00 |
+|       2 | Cl2      | P2        |        5 |  100.00 |
+|       3 | Cl3      | P3        |       20 |  800.00 |
+|       4 | Cl4      | P4        |       15 |  150.00 |
+|       5 | Cl3      | P3        |       10 |  450.00 |
+|       6 | Cl2      | P2        |        5 |  800.00 |
+|       7 | Cl1      | P4        |       22 | 1200.00 |
+|       8 | Cl3      | P1        |       15 |  150.00 |
+|       9 | Cl1      | P1        |       10 |  500.00 |
+|      10 | Cl2      | P2        |        5 |  100.00 |
++---------+----------+-----------+----------+---------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM Orders
+    -> WHERE Cost <= 250;
++---------+----------+-----------+----------+--------+
+| OrderID | ClientID | ProductID | Quantity | Cost   |
++---------+----------+-----------+----------+--------+
+|       2 | Cl2      | P2        |        5 | 100.00 |
+|       4 | Cl4      | P4        |       15 | 150.00 |
+|       8 | Cl3      | P1        |       15 | 150.00 |
+|      10 | Cl2      | P2        |        5 | 100.00 |
++---------+----------+-----------+----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM Orders
+    -> WHERE ClientID = 'Cl3' AND Cost > 100;
++---------+----------+-----------+----------+--------+
+| OrderID | ClientID | ProductID | Quantity | Cost   |
++---------+----------+-----------+----------+--------+
+|       3 | Cl3      | P3        |       20 | 800.00 |
+|       5 | Cl3      | P3        |       10 | 450.00 |
+|       8 | Cl3      | P1        |       15 | 150.00 |
++---------+----------+-----------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM Orders
+    -> WHERE Cost BETWEEN 50 AND 750;
++---------+----------+-----------+----------+--------+
+| OrderID | ClientID | ProductID | Quantity | Cost   |
++---------+----------+-----------+----------+--------+
+|       1 | Cl1      | P1        |       10 | 500.00 |
+|       2 | Cl2      | P2        |        5 | 100.00 |
+|       4 | Cl4      | P4        |       15 | 150.00 |
+|       5 | Cl3      | P3        |       10 | 450.00 |
+|       8 | Cl3      | P1        |       15 | 150.00 |
+|       9 | Cl1      | P1        |       10 | 500.00 |
+|      10 | Cl2      | P2        |        5 | 100.00 |
++---------+----------+-----------+----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM Orders
+    -> WHERE ProductID IN ('P1', 'P2') AND Quantity > 2;
++---------+----------+-----------+----------+--------+
+| OrderID | ClientID | ProductID | Quantity | Cost   |
++---------+----------+-----------+----------+--------+
+|       1 | Cl1      | P1        |       10 | 500.00 |
+|       2 | Cl2      | P2        |        5 | 100.00 |
+|       6 | Cl2      | P2        |        5 | 800.00 |
+|       8 | Cl3      | P1        |       15 | 150.00 |
+|       9 | Cl1      | P1        |       10 | 500.00 |
+|      10 | Cl2      | P2        |        5 | 100.00 |
++---------+----------+-----------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM Orders
+    -> WHERE ProductID IN ('P1', 'P2') AND Quantity > 2;
++---------+----------+-----------+----------+--------+
+| OrderID | ClientID | ProductID | Quantity | Cost   |
++---------+----------+-----------+----------+--------+
+|       1 | Cl1      | P1        |       10 | 500.00 |
+|       2 | Cl2      | P2        |        5 | 100.00 |
+|       6 | Cl2      | P2        |        5 | 800.00 |
+|       8 | Cl3      | P1        |       15 | 150.00 |
+|       9 | Cl1      | P1        |       10 | 500.00 |
+|      10 | Cl2      | P2        |        5 | 100.00 |
++---------+----------+-----------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE TABLE employees (
+    ->     EmployeeID INT PRIMARY KEY,
+    ->     EmployeeName VARCHAR(100),
+    ->     Department VARCHAR(50),
+    ->     ContactNo INT,
+    ->     Email VARCHAR(100),
+    ->     AnnualSalary INT
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO employees (EmployeeID, EmployeeName, Department, ContactNo, Email, AnnualSalary)
+    -> VALUES
+    -> (1, 'Seamus Hogan', 'Recruitment', 351478025, 'Seamus.h@luckyshrub.com', 50000),
+    -> (2, 'Thomas Eriksson', 'Legal', 351475058, 'Thomas.e@luckyshrub.com', 75000),
+    -> (3, 'Simon Tolo', 'Marketing', 351930582, 'Simon.t@luckyshrub.com', 40000),
+    -> (4, 'Francesca Soffia', 'Finance', 351258569, 'Francesca.s@luckyshrub.com', 45000),
+    -> (5, 'Emily Sierra', 'Customer Service', 351083098, 'Emily.s@luckyshrub.com', 35000), 
+    -> (6, 'Maria Carter', 'Human Resources', 351022508, 'Maria.c@luckyshrub.com', 55000),
+    -> (7, 'Rick Griffin', 'Marketing', 351478458, 'Rick.G@luckyshrub.com', 50000);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE employees;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| EmployeeID   | int          | NO   | PRI | NULL    |       |
+| EmployeeName | varchar(100) | YES  |     | NULL    |       |
+| Department   | varchar(50)  | YES  |     | NULL    |       |
+| ContactNo    | int          | YES  |     | NULL    |       |
+| Email        | varchar(100) | YES  |     | NULL    |       |
+| AnnualSalary | int          | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM employees;
++------------+------------------+------------------+-----------+----------------------------+--------------+
+| EmployeeID | EmployeeName     | Department       | ContactNo | Email                      | AnnualSalary |
++------------+------------------+------------------+-----------+----------------------------+--------------+
+|          1 | Seamus Hogan     | Recruitment      | 351478025 | Seamus.h@luckyshrub.com    |        50000 |
+|          2 | Thomas Eriksson  | Legal            | 351475058 | Thomas.e@luckyshrub.com    |        75000 |
+|          3 | Simon Tolo       | Marketing        | 351930582 | Simon.t@luckyshrub.com     |        40000 |
+|          4 | Francesca Soffia | Finance          | 351258569 | Francesca.s@luckyshrub.com |        45000 |
+|          5 | Emily Sierra     | Customer Service | 351083098 | Emily.s@luckyshrub.com     |        35000 |
+|          6 | Maria Carter     | Human Resources  | 351022508 | Maria.c@luckyshrub.com     |        55000 |
+|          7 | Rick Griffin     | Marketing        | 351478458 | Rick.G@luckyshrub.com      |        50000 |
++------------+------------------+------------------+-----------+----------------------------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> w
+mysql> SELECT *
+    -> FROM employees
+    -> WHERE AnnualSalary > 50000 AND Department='Marketing';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM employees WHERE NOT AnnualSalary > 50000
+    -> ;
++------------+------------------+------------------+-----------+----------------------------+--------------+
+| EmployeeID | EmployeeName     | Department       | ContactNo | Email                      | AnnualSalary |
++------------+------------------+------------------+-----------+----------------------------+--------------+
+|          1 | Seamus Hogan     | Recruitment      | 351478025 | Seamus.h@luckyshrub.com    |        50000 |
+|          3 | Simon Tolo       | Marketing        | 351930582 | Simon.t@luckyshrub.com     |        40000 |
+|          4 | Francesca Soffia | Finance          | 351258569 | Francesca.s@luckyshrub.com |        45000 |
+|          5 | Emily Sierra     | Customer Service | 351083098 | Emily.s@luckyshrub.com     |        35000 |
+|          7 | Rick Griffin     | Marketing        | 351478458 | Rick.G@luckyshrub.com      |        50000 |
++------------+------------------+------------------+-----------+----------------------------+--------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT *  FROM employees WHERE Department IN ('Marketing', 'Finance', 'Legal') AND AnnualSalary < 50000;
++------------+------------------+------------+-----------+----------------------------+--------------+
+| EmployeeID | EmployeeName     | Department | ContactNo | Email                      | AnnualSalary |
++------------+------------------+------------+-----------+----------------------------+--------------+
+|          3 | Simon Tolo       | Marketing  | 351930582 | Simon.t@luckyshrub.com     |        40000 |
+|          4 | Francesca Soffia | Finance    | 351258569 | Francesca.s@luckyshrub.com |        45000 |
++------------+------------------+------------+-----------+----------------------------+--------------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT * FROM employees WHERE AnnualSalary BETWEEN 10000 AND 50000;
++------------+------------------+------------------+-----------+----------------------------+--------------+
+| EmployeeID | EmployeeName     | Department       | ContactNo | Email                      | AnnualSalary |
++------------+------------------+------------------+-----------+----------------------------+--------------+
+|          1 | Seamus Hogan     | Recruitment      | 351478025 | Seamus.h@luckyshrub.com    |        50000 |
+|          3 | Simon Tolo       | Marketing        | 351930582 | Simon.t@luckyshrub.com     |        40000 |
+|          4 | Francesca Soffia | Finance          | 351258569 | Francesca.s@luckyshrub.com |        45000 |
+|          5 | Emily Sierra     | Customer Service | 351083098 | Emily.s@luckyshrub.com     |        35000 |
+|          7 | Rick Griffin     | Marketing        | 351478458 | Rick.G@luckyshrub.com      |        50000 |
++------------+------------------+------------------+-----------+----------------------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM employees WHERE EmployeeName LIKE 'S___%';
++------------+--------------+-------------+-----------+-------------------------+--------------+
+| EmployeeID | EmployeeName | Department  | ContactNo | Email                   | AnnualSalary |
++------------+--------------+-------------+-----------+-------------------------+--------------+
+|          1 | Seamus Hogan | Recruitment | 351478025 | Seamus.h@luckyshrub.com |        50000 |
+|          3 | Simon Tolo   | Marketing   | 351930582 | Simon.t@luckyshrub.com  |        40000 |
++------------+--------------+-------------+-----------+-------------------------+--------------+
+2 rows in set (0.00 sec)
+
