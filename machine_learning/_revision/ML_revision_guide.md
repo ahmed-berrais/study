@@ -1,6 +1,7 @@
 # Machine Learning: revision guide
 
 Course: Dr. Ameni Youssfi Nouira, PRISTINI 2026/2027.
+Full slide-by-slide explanation: `Chap2_explained_simply.md`.
 Sources read: `Chap1_Introduction_to_ML.pdf` (38 slides), `Chap2_Supervised_Learning_Regression.pdf` (63 slides),
 `Lab1_datamining-1.pdf`, `Lab2_LinearRegression_HousePrice.pdf`, `feature_scaling.pdf`.
 Slide numbers are approximate (taken from extracted text). Some slides are images only:
@@ -104,7 +105,9 @@ their diagrams and formulas weren't in the text, so check them in the PDF.
 6. **Lab 1, normalization code:** `df['x'] / df['x'].max()` is labelled "Min-Max", but it's
    really **Max-Abs/simple-feature scaling**. It equals min-max only when min = 0.
    True min-max: `(x − x.min()) / (x.max() − x.min())`.
-7. **Chap1:** "continuous variables… their values will remain in that finite interval" is
+7. **Chap2 slide 49:** (XᵀX)⁻¹Xᵀ first entry printed 0.05, really **1.36** (the final β's on the slide are still right).
+8. **Chap2 slide 54:** "simple *polynomial* regression only works when linear" should say simple **linear** regression.
+9. **Chap1:** "continuous variables… their values will remain in that finite interval" is
    loosely worded. Continuous means *any real value in a range*.
 
 ---
