@@ -1,8 +1,8 @@
-# Revision Lab A: "Carthage Fitness Club" (guided, covers every chapter)
+# Revision Lab A: "Carthage Fitness Club"
 
-> **DS scope: SQL operators → Views.** Ch1 (operators, relational model, keys, constraints, ERD, schema, normalization) + Ch2 (filtering, aliases, all joins incl. SELF/FULL, UNION, GROUP BY/HAVING, EXISTS/ANY/ALL, INSERT/UPDATE/DELETE/REPLACE, constraints, ALTER, subqueries, **views**).
-> Parts 13–14 (functions, stored procedures) are **after views → NOT in the DS**. They're marked ⛔ at the end: skip them for now.
-> Work in **MySQL**. Write every answer down (paper for theory/ERD, a `.sql` file for code). Don't look up solutions. Come back to me with your answers and I'll correct them.
+> **DS scope: from SQL operators to Views.** Answer on **paper**, like in the DS.
+> No syntax is given in the questions. You decide which statement, clause or operator to use.
+> Don't look at your notes while answering. Afterwards, send me your answers part by part and I'll correct them.
 
 ---
 
@@ -29,54 +29,49 @@ Right now the manager keeps everything in **one spreadsheet**:
 
 ---
 
-## PART 1: Relational model and normalization (Ch1)
+## PART 1: Relational model and normalization
 
-1. List **3 problems** with this spreadsheet (think: atomicity, repeating groups, update anomalies, choosing a primary key).
-2. Is it in 1NF? Why or why not? Transform it into **1NF** (one value per cell) and show the resulting table(s).
-3. In your 1NF table the key is composite. Which **composite key** did you pick? List every **partial dependency** you can find (non-key attribute → only part of the key).
-4. Bring the design to **2NF**. Show the tables.
-5. Find the **transitive dependency** hidden in the data (hint: look at `Room` and `RoomFloor` in the class table). Bring the design to **3NF**.
-6. Give the **degree** and the **cardinality** of the original spreadsheet table.
+1. List **3 problems** with this spreadsheet.
+2. Is it in 1NF? Justify. Transform it into **1NF** and show the resulting table(s).
+3. Which **composite key** does your 1NF table need? List every **partial dependency**.
+4. Bring the design to **2NF**. Show the tables with their keys.
+5. Find the **transitive dependency** in the data and bring the design to **3NF**.
+6. Give the **degree** and the **cardinality** of the original spreadsheet.
 
-## PART 2: Keys and constraints (Ch1 + Ch2)
+## PART 2: Keys and constraints
 
-7. For the `member` table, list the **candidate keys**. Which one do you choose as **primary key** and why? What do the others become (alternate keys), and which SQL constraint enforces them?
-8. For each case below, name the **integrity constraint** that is violated (key / domain / referential integrity):
-   - a) Inserting a member with `member_id = 'M1'` when M1 already exists.
-   - b) Inserting `'sixty'` into `fee_paid DECIMAL(6,2)`.
-   - c) Inserting an enrollment for member `'M99'`, who does not exist.
-   - d) Inserting a class with `class_id = NULL`.
-   - e) Inserting a coach with `salary = 'high'`.
-9. Which constraint would you use for each rule? (`NOT NULL` / `UNIQUE` / `CHECK` / `DEFAULT` / `PRIMARY KEY` / `FOREIGN KEY`)
+7. List the **candidate keys** of the member table. Which one do you choose as primary key and why? What do the others become, and how do you guarantee them in SQL?
+8. For each situation, would the DBMS accept it? If not, which **integrity constraint** is violated?
+   - a) A new member with the ID of an existing member.
+   - b) The text "sixty" stored as a fee paid.
+   - c) An enrollment for a member ID that doesn't exist.
+   - d) A class without a class ID.
+   - e) A coach whose salary is the word "high".
+   - f) Deleting coach C1 while classes still refer to him.
+   - g) A second locker for member M1.
+9. Which SQL constraint enforces each rule?
    - Room capacity must be between 5 and 50.
    - Two members can't share an email.
    - A member's last name is mandatory.
    - The enrollment date is today's date if none is given.
-   - A locker size can only be 'S', 'M' or 'L'.
+   - A locker size can only be S, M or L.
+   - The locker number is generated automatically.
 
-## PART 3: ERD (Ch1)
+## PART 3: ERD
 
-10. Draw the full **ERD** in crow's foot notation (two-compartment boxes, PK/FK marked, data types written):
-    - `coach`, `room`, `class`, `member`, `enrollment`, `locker`
-    - Write the cardinality on each line (1:1, 1:N, and the M:N **resolved** with a junction table).
-11. Answer: which relationship is 1:1? Which are 1:N? Which was M:N, and **which table resolves it**? Its primary key is __________ (what kind of key?).
-12. Rule check: on which side of each 1:N line did you put the **foreign key**? Explain the rule in one sentence.
-13. For the 1:1 member-locker relationship, where do you put the FK, and **which extra constraint** guarantees it stays 1:1 and doesn't turn into 1:N?
+10. Draw the full **ERD** in crow's foot notation: every entity with its attributes and data types, PKs and FKs marked, and the cardinality written on every relationship.
+11. Which relationship is 1:1? Which are 1:N? Which was M:N, how did you resolve it, and what kind of primary key does the new table have?
+12. On which side of a 1:N relationship does the foreign key go? Why?
+13. For the member-locker relationship: where do you put the FK, and what stops it from becoming 1:N?
 
-## PART 4: Physical schema: CREATE, data types, constraints (Ch1 + Ch2)
+## PART 4: Physical schema
 
-14. `CREATE DATABASE carthage_fitness;` then select it. Show all databases.
-15. Create **all 6 tables** with suitable data types (`INT`, `VARCHAR(n)`, `DECIMAL(p,s)`, `DATE`, `CHAR`…) and **every** constraint from Part 2:
-    - PRIMARY KEY on every table (a **composite PK** for `enrollment`)
-    - FOREIGN KEYs with `REFERENCES`
-    - `NOT NULL`, `UNIQUE`, `CHECK`, `DEFAULT`
-    - Use `AUTO_INCREMENT` for `locker_id`.
-    - ⚠️ Think about the **order** you create the tables in. Why does it matter?
-16. Display the structure of `enrollment` (`DESCRIBE` / `SHOW COLUMNS`).
+14. Write the statement that creates the database `carthage_fitness`.
+15. Write the CREATE statements for **all 6 tables**, with suitable data types and **every** constraint from Part 2. In what order must you create them, and why?
 
-## PART 5: Insert the data (Ch1: INSERT, Ch2)
+## PART 5: Inserting data
 
-17. Insert this data (write the INSERT statements yourself; use multi-row INSERT at least once):
+Here is the data to store:
 
 **coach**
 
@@ -131,7 +126,7 @@ Right now the manager keeps everything in **one spreadsheet**:
 | M6 | CL5 | 2026-10-05 | 40 |
 | M1 | CL5 | 2026-10-06 | 40 |
 
-**locker** (let AUTO_INCREMENT generate the id: don't insert it)
+**locker** (the number is generated automatically)
 
 | size | member_id |
 |---|---|
@@ -141,139 +136,104 @@ Right now the manager keeps everything in **one spreadsheet**:
 | L | M4 |
 | M | M6 |
 
-18. **Test your constraints.** Run each of these, write down the error you get, and say which constraint caught it:
-    - `INSERT INTO enrollment VALUES ('M99','CL1','2026-10-10',60);`
-    - `INSERT INTO room VALUES ('R9', 3, 100);`
-    - `INSERT INTO member VALUES ('M7','Test','User','2000-01-01','sarra.m@mail.tn',NULL);`
-    - `INSERT INTO locker (size, member_id) VALUES ('M','M1');`
-    - `DELETE FROM coach WHERE coach_id = 'C1';` ← why is this refused?
+16. Insert all the **coaches** in a single statement.
+17. Insert member M3 (careful with the missing phone).
+18. Insert the lockers without giving the locker number.
 
-## PART 6: ALTER TABLE (Ch2)
+## PART 6: Modifying the structure
 
-19. Add a column `join_date DATE` to `member`.
-20. Change the `phone` column's type to `VARCHAR(15)` (use **MODIFY**).
-21. Rename the column `speciality` to `specialty` in `coach` (use **CHANGE**). What is the difference between MODIFY and CHANGE?
-22. Drop the column `join_date`.
-23. Rename the table `room` to `gym_room`, then rename it back.
-24. Suppose you had forgotten the FK from `class` to `coach`. Write the `ALTER TABLE … ADD FOREIGN KEY …` statement.
+19. Add a join date to the member table.
+20. Change the type of the phone column so it can hold 15 characters.
+21. Rename the column speciality to specialty, keeping its type. What's the difference between the two ways of altering a column you used in 20 and 21?
+22. Remove the join date column.
+23. Rename the room table to gym_room.
+24. The foreign key from class to coach was forgotten when the table was created. Add it.
 
-## PART 7: Operators and filtering (Ch1 operators + Ch2 filtering)
+## PART 7: Operators and filtering
 
-Write one query for each:
+Write the SQL query for each request.
 
-25. Every coach's name with their **yearly salary** (`salary * 12`), aliased `yearly_salary`.
-26. Every coach's salary after a **10% raise**.
-27. Every enrollment with the **discount** given (`class.price - fee_paid`). (You need a join or a subquery, so come back to this after Part 8 if you're stuck.)
-28. Coaches whose salary is **not equal** to 2000 (write it two ways).
-29. Members born **after** 2000-01-01.
-30. Classes whose price is **between** 45 and 60.
-31. Coaches whose specialty is **in** ('Yoga', 'Boxing').
-32. Members whose last name **starts with** 'B'.
-33. Members whose first name **ends with** 'a'.
-34. Members whose first name has **'a' as the second letter**.
-35. Members whose email **contains** 'h'.
-36. Members whose first name **starts with 'S' and is at least 5 characters long**.
-37. Members **without** a phone number. ⚠️ Why does `WHERE phone = NULL` return nothing?
-38. Classes that are **NOT** in room R1.
-39. Enrollments where the fee was **≥ 50 AND** the date is in **October 2026**.
-40. Enrollments in CL1 **OR** CL3, sorted by fee **descending**, then by date ascending.
-41. Enrollments whose `fee_paid` is a **multiple of 20** (use the modulus operator `%`).
-42. Display `CONCAT(first_name, ' ', last_name)` as **"Full Name"** (an alias with a space: how do you write it?).
+25. Each coach's name with their yearly salary, under the heading yearly_salary.
+26. Each coach's salary after a 10% raise.
+27. Coaches whose salary is different from 2000 (write it two ways).
+28. Members born after 1 January 2000.
+29. Classes whose price is between 45 and 60.
+30. Coaches whose speciality is Yoga or Boxing (write it two ways).
+31. Members whose last name starts with B.
+32. Members whose first name ends with a.
+33. Members whose first name has a as the second letter.
+34. Members whose email contains h.
+35. Members whose first name starts with S and has at least 5 letters.
+36. Members who never gave a phone number. Explain why comparing the phone with NULL using "=" returns nothing.
+37. Classes that are not in room R1.
+38. Enrollments with a fee of at least 50 made in October 2026.
+39. Enrollments in CL1 or CL3, from the highest fee to the lowest, then by date.
+40. Enrollments whose fee is a multiple of 20.
+41. Each member's first and last name joined into one column with the heading "Full Name".
+42. Every distinct fee amount that has been paid.
 
-## PART 8: Joins and UNION (Ch2)
+## PART 8: Joins and UNION
 
-43. **INNER JOIN**: each class name with its coach's full name.
-44. **3-table join**: each member's full name, the class name and the fee paid.
-45. **4-table join**: each member's full name, class name, coach name and room floor.
-46. **LEFT JOIN**: **all** members and their class ids, **including members who enrolled in nothing**. Who shows up with NULL?
-47. **RIGHT JOIN**: all coaches and the classes they teach, **including coaches who teach nothing**. Who shows up with NULL?
-48. Rewrite query 43 using the **comma syntax with table aliases** (`FROM class AS c, coach AS co WHERE …`).
-49. The member's full name and locker size (which kind of relationship is this join following?).
-50a. **SELF JOIN**: pairs of classes that take place **in the same room** (class1 name, class2 name, room). Avoid pairing a class with itself and avoid duplicate pairs (hint: `c1.class_id < c2.class_id`).
-50b. **FULL OUTER JOIN**: all members and all lockers, matched or not. ⚠️ MySQL does **not** support `FULL OUTER JOIN`: write the standard syntax from the course, then the MySQL version (`LEFT JOIN … UNION … RIGHT JOIN`).
-50c. **UNION**: one single list of **all people names** in the club (coaches' full names + members' full names). What's the difference between `UNION` and `UNION ALL`?
+43. Each class name with the full name of its coach.
+44. Each member's full name, the name of each class they're in, and the fee paid.
+45. Each member's full name, class name, coach name and the floor of the room.
+46. **All** members with the IDs of their classes, including members who enrolled in nothing. Who appears with empty values?
+47. **All** coaches with the classes they teach, including coaches who teach nothing. Write it with the opposite join from question 46.
+48. Rewrite question 43 without the JOIN keyword, using table aliases.
+49. Each member's full name with their locker size.
+50. Pairs of classes that take place in the same room (no class paired with itself, no pair listed twice).
+51. All members and all lockers, whether they match or not.
+52. One single list of all people's names in the club (coaches and members), without duplicates. What would change if you wanted to keep duplicates?
 
-## PART 9: Aggregates, GROUP BY, HAVING (Ch2)
+## PART 9: Aggregates and grouping
 
-50d. Knowledge check: name the **4 join types supported in MySQL** according to the course, and say which join returns **only matching rows**.
+53. The total number of members, and the average coach salary.
+54. The number of enrollments per class (show the class name), from the most popular class down.
+55. The total money collected per class.
+56. The total paid per member (full name), only for members who paid more than 100.
+57. The number of classes each coach teaches, with coaches who teach none showing 0.
+58. The number of enrollments per enrollment date, for September 2026 only.
+59. Rooms that host at least 2 classes.
+60. Why can't a condition on a count go in the same place as a condition on a column? In what order are these clauses processed: the row filter, the grouping, the group filter, and the sorting?
 
-51. How many members are there in total? What is the average coach salary?
-52. Number of enrollments **per class** (show the class name), sorted by count descending.
-53. Total money collected **per class**.
-54. Total money paid **per member** (full name), but only members who paid **more than 100** → `HAVING`.
-55. For each coach: the number of classes they teach. Use a **LEFT JOIN** so coaches with 0 classes appear with 0. (Hint: `COUNT(column)` vs `COUNT(*)`.)
-56. Number of enrollments **per enroll_date**, only for dates **between** 2026-09-01 and 2026-09-30.
-57. Rooms that host **at least 2 classes**.
-57b. Knowledge check: which of these GROUP BY rules are **true**? (a) GROUP BY goes before WHERE; (b) the GROUP BY columns must also appear in SELECT; (c) the statement begins with SELECT; (d) an aggregate function must be followed by the column name in parentheses.
-58. Explain: why does `WHERE COUNT(*) > 2` fail but `HAVING COUNT(*) > 2` works? In what order does MySQL run WHERE, GROUP BY, HAVING, ORDER BY?
+## PART 10: Subqueries
 
-## PART 10: Subqueries, EXISTS, ANY, ALL (Ch2)
+61. Coaches who teach at least one class (use a subquery, no join).
+62. Members enrolled in no class (use a subquery, no join).
+63. Classes whose price is higher than at least one of the fees paid by M3 (write it two ways).
+64. The most expensive class(es), without using MAX.
+65. Members who paid more than the average fee.
+66. Names of members enrolled in a class taught by Karim Jlassi, using subqueries only (no join).
+67. Each class name with its number of enrolled members, computed by a subquery placed in the column list.
+68. For each member, count their enrollments. Then, from that result, give the highest, lowest and average (rounded down) number of enrollments.
+69. An archive table with the same structure as enrollment exists. Copy into it every enrollment from September 2026.
+70. Raise by 5% the salary of every coach who teaches 2 or more classes.
+71. Delete from the archive every row whose class is taught by coach C3.
+72. Write a statement that stores room R3 with capacity 12: it must replace the existing R3. Then store room R4 (floor 1, capacity 25), which doesn't exist yet. Explain what the DBMS does in each case. Write the R4 statement in **both** syntaxes from the course.
+73. Lina changed her phone to 29876543: update it. Then remove the enrollment of M6 in CL5. What happens if you forget the condition?
+74. For each subquery you wrote in 61–71, say its type (from the 5 types in the course).
 
-58b. Name the **5 types of subqueries** from the course (single row, …) and the **3 clauses** a subquery can be placed in. Which type is a subquery that uses a column of the outer query?
-58c. **Subquery in SELECT**: each class name with the number of members enrolled, computed with a subquery in the SELECT list: `(SELECT COUNT(*) FROM enrollment e WHERE e.class_id = c.class_id)`. What type of subquery is this?
-59. **EXISTS**: coaches who teach at least one class.
-60. **NOT EXISTS**: members who are enrolled in no class.
-61. **ANY**: classes whose price is greater than **any** price paid by M3.
-61b. **SOME**: same as 61 but written with `SOME`. Are ANY and SOME different?
-62. **ALL**: the class(es) whose price is ≥ **all** other class prices (the most expensive).
-63. **Subquery in WHERE**: members who paid more than the **average** fee_paid.
-63b. **Nested subquery**: names of members enrolled in a class taught by 'Karim Jlassi' (subquery inside a subquery, **no join**).
-64. **Subquery in FROM** (derived table, needs an alias!): for each member compute their number of enrollments, then from that result show `MAX`, `MIN` and `FLOOR(AVG(...))` of those numbers.
-65. **INSERT … SELECT**: create a table `enrollment_archive` with the same structure as `enrollment`, then copy into it every enrollment from **September 2026**.
-66. **UPDATE with subquery**: raise by 5% the salary of every coach who teaches **2 or more** classes.
-67. **DELETE with subquery**: delete from `enrollment_archive` every row whose class is taught by coach C3.
-68. **REPLACE INTO**: run `REPLACE INTO room VALUES ('R3', 0, 12);` then `REPLACE INTO room VALUES ('R4', 1, 25);`. Explain what happened in each case (when does REPLACE **update** and when does it **insert**?). Then do the same thing with the **second syntax** (like UPDATE): `REPLACE INTO room SET room_code='R4', floor=2, capacity=30;`
-69. **UPDATE**: Lina changed her phone to `29876543`. **DELETE**: remove enrollment (M6, CL5). ⚠️ What happens if you forget the WHERE clause?
+## PART 11: Views
 
-## PART 11: Views (Ch2)
+75. A view showing each member's full name, class name, coach name and fee paid.
+76. Using that view: only the rows of the coach Ines Trabelsi.
+77. A view showing coaches **without** their salary. Which benefit of views does this illustrate?
+78. A view on enrollment showing only member, class and fee. Through this view, change the fee of (M4, CL1) to 60. Does the base table change? Why?
+79. Name the 3 benefits of views. Does a view store data?
 
-70. Create a view `v_member_classes` showing member full name, class name, coach name, fee paid.
-71. Query the view: only the rows for the coach "Ines Trabelsi".
-72. Create a view `v_coach_public` with **only** `coach_id`, `full_name`, `specialty` (no salary). Which benefit of views does this illustrate?
-73. Create `v_enrollment_simple` from `enrollment` (member_id, class_id, fee_paid) and **update through the view**: set the fee of (M4, CL1) to 60. Check the base table: did it change? Why?
-74. Name the **3 benefits of views** from the course. Does a view store data?
+## PART 12: Theory (DS style)
 
-## PART 12: Quick theory (knowledge checks style)
-
-96. Relation, tuple, attribute, domain: define each in one line.
-97. What does "the relational model is built on 3 concepts" refer to?
-98. Logical schema vs physical schema: what is the difference?
-99. Name 4 schema objects besides tables.
-99b. Give the **3 uses of aliases** from the course knowledge check.
-100. A "contact" column accepts only digits and anything else raises an error. Which constraint type is this? And "each field must contain at least one value": which SQL constraint?
-
+80. Define relation, tuple, attribute and domain in one line each.
+81. What are the 3 concepts the relational model is built on?
+82. What's the difference between the logical and the physical schema?
+83. Name 4 schema objects other than tables.
+84. A "contact" column accepts only digits; anything else gives an error. Which constraint type is this? And "every field must contain a value": which SQL constraint?
+85. Give the 3 uses of aliases.
+86. Name the join types in the course. Which one returns only matching rows?
+87. True or false? (a) GROUP BY comes before WHERE. (b) The grouped columns should also appear in SELECT. (c) The statement begins with SELECT. (d) An aggregate function is followed by the column name in parentheses.
+88. Name the 5 types of subqueries and the clauses a subquery can be placed in.
+89. Difference between: deleting rows / dropping a column / dropping a table.
 
 ---
 
-# ⛔ OUT OF DS SCOPE: do these only after the exam (or for the final)
-
-## ⛔ PART 13: Functions (after views: NOT in DS)
-
-75. Numeric: on `salary / 7`, show `CEIL`, `FLOOR`, `ROUND(…, 2)`. And `MOD(17, 5)`.
-76. `FORMAT(salary * 12, 2)` for each coach. What type does FORMAT return?
-77. String: `UPPER(last_name)`, `LOWER(first_name)`, `CHAR_LENGTH(first_name)`, `LEFT(first_name, 3)`.
-78. `CONCAT_WS(' - ', member_id, first_name, last_name)`.
-79. Initials: e.g. "S.M." for Sarra Mansour (combine CONCAT + LEFT).
-80. Dates: for each member show `YEAR(birth_date)`, `MONTHNAME(birth_date)`, `DAYNAME(birth_date)`.
-81. Each member's **age in years** (use `CURDATE()` and either `DATEDIFF` or `YEAR`/`TIMESTAMPDIFF`).
-82. Each enrollment's date + 30 days with `ADDDATE` (**both** syntaxes: `INTERVAL 30 DAY` and `, 30`).
-83. The `QUARTER()` of each enrollment date.
-84. Number of days between each enrollment and 2026-12-31 (`DATEDIFF`).
-85. `IFNULL(phone, 'no phone')` for each member.
-86. `COALESCE(phone, email, 'unknown')`: what does it return for M3?
-87. `NULLIF(price, 50)` for each class. For which classes does it return NULL?
-88. `IF(fee_paid < price, 'discount', 'full price')` for each enrollment (join needed).
-89. `CASE`: label each member by age: `< 23` → 'Junior', `23–29` → 'Adult', `≥ 30` → 'Senior'.
-
-## ⛔ PART 14: Stored procedures (after views: NOT in DS)
-
-90. `GetAllCoaches()`: no parameter, returns all coaches. Call it.
-91. `GetClassesCheaperThan(maxPrice DECIMAL(6,2))`: one parameter. Call it with 50.
-92. `GetMembersOfClass(cid VARCHAR(5))`: returns the full names of members enrolled in a class. Call it for 'CL1'.
-93. `GetEnrollmentsBetween(d1 DATE, d2 DATE)`: two parameters. Call it for October 2026.
-94. Drop the procedure `GetAllCoaches`.
-95. Give 3 reasons to use stored procedures (from the course).
-
----
-
-✅ When you finish (or get stuck), send me your answers **part by part**. I'll correct each one and explain what you missed.
+✅ Send me your answers part by part (a photo of your ERD and your papers is fine). I'll correct everything.

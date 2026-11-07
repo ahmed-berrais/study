@@ -1,8 +1,7 @@
-# Revision Lab B: "Medina Market" online shop (exam-style, less guidance)
+# Revision Lab B: "Medina Market" online shop (exam-style)
 
-> **DS scope: SQL operators → Views.** Questions after views (functions, stored procedures) are marked ⛔ at the end: skip them.
-> Same coverage as Lab A, but **you** decide the design. This is how a DS question looks: a text, a messy table, and "design + implement + query". Do Lab A first.
-> No hints this time. If a question doesn't say which syntax to use, choose yourself.
+> **DS scope: from SQL operators to Views.** Answer on **paper**.
+> Harder than Lab A: you get only the text and a messy table, and you design everything yourself. No syntax is given; choose what to use. Do Lab A first.
 
 ---
 
@@ -10,12 +9,12 @@
 
 Medina Market sells Tunisian handmade products online.
 
-- **Suppliers** (artisans) have an ID, a name, a city and a phone. A supplier provides several products; each product comes from **one** supplier.
+- **Suppliers** (artisans) have an ID, a name, a city and a phone (not always known). A supplier provides several products; each product comes from **one** supplier.
 - **Categories** have an ID and a label (Pottery, Textile, Food…). Each product belongs to one category.
-- **Products** have a code, a name, a unit price, a stock quantity and an optional discount rate (many products have no discount).
+- **Products** have a code, a name, a unit price, a stock quantity and an optional discount rate.
 - **Customers** have an ID, name, email (unique), city and registration date.
-- Each customer can have **at most one loyalty card** (card number, points, issue date); each card belongs to exactly one customer.
-- A customer places **orders** (order number, date, status: 'pending' / 'shipped' / 'delivered'). An order contains **several products**, and a product can appear in **many orders**. For each order line the shop stores the **quantity** and the **unit price at the moment of sale**.
+- Each customer can have **at most one loyalty card** (card number, points, issue date). Each card belongs to exactly one customer.
+- A customer places **orders** (order number, date, status: pending / shipped / delivered). An order contains **several products**, and a product can appear in **many orders**. For each order line the shop stores the **quantity** and the **unit price at the moment of sale**.
 
 The shop's old invoice spreadsheet:
 
@@ -30,135 +29,127 @@ The shop's old invoice spreadsheet:
 
 ---
 
-## Section 1: Design (Ch1)
+## Section 1: Design
 
-1. Identify **all anomalies** of this spreadsheet (insertion, update, deletion) with one concrete example each, using this data.
-2. Normalize step by step to **1NF → 2NF → 3NF**. For each step state the rule, the dependency you removed, and the resulting tables with their keys.
-3. Draw the final **ERD** (crow's foot) with all 7 tables: `supplier`, `category`, `product`, `customer`, `loyalty_card`, `orders`, `order_line`. Show PKs, FKs, data types, and the cardinality of every relationship.
-4. Why do we store `unit_price` in `order_line` when `product` already has a price? (Is it redundancy, or not?)
-5. List the candidate keys of `customer`. Primary key? Alternate key(s)?
-6. Give the degree of your `order_line` table and its cardinality after you insert the data below.
+1. Give one concrete example from this spreadsheet of each anomaly: insertion, update, deletion.
+2. Normalize step by step to **1NF → 2NF → 3NF**. At each step, state the rule, the dependency you removed, and the resulting tables with their keys.
+3. Draw the final **ERD** (crow's foot) with all the tables, attributes and data types, PKs/FKs and every cardinality.
+4. Why store the unit price on each order line when the product already has a price? Is that redundancy?
+5. Candidate keys, primary key and alternate key(s) of the customer table.
+6. Degree and cardinality of your order line table once the data below is stored.
 
-## Section 2: Implementation (Ch1 + Ch2)
+## Section 2: Implementation
 
-7. Create the database `medina_market` and all 7 tables with **appropriate types** and **all constraints**:
-   - price > 0, stock ≥ 0, discount between 0 and 0.5 (CHECK)
+7. Write the CREATE statements for the whole database with appropriate types and these rules:
+   - price strictly positive, stock never negative, discount between 0 and 0.5
    - status limited to the 3 values
-   - email UNIQUE, names NOT NULL
-   - registration date DEFAULT today
-   - order_line: composite PK + 2 FKs
-   - loyalty_card: guarantee the 1:1
-   - `orders.order_no` AUTO_INCREMENT (an INT this time)
-8. Insert the data:
+   - unique email, mandatory names
+   - registration date = today by default
+   - order number generated automatically
+   - the order line table identified by order + product
+   - a customer can never have two loyalty cards
 
-**supplier**: (S1, Dar Sfax, Sfax, 74111222), (S2, Nabeul Ceramics, Nabeul, 72333444), (S3, Cap Bon Foods, Nabeul, NULL), (S4, Djerba Weavers, Djerba, 75555666)
+8. The data:
+
+**supplier**: (S1, Dar Sfax, Sfax, 74111222), (S2, Nabeul Ceramics, Nabeul, 72333444), (S3, Cap Bon Foods, Nabeul, no phone), (S4, Djerba Weavers, Djerba, 75555666)
 
 **category**: (1, Textile), (2, Pottery), (3, Food), (4, Jewelry)
 
-**product** (code, name, price, stock, discount, supplier, category):
+**product**:
 
 | code | name | price | stock | discount | supplier | category |
 |---|---|---|---|---|---|---|
-| P1 | Couffin | 35 | 40 | NULL | S1 | 1 |
+| P1 | Couffin | 35 | 40 | none | S1 | 1 |
 | P2 | Fouta | 25 | 100 | 0.10 | S1 | 1 |
 | P3 | Nabeul Plate | 80 | 15 | 0.20 | S2 | 2 |
-| P4 | Harissa | 12 | 200 | NULL | S3 | 3 |
+| P4 | Harissa | 12 | 200 | none | S3 | 3 |
 | P5 | Olive Oil 1L | 30 | 60 | 0.05 | S3 | 3 |
-| P6 | Clay Vase | 120 | 5 | NULL | S2 | 2 |
+| P6 | Clay Vase | 120 | 5 | none | S2 | 2 |
 
 **customer**: (K1, Mariem Saidi, mariem@mail.tn, Tunis, 2026-01-15), (K2, Hedi Chebbi, hedi@mail.tn, Sousse, 2026-03-02), (K3, Salma Rekik, salma@mail.tn, Sfax, 2026-06-20), (K4, Nour Feki, nour@mail.tn, Tunis, 2026-08-11), (K5, Walid Mejri, walid@mail.tn, Bizerte, 2026-10-01)
 
-**loyalty_card**: (LC100, 320 points, 2026-02-01, K1), (LC101, 90 points, 2026-04-10, K2), (LC102, 150 points, 2026-09-01, K4)
+**loyalty card**: (LC100, 320 points, 2026-02-01, K1), (LC101, 90 points, 2026-04-10, K2), (LC102, 150 points, 2026-09-01, K4)
 
-**orders**: order 1→K1 2026-09-02 delivered, 2→K2 2026-09-05 delivered, 3→K1 2026-09-20 shipped, 4→K3 2026-10-03 shipped, 5→K4 2026-10-15 pending, 6→K2 2026-10-28 pending
+**orders**: 1→K1 2026-09-02 delivered, 2→K2 2026-09-05 delivered, 3→K1 2026-09-20 shipped, 4→K3 2026-10-03 shipped, 5→K4 2026-10-15 pending, 6→K2 2026-10-28 pending
 
-**order_line**: build it **yourself** from the spreadsheet (orders O1…O6 → 1…6, use the quantities and the unit prices at the time of sale).
+**order lines**: build them yourself from the spreadsheet (O1…O6 → orders 1…6).
 
-9. Write 4 INSERTs that **must fail** (one for each: key, domain/CHECK, referential integrity, UNIQUE) and explain each error.
-10. ALTER: add `country VARCHAR(30) DEFAULT 'Tunisia'` to customer; change `phone` to `VARCHAR(20)`; rename `stock` to `quantity_in_stock` (CHANGE); drop `country`; rename table `orders` → `customer_order` and back.
+   - a) Write the order line rows as a table.
+   - b) Insert the products in one statement.
+   - c) Insert customer K5 without giving the registration date.
 
-## Section 3: Queries (Ch1 operators + Ch2)
+9. Describe 4 insertions the DBMS would refuse: one per constraint type (key, domain, referential integrity, uniqueness). For each, explain why it's refused.
+10. Modify the structure: add a country to customers (default Tunisia); widen the supplier phone to 20 characters; rename stock to quantity_in_stock; remove country; rename the orders table to customer_order.
 
-Write **one** SQL statement for each.
+## Section 3: Queries
+
+Write one SQL query for each request.
 
 **Filtering and operators**
 
-11. Products with their price after discount: `price * (1 - discount)`. What happens for products whose discount is NULL? Rewrite it to show only discounted products (`IS NOT NULL`).
-12. Stock value of each product (`price * stock`), aliased `stock_value`, sorted descending.
-13. Products priced between 20 and 80 that are **not** in category 3.
-14. Customers from Tunis **or** Sfax (2 ways: `OR` and `IN`).
-15. Customers whose name contains "ri" (case insensitive).
-16. Products whose name has exactly 7 characters (with `LIKE` and `_`).
-17. Suppliers without a phone.
-18. Order lines whose quantity is odd (`%`).
+11. Products with their price after discount. What happens for products with no discount? Rewrite the query to show only discounted products.
+12. The stock value of each product, under a clear heading, from the highest down.
+13. Products priced between 20 and 80 that are not food.
+14. Customers from Tunis or Sfax (two ways).
+15. Customers whose name contains "ri".
+16. Products whose name has exactly 7 characters.
+17. Suppliers whose phone is unknown.
+18. Order lines whose quantity is odd.
+19. The different cities customers come from (each city once).
 
 **Joins**
 
-19. Each product with its category label and supplier name.
-20. Each order: order number, date, customer name, status.
-21. Full detail of every order line: customer name, order date, product name, quantity, line total (`quantity * unit_price`).
-22. All customers and their loyalty card number, **including** customers without a card.
-23. All suppliers and their products, **including** suppliers with no product (RIGHT JOIN this time, so choose your table order carefully).
-24. Products **never ordered** (2 ways: LEFT JOIN … IS NULL, and NOT EXISTS).
-24b. SELF JOIN: pairs of customers who live in the **same city** (no self-pairs, no duplicates).
-24c. FULL OUTER JOIN of `customer` and `loyalty_card`: give the course syntax, then the MySQL equivalent.
-25. `UNION`: one list of all cities appearing in the database (customers and suppliers), without duplicates.
+20. Each product with its category label and supplier name.
+21. Each order: number, date, customer name, status.
+22. Every order line in full: customer name, order date, product name, quantity, line total.
+23. All customers with their card number, including customers with no card.
+24. All suppliers with their products, including suppliers with none, using the opposite join from 23.
+25. Products never ordered (two ways: with a join, and with a subquery).
+26. Pairs of customers who live in the same city (no self-pairs, no duplicates).
+27. All customers and all loyalty cards, matched or not.
+28. One list of every city in the database (customers and suppliers), without duplicates.
 
 **Grouping**
 
-26. Total amount of each order (`SUM(quantity * unit_price)`), sorted descending.
-27. Total spent by each customer (name). Show only customers who spent **more than 150**.
-28. Number of products per category, **including** categories with 0 products.
-29. Quantity sold per product: show only products sold in quantity ≥ 5.
-30. Number of orders per status.
-31. Revenue per order date, only for orders placed **between** 2026-10-01 and 2026-10-31.
-32. The city with the most customers (`ORDER BY … LIMIT 1`).
+29. The total amount of each order, from the biggest down.
+30. Total spent per customer (name), only customers who spent more than 150.
+31. Number of products per category, including categories with none.
+32. Quantity sold per product, only products sold 5 times or more.
+33. Number of orders per status.
+34. Revenue per order date, for October 2026 only.
 
-**Subqueries**
+**Subqueries and data changes**
 
-33. Products more expensive than the **average** product price.
-34. Customers who placed **at least one** order containing Pottery (EXISTS).
-35. Products whose price is **greater than ALL** Food products' prices.
-36. Products whose price is **equal to ANY** unit price that appears in order 5.
-36b. Correlated subquery in SELECT: each customer name with their number of orders.
-36c. Nested subquery (no joins): names of customers who bought a product supplied by 'Cap Bon Foods'.
-36d. Classify each subquery you wrote in 33–36c: single row / multiple row / multiple column / correlated / nested.
-37. From a derived table of order totals: the max, min and FLOOR(AVG) order total.
-38. Create `big_orders` (order_no, total) and fill it with INSERT…SELECT for orders with total > 100.
-39. UPDATE with subquery: add 50 loyalty points to every card whose owner has **2 or more** orders.
-40. DELETE with subquery: delete from `big_orders` the orders whose customer lives in Sousse.
-41. REPLACE INTO `category` for (4, 'Jewellery & Silver') and (5, 'Cosmetics'). Explain both results. Then redo the second one with the `REPLACE INTO … SET …` syntax.
-42. UPDATE: mark order 5 as 'shipped'. Decrease the stock of every product in order 5 by its ordered quantity (UPDATE with a join **or** a subquery).
+35. Products more expensive than the average product price.
+36. Customers who ordered at least one pottery product.
+37. Products more expensive than every food product (two ways: with and without MAX).
+38. Products whose price equals one of the unit prices in order 5.
+39. Each customer name with their number of orders, computed in the column list.
+40. Names of customers who bought a product from Cap Bon Foods, using nested subqueries only.
+41. From the totals of each order: the biggest, smallest and average (rounded down) order total.
+42. A table big_orders (order number, total) exists. Fill it with every order whose total is over 100.
+43. Add 50 points to every card whose owner has placed 2 or more orders.
+44. Delete from big_orders the orders of customers living in Sousse.
+45. Category 4 becomes "Jewellery & Silver" and a new category 5 "Cosmetics" is added, both with the statement that replaces a row if its key exists or inserts it otherwise. Write each one in a different syntax and explain what happens to each.
+46. Order 5 is now shipped: update it. Then reduce the stock of every product in order 5 by the quantity ordered.
+47. Classify each subquery you wrote in 35–44 by type.
 
-## Section 4: Views (Ch2), the last DS topic
+## Section 4: Views
 
-43. View `v_order_summary`: order no, customer name, date, status, total.
-44. Use the view: pending orders whose total > 50.
-45. View `v_product_catalog` for customers (name, category, price, discounted price), **without** stock or supplier. Which view benefit is this?
-46. Update the catalog price of P6 through a simple single-table view. Explain why it works on the base table.
+48. A view summarizing each order: number, customer name, date, status, total.
+49. Using that view: pending orders with a total over 50.
+50. A catalog view for customers: product name, category, price, discounted price, **without** stock or supplier. Which benefit of views is this?
+51. Through a simple view on one table, change the price of P6. Explain why the base table changes.
 
-## Section 5: Explain in your own words (exam theory)
+## Section 5: Explain in your own words
 
-55. Difference between a primary key, a candidate key, an alternate key, a composite key and a foreign key.
-56. What's a partial dependency? A transitive dependency? Give one example of each **from this lab**.
-57. INNER vs LEFT vs RIGHT JOIN, with an example from this lab where the results differ.
-58. WHERE vs HAVING. UNION vs UNION ALL. MODIFY vs CHANGE. DELETE vs DROP.
-59. Why are M:N relationships never kept in the physical model?
-60. View vs table: does a view take storage? Can you UPDATE through it?
-
----
-
-# ⛔ OUT OF DS SCOPE (functions and stored procedures come after views)
-
-47. Functions: for each customer show `UPPER(name)`, the first 3 letters of the city, `CHAR_LENGTH(email)`, `CONCAT_WS(' | ', id, name, city)`.
-48. For each order: `DAYNAME(date)`, `QUARTER(date)`, the expected delivery date `ADDDATE(date, INTERVAL 7 DAY)`, and the days since order (`DATEDIFF(CURDATE(), date)`).
-49. `FORMAT` the revenue per order with 2 decimals; show `CEIL` and `FLOOR` of the average unit price.
-50. `COALESCE(phone, 'no phone')` for suppliers; `NULLIF(discount, 0.10)` for products: explain the output.
-51. `CASE` on loyalty points: < 100 → 'Bronze', 100–299 → 'Silver', ≥ 300 → 'Gold'.
-52. Procedure `GetOrdersOfCustomer(cid VARCHAR(5))`: lists orders + totals of one customer. Call it for K1.
-53. Procedure `GetProductsInPriceRange(minP DECIMAL(8,2), maxP DECIMAL(8,2))`. Call it for 20 and 50.
-54. Procedure `GetLowStock()` with no parameter: products with stock < 20. Call it, then drop it.
+52. Primary key, candidate key, alternate key, composite key, foreign key: define each, with an example from this lab.
+53. Partial dependency and transitive dependency: one example of each from this lab.
+54. Inner vs left vs right vs full join, with an example from this lab where the results differ. What is a self join?
+55. Row filter vs group filter. Union with and without duplicates. The two ways of altering a column. Deleting rows vs dropping a table.
+56. Why are M:N relationships never kept as-is in the physical model?
+57. View vs table: does a view take storage? Can you modify data through it?
 
 ---
 
-✅ Send me your ERD (photo or text), your normalization steps and your `.sql`, section by section, and I'll correct everything.
+✅ Send me your ERD, your normalization steps and your queries, section by section. I'll correct everything.
