@@ -1,5 +1,6 @@
 # Revision Lab B: "Medina Market" online shop (exam-style, less guidance)
 
+> **DS scope: SQL operators → Views.** Questions after views (functions, stored procedures) are marked ⛔ at the end: skip them.
 > Same coverage as Lab A, but **you** decide the design. This is how a DS question looks: a text, a messy table, and "design + implement + query". Do Lab A first.
 > No hints this time. If a question doesn't say which syntax to use, choose yourself.
 
@@ -82,7 +83,7 @@ Write **one** SQL statement for each.
 
 **Filtering and operators**
 
-11. Products with their price after discount: `price * (1 - discount)`. What happens for products whose discount is NULL? Fix it with `IFNULL`.
+11. Products with their price after discount: `price * (1 - discount)`. What happens for products whose discount is NULL? Rewrite it to show only discounted products (`IS NOT NULL`).
 12. Stock value of each product (`price * stock`), aliased `stock_value`, sorted descending.
 13. Products priced between 20 and 80 that are **not** in category 3.
 14. Customers from Tunis **or** Sfax (2 ways: `OR` and `IN`).
@@ -99,6 +100,8 @@ Write **one** SQL statement for each.
 22. All customers and their loyalty card number, **including** customers without a card.
 23. All suppliers and their products, **including** suppliers with no product (RIGHT JOIN this time, so choose your table order carefully).
 24. Products **never ordered** (2 ways: LEFT JOIN … IS NULL, and NOT EXISTS).
+24b. SELF JOIN: pairs of customers who live in the **same city** (no self-pairs, no duplicates).
+24c. FULL OUTER JOIN of `customer` and `loyalty_card`: give the course syntax, then the MySQL equivalent.
 25. `UNION`: one list of all cities appearing in the database (customers and suppliers), without duplicates.
 
 **Grouping**
@@ -108,7 +111,7 @@ Write **one** SQL statement for each.
 28. Number of products per category, **including** categories with 0 products.
 29. Quantity sold per product: show only products sold in quantity ≥ 5.
 30. Number of orders per status.
-31. Revenue per month (MONTHNAME) for 2026.
+31. Revenue per order date, only for orders placed **between** 2026-10-01 and 2026-10-31.
 32. The city with the most customers (`ORDER BY … LIMIT 1`).
 
 **Subqueries**
@@ -117,27 +120,22 @@ Write **one** SQL statement for each.
 34. Customers who placed **at least one** order containing Pottery (EXISTS).
 35. Products whose price is **greater than ALL** Food products' prices.
 36. Products whose price is **equal to ANY** unit price that appears in order 5.
+36b. Correlated subquery in SELECT: each customer name with their number of orders.
+36c. Nested subquery (no joins): names of customers who bought a product supplied by 'Cap Bon Foods'.
+36d. Classify each subquery you wrote in 33–36c: single row / multiple row / multiple column / correlated / nested.
 37. From a derived table of order totals: the max, min and FLOOR(AVG) order total.
 38. Create `big_orders` (order_no, total) and fill it with INSERT…SELECT for orders with total > 100.
 39. UPDATE with subquery: add 50 loyalty points to every card whose owner has **2 or more** orders.
 40. DELETE with subquery: delete from `big_orders` the orders whose customer lives in Sousse.
-41. REPLACE INTO `category` for (4, 'Jewellery & Silver') and (5, 'Cosmetics'). Explain both results.
+41. REPLACE INTO `category` for (4, 'Jewellery & Silver') and (5, 'Cosmetics'). Explain both results. Then redo the second one with the `REPLACE INTO … SET …` syntax.
 42. UPDATE: mark order 5 as 'shipped'. Decrease the stock of every product in order 5 by its ordered quantity (UPDATE with a join **or** a subquery).
 
-## Section 4: Views, functions, procedures (Ch2)
+## Section 4: Views (Ch2), the last DS topic
 
 43. View `v_order_summary`: order no, customer name, date, status, total.
 44. Use the view: pending orders whose total > 50.
 45. View `v_product_catalog` for customers (name, category, price, discounted price), **without** stock or supplier. Which view benefit is this?
 46. Update the catalog price of P6 through a simple single-table view. Explain why it works on the base table.
-47. Functions: for each customer show `UPPER(name)`, the first 3 letters of the city, `CHAR_LENGTH(email)`, `CONCAT_WS(' | ', id, name, city)`.
-48. For each order: `DAYNAME(date)`, `QUARTER(date)`, the expected delivery date `ADDDATE(date, INTERVAL 7 DAY)`, and the days since order (`DATEDIFF(CURDATE(), date)`).
-49. `FORMAT` the revenue per order with 2 decimals; show `CEIL` and `FLOOR` of the average unit price.
-50. `COALESCE(phone, 'no phone')` for suppliers; `NULLIF(discount, 0.10)` for products: explain the output.
-51. `CASE` on loyalty points: < 100 → 'Bronze', 100–299 → 'Silver', ≥ 300 → 'Gold'.
-52. Procedure `GetOrdersOfCustomer(cid VARCHAR(5))`: lists orders + totals of one customer. Call it for K1.
-53. Procedure `GetProductsInPriceRange(minP DECIMAL(8,2), maxP DECIMAL(8,2))`. Call it for 20 and 50.
-54. Procedure `GetLowStock()` with no parameter: products with stock < 20. Call it, then drop it.
 
 ## Section 5: Explain in your own words (exam theory)
 
@@ -147,6 +145,19 @@ Write **one** SQL statement for each.
 58. WHERE vs HAVING. UNION vs UNION ALL. MODIFY vs CHANGE. DELETE vs DROP.
 59. Why are M:N relationships never kept in the physical model?
 60. View vs table: does a view take storage? Can you UPDATE through it?
+
+---
+
+# ⛔ OUT OF DS SCOPE (functions and stored procedures come after views)
+
+47. Functions: for each customer show `UPPER(name)`, the first 3 letters of the city, `CHAR_LENGTH(email)`, `CONCAT_WS(' | ', id, name, city)`.
+48. For each order: `DAYNAME(date)`, `QUARTER(date)`, the expected delivery date `ADDDATE(date, INTERVAL 7 DAY)`, and the days since order (`DATEDIFF(CURDATE(), date)`).
+49. `FORMAT` the revenue per order with 2 decimals; show `CEIL` and `FLOOR` of the average unit price.
+50. `COALESCE(phone, 'no phone')` for suppliers; `NULLIF(discount, 0.10)` for products: explain the output.
+51. `CASE` on loyalty points: < 100 → 'Bronze', 100–299 → 'Silver', ≥ 300 → 'Gold'.
+52. Procedure `GetOrdersOfCustomer(cid VARCHAR(5))`: lists orders + totals of one customer. Call it for K1.
+53. Procedure `GetProductsInPriceRange(minP DECIMAL(8,2), maxP DECIMAL(8,2))`. Call it for 20 and 50.
+54. Procedure `GetLowStock()` with no parameter: products with stock < 20. Call it, then drop it.
 
 ---
 

@@ -1,6 +1,7 @@
 # Revision Lab A: "Carthage Fitness Club" (guided, covers every chapter)
 
-> Coverage: Ch1 (data types, commands, operators, relational model, keys, constraints, ERD, schema, normalization) + Ch2 (filtering, aliases, joins, UNION, GROUP BY/HAVING, EXISTS/ANY/ALL, INSERT/UPDATE/DELETE/REPLACE, constraints, ALTER, subqueries, views, functions, stored procedures).
+> **DS scope: SQL operators → Views.** Ch1 (operators, relational model, keys, constraints, ERD, schema, normalization) + Ch2 (filtering, aliases, all joins incl. SELF/FULL, UNION, GROUP BY/HAVING, EXISTS/ANY/ALL, INSERT/UPDATE/DELETE/REPLACE, constraints, ALTER, subqueries, **views**).
+> Parts 13–14 (functions, stored procedures) are **after views → NOT in the DS**. They're marked ⛔ at the end: skip them for now.
 > Work in **MySQL**. Write every answer down (paper for theory/ERD, a `.sql` file for code). Don't look up solutions. Come back to me with your answers and I'll correct them.
 
 ---
@@ -188,31 +189,40 @@ Write one query for each:
 47. **RIGHT JOIN**: all coaches and the classes they teach, **including coaches who teach nothing**. Who shows up with NULL?
 48. Rewrite query 43 using the **comma syntax with table aliases** (`FROM class AS c, coach AS co WHERE …`).
 49. The member's full name and locker size (which kind of relationship is this join following?).
-50. **UNION**: one single list of **all people names** in the club (coaches' full names + members' full names). What's the difference between `UNION` and `UNION ALL`?
+50a. **SELF JOIN**: pairs of classes that take place **in the same room** (class1 name, class2 name, room). Avoid pairing a class with itself and avoid duplicate pairs (hint: `c1.class_id < c2.class_id`).
+50b. **FULL OUTER JOIN**: all members and all lockers, matched or not. ⚠️ MySQL does **not** support `FULL OUTER JOIN`: write the standard syntax from the course, then the MySQL version (`LEFT JOIN … UNION … RIGHT JOIN`).
+50c. **UNION**: one single list of **all people names** in the club (coaches' full names + members' full names). What's the difference between `UNION` and `UNION ALL`?
 
 ## PART 9: Aggregates, GROUP BY, HAVING (Ch2)
+
+50d. Knowledge check: name the **4 join types supported in MySQL** according to the course, and say which join returns **only matching rows**.
 
 51. How many members are there in total? What is the average coach salary?
 52. Number of enrollments **per class** (show the class name), sorted by count descending.
 53. Total money collected **per class**.
 54. Total money paid **per member** (full name), but only members who paid **more than 100** → `HAVING`.
 55. For each coach: the number of classes they teach. Use a **LEFT JOIN** so coaches with 0 classes appear with 0. (Hint: `COUNT(column)` vs `COUNT(*)`.)
-56. Number of enrollments **per month** of 2026 (use `MONTH()`).
+56. Number of enrollments **per enroll_date**, only for dates **between** 2026-09-01 and 2026-09-30.
 57. Rooms that host **at least 2 classes**.
+57b. Knowledge check: which of these GROUP BY rules are **true**? (a) GROUP BY goes before WHERE; (b) the GROUP BY columns must also appear in SELECT; (c) the statement begins with SELECT; (d) an aggregate function must be followed by the column name in parentheses.
 58. Explain: why does `WHERE COUNT(*) > 2` fail but `HAVING COUNT(*) > 2` works? In what order does MySQL run WHERE, GROUP BY, HAVING, ORDER BY?
 
 ## PART 10: Subqueries, EXISTS, ANY, ALL (Ch2)
 
+58b. Name the **5 types of subqueries** from the course (single row, …) and the **3 clauses** a subquery can be placed in. Which type is a subquery that uses a column of the outer query?
+58c. **Subquery in SELECT**: each class name with the number of members enrolled, computed with a subquery in the SELECT list: `(SELECT COUNT(*) FROM enrollment e WHERE e.class_id = c.class_id)`. What type of subquery is this?
 59. **EXISTS**: coaches who teach at least one class.
 60. **NOT EXISTS**: members who are enrolled in no class.
 61. **ANY**: classes whose price is greater than **any** price paid by M3.
+61b. **SOME**: same as 61 but written with `SOME`. Are ANY and SOME different?
 62. **ALL**: the class(es) whose price is ≥ **all** other class prices (the most expensive).
 63. **Subquery in WHERE**: members who paid more than the **average** fee_paid.
+63b. **Nested subquery**: names of members enrolled in a class taught by 'Karim Jlassi' (subquery inside a subquery, **no join**).
 64. **Subquery in FROM** (derived table, needs an alias!): for each member compute their number of enrollments, then from that result show `MAX`, `MIN` and `FLOOR(AVG(...))` of those numbers.
 65. **INSERT … SELECT**: create a table `enrollment_archive` with the same structure as `enrollment`, then copy into it every enrollment from **September 2026**.
 66. **UPDATE with subquery**: raise by 5% the salary of every coach who teaches **2 or more** classes.
 67. **DELETE with subquery**: delete from `enrollment_archive` every row whose class is taught by coach C3.
-68. **REPLACE INTO**: run `REPLACE INTO room VALUES ('R3', 0, 12);` then `REPLACE INTO room VALUES ('R4', 1, 25);`. Explain what happened in each case (when does REPLACE **update** and when does it **insert**?).
+68. **REPLACE INTO**: run `REPLACE INTO room VALUES ('R3', 0, 12);` then `REPLACE INTO room VALUES ('R4', 1, 25);`. Explain what happened in each case (when does REPLACE **update** and when does it **insert**?). Then do the same thing with the **second syntax** (like UPDATE): `REPLACE INTO room SET room_code='R4', floor=2, capacity=30;`
 69. **UPDATE**: Lina changed her phone to `29876543`. **DELETE**: remove enrollment (M6, CL5). ⚠️ What happens if you forget the WHERE clause?
 
 ## PART 11: Views (Ch2)
@@ -223,7 +233,21 @@ Write one query for each:
 73. Create `v_enrollment_simple` from `enrollment` (member_id, class_id, fee_paid) and **update through the view**: set the fee of (M4, CL1) to 60. Check the base table: did it change? Why?
 74. Name the **3 benefits of views** from the course. Does a view store data?
 
-## PART 12: Functions (Ch2)
+## PART 12: Quick theory (knowledge checks style)
+
+96. Relation, tuple, attribute, domain: define each in one line.
+97. What does "the relational model is built on 3 concepts" refer to?
+98. Logical schema vs physical schema: what is the difference?
+99. Name 4 schema objects besides tables.
+99b. Give the **3 uses of aliases** from the course knowledge check.
+100. A "contact" column accepts only digits and anything else raises an error. Which constraint type is this? And "each field must contain at least one value": which SQL constraint?
+
+
+---
+
+# ⛔ OUT OF DS SCOPE: do these only after the exam (or for the final)
+
+## ⛔ PART 13: Functions (after views: NOT in DS)
 
 75. Numeric: on `salary / 7`, show `CEIL`, `FLOOR`, `ROUND(…, 2)`. And `MOD(17, 5)`.
 76. `FORMAT(salary * 12, 2)` for each coach. What type does FORMAT return?
@@ -241,7 +265,7 @@ Write one query for each:
 88. `IF(fee_paid < price, 'discount', 'full price')` for each enrollment (join needed).
 89. `CASE`: label each member by age: `< 23` → 'Junior', `23–29` → 'Adult', `≥ 30` → 'Senior'.
 
-## PART 13: Stored procedures (Ch2)
+## ⛔ PART 14: Stored procedures (after views: NOT in DS)
 
 90. `GetAllCoaches()`: no parameter, returns all coaches. Call it.
 91. `GetClassesCheaperThan(maxPrice DECIMAL(6,2))`: one parameter. Call it with 50.
@@ -249,14 +273,6 @@ Write one query for each:
 93. `GetEnrollmentsBetween(d1 DATE, d2 DATE)`: two parameters. Call it for October 2026.
 94. Drop the procedure `GetAllCoaches`.
 95. Give 3 reasons to use stored procedures (from the course).
-
-## PART 14: Quick theory (knowledge checks style)
-
-96. Relation, tuple, attribute, domain: define each in one line.
-97. What does "the relational model is built on 3 concepts" refer to?
-98. Logical schema vs physical schema: what is the difference?
-99. Name 4 schema objects besides tables.
-100. A "contact" column accepts only digits and anything else raises an error. Which constraint type is this? And "each field must contain at least one value": which SQL constraint?
 
 ---
 
