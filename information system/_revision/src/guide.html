@@ -1,0 +1,536 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>IS Design Revision Guide</title><style>/*STYLE*/</style></head>
+<body>
+
+<div class="cover">
+  <h1>Information System Design: Revision Guide</h1>
+  <div class="sub">ISDesign 2026/2027, Dr. Ameni Youssfi Nouira, PRISTINI (GLSI2 / BI2). Built from: Chapter 1 (Introduction, 14 slides), Chapter 2 (Use Case, 12 slides),
+  Tutorial 1 (Use Case), Tutorial 2 (Class Diagram), Tutorial 2.1 (Use Case &amp; Class Diagram) and the 5 photos of the board corrections.</div>
+  <p style="margin-top:8px"><b>Contents:</b> 0. What she asks and how the exam works · 1. Chapter 1: IS, development steps, design, modeling, UML ·
+  2. Chapter 2: the use case diagram · 3. Method: how to solve a use case exercise · 4. Tutorial 1 solved (with board photos) ·
+  5. Class diagrams (no slides yet, explained from zero) · 6. Tutorials 2 and 2.1 solved · 7. Exam-day checklist</p>
+  <p class="small">Labels used: <b>(course)</b> = the slide's words · <b>(board)</b> = what the prof drew in class · <b>(extra)</b> = standard UML that isn't on the slides but that you need for the TDs.
+  All the clean diagrams were redrawn by me from the board photos and the TD texts.</p>
+</div>
+
+<!-- ====================================================== -->
+<h2>0. What she asks and how to win the marks</h2>
+<div class="box exam"><b>🎯 What the tutorials tell us about the exam</b>
+Every tutorial is built the same way: <b>a short text describing a company/situation → "Draw the use case diagram" and/or "Draw the class diagram"</b>. Variants she already used:
+<ul>
+<li><b>Draw the use case diagram</b> from a text (TD1 Ex1, Ex2, TD2 Ex1, Tutorial 2.1, Ch2 activity). This is the core skill: expect at least one.</li>
+<li><b>Critique a student's diagram</b> and list the "pitfalls", then propose a correct one (TD1 Ex3). You must know the classic mistakes (§3.4).</li>
+<li><b>Define the actors</b> of the system (TD1 Ex3 2.1).</li>
+<li><b>Draw the class diagram</b> from a text (TD2 Ex1, Ex2, Ex3, Tutorial 2.1).</li>
+<li><b>Draw an object diagram</b> matching a text (TD2 Ex3 Q2).</li>
+<li><b>Course questions</b> on Chapter 1: definitions (IS, its roles, model, method vs language), development steps, the 3 analysis axes, UML history (3 amigos, OMG 1997), types of UML diagrams.</li>
+</ul></div>
+
+<!-- ====================================================== -->
+<h2>1. Chapter 1: Introduction (slides 1–14)</h2>
+
+<h3>1.1 What is an Information System (IS)? (slide 3)</h3>
+<div class="box def"><b>Definition (course: learn it word for word)</b>
+An information system represents <b>the set of elements involved in the management, storage, processing, transmission and dissemination of information within an organization</b>.</div>
+<div class="two"><div>
+<p><b>Its 4 roles (slide 3):</b></p>
+<ol>
+<li><b>Collection</b> of information (gathering it),</li>
+<li><b>Storage</b> (keeping it, e.g. a database),</li>
+<li><b>Processing</b> (computing, transforming it),</li>
+<li><b>Dissemination</b> (sending it to the people who need it).</li>
+</ol>
+</div><div>
+<p><b>Simple example: your school's IS</b></p>
+<ul>
+<li><i>Collection</i>: students fill in the registration form.</li>
+<li><i>Storage</i>: students and grades saved in the database.</li>
+<li><i>Processing</i>: averages computed automatically.</li>
+<li><i>Dissemination</i>: transcripts sent / posted on the platform.</li>
+</ul>
+<p class="small">An IS is not only computers: people, procedures and data are part of it too. The computer part is the "computerized system" we model.</p>
+</div></div>
+
+<h3>1.2 Steps in the development of an IS (slides 4–6)</h3>
+<div class="two"><div>
+<p><b>Slide 4 (diagram): 8 steps</b></p>
+<pre class="out">1. Needs analysis
+2. Feasibility study
+3. System design
+4. Development and implementation
+5. Testing and validation
+6. Deployment
+7. Training and support
+8. Maintenance and evolution</pre>
+<p class="small">Memory trick: "<b>N</b>ever <b>F</b>orget <b>D</b>esign, <b>D</b>evelop, <b>T</b>est, <b>D</b>eploy, <b>T</b>rain, <b>M</b>aintain".</p>
+</div><div>
+<p><b>Slides 5–6 (text): detailed steps</b></p>
+<table>
+<tr><th>Step</th><th>What it means</th></tr>
+<tr><td>Requirements expression</td><td>write the <b>requirements specification document</b> (cahier des charges)</td></tr>
+<tr><td>Specification</td><td><b>what</b> the system should be and <b>how</b> it can be used</td></tr>
+<tr><td>Analysis</td><td>the elements of the IS, their structures and relationships, along <b>3 axes</b> (below)</td></tr>
+<tr><td>Design</td><td><b>technical solutions</b>: architecture, performance, optimization, structures and algorithms</td></tr>
+<tr><td>Implementation</td><td>development and programming</td></tr>
+<tr><td>Testing &amp; verification</td><td>quality controls <b>throughout</b> the development cycle</td></tr>
+<tr><td>Validation</td><td>check compliance with the requirements specification + discussion with the user</td></tr>
+<tr><td>Maintenance &amp; evolution</td><td><b>corrective</b> (fixing bugs) and <b>adaptive/evolutionary</b> (integrating new changes)</td></tr>
+</table>
+</div></div>
+
+<div class="box exam"><b>🎯 The 3 axes of analysis (slide 5): very likely question</b>
+<table>
+<tr><th>Axis</th><th>Course words</th><th>Simple meaning</th><th>UML diagram that shows it (extra)</th></tr>
+<tr><td><b>Functional</b></td><td>object know-how</td><td>WHAT the system does (its functions)</td><td><b>Use case</b> diagram</td></tr>
+<tr><td><b>Static</b></td><td>object structure</td><td>WHAT it is made of (data, links), doesn't move in time</td><td><b>Class</b> / object diagram</td></tr>
+<tr><td><b>Dynamic</b></td><td>object life cycle</td><td>HOW it behaves over time (states, messages)</td><td>Sequence, state machine, activity</td></tr>
+</table>
+That's why the course goes in this order: Use case (functional) → Class diagram (static) → dynamic diagrams later.</div>
+
+<h3>1.3 Design (slide 7)</h3>
+<div class="two"><div>
+<ul>
+<li>A <b>creative process</b> for developing software.</li>
+<li>Gives the software an <b>architecture</b> by dividing it into <b>modules</b>, each responsible for different functionalities.</li>
+</ul>
+</div><div>
+<table>
+<tr><th>Architectural design</th><th>Detailed design</th></tr>
+<tr><td>• internal structure of the software<br>• decomposition into manageable-sized components<br>• interfaces and interactions between components</td>
+<td>• role of each component<br>• its subcomponents</td></tr>
+</table>
+<p class="small">Analogy: architectural = the plan of the floors and rooms of a house; detailed = the plumbing and wiring inside each room.</p>
+</div></div>
+
+<h3>1.4 Modeling, model, method, language (slides 8–9)</h3>
+<div class="two"><div>
+<p><b>Modeling</b> = support for design: <b>formalizing</b> the solution with known notations/rules. It <b>reduces complexity</b>: remove non-significant details, keep what matters to understand and predict.</p>
+<div class="box def"><b>Model (course)</b>An <b>abstract and simplified representation</b> of a real-world entity, aimed at <b>describing, explaining or predicting</b> it. Example: a <b>plan</b> (of a building).</div>
+</div><div>
+<table>
+<tr><th></th><th>Design <b>method</b></th><th>Modeling <b>language</b></th></tr>
+<tr><td>Definition</td><td>normative description of the <b>steps</b> of modeling (what to do, in what order)</td><td>a <b>graphical language</b> to represent and communicate the aspects of an IS: <b>vocabulary + rules</b></td></tr>
+<tr><td>Example</td><td>Merise</td><td>UML</td></tr>
+<tr><td>Problem</td><td>many specific cases → hard to make an exhaustive method</td><td>-</td></tr>
+</table>
+<div class="box trap"><b>⚠ Careful</b>Slide 9 lists "Merise, UML" as examples of design methods, but <b>UML is a modeling language, not a method</b> (the "L" = Language). It says how to <i>draw</i>, not which steps to follow. If asked, say: "UML is a modeling language; Merise is a method."</div>
+</div></div>
+
+<h3>1.5 UML: history and building blocks (slides 10–14)</h3>
+<div class="two"><div>
+<pre class="out">1980s   Merise: functional programming methods,
+        data SEPARATED from processes
+1990–95 object-oriented programming appears
+        → more than 50 methods!
+1994    consensus on 3 methods:
+        OMT  (James Rumbaugh): static, dynamic and
+              functional aspects, graphically
+        OOD  (Grady Booch): package concept
+        OOSE (Ivar Jacobson): user requirements
+              (→ he invented use cases)
+        the "3 Amigos" unite → UML
+1997    UML = standard of the OMG
+        (Object Management Group)</pre>
+<p><b>UML = Unified Modeling Language.</b> Used in information systems, telecoms, transport, aeronautics, aerospace, science, and even to model mechanical or human behaviours.</p>
+</div><div>
+<p><b>3 basic building blocks (slide 13):</b></p>
+<ul>
+<li><b>Elements</b>: the essential abstractions of the model (actor, class, use case…).</li>
+<li><b>Relationships</b>: the links between elements (association, include, inheritance…).</li>
+<li><b>Diagrams</b>: visual representations of the elements; each gives a <b>partial view</b> from one perspective (user, admin…). <b>All diagrams together</b> give the overall view of the system.</li>
+</ul>
+<p><b>UML diagram types (slide 14): 14 diagrams in 2 families</b></p>
+<table>
+<tr><th>Structural (static) = 7</th><th>Behavioral (dynamic) = 7</th></tr>
+<tr><td>Class · Object · Component · Composite structure · Package · Deployment · Profile</td>
+<td>Use case · Activity · State machine · <b>Interaction</b> (4): Sequence · Communication · Interaction overview · Timing</td></tr>
+</table>
+<p class="small">Trap: the <b>use case</b> diagram is <b>behavioral</b>, not structural. Class and object diagrams are structural.</p>
+</div></div>
+
+<h3>1.6 Chapter 1: questions de cours with model answers</h3>
+<table>
+<tr><th style="width:32%">Question</th><th>Answer</th></tr>
+<tr><td>Define an IS and give its roles.</td><td>Set of elements involved in managing, storing, processing, transmitting and disseminating information in an organization. Roles: collection, storage, processing, dissemination.</td></tr>
+<tr><td>List the steps of IS development.</td><td>Needs analysis → feasibility study → design → development/implementation → testing/validation → deployment → training/support → maintenance/evolution.</td></tr>
+<tr><td>What are the 3 axes of analysis?</td><td>Functional (object know-how), static (object structure), dynamic (object life cycle).</td></tr>
+<tr><td>Corrective vs adaptive maintenance?</td><td>Corrective = fixing bugs; adaptive/evolutionary = integrating new changes.</td></tr>
+<tr><td>Validation vs testing?</td><td>Testing = quality controls during the whole cycle; validation = checking the product matches the requirements specification, with the user.</td></tr>
+<tr><td>Architectural vs detailed design?</td><td>Architectural: internal structure, decomposition into components, their interfaces/interactions. Detailed: role of each component and its subcomponents.</td></tr>
+<tr><td>What is a model? Why model?</td><td>An abstract, simplified representation of a real entity to describe, explain or predict it. Modeling reduces complexity by removing non-significant details.</td></tr>
+<tr><td>Method vs modeling language?</td><td>Method = normative steps of modeling (Merise); language = graphical vocabulary + rules to represent/communicate (UML).</td></tr>
+<tr><td>Where does UML come from?</td><td>From unifying OMT (Rumbaugh), OOD (Booch) and OOSE (Jacobson), the "3 Amigos"; OMG standard in 1997.</td></tr>
+<tr><td>Building blocks of UML?</td><td>Elements, relationships, diagrams.</td></tr>
+<tr><td>Why several diagrams?</td><td>Each diagram is a partial view of one aspect; together they give the overall view of the system.</td></tr>
+</table>
+
+<!-- ====================================================== -->
+<h2>2. Chapter 2: the Use Case diagram (slides 1–12)</h2>
+
+<h3>2.1 What it is (slide 3)</h3>
+<ul>
+<li><b>The functional UML diagram</b> (the functional axis of §1.2).</li>
+<li>A way to specify the <b>uses / features</b> of a system: <b>what</b> the system does for its users, <b>not how</b>.</li>
+<li>Represents the <b>interactions between users and the system</b>.</li>
+<li>A <b>graphical representation</b> (the diagram) <b>+ a textual description</b> (the documentation, §2.6).</li>
+</ul>
+
+<h3>2.2 The basic elements (slides 4–5)</h3>
+{{fig:uc_basic}}
+<table>
+<tr><th style="width:17%">Element</th><th>Course definition</th><th>How to recognise it / write it</th></tr>
+<tr><td><b>Actor</b> (stick figure)</td><td>Role played by any <b>external</b> entity that interacts with the system.</td><td>
+• It's a <b>role</b>, not a person: Ahmed can be a "Student" and a "Customer". 5 employees with the same job = <b>one</b> actor "Employee".<br>
+• It can be a <b>human</b> or <b>another system</b> (e.g. "Personnel management system", "Bank"). Put it <b>outside</b> the rectangle.<br>
+• (extra) <b>Primary</b> actor = starts the use case to get a goal (usually on the left); <b>secondary</b> actor = is asked for help by the system (usually on the right).</td></tr>
+<tr><td><b>Use case</b> (ellipse)</td><td>Specification of a set of actions performed by the system.</td><td>
+• Name = <b>verb + complement</b>, from the actor's point of view: "Borrow a book", "Reserve a room".<br>
+• A <b>goal</b> that gives a result of value to the actor, not a button click or a technical step.</td></tr>
+<tr><td><b>System</b> (rectangle)</td><td>The boundary of the system (title = system name).</td><td>Use cases inside, actors outside.</td></tr>
+</table>
+
+<h3>2.3 The 4 relationships (slides 4–7): the heart of the chapter</h3>
+{{fig:uc_rel}}
+<table>
+<tr><th style="width:14%">Relationship</th><th>Course definition</th><th>Notation &amp; arrow direction</th><th>Key words in the text</th></tr>
+<tr><td><b>Interaction</b><br>(association)</td><td>Relationship between an actor and a UC.</td><td>Plain solid line (optional arrow, §2.5).</td><td>"The member can borrow…"</td></tr>
+<tr><td><b>Include</b></td><td>A UC <b>contains</b> the actions defined in another UC.</td><td>Dashed arrow <code>«include»</code> from the <b>base UC → the included UC</b>. The included one is <b>always</b> executed.</td><td>"must be preceded by", "requires", "always", "each time… the system checks"</td></tr>
+<tr><td><b>Extend</b></td><td>A UC <b>can be extended</b> by another UC.</td><td>Dashed arrow <code>«extend»</code> from the <b>optional UC → the base UC</b>. The extension happens <b>only sometimes</b> (a condition).</td><td>"optionally", "may", "can also", "in case of", "if…"</td></tr>
+<tr><td><b>Generalization</b></td><td>A UC is a <b>specification</b> of another UC; an actor is a specification of another actor.</td><td>Solid line + <b>hollow triangle</b> pointing to the <b>general</b> one (child → parent).</td><td>"there are 2 kinds of…", "can be X or Y", "an engineer is an employee who can also…"</td></tr>
+</table>
+
+<div class="box tip"><b>💡 Include vs extend: the trick to never confuse the arrows</b>
+<b>Include</b>: read the arrow as "<i>needs</i>": "Log in <b>needs</b> Verify authentication". The arrow leaves the one who needs.<br>
+<b>Extend</b>: read the arrow as "<i>can be added to</i>": "Display error <b>can be added to</b> Verify authentication". The arrow leaves the optional one.<br>
+In both cases the arrow points <b>towards the main/base story</b> for extend, and <b>towards the reusable piece</b> for include.</div>
+
+<div class="box trap"><b>⚠ Actor generalization (very used on the board)</b>
+If the child actor (Engineer, Customer, Head teacher) can do <b>everything</b> the parent does (Employee, Visitor, Teacher) <b>plus more</b> → triangle from child to parent. The child then inherits all the parent's use cases: <b>don't</b> draw the parent's lines again from the child.</div>
+
+<h3>2.4 Multiplicities (refinement concepts 1–2, slides 8–9)</h3>
+{{fig:uc_mult}}
+<ul>
+<li><b>At the UC end</b> (e.g. <code>1..n</code> near "Transfer funds"): the actor is involved in <b>several instances</b> of this UC: in parallel, by mutual exclusion, or at different times (UML doesn't say which).</li>
+<li><b>At the actor end</b> (e.g. <code>2..n</code> near "Player"): <b>several instances of the actor</b> are needed to perform <b>one</b> UC: simultaneous actions, or complementary and successive actions.</li>
+</ul>
+
+<h3>2.5 Interaction orientation (refinement concept 3, slide 10)</h3>
+<p>An arrow on the actor–UC line shows the <b>direction of the interaction</b> (who starts / who receives): "User → Sign in" (the user triggers it), "Display balance → User" (the system sends to the user). <b>No arrow = bidirectional.</b> In the board corrections, the prof often puts the arrow from the actor to the UC.</p>
+
+<h3>2.6 Use case documentation (textual description, slide 11)</h3>
+<div class="two"><div>
+<p>The template to fill (learn the headings in order):</p>
+<pre class="out">Use Case Name:
+Actors involved:
+Description:     // brief description of the UC
+Preconditions:   // to verify BEFORE the UC begins
+Main flow / Basic sequence:
+   1. …
+   2. …
+Alternative flows / Exceptions:
+   If … then …
+Postconditions:  // to verify AFTER the UC ends</pre>
+</div><div>
+<p><b>Filled example: "Borrow a book"</b></p>
+<pre class="out">Name: Borrow a book
+Actors: Member (primary), Librarian
+Description: a member borrows an available copy.
+Preconditions: the member is registered and
+   authenticated; the book exists.
+Main flow:
+  1. The member searches for the book.
+  2. The system shows the available copies.
+  3. The member chooses a copy.
+  4. The system records the loan + return date.
+Alternative flows:
+  If no copy is available → the system proposes
+     a reservation.
+  If the member has 3 loans → refusal message.
+Postconditions: the loan is recorded; the copy
+   is marked "borrowed".</pre>
+</div></div>
+
+<h3>2.7 Slide 12 activity: the library (solved)</h3>
+{{fig:library}}
+<p class="small">Two actors, six use cases, each linked to the actor who performs it. A good bonus: "Borrow a book" <code>«include»</code> "Search for a book" is <b>not</b> required by the text, so don't invent relationships the text doesn't give.</p>
+
+<!-- ====================================================== -->
+<h2>3. Method: solving a use case exercise in the exam</h2>
+
+<h3>3.1 The 7 steps (do them in this order, on the draft first)</h3>
+<ol class="steps">
+<li><b>Read the whole text once</b> without writing. Find the name of the <b>system</b> (it becomes the rectangle title).</li>
+<li><b>Underline the actors</b>: the nouns of <b>people / roles / external systems</b> that <i>do</i> something or are <i>contacted</i> (employee, manager, engineer, bank, "personnel management system"). Ignore things the system manages (books, products: those are <i>data</i>, future classes).</li>
+<li><b>Circle the actions</b>: the verbs "the X can/must…" → each becomes a use case named <b>verb + complement</b>.</li>
+<li><b>Make a table actor → use cases</b> (2 columns). This is the skeleton; it already earns most marks.</li>
+<li><b>Find the relationships</b> with the key words (table §3.2): include, extend, generalization of actors, generalization of UCs.</li>
+<li><b>Draw</b>: rectangle with the title; primary actors on the left, secondary actors on the right; group the UCs of each actor near it; avoid crossing lines.</li>
+<li><b>Check</b> with the list of mistakes (§3.4): every requirement of the text is covered, no arrow between UCs without a stereotype, arrows in the right direction.</li>
+</ol>
+
+<h3>3.2 Dictionary: text → UML (built from the sentences of her TDs)</h3>
+<table class="kw">
+<tr><th>Sentence in the text</th><th>What to draw</th><th>Where she used it</th></tr>
+<tr><td>"All consultations must be <b>preceded by</b> a light authentication"</td><td>Consult <code>«include»</code> → Light authentication</td><td>TD1 Ex2</td></tr>
+<tr><td>"Only teachers can reserve… <b>subject to the availability</b>"</td><td>Reserve room <code>«include»</code> → Check availability</td><td>Tutorial 2.1</td></tr>
+<tr><td>"may <b>optionally</b> be accompanied by printing"</td><td>Print documents <code>«extend»</code> → Consult / Update</td><td>TD1 Ex2</td></tr>
+<tr><td>"This employee <b>may optionally</b> consult the catalog"</td><td>Consult catalog <code>«extend»</code> → Submit request</td><td>TD1 Ex1</td></tr>
+<tr><td>"<b>If</b> the copy is not returned within 3 weeks, it generates a dispute"</td><td>Manage disputes <code>«extend»</code> → Return a work [late]</td><td>TD1 Ex3</td></tr>
+<tr><td>"<b>All</b> personnel can consult… <b>Engineers</b> can (also) update"</td><td>Actor Engineer —▷ Employee</td><td>TD1 Ex2</td></tr>
+<tr><td>"a designated teacher who <b>alone</b> is allowed to…"</td><td>Actor Head teacher —▷ Teacher + its own UC</td><td>Tutorial 2.1</td></tr>
+<tr><td>"either to check if a product exists <b>or</b> to freely browse"</td><td>Check / Browse —▷ Consult products (UC generalization)</td><td>TD1 Ex2</td></tr>
+<tr><td>"update operations: <b>adding, removing and modifying</b>"</td><td>Add / Remove / Modify —▷ Update products</td><td>TD1 Ex2, Ex3</td></tr>
+<tr><td>"a password verified by <b>contacting the personnel management system</b>"</td><td>Secondary actor (a system) linked to Strong authentication</td><td>TD1 Ex2</td></tr>
+<tr><td>"All operations are <b>recorded</b> in an access log"</td><td>Every operation <code>«include»</code> → Save in access log</td><td>TD1 Ex2</td></tr>
+<tr><td>"Access to the system must be protected by a password"</td><td>a "Log in / Authenticate" UC (or a precondition)</td><td>TD1 Ex3</td></tr>
+<tr><td>"only one employee now, but more in the future"</td><td>still <b>one</b> actor "Employee" (an actor is a role)</td><td>TD1 Ex3</td></tr>
+</table>
+
+<h3>3.3 How to lay out the drawing so it's readable</h3>
+<ul>
+<li>Draw the <b>rectangle big</b> (whole page width). Write the system name at the top.</li>
+<li>Put the actor who has the most UCs on the left middle; put the UCs that only he uses in a column next to him.</li>
+<li>Put the <b>included / extending</b> UCs further right, so dashed arrows go left→right and don't cross the actor lines.</li>
+<li>Put the children of a generalization in a small column next to their parent (like "Manage members" → Add / Update / Delete on the board).</li>
+<li>Write <code>«include»</code> / <code>«extend»</code> on <b>every</b> dashed arrow, and the condition in brackets if the text gives one: <code>«extend» [late &gt; 3 weeks]</code>.</li>
+</ul>
+
+<h3>3.4 The classic mistakes (= the answer to "critique this diagram")</h3>
+<div class="box err"><b>Pitfalls to look for (and to avoid yourself)</b>
+<ol>
+<li><b>No system boundary</b> (rectangle missing).</li>
+<li><b>Sequencing / flowchart</b>: arrows between UCs to show an order ("log in → search → check out"). A use case diagram shows <b>no order and no flow</b>; that's for activity/sequence diagrams.</li>
+<li><b>Arrows between UCs without a stereotype</b>: every UC–UC link must be <code>«include»</code>, <code>«extend»</code> or a generalization.</li>
+<li><b>Too fine granularity / functional decomposition</b>: one UC per tiny operation (add member, modify member, delete member each tied to the actor) instead of one "Manage members" (possibly with children).</li>
+<li><b>Technical steps as use cases</b>: "Log in", "Click OK", "Save to database" are not goals by themselves (authentication = a precondition or an included UC).</li>
+<li><b>Missing requirements</b>: a function of the text has no UC (e.g. legal proceedings, loans).</li>
+<li><b>Wrong actors</b>: data shown as actors (a book), or a person instead of a role, or the system itself as an actor.</li>
+<li><b>Wrong arrow direction</b> for include/extend, or confusing them.</li>
+<li><b>Bad names</b>: no verb, mixed languages ("return oeuvre"), inconsistent style.</li>
+<li><b>Crossing, tangled lines</b> that make it impossible to see which actor does what.</li>
+</ol></div>
+
+<!-- ====================================================== -->
+<h2>4. Tutorial 1 (Use Case) solved</h2>
+
+<h3>Exercise 1: Employee training process</h3>
+<div class="box syntax"><b>Step 4 table (actors → use cases)</b>
+<table>
+<tr><th>Actor</th><th>Use cases (from the text)</th></tr>
+<tr><td>Employee (primary)</td><td>Submit a training request · (optionally) consult the catalog · choose a session · report that he can't attend · submit feedback + attendance certificate</td></tr>
+<tr><td>Training manager (primary)</td><td>Review the request (approve/reject) · search a suitable training (only if approved) · maintain the catalogs · register the employee · request cancellation · verify the invoice</td></tr>
+<tr><td>Training organization (secondary, external)</td><td>receives the registration and the cancellation, sends the invoice</td></tr>
+</table></div>
+{{fig:training}}
+<p class="small">Key choices: "may optionally consult the catalog" → <code>«extend»</code>; "In case of approval, the manager searches" → <code>«extend» [approved]</code>; the training organization is an external actor because the registration and the invoice go to/come from it. (My proposed solution: there's no board photo for this exercise.)</p>
+
+<h3>Exercise 2: Textile company: product information</h3>
+<div class="two"><div>
+<figure class="photo"><img src="{{img:img/board_textile.jpg}}"><figcaption>(board) the prof's correction</figcaption></figure>
+</div><div>
+<p><b>How the prof read the text:</b></p>
+<ul>
+<li>"All personnel can consult" → actor <b>Employee</b>; "Engineers can perform update operations" → actor <b>Engineer —▷ Employee</b> (an engineer can also consult).</li>
+<li>"check if a product exists or freely browse" → 2 kinds of Consult (generalization).</li>
+<li>"preceded by a light authentication" → <code>«include»</code>; "more thorough authentication" for updates → <code>«include»</code> Strong auth.</li>
+<li>"password verified by contacting the personnel management system" → <b>secondary actor</b> (a system).</li>
+<li>"recorded in an access log" → <code>«include»</code> Save access log, from Consult and from Update.</li>
+<li>"may optionally be accompanied by printing" → Print documents <code>«extend»</code>.</li>
+</ul>
+</div></div>
+{{fig:textile}}
+<div class="box tip"><b>Small improvement vs the board</b>On the board, both authentications are children of one "Authentication" UC linked to the personnel system. But only the <b>strong</b> one contacts the personnel system (the light one just asks name + department). So link the system to <b>Strong authentication</b> only. Both versions show the same understanding; mention this if you have time.</div>
+
+<h3>Exercise 3: Media library: critique and correct</h3>
+<figure><img src="{{img:img/td1_ex3_student.png}}" style="max-height:300px"><figcaption>The student's diagram (from the TD sheet)</figcaption></figure>
+<div class="box err"><b>Q1: Critique: the pitfalls this student fell into</b>
+<ol>
+<li><b>No system boundary</b> (no rectangle "Media library system").</li>
+<li><b>Sequencing</b>: "log in → Search member → check out a work" are linked by plain arrows to show an <b>order of steps</b>. A use case diagram doesn't model order/flow.</li>
+<li><b>Links between UCs without stereotype</b>: Add work / Delete work → manage works, log in → search member… plain arrows mean nothing in UML. It should be <code>«include»</code>, <code>«extend»</code> or generalization.</li>
+<li><b>Too fine granularity and inconsistency</b>: add / modify / delete member are 3 separate UCs each linked to the actor, while for works there is a "manage works". Group them into "Manage members" (with Add/Update/Delete as children).</li>
+<li><b>"Log in" used as a step of a chain</b>: authentication is a precondition (or a separate UC), not the start of a flowchart.</li>
+<li><b>Missing requirements</b>: legal proceedings (after 1 year) are missing; the link between a late return (3 weeks) and the dispute isn't shown; loans aren't modeled as a whole (no "return" linked properly).</li>
+<li><b>Wrong direction</b>: "check out a work" needs to search the member, so it should be Check out <code>«include»</code> Search member (arrow from check out to search), not search → check out.</li>
+<li><b>Names</b>: "return oeuvre" mixes French and English; names must be consistent verb + complement.</li>
+<li><b>Tangled lines</b>: crossing connectors make it impossible to see which UC belongs to the actor.</li>
+</ol></div>
+<div class="two"><div>
+<figure class="photo"><img src="{{img:img/board_medialib.jpg}}"><figcaption>(board) the prof's corrected diagram</figcaption></figure>
+</div><div>
+<p><b>Q2.1: Actors of the computerized system:</b> <b>Employee</b> only. Even if more employees are hired later, they play the <b>same role</b> → still one actor. (Members don't use the software themselves; the employee does everything for them.)</p>
+<p><b>Q2.2: what the board shows:</b> Manage members (children Add / Update / Delete), Manage works (children Add / Modify / Delete), Check out a work <code>«include»</code> Search member, Return a work, Manage disputes <code>«extend»</code> Return a work, Login.</p>
+<p class="small">In my clean version below I also added <b>Manage legal proceedings</b> <code>«extend»</code> Manage disputes [&gt; 1 year], because the text asks for it.</p>
+</div></div>
+{{fig:medialib}}
+
+<!-- ====================================================== -->
+<h2>5. Class diagrams, from zero (extra: no slides yet)</h2>
+<p>You weren't there and there's no chapter PDF in the repo, but Tutorials 2 and 2.1 ask for class diagrams, so here is everything you need. Good news: <b>it's your Java course drawn as boxes</b>.</p>
+
+<h3>5.1 A class box</h3>
+<div class="two"><div>
+{{fig:class_box}}
+<ul>
+<li>Top: the <b>class name</b> (capital letter, singular: <code>Book</code>, not <code>books</code>).</li>
+<li>Middle: <b>attributes</b> <code>visibility name: Type</code>.</li>
+<li>Bottom: <b>operations</b> (methods) <code>visibility name(param: Type): ReturnType</code>.</li>
+</ul>
+</div><div>
+<pre class="code"><span class="k">public class</span> <span class="t">BankAccount</span> {
+    <span class="k">private</span> <span class="t">String</span> number;
+    <span class="k">private double</span> balance;
+    <span class="k">public void</span> deposit(<span class="k">double</span> amount) { … }
+    <span class="k">public double</span> getBalance() { … }
+}</pre>
+<table>
+<tr><th>UML</th><th>Java</th><th>Meaning</th></tr>
+<tr><td><code>+</code></td><td>public</td><td>everyone</td></tr>
+<tr><td><code>-</code></td><td>private</td><td>only the class</td></tr>
+<tr><td><code>#</code></td><td>protected</td><td>package + subclasses</td></tr>
+<tr><td><code>~</code></td><td>(none)</td><td>package</td></tr>
+</table>
+<p class="small">Rule of thumb: attributes <code>-</code> (encapsulation), operations <code>+</code>. Types: <code>String</code> for text (not <code>char</code> as on the board), <code>Date</code> for dates (not <code>int</code>).</p>
+</div></div>
+
+<h3>5.2 Relationships between classes</h3>
+{{fig:class_rel}}
+<div class="two"><div>
+<p><b>Multiplicities</b> (written at the end of the line, near the class they count):</p>
+<table>
+<tr><th>Write</th><th>Means</th></tr>
+<tr><td><code>1</code></td><td>exactly one</td></tr>
+<tr><td><code>0..1</code></td><td>zero or one (optional)</td></tr>
+<tr><td><code>*</code> or <code>0..*</code></td><td>zero or many</td></tr>
+<tr><td><code>1..*</code></td><td>at least one</td></tr>
+<tr><td><code>2..5</code></td><td>between 2 and 5</td></tr>
+</table>
+<p class="small">The board also uses <code>1</code> / <code>N</code> (Merise style). In UML, write <code>*</code> or <code>1..*</code>.</p>
+</div><div>
+<div class="box tip"><b>💡 How to find a multiplicity: ask the question twice</b>
+"<b>One</b> Customer places <b>how many</b> Orders?" → 0 or many → write <code>0..*</code> <b>next to Order</b>.<br>
+"<b>One</b> Order is placed by <b>how many</b> Customers?" → exactly 1 → write <code>1</code> <b>next to Customer</b>.<br>
+The number always goes on the side of the class you're <b>counting</b>.</div>
+<p><b>Association name</b>: a verb in the middle of the line ("places", "makes", "works for").</p>
+</div></div>
+{{fig:assoc_class}}
+
+<h3>5.3 Object diagram</h3>
+<p>A <b>snapshot</b> of real objects at one moment, following a class diagram: box title <u>objectName : ClassName</u> (underlined), attributes with <b>values</b> (<code>name = "Ali"</code>), lines = <b>links</b> (instances of associations), <b>no multiplicities</b>, no operations. Example: TD2 Ex3 Q2 (§6.4).</p>
+
+<h3>5.4 Method for a class diagram exercise</h3>
+<ol class="steps">
+<li><b>Nouns → classes or attributes.</b> A noun with its own information (Teacher, Reservation, Room) = a class. A simple value (name, date, capacity, price) = an attribute.</li>
+<li><b>"is a / can be X or Y / there are 2 kinds of"</b> → generalization (Programmer and Designer are Developers; Student and Teacher are Users).</li>
+<li><b>Verbs between two classes → associations</b> ("a teacher <i>makes</i> reservations", "a team <i>works for</i> a company").</li>
+<li><b>"is composed of / is made of / contains"</b> → composition (the part dies with the whole: board → cells) or aggregation (the part can live alone: team → developers).</li>
+<li><b>Multiplicities</b>: ask the question twice for every association (§5.2). Numbers in the text ("three wheels", "8 neighbours") become multiplicities.</li>
+<li><b>Many-to-many with data</b> (a grade, a quantity, a date of the pair) → association class.</li>
+<li><b>Operations</b>: the verbs the class itself does (uncover(), mark(), compute()). The text's rules become operations.</li>
+<li><b>Check</b>: every noun of the text is somewhere; no attribute repeated in subclasses; types are correct.</li>
+</ol>
+
+<!-- ====================================================== -->
+<h2>6. Tutorials 2 and 2.1 solved</h2>
+
+<h3>6.1 Tutorial 2.1: classroom and equipment reservation</h3>
+<div class="two"><div>
+<figure class="photo"><img src="{{img:img/board_room_uc.jpg}}"><figcaption>(board) use case diagram</figcaption></figure>
+</div><div>
+<p><b>Reading the text like the prof:</b></p>
+<ul>
+<li>"Only teachers can make reservations" → Teacher: Reserve room, Reserve equipment.</li>
+<li>"subject to the availability" → both <code>«include»</code> Check availability.</li>
+<li>"room schedule can be consulted by everyone (teachers and students)" → Student and Teacher both linked to Consult room schedule.</li>
+<li>"hourly summary only accessible by teachers" → Teacher: Consult hourly summary.</li>
+<li>"a designated teacher who alone can edit the hourly summary of the program" → <b>Head teacher —▷ Teacher</b> + Edit program.</li>
+</ul>
+</div></div>
+{{fig:room_uc}}
+<figure class="photo"><img src="{{img:img/board_room_class.jpg}}" style="max-height:300px"><figcaption>(board) class diagram drawn in class</figcaption></figure>
+{{fig:room_class}}
+<div class="box tip"><b>What I changed from the board, and why (say it if asked)</b>
+<ul>
+<li><b>Inherited attributes aren't repeated</b>: User already has id and name, so Student/Teacher don't repeat "student ID, student name" (that's the point of inheritance).</li>
+<li>Types: <code>char</code> → <code>String</code> for names/types; <code>reservationDate: int</code> → <code>Date</code>.</li>
+<li>A reservation can be for a room <b>and/or</b> equipment → Classroom <code>0..1</code>, Equipment <code>0..*</code> (the text says "classrooms as well as equipment (laptops and/or video projectors)"). Bonus: Laptop and VideoProjector can be subclasses of Equipment.</li>
+<li>"head teacher" is kept as an <b>association</b> Teacher → Program (like the board), with multiplicities in UML style instead of 1/N.</li>
+</ul></div>
+
+<h3>6.2 Tutorial 2 Ex1: e-commerce website (use case + class)</h3>
+<div class="two"><div>
+<figure class="photo"><img src="{{img:img/board_ecommerce.jpg}}"><figcaption>(board) use case diagram</figcaption></figure>
+</div><div>
+<p><b>The prof's actors:</b> Visitor (register/login, browse products), Client —▷ Visitor (manage cart, place order, track order, pay the order, send feedback), Seller (manage products, accept payment), Admin (manage users). "Delete account" <code>«include»</code> Register/Login, and the client's operations need the login (dashed <code>«include»</code>).</p>
+<p class="small">The text only says "buy and sell physical goods, services and digital products, process orders, accept payments, manage shipping and logistics, customer service": the actors and UCs come from what such a site obviously needs. This kind of "open" text is where you get marks for <b>justifying</b> your actors.</p>
+</div></div>
+{{fig:ecommerce_uc}}
+{{fig:ecom_class}}
+<p class="small">Composition Order ◆— OrderLine: an order line can't exist without its order. Cart — Product is many-to-many (a quantity could become an association class "CartItem"). Shipment and Feedback classes can be added the same way (Order 1 — 0..1 Shipment; Customer 1 — 0..* Feedback 0..* — 1 Product).</p>
+
+<h3>6.3 Tutorial 2 Ex2: Minesweeper (class diagram)</h3>
+<div class="two"><div>
+<ul>
+<li>"composed of a rectangular board, a timer and a mine counter" → <b>Game ◆ Board, Timer, MineCounter</b> (composition: they don't exist without the game).</li>
+<li>"The board is a grid of cells" → <b>Board ◆ 1..* Cell</b>; rows/columns are attributes of Board.</li>
+<li>"covered", "flagged" → boolean attributes of Cell; "uncover", "mark" → operations.</li>
+<li>"neighbouring cells" → a <b>reflexive</b> association Cell — Cell (0..8 neighbours).</li>
+</ul>
+</div><div>
+<ul>
+<li>"The content can be: nothing, a mine, or a number" → abstract class <b>Content</b> with 3 subclasses (generalization); <code>value</code> only exists in Number.</li>
+<li>"The timer counts the seconds" → Timer.seconds; "counter shows mines remaining" → MineCounter.remaining with increment()/decrement() (the flag rules).</li>
+<li>The scenarios (blank → reveal neighbours, mine → lose) are <b>behaviour</b>: they become the operations uncover()/end(lost) (the details belong to dynamic diagrams).</li>
+</ul>
+</div></div>
+{{fig:mines_class}}
+
+<h3>6.4 Tutorial 2 Ex3: development team (class + object diagram)</h3>
+<div class="two"><div>
+<ul>
+<li>"team composed of developers" → Team ◇ 1..* Developer (aggregation: a developer exists without the team).</li>
+<li>"works for a company", "identifier and a logo" → association to Company; id, logo attributes.</li>
+<li>"ID number, last name, first name, email" → attributes of Developer.</li>
+<li>"can be a programmer… or a designer…" → <b>generalization</b>; Developer is abstract (every developer is one of the two).</li>
+</ul>
+</div><div>
+<ul>
+<li>"specialized in one or more languages" → Programmer — <b>1..*</b> Language; "expert in a modeling method" → Designer — <b>1</b> ModelingMethod.</li>
+<li>"write code" / "interact with users and create models" → operations.</li>
+<li>⚠ "Each developer uses a personal computer" but Q2 says "<b>All developers use the same computer</b>" → the multiplicity must allow it: Developer <b>1..*</b> — <b>1</b> Computer (not 1 — 1). Exam trap: the object diagram must respect the class diagram!</li>
+</ul>
+</div></div>
+{{fig:team_class}}
+<p><b>Q2: object diagram</b> ("Ali and Zied are programmers in Ada and Java, Anis is a UML designer, team DEV with logo DEV+ for TechSoft, all use the same computer"):</p>
+{{fig:team_obj}}
+
+<!-- ====================================================== -->
+<h2>7. Exam-day checklist</h2>
+<div class="two"><div>
+<div class="box exam"><b>Before drawing (5 min per exercise)</b>
+<ul>
+<li>Underline actors / circle verbs / box key words (preceded by, optionally, can be, all, only, composed of).</li>
+<li>Write the actor → UC table on the draft.</li>
+<li>For a class diagram: list classes, attributes and verbs between classes.</li>
+</ul></div>
+<div class="box tip"><b>While drawing</b>
+<ul>
+<li>Pencil first, big rectangle, system name.</li>
+<li>Every dashed arrow labelled <code>«include»</code>/<code>«extend»</code>, in the right direction.</li>
+<li>Generalization = hollow triangle towards the parent.</li>
+<li>Class diagram: multiplicities on <b>both</b> ends of every association.</li>
+</ul></div>
+</div><div>
+<div class="box trap"><b>Final check (2 min)</b>
+<ul>
+<li>Is every sentence of the text covered by something in the diagram?</li>
+<li>No arrows between UCs without a stereotype? No flowchart?</li>
+<li>Actors outside, UCs inside, names = verb + complement?</li>
+<li>No attribute repeated in a subclass; types <code>String</code>/<code>int</code>/<code>double</code>/<code>Date</code>/<code>boolean</code>?</li>
+<li>Object diagram: underlined <u>name : Class</u>, values, no multiplicities, consistent with the class diagram?</li>
+</ul></div>
+<div class="box def"><b>Write 1–2 lines to justify your choices</b>
+e.g. "Engineer specializes Employee because engineers can also consult products". Teachers give marks for correct reasoning even if the drawing differs from theirs: in UML there's often more than one correct answer.</div>
+</div></div>
+
+</body></html>
