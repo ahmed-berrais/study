@@ -2,3 +2,4 @@ NETWORK/CiscoPacketTracer_900_Ubuntu.deb
 java_class/eclipse-java-2026-09-R-linux-gtk-x86_64/
 .env*
 secrets/
+__pycache__/
