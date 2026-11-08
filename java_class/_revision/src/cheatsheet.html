@@ -1,0 +1,1090 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Java OOP Cheat Sheet</title><style>/*STYLE*/</style></head>
+<body>
+
+<div class="cover">
+  <h1>Java OOP: Cheat Sheet &amp; Exam Explanations</h1>
+  <div class="sub">OOP-Java, Dr. Soumaya Trabelsi, PRISTINI 2026-2027 (BI2 / GLSI2). Written from your course slides (slides 1–77) and Labs 1–3.<br>
+  Every Java example in this sheet was compiled with <code>javac</code> before going in the PDF.</div>
+  <p style="margin-top:8px"><b>Contents:</b> 1. Intro (JVM, JDK) · 2. Ch1 basics: types, variables, operators · 3. Control structures &amp; Scanner ·
+  4. Ch2 class, object, attributes, methods · 5. Constructors &amp; destruction (GC) · 6. <code>this</code> · 7. Access modifiers &amp; encapsulation ·
+  8. Scope of variables · 9. Overloading · 10. <code>static</code> &amp; <code>final</code> · 11. Lab patterns (objects inside objects, arrays of objects, <code>Math.random</code>) ·
+  12. Definitions to learn by heart · 13. Compile errors she loves · 14. Errata in the slides</p>
+</div>
+
+<div class="box exam"><b>🎯 The words she asks about in every DS: know a 1-sentence definition + a code example for each</b>
+<table>
+<tr><th style="width:17%">Word</th><th>One-sentence definition (course wording)</th><th style="width:36%">Tiny example</th></tr>
+<tr><td><b>Class</b></td><td>A family of objects with the same structure (attributes) and behaviour (methods), characterised by a name. It is the "mould".</td><td><code>public class Car { ... }</code></td></tr>
+<tr><td><b>Object</b></td><td>An instance of a class. It has an <b>identity</b> (unique), a <b>type</b>, a <b>state</b> (attribute values at a given time) and a <b>behaviour</b> (its methods).</td><td><code>Car bmw = new Car("X1123","white",110);</code></td></tr>
+<tr><td><b>Attribute</b><br>(instance variable)</td><td>A variable declared in the class, outside every method. Each object has its own copy; it is visible in all methods of the class.</td><td><code>private double speed;</code></td></tr>
+<tr><td><b>Local variable</b></td><td>A variable declared inside a method (or block). Only known in that block, lost when the method ends.</td><td><code>int i = 0;</code> inside a method</td></tr>
+<tr><td><b>Method</b></td><td>A function defined in a class that manipulates the object's data: <code>&lt;return type&gt; name(&lt;parameters&gt;) { body }</code>. <code>void</code> = returns nothing.</td><td><code>public double area() { return 3.14*r*r; }</code></td></tr>
+<tr><td><b>Constructor</b></td><td>A special method with the <b>same name as the class</b> and <b>no return type</b> (not even <code>void</code>), called <b>once</b>, automatically, at creation (<code>new</code>), to initialise the attributes.</td><td><code>public Car(String m) { model = m; }</code></td></tr>
+<tr><td><b>this</b></td><td>A reference to the <b>current object</b> (the one running the method). Used to remove ambiguity (<code>this.x = x</code>) and to call another constructor (<code>this(0,0)</code>).</td><td><code>this.name = name;</code></td></tr>
+<tr><td><b>Encapsulation</b></td><td>Grouping data + methods in the class and hiding the details: attributes <code>private</code>, access only through public methods (getters/setters). It guarantees data integrity.</td><td><code>private double balance;</code> + <code>getBalance()</code></td></tr>
+<tr><td><b>Overloading</b></td><td>Several methods with the same name in one class, different number and/or types of parameters. Also called <b>static polymorphism</b>.</td><td><code>deposit(int)</code> / <code>deposit(double)</code></td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<h2>1. Introduction: what Java is (slides 5–11)</h2>
+
+<div class="two"><div>
+<h4>OOP in one picture</h4>
+<ul>
+<li>We represent real-world things as <b>objects</b>.</li>
+<li>A <b>class</b> = name + attributes (data) + methods (processing).</li>
+<li>A program = objects interacting. <b>Data-driven</b>, not process-driven.</li>
+</ul>
+<pre class="out">+--------------------+
+|        Car         |  ← class name
++--------------------+
+| registrationNumber |
+| color              |  ← attributes
+| speed              |
++--------------------+
+| increaseSpeed()    |  ← methods
+| decreaseSpeed()    |
++--------------------+</pre>
+</div><div>
+<h4>Compiled AND interpreted</h4>
+<pre class="out">MyClass.java  (source code)
+     │  javac   (compiler)
+     ▼
+MyClass.class (bytecode, portable)
+     │  java    (JVM on Windows / Linux / Mac)
+     ▼
+  execution</pre>
+<ul>
+<li><b>Bytecode</b> = portable pseudo-code produced by <code>javac</code>.</li>
+<li><b>JVM</b> (Java Virtual Machine) executes the bytecode, so the same <code>.class</code> runs everywhere → <b>portability</b>.</li>
+</ul>
+</div></div>
+
+<div class="two"><div>
+<h4>Why Java? (slide 8)</h4>
+Simple · Secure · Robust · Distributed (network API) · Multi-thread · Rich library.
+<h4>JDK = Java Development Kit (slide 9)</h4>
+JRE (runtime) · standard libraries (<code>java.lang</code>, <code>java.util</code>…) · compiler <code>javac</code> · interpreter <code>java</code> · <code>appletviewer</code> · <code>javadoc</code> (comments <code>/** */</code>) · debugger <code>jdb</code>.<br>
+IDEs: Eclipse, IntelliJ IDEA, NetBeans, BlueJ.
+</div><div>
+<h4>Structure of a program (slide 11)</h4>
+```java class
+// File MUST be called Hello.java (same name as the public class)
+public class Hello {
+    // attributes declaration
+    // methods definition
+    public static void main(String args[]) {
+        // local variables declaration
+        System.out.println("Hello I4.0");
+    }
+}
+```
+</div></div>
+<div class="box trap"><b>⚠ Traps</b>Java is <b>case-sensitive</b>: <code>System</code> ≠ <code>system</code>, <code>public</code> ≠ <code>Public</code>. The file name must match the <code>public</code> class name. <code>main</code> is the entry point: <code>public static void main(String[] args)</code> (<code>String args[]</code> is the same thing).</div>
+
+<!-- ============================================================ -->
+<h2>2. Chapter 1: basics (types, variables, operators) (slides 13–22)</h2>
+
+<h3>Naming conventions &amp; reserved words (slides 14–15)</h3>
+<table>
+<tr><th>What</th><th>Rule</th><th>Example</th></tr>
+<tr><td>variables, attributes, methods</td><td>start lowercase, then each word capitalised (camelCase)</td><td><code>i</code>, <code>setLength</code>, <code>anIntegerVariable</code></td></tr>
+<tr><td>classes, interfaces</td><td>start with a capital letter</td><td><code>MyClass</code>, <code>TheGoodJob</code></td></tr>
+<tr><td>constants</td><td>ALL CAPS, declared <code>final</code>, <b>must be initialised at declaration</b></td><td><code>final double PI = 3.141592;</code></td></tr>
+<tr><td>reserved words</td><td>can't be used as identifiers</td><td><code>abstract, boolean, do, if, package, null, goto, double…</code></td></tr>
+</table>
+
+<h3>Primitive types</h3>
+<div class="two"><div>
+<table>
+<tr><th>Type</th><th>Holds</th><th>Example literal</th></tr>
+<tr><td><code>byte</code> / <code>short</code></td><td>small integers</td><td><code>(byte) 10</code></td></tr>
+<tr><td><code>int</code></td><td>integer (default)</td><td><code>27</code></td></tr>
+<tr><td><code>long</code></td><td>big integer</td><td><code>27L</code></td></tr>
+<tr><td><code>float</code></td><td>decimal (less precise)</td><td><code>1.5f</code> ← the <b>f</b> is required</td></tr>
+<tr><td><code>double</code></td><td>decimal (default)</td><td><code>1.5</code></td></tr>
+<tr><td><code>char</code></td><td>one character</td><td><code>'x'</code> (single quotes)</td></tr>
+<tr><td><code>boolean</code></td><td>true / false</td><td><code>true</code></td></tr>
+</table>
+<p class="small"><code>String</code> ("hello", double quotes) is <b>not</b> primitive: it is a class (capital S).</p>
+</div><div>
+<h4>Declaring variables (slide 19)</h4>
+```java frag
+// TypeName variableName = value;   or   TypeName variableName;
+String greeting = "Hello, Dave!";
+int age = 20;
+double price = 9.99;
+char grade = 'A';
+boolean isOpen = true;
+final int MAX_SPEED = 120;   // constant
+int a, b, c;                 // several at once
+a = b = c = 0;
+```
+</div></div>
+
+<h3>Type conversion (slides 17–18): exam favourite</h3>
+<div class="two"><div>
+<p><b>Implicit (automatic, safe = widening):</b></p>
+<pre class="out">byte → short → int → long → float → double
+              char → int → long → float → double</pre>
+<p><b>Explicit (cast) required</b> when you can lose information (e.g. <code>float</code>/<code>double</code> → <code>int</code>):</p>
+</div><div>
+```java frag
+int i, j;
+short s = 2;
+float f = 1.5f;       // slide 18 writes 1.5 → compile error!
+i = (int) f;          // explicit cast: i = 1 (decimals cut)
+i = s;                // implicit: short → int
+double d = i / 2.0;   // arithmetic promotion: 0.5
+```
+</div></div>
+
+<div class="box trap"><b>⚠ THE integer-division trap (slide 21, Lab 1 Ex1)</b>
+int ÷ int = int: the decimal part is <b>cut</b> (not rounded), even if you store the result in a double.
+<div class="two"><div>
+```java frag
+int a = 4, b = 7;
+double m;
+m = (a + b) / 2;          // 11/2 = 5   → m = 5.0  ✗
+m = (a + b) / 2.0;        // 5.5  ✓ (one operand is double)
+m = (double) (a + b) / 2; // 5.5  ✓ (cast)
+```
+</div><div>
+```java frag
+double celsius = 25;
+double f1 = celsius * 9 / 5 + 32;   // OK here: celsius is double
+double f2 = 9 / 5 * celsius + 32;   // ✗ 9/5 = 1 → 57.0
+double f3 = 9.0 / 5 * celsius + 32; // ✓ 77.0
+```
+</div></div>
+Rule: evaluation goes left to right; as soon as an int/int division happens, the decimals are lost.</div>
+
+<h3>Operators</h3>
+<table>
+<tr><th>Kind</th><th>Operators</th><th>Notes</th></tr>
+<tr><td>Arithmetic</td><td><code>+ - * / %</code></td><td><code>%</code> = remainder: <code>7 % 2 = 1</code>, <code>year % 4 == 0</code> → divisible by 4</td></tr>
+<tr><td>Increment</td><td><code>++ --</code></td><td><code>i++</code> (use then add) vs <code>++i</code> (add then use)</td></tr>
+<tr><td>Compound</td><td><code>+= -= *= /=</code></td><td><code>result *= i;</code> ⇔ <code>result = result * i;</code></td></tr>
+<tr><td>Comparison</td><td><code>== != &lt; &gt; &lt;= &gt;=</code></td><td>result is <code>boolean</code>. <code>=</code> assigns, <code>==</code> compares!</td></tr>
+<tr><td>Logical</td><td><code>&amp;&amp;</code> (and) <code>||</code> (or) <code>!</code> (not)</td><td><code>!(a &lt; c)</code></td></tr>
+<tr><td>String concat</td><td><code>+</code></td><td><code>"Sum: " + 2 + 3</code> → <code>"Sum: 23"</code>; <code>"Sum: " + (2 + 3)</code> → <code>"Sum: 5"</code></td></tr>
+</table>
+
+<div class="two"><div>
+<h4>Slide 20, Exercise 1: what does it print?</h4>
+```java frag
+int a, b, c;
+boolean resultat;
+a = 3; b = 3; c = 4;
+resultat = (a > b);
+System.out.println(resultat);    // false
+resultat = (a != c);
+System.out.println(resultat);    // true
+System.out.println(a != c);      // true
+System.out.println(a >= b);      // true
+System.out.println(!(a < c));    // false
+```
+</div><div>
+<h4>Slide 22, Exercise 3: swap two integers</h4>
+```java frag
+int a = 5, b = 8;
+int temp = a;   // 1. save a
+a = b;          // 2. a gets b
+b = temp;       // 3. b gets old a
+System.out.println("a = " + a + ", b = " + b); // a = 8, b = 5
+```
+<p class="small">Slide 32 asks the same with <code>a</code> and <code>b</code> read from the keyboard: see the Scanner section.</p>
+</div></div>
+
+<h4>Printing</h4>
+```java frag
+System.out.println("with newline");
+System.out.print("no newline ");
+System.out.println("x = " + 5);
+System.out.printf("%.2f%n", 3.14159);   // (extra) prints 3.14
+```
+
+<!-- ============================================================ -->
+<h2>3. Control structures &amp; Scanner (slides 23–33, Lab 1)</h2>
+
+<div class="two"><div>
+<h3>if / else if / else</h3>
+```java frag
+int variable = 15;
+if (variable == 20) {
+    System.out.println("equal to 20");
+} else if (variable == 15) {
+    System.out.println("not 20, equal to 15");
+} else {
+    System.out.println("neither 20 nor 15");
+}
+```
+<p><b>Lab 1 Ex2, leap year:</b> divisible by 4 but not by 100, OR divisible by 400.</p>
+```java frag
+int year = 2024;
+if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+    System.out.println("Leap Year");
+} else {
+    System.out.println("Not a Leap Year");
+}
+```
+</div><div>
+<h3>switch (slide 28, Lab 1 Ex3)</h3>
+```java frag
+char op = '+';
+double x = 5, y = 3;
+switch (op) {
+    case '+': System.out.println(x + " + " + y + " = " + (x + y)); break;
+    case '-': System.out.println(x - y); break;
+    case '*': System.out.println(x * y); break;
+    case '/':
+        if (y != 0) System.out.println(x / y);
+        else System.out.println("Division by zero!");
+        break;
+    default:  System.out.println("Invalid operator");
+}
+```
+<div class="box trap"><b>⚠ switch rules</b>
+<ul><li>Course: works on simple types <code>int, short, char, byte</code> (not <code>double</code>, not <code>boolean</code>). (extra: Java 7+ also allows <code>String</code>.)</li>
+<li><code>break</code> = exit the switch. <b>Forget it → "fall-through":</b> the next cases run too.</li>
+<li><code>default</code> = runs if no case matches.</li></ul></div>
+</div></div>
+
+<h3>Loops</h3>
+<table>
+<tr><th></th><th><code>for</code></th><th><code>while</code></th><th><code>do … while</code></th></tr>
+<tr><td>Use when</td><td>number of repetitions <b>known</b> (determinate)</td><td>repeat <b>while</b> a condition is true (indefinite)</td><td>indefinite, but must run <b>at least once</b></td></tr>
+<tr><td>Condition tested</td><td>before each turn</td><td>before each turn → may run <b>0 times</b></td><td><b>at the end</b> → runs ≥ 1 time</td></tr>
+<tr><td>Lab example</td><td>multiplication table (Ex4)</td><td>input validation</td><td>guessing game (Ex5), menu</td></tr>
+</table>
+<div class="two"><div>
+```java frag
+// for: Lab 1 Ex4, multiplication table of n
+int n = 5;
+for (int i = 1; i <= 10; i++) {
+    System.out.println(n + " x " + i + " = " + (n * i));
+}
+// while
+int k = 1;
+while (k <= 3) {
+    System.out.println(k);
+    k++;              // don't forget, or infinite loop!
+}
+```
+</div><div>
+```java nocheck
+// do...while: Lab 1 Ex5, guessing game
+final int SECRET_NUMBER = 42;
+int guess, attempts = 0;
+do {
+    System.out.print("Your guess: ");
+    guess = sc.nextInt();
+    attempts++;
+    if (guess > SECRET_NUMBER)      System.out.println("Too high");
+    else if (guess < SECRET_NUMBER) System.out.println("Too low");
+} while (guess != SECRET_NUMBER);
+System.out.println("Bravo! Found in " + attempts + " attempts");
+```
+</div></div>
+
+<h3>The Scanner class (slides 30–31): reading from the keyboard</h3>
+<div class="two"><div>
+```java class
+import java.util.Scanner;     // or import java.util.*;  (1st line!)
+
+public class ScannerExample {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter your name: ");
+        String name = in.nextLine();
+        System.out.print("Enter a and b: ");
+        int a = in.nextInt();
+        int b = in.nextInt();
+        System.out.print("Price: ");
+        double p = in.nextDouble();
+        System.out.print("Operator: ");
+        char op = in.next().charAt(0);   // read a char
+        System.out.println("Name is: " + name);
+        in.close();
+    }
+}
+```
+</div><div>
+<table>
+<tr><th>Method</th><th>Reads</th></tr>
+<tr><td><code>nextInt()</code></td><td>an <code>int</code></td></tr>
+<tr><td><code>nextDouble()</code></td><td>a <code>double</code></td></tr>
+<tr><td><code>next()</code></td><td>one word (<code>String</code>, stops at space)</td></tr>
+<tr><td><code>nextLine()</code></td><td>the whole line (<code>String</code>)</td></tr>
+<tr><td><code>next().charAt(0)</code></td><td>a <code>char</code> (there's no <code>nextChar()</code>)</td></tr>
+<tr><td><code>nextBoolean()</code></td><td>a <code>boolean</code></td></tr>
+</table>
+<div class="box trap"><b>⚠ Scanner traps</b>
+<ul><li>Forgetting <code>import java.util.Scanner;</code> → "cannot find symbol Scanner".</li>
+<li>Package: <code>java.util</code> (QCM!). Available since JDK 1.5.</li>
+<li>(extra) <code>nextLine()</code> right after <code>nextInt()</code> returns an empty string (it reads the leftover Enter). Add one extra <code>in.nextLine();</code> to clear it.</li>
+<li>Close it at the end: <code>in.close();</code></li></ul></div>
+</div></div>
+
+<h4>Slide 33, Exercise 4: factorial (the prof's solution, shortened)</h4>
+```java class
+import java.util.Scanner;
+
+public class Factorial {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a natural number N: ");
+        int n = input.nextInt();
+        if (n < 0) {
+            System.out.println("Error: Please enter a non-negative integer.");
+        } else {
+            long result = 1;                 // long: factorials grow fast
+            for (int i = 1; i <= n; i++) {
+                result *= i;
+            }
+            System.out.println(n + "! = " + result);
+        }
+        input.close();
+    }
+}
+```
+
+<!-- ============================================================ -->
+<h2>4. Chapter 2: class, object, attributes, methods (slides 35–51)</h2>
+
+<div class="two"><div>
+<h3>Object (slides 36, 49)</h3>
+<p>An entity manipulated in a program by calling its methods. It has:</p>
+<ul>
+<li><b>Identity</b>: unique, distinguishes it from all others (it can be named/referenced).</li>
+<li><b>Type</b>: its class.</li>
+<li><b>State</b>: values of its attributes at a given time.</li>
+<li><b>Behaviour</b>: its methods (consultation = getters, update = setters).</li>
+</ul>
+<p>An object is an instance of a <b>single</b> class; any method of that class can be applied to it.</p>
+<h3>Class (slide 37)</h3>
+<p>A family of objects with the same structure and behaviour, with a name. Lets you create (instantiate) as many objects as you want. Convention: <code>ClassName objectA</code>.</p>
+</div><div>
+<h3>Class example (slides 38–40)</h3>
+```java class
+public class Person {
+    // attributes: visible in ALL methods of the class
+    public String name, lastName;
+    public int age;
+
+    // method that returns nothing → void
+    public void setName(String aName) {
+        name = aName;
+    }
+    // method that returns a String
+    public String getName() {
+        return name;
+    }
+}
+```
+</div></div>
+
+<h3>Declaring a method (slides 40–47)</h3>
+<div class="box syntax"><b>Syntax</b><code>[public/private/protected] [static] &lt;return type&gt; methodName(&lt;type1 p1, type2 p2, …&gt;) { &lt;method body&gt; }</code></div>
+<div class="two"><div>
+<ul>
+<li><b>Return type</b>: a simple type or a class name: <code>double min(double a, double b)</code>, <code>int[] first(int n)</code>, <code>Color getColor()</code>.</li>
+<li><code>void</code> if it returns nothing: <code>void display(double[][] m)</code>.</li>
+<li><b>Parameters</b>: empty <code>()</code> or comma-separated <i>type name</i> pairs.</li>
+<li>If the return type isn't <code>void</code>, the body <b>must</b> contain a <code>return expression;</code> compatible with the type. Several <code>return</code>s are allowed.</li>
+<li>In a <code>void</code> method, <code>return;</code> just exits early.</li>
+</ul>
+</div><div>
+```java members
+// several returns
+double min(double a, double b) {
+    if (a < b) return a;
+    return b;
+}
+// return; to leave a void method early (slide 45)
+void showPosition(int[] tab, int val) {
+    for (int i = 0; i < tab.length; i++) {
+        if (tab[i] == val) {
+            System.out.println("Position of " + val + " is " + i);
+            return;
+        }
+    }
+    System.out.println(val + " is not in the array");
+}
+```
+</div></div>
+<div class="box tip"><b>Local variables (slides 46–47)</b>Declared inside a method; store the data the method uses; only accessible in their block; their value is <b>lost</b> when the method ends. Two different methods can use the same local name (<code>int i</code> in both) without conflict. Two different classes can have members with the same name (<code>Point.x</code> and <code>Circle.x</code>): Java knows which one from the object's type.</div>
+
+<h3>Creating objects = instantiation (slides 50–51)</h3>
+<div class="two"><div>
+<p>3 steps:</p>
+<ol>
+<li>declare a <b>reference</b> variable of the class type,</li>
+<li><code>new</code> allocates memory,</li>
+<li>a <b>constructor</b> creates and initialises the object.</li>
+</ol>
+<div class="box syntax"><b>Rule</b><code>ObjectType objectName = new Constructor(parameters);</code></div>
+</div><div>
+```java nocheck
+MyClass myObject = new MyClass();
+
+Person john, peter, x;   // 3 references, NO objects yet
+john = new Person();     // now an object exists
+peter = new Person();
+x = new Person();
+
+john.setName("John");           // dot "." to access members
+System.out.println(john.getName());
+```
+</div></div>
+<div class="box trap"><b>⚠ Reference ≠ object</b><code>Circle c;</code> creates only a reference (no object). <code>Person p2 = p1;</code> does NOT copy the object: both names point to the <b>same</b> object, so <code>p2.age = 30</code> also changes <code>p1.age</code>.</div>
+
+<!-- ============================================================ -->
+<h2>5. Constructors &amp; object destruction (slides 52–62)</h2>
+
+<div class="box def"><b>Constructor: the 6 rules (slide 52), learn them as a list</b>
+<ol>
+<li>Special method called <b>only once per object</b>, at creation (<code>new</code>).</li>
+<li>Has <b>the same name as the class</b>.</li>
+<li>Role: <b>initialise the attributes</b>.</li>
+<li>Generally <code>public</code>, <b>no return type, not even <code>void</code></b>.</li>
+<li>A class can have <b>several</b> constructors, differing in number/type of parameters (= overloading).</li>
+<li>If you write <b>no</b> constructor, Java gives a <b>default constructor</b> with no parameters that sets attributes to <code>0</code> (numbers), <code>null</code> (references/String), <code>false</code> (boolean). <b>As soon as you write one, the default one disappears.</b></li>
+</ol></div>
+
+<div class="two"><div>
+```java class
+public class Person {
+    public String name;
+    public int age;
+
+    public Person(int x) {             // constructor 1
+        age = x;
+    }
+    public Person(String s) {          // constructor 2
+        name = s;
+    }
+    public Person(String s, int x) {   // constructor 3
+        name = s;
+        age = x;
+    }
+}
+```
+</div><div>
+```java nocheck
+Person p1 = new Person(10);        // → constructor 1
+Person p2 = new Person("Ali", 10); // → constructor 3
+Person p3 = new Person("Ali");     // → constructor 2
+Person p4 = new Person();          // ✗ COMPILE ERROR:
+// no constructor without parameters exists any more
+```
+<div class="box trap"><b>⚠ Slide 54 trap</b>Before you add <code>Person(String, String, int)</code>, <code>new Person()</code> works (default constructor). After you add it, the same line is a compilation error. Fix: also write <code>public Person() { }</code>.</div>
+</div></div>
+
+<h4>Slide 56: the Circle example</h4>
+```java class
+class Circle {
+    public double x, y;     // centre
+    private double r;       // radius
+
+    public Circle(double r1) {
+        r = r1;
+    }
+    public double area() {
+        return 3.14159 * r * r;
+    }
+}
+
+public class MyProgram {
+    public static void main(String[] args) {
+        Circle c;              // c is a reference, not an object
+        c = new Circle(5);     // c now references an object in memory
+        c.x = c.y = 10;
+        System.out.println("Area of c: " + c.area());
+    }
+}
+```
+
+<h4>Exercise slide 62: Time (3 constructors, very likely in the DS)</h4>
+```java class
+public class Time {
+    private int h, m, s;
+
+    public Time(int hour) {
+        this(hour, 0, 0);                  // reuse the 3-parameter constructor
+    }
+    public Time(int hour, int minute) {
+        this(hour, minute, 0);
+    }
+    public Time(int hour, int minute, int second) {
+        h = hour;
+        m = minute;
+        s = second;
+    }
+    public void display() {
+        System.out.println("It is " + h + " hours " + m + " minutes " + s + " seconds");
+    }
+    public static void main(String[] args) {
+        Time t = new Time(14, 30);
+        t.display();                       // It is 14 hours 30 minutes 0 seconds
+    }
+}
+```
+
+<div class="two stack"><div>
+<h4>Exercise slide 59: Book</h4>
+```java class
+public class Book {
+    private String title, author;
+    private double price;
+
+    public Book(String title, String author, double price) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }
+    public void displayDetails() {
+        System.out.println("Title: " + title + ", Author: "
+                           + author + ", Price: " + price);
+    }
+    public static void main(String[] args) {
+        Book b1 = new Book("Dune", "Herbert", 25.5);
+        Book b2 = new Book("1984", "Orwell", 18.0);
+        b1.displayDetails();
+        b2.displayDetails();
+    }
+}
+```
+</div><div>
+<h4>Exercise slide 58: Rectangle</h4>
+```java class
+public class Rectangle {
+    private float width, length;
+
+    public Rectangle(float width, float length) {
+        this.width = width;
+        this.length = length;
+    }
+    public float perimeter() { return 2 * (width + length); }
+    public double diagonal() {
+        return Math.sqrt(width * width + length * length);
+    }
+    // the slide calls it double(): illegal, double is a reserved word
+    public void doubleLength() { length = length * 2; }
+}
+```
+<p class="small">Circle (slide 57): <code>2 * Math.PI * radius</code> and <code>Math.PI * radius * radius</code>.</p>
+</div></div>
+
+<h3>Object destruction: Garbage Collector (slides 60–61)</h3>
+<div class="two"><div>
+<ul>
+<li>Other languages have a <b>destructor</b> that frees the resources the constructor allocated.</li>
+<li>In Java it's <b>automatic</b>: the <b>Garbage Collector (GC)</b>.</li>
+<li>An object can be destroyed when <b>no reference points to it any more</b> (e.g. <code>obj = null;</code>).</li>
+<li>You can ask for it explicitly with <code>System.gc();</code> (the JVM decides when it really runs).</li>
+</ul>
+</div><div>
+```java nocheck
+Date dt = new Date(1, 6, 1997);
+dt.show();
+dt = null;     // the object has no reference any more:
+               // it's unreachable, the GC may destroy it
+System.gc();   // ask the GC to run
+```
+</div></div>
+
+<!-- ============================================================ -->
+<h2>6. The keyword <code>this</code> (slides 63–64, Lab 3 Ex4–5)</h2>
+<p><code>this</code> = reference to the <b>current object</b>, the object whose method is running.</p>
+<div class="two stack"><div>
+<h4>Use 1: remove ambiguity (parameter hides attribute)</h4>
+```java nocheck
+public Point(double x, double y) {
+    x = x;      // ✗ assigns the parameter to ITSELF
+    y = y;      //   the attributes stay 0.0
+}
+```
+```java class
+class Point {
+    double x, y;
+    public Point(double x, double y) {
+        this.x = x;   // ✓ attribute = parameter
+        this.y = y;
+    }
+}
+```
+<h4>Use 2: call another constructor: <code>this(...)</code></h4>
+```java class
+class Point {
+    double x, y;
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+    public Point() {
+        this(0, 0);   // MUST be the FIRST statement
+    }
+}
+```
+</div><div>
+<h4>Use 3: return the current object (method chaining, Lab 3 Ex4)</h4>
+```java class
+class Student {
+    int id;
+    String name;
+
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+    public Student incrementAndReturnId() {
+        id++;
+        return this;        // returns the object itself
+    }
+    public void display() {
+        System.out.println("Student ID: " + id + ", Name: " + name);
+    }
+}
+public class TestStudent {
+    public static void main(String[] args) {
+        Student s1 = new Student(7, "Amine");
+        s1.incrementAndReturnId().display(); // Student ID: 8, Name: Amine
+    }
+}
+```
+<h4>Lab 3 Ex5: default constructor chained with <code>this(...)</code></h4>
+```java class
+class Car {
+    String model, fuelType;
+    int year;
+
+    public Car() {
+        this("Unknown Model", "Petrol", 2023); // first line!
+        System.out.println("Default constructor called.");
+    }
+    public Car(String model, String fuelType, int year) {
+        this.model = model;
+        this.fuelType = fuelType;
+        this.year = year;
+    }
+    public void displayCar() {
+        System.out.println("Car Model: " + model + " | Fuel: " + fuelType + " | Year: " + year);
+    }
+}
+```
+</div></div>
+<div class="box trap"><b>⚠ <code>this</code> traps</b>
+<code>this(...)</code> anywhere other than the first line of a constructor → compile error. <code>this</code> can't be used inside a <code>static</code> method (e.g. <code>main</code>), because there's no current object there.</div>
+
+<!-- ============================================================ -->
+<h2>7. Access modifiers &amp; encapsulation (slides 65–77, Lab 3 Ex1–2)</h2>
+
+<h3>Full declaration syntax (slides 65–69)</h3>
+<div class="box syntax">
+<b>Class</b> <code>[public] [abstract/final] class ClassName [extends SuperClass] [implements I1, I2…] { attributes; methods; }</code><br>
+<b>Attribute</b> <code>[private/public/protected] [static] [final] type name [= value];</code><br>
+<b>Method</b> <code>[private/public/protected] [static] [final/abstract] returnType name([type p1, …]) { … [return result;] }</code>
+</div>
+<table>
+<tr><th>Keyword</th><th>On an attribute</th><th>On a method</th></tr>
+<tr><td><code>static</code></td><td>only <b>one copy</b>, shared by all objects (class attribute)</td><td>not tied to an object: called with <code>ClassName.method()</code> (class method)</td></tr>
+<tr><td><code>final</code></td><td>constant: can't be changed</td><td>can't be redefined in a subclass (later chapter)</td></tr>
+<tr><td><code>abstract</code></td><td>-</td><td>no body; the class becomes abstract (later chapter)</td></tr>
+<tr><td><code>extends</code> / <code>implements</code></td><td colspan="2">inheritance / interfaces: next chapters</td></tr>
+</table>
+
+<h3>Visibility table (slide 71): learn it by heart</h3>
+<table>
+<tr><th>Accessible to →</th><th>same class</th><th>subclass, same package</th><th>class, same package</th><th>subclass, other package</th><th>class, other package</th></tr>
+<tr><td><code>public</code></td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+<tr><td><code>protected</code></td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✗</td></tr>
+<tr><td><b>friendly</b> (no keyword, package)</td><td>✓</td><td>✓</td><td>✓</td><td>✗</td><td>✗</td></tr>
+<tr><td><code>private</code></td><td>✓</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td></tr>
+</table>
+<div class="two"><div>
+<p><b>Slide 70 example:</b> <code>c1</code> has <code>public int A; protected int B; int C; private int D;</code>.<br>
+<code>c2 extends c1</code> and <code>c3</code> are in package P1 (same as c1); <code>c4 extends c1</code> and <code>c5</code> are in P2.</p>
+<table>
+<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+<tr><td>c2 (sub, P1)</td><td>✓</td><td>✓</td><td>✓</td><td>✗</td></tr>
+<tr><td>c3 (P1)</td><td>✓</td><td>✓</td><td>✓</td><td>✗</td></tr>
+<tr><td>c4 (sub, P2)</td><td>✓</td><td>✓</td><td>✗</td><td>✗</td></tr>
+<tr><td>c5 (P2)</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td></tr>
+</table>
+</div><div>
+<p><b>Memory trick:</b> from most open to most closed:<br><code>public</code> &gt; <code>protected</code> &gt; friendly &gt; <code>private</code>.<br>
+private = "only me" · friendly = "my package" · protected = "my package + my children" · public = "everyone".</p>
+<div class="box tip"><b>Class modifiers (slide 66)</b><code>public class</code> = usable by all classes. With <b>no modifier</b> = usable only inside its package. (The slide says "<code>private</code>" for this; see errata #6: the compiler refuses <code>private</code> on a top-level class.)</div>
+</div></div>
+
+<h3>Encapsulation (slide 76)</h3>
+<div class="box def"><b>Definition</b>Encapsulation brings data and methods together in one structure (the class). Implementation details are <b>hidden</b>: the outside world accesses the data only through a set of operations (the object's <b>interface</b>: public methods). It <b>guarantees the integrity</b> of the object's data.</div>
+<div class="two stack"><div>
+<h4>Lab 3 Ex1: why it doesn't compile</h4>
+```java nocheck
+class BankAccount {
+    private String accountNumber;
+    private double balance;
+}
+// in main, another class:
+myAccount.accountNumber = "ACC-100203"; // ERROR 1
+myAccount.balance = 500.0;              // ERROR 2
+```
+<p><b>Why:</b> the attributes are <code>private</code>, so they're only accessible inside <code>BankAccount</code>'s own methods. <code>main</code> is in another class → "has private access" compile error.</p>
+</div><div>
+<h4>The fix: getters/setters (+ validation)</h4>
+```java class
+class BankAccount {
+    private String accountNumber;
+    private double balance;
+
+    public String getAccountNumber() { return accountNumber; }
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+    public double getBalance() { return balance; }   // no setBalance!
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        } else {
+            System.out.println("Invalid amount");
+        }
+    }
+}
+public class Ex1_Encapsulation {
+    public static void main(String[] args) {
+        BankAccount myAccount = new BankAccount();
+        myAccount.setAccountNumber("ACC-100203");
+        myAccount.deposit(500.0);
+        System.out.println("Account Number: " + myAccount.getAccountNumber());
+        System.out.println("Current Balance: $" + myAccount.getBalance());
+    }
+}
+```
+</div></div>
+<div class="box exam"><b>🎯 Getter / setter pattern (write it without thinking)</b>
+<code>public Type getX() { return x; }</code> · <code>public void setX(Type x) { if (valid) this.x = x; }</code> · for a boolean: <code>isX()</code>.
+Why it's better than a <code>public</code> attribute: the setter can <b>refuse invalid values</b> (negative balance, battery &gt; 100…), and you can make an attribute read-only (getter without setter).</div>
+
+<!-- ============================================================ -->
+<h2>8. Scope of variables (slides 72–73)</h2>
+<div class="two stack"><div>
+```java nocheck
+public class AClass {
+    int i, j, k;                 // attributes: known everywhere in the class
+
+    public void sth1(int z) {
+        int j, r;                // local j HIDES the attribute j
+        r = z;
+        j = z;                   // → the LOCAL j
+    }
+    public void sth2() {
+        k = r;                   // ✗ ERROR: r only exists in sth1
+    }
+}
+```
+</div><div>
+<ul>
+<li>A variable is known <b>only in the block <code>{ }</code></b> where it is declared (and nested blocks).</li>
+<li>Attributes (declared in the class) are known in every method.</li>
+<li>Name conflict local vs attribute → <b>the most local one wins</b>. Use <code>this.j</code> to reach the attribute.</li>
+<li><code>for (int i = 0; …)</code>: <code>i</code> dies at the end of the loop.</li>
+</ul>
+<table><tr><th></th><th>Attribute</th><th>Local variable</th></tr>
+<tr><td>Declared</td><td>in the class</td><td>in a method/block</td></tr>
+<tr><td>Lifetime</td><td>as long as the object</td><td>until the block ends</td></tr>
+<tr><td>Default value</td><td>0 / false / null</td><td><b>none</b>: must be initialised before use</td></tr></table>
+</div></div>
+
+<!-- ============================================================ -->
+<h2>9. Method overloading (slides 74–75)</h2>
+<div class="two"><div>
+<ul>
+<li><b>Definition:</b> several methods with the <b>same name</b> in one class.</li>
+<li>They must differ by the <b>number</b> and/or <b>types</b> of parameters.</li>
+<li>The return type may differ, but <b>never as the only difference</b>.</li>
+<li>Several constructors = a special case of overloading.</li>
+<li>Also called <b>static polymorphism</b> (the compiler chooses the method from the arguments).</li>
+</ul>
+```java nocheck
+int f(int x)    { ... }
+double f(int x) { ... }   // ✗ only the return type differs
+```
+</div><div>
+```java members
+int solde;
+public void deposit(int amount) {
+    solde += amount;
+}
+public void deposit(double amount) {
+    solde += (int) amount;
+}
+public void deposit(int amount, String msg) {   // different count
+    solde += amount;
+    System.out.println(msg);
+}
+```
+<p>Lab 2 Ex2: <code>calculateExpressCost(boolean isExpress)</code> is described as "an overloaded version" of <code>calculateBaseCost()</code> (same idea, different parameters).</p>
+</div></div>
+
+<!-- ============================================================ -->
+<h2>10. <code>static</code> and <code>final</code> (slides 67, 69)</h2>
+<div class="two"><div>
+```java class
+public class Counter {
+    static int count = 0;      // ONE copy shared by all objects
+    final int ID;              // constant per object
+    public static final double PI = 3.14159; // class constant
+
+    public Counter() {
+        count++;
+        ID = count;            // a final attribute is set once
+    }
+    static int square(int x) { // class method: no object needed
+        return x * x;
+    }
+    public static void main(String[] args) {
+        new Counter();
+        new Counter();
+        Counter c3 = new Counter();
+        System.out.println(Counter.count);   // 3
+        System.out.println(c3.ID);           // 3
+        System.out.println(Counter.square(4)); // 16
+    }
+}
+```
+</div><div>
+<ul>
+<li><b><code>static</code> attribute</b> = class attribute: one value for the whole class, e.g. a counter of created objects. Access: <code>ClassName.attr</code>.</li>
+<li><b><code>static</code> method</b> = class method: called without an object (<code>Math.sqrt(x)</code>, <code>Math.random()</code>, <code>main</code>).</li>
+<li>A static method <b>can't</b> use non-static attributes or <code>this</code> directly. That's why <code>main</code> must create an object first: <code>Time t = new Time(5); t.display();</code></li>
+<li><b><code>final</code></b> = constant; must be initialised (at declaration, or in the constructor for an attribute). Re-assigning it → compile error.</li>
+</ul>
+</div></div>
+
+<!-- ============================================================ -->
+<h2>11. Lab patterns you must be able to rewrite (Labs 2 &amp; 3)</h2>
+
+<h3>Pattern A: "initialize" method instead of constructor (Lab 2 Ex1 Thermostat, Ex3 FitnessTracker)</h3>
+<div class="two stack"><div>
+```java class
+public class Thermostat {
+    String roomName;
+    double currentTemperature, targetTemperature;
+
+    void initializeSettings(String name, double target) {
+        roomName = name;
+        targetTemperature = target;
+        currentTemperature = 20.0;       // default value
+    }
+    void applyHeat(double amount)    { currentTemperature += amount; }
+    void applyCooling(double amount) { currentTemperature -= amount; }
+    void displayStatus() {
+        System.out.println(roomName + ": " + currentTemperature
+                           + " / target " + targetTemperature);
+        if (currentTemperature < targetTemperature)
+            System.out.println("[Status: HEATING ACTIVE]");
+        else
+            System.out.println("[Status: IDLE]");
+    }
+    public static void main(String[] args) {
+        Thermostat t = new Thermostat();
+        t.initializeSettings("Living Room", 24.0);
+        t.displayStatus();
+        t.applyHeat(2.5);
+        t.displayStatus();
+    }
+}
+```
+</div><div>
+```java members
+// FitnessTracker: validation inside a method
+String userName;
+int stepsCount;
+double caloriesBurnedPerStep;
+
+void walk(int steps) {
+    if (steps < 0) {
+        System.out.println("Invalid movement!");
+        return;                       // data unchanged
+    }
+    stepsCount += steps;
+}
+double getTotalCalories() {
+    return stepsCount * caloriesBurnedPerStep;
+}
+```
+<h4>Scanner inside a method (Lab 2 Ex2)</h4>
+```java nocheck
+void inputPackageData() {
+    Scanner sc = new Scanner(System.in);
+    System.out.print("Name: ");
+    packageName = sc.nextLine();
+    System.out.print("Weight (kg): ");
+    weight = sc.nextDouble();
+    System.out.print("Distance (km): ");
+    distance = sc.nextInt();
+}
+double calculateBaseCost() {
+    return weight * 1.5 + distance * 0.20;
+}
+double calculateExpressCost(boolean isExpress) {
+    if (isExpress) return calculateBaseCost() + 15.0;
+    return calculateBaseCost();     // a method calling another method
+}
+```
+</div></div>
+
+<h3>Pattern B: an object inside another object = composition (Lab 3 Ex3)</h3>
+<div class="two stack"><div>
+```java class
+class Address {
+    private String street, city;
+    public Address(String street, String city) {
+        this.street = street;
+        this.city = city;
+    }
+    public void showAddress() {
+        System.out.println("Delivery Address: " + street + ", " + city);
+    }
+}
+class Customer {
+    private String customerName, phoneNumber;
+    private Address address;          // attribute of type Address
+    public Customer(String n, String p, Address a) {
+        customerName = n;
+        phoneNumber = p;
+        address = a;
+    }
+    public void displayCustomerProfile() {
+        System.out.println("Customer: " + customerName);
+        System.out.println("Phone: " + phoneNumber);
+        address.showAddress();        // call a method of the inner object
+    }
+}
+public class Ex3_ObjectAccess {
+    public static void main(String[] args) {
+        Address a = new Address("5th Avenue", "Tunis");
+        Customer c = new Customer("Med Abdallah", "+216 98 123 456", a);
+        c.displayCustomerProfile();
+    }
+}
+```
+</div><div>
+<h3>Pattern C: array of objects + <code>Math.random()</code> (Lab 2 slot machine)</h3>
+```java class
+class Wheel {
+    private int symbol;
+    public void spin() {
+        // Math.random() gives a double in [0, 1)
+        symbol = (int) (Math.random() * 3) + 1;   // 1, 2 or 3
+    }
+    public int getSymbol() { return symbol; }
+}
+class BanditManchot {
+    private Wheel[] wheels;
+    public BanditManchot() {
+        wheels = new Wheel[3];           // array of 3 REFERENCES (null)
+        for (int i = 0; i < wheels.length; i++)
+            wheels[i] = new Wheel();     // create each object!
+    }
+    public int play() {
+        for (int i = 0; i < 3; i++) {
+            wheels[i].spin();
+            System.out.print(wheels[i].getSymbol() + " ");
+        }
+        System.out.println();
+        int a = wheels[0].getSymbol(), b = wheels[1].getSymbol(),
+            c = wheels[2].getSymbol();
+        if (a == b && b == c) return 100;
+        if (a == b || b == c || a == c) return 10;
+        return 0;
+    }
+}
+public class TestJeu {
+    public static void main(String[] args) {
+        int score = new BanditManchot().play();
+        if (score == 100) System.out.println("You've won! Your score is 100 points");
+        else if (score == 10) System.out.println("You're about to succeed! Your score is 10 points");
+        else System.out.println("Sorry! See you next time.");
+    }
+}
+```
+<div class="box trap"><b>⚠ Arrays of objects</b><code>new Wheel[3]</code> creates 3 empty boxes (<code>null</code>), not 3 wheels. Calling <code>wheels[0].spin()</code> before <code>wheels[0] = new Wheel()</code> → <code>NullPointerException</code>.<br>
+Random int in [min, max]: <code>(int)(Math.random() * (max - min + 1)) + min</code>.</div>
+</div></div>
+
+<h3>Arrays: quick syntax</h3>
+```java frag
+int[] t = new int[5];             // 5 zeros
+int[] u = {4, 8, 15};             // initialised
+System.out.println(u.length);     // 3 (no parentheses: it's an attribute)
+for (int i = 0; i < u.length; i++) System.out.print(u[i] + " ");
+System.out.println();
+double[][] m = new double[2][3];  // 2 rows, 3 columns
+m[1][2] = 7.5;
+```
+
+<!-- ============================================================ -->
+<h2>12. Short answers to learn by heart (questions de cours)</h2>
+<table>
+<tr><th style="width:30%">Question</th><th>Answer to write</th></tr>
+<tr><td>What is OOP?</td><td>Representing real-world elements as objects (data + processing) with a high level of abstraction; a program is a set of interacting objects. Data-driven, not process-driven.</td></tr>
+<tr><td>Why is Java portable?</td><td><code>javac</code> compiles the source into <b>bytecode</b>, which the <b>JVM</b> executes; a JVM exists for each OS, so the same bytecode runs everywhere.</td></tr>
+<tr><td>JDK vs JRE vs JVM</td><td>JVM executes bytecode; JRE = JVM + standard libraries (to run); JDK = JRE + development tools (javac, javadoc, jdb…) (to develop).</td></tr>
+<tr><td>Class vs object</td><td>Class = mould/model (structure + behaviour); object = a concrete instance of the class with its own state and identity.</td></tr>
+<tr><td>Attribute vs local variable</td><td>Attribute: declared in the class, known in all methods, lives with the object, default value. Local: declared in a method, known only in its block, lost at the end, no default value.</td></tr>
+<tr><td>What is a constructor? Differences with a method?</td><td>Same name as the class, no return type, called automatically once at creation by <code>new</code>, initialises attributes. A method has a return type (or void) and can be called many times.</td></tr>
+<tr><td>Default constructor?</td><td>Provided by Java only if no constructor is written; no parameters; sets 0/false/null. Disappears as soon as one constructor is defined.</td></tr>
+<tr><td>Uses of <code>this</code>?</td><td>(1) access an attribute hidden by a parameter (<code>this.x = x</code>), (2) call another constructor of the same class, first statement (<code>this(0,0)</code>), (3) return/pass the current object (<code>return this;</code>).</td></tr>
+<tr><td>Encapsulation?</td><td>Data + methods in the class, details hidden (<code>private</code>), access only through public methods → integrity of the data.</td></tr>
+<tr><td>Overloading?</td><td>Same method name, different parameter list (number/types). Return type alone isn't enough. = static polymorphism.</td></tr>
+<tr><td><code>static</code>?</td><td>Belongs to the class, not to an object: one shared copy (attribute) / callable without an object (method).</td></tr>
+<tr><td>Garbage collector?</td><td>Automatic mechanism that frees the memory of objects no longer referenced (<code>obj = null</code>); can be requested with <code>System.gc()</code>.</td></tr>
+<tr><td>while vs do…while</td><td>while tests first (0 or more turns); do…while tests at the end (at least 1 turn).</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>13. Compile errors she loves to put in "find the error" questions</h2>
+<table>
+<tr><th>Code</th><th>Error</th><th>Fix</th></tr>
+<tr><td><code>float f = 1.5;</code></td><td>lossy conversion double → float</td><td><code>1.5f</code> or <code>(float) 1.5</code></td></tr>
+<tr><td><code>int x = 2.5;</code> / <code>int i = f;</code></td><td>lossy conversion</td><td><code>(int) 2.5</code> or use <code>double</code></td></tr>
+<tr><td><code>p.balance = 5;</code> (private)</td><td>"has private access"</td><td>getter/setter</td></tr>
+<tr><td><code>new Person()</code> when only <code>Person(String)</code> exists</td><td>constructor cannot be applied</td><td>add <code>public Person() {}</code> or pass arguments</td></tr>
+<tr><td><code>public void Person(...)</code></td><td>not a constructor any more, it's a method!</td><td>remove <code>void</code></td></tr>
+<tr><td>non-void method without <code>return</code></td><td>missing return statement</td><td>add <code>return value;</code></td></tr>
+<tr><td><code>this(...)</code> not on the first line</td><td>call to this must be first statement</td><td>move it up</td></tr>
+<tr><td>two methods differing only by return type</td><td>method already defined</td><td>change the parameters</td></tr>
+<tr><td>re-assigning a <code>final</code></td><td>cannot assign a value to final variable</td><td>don't, or remove <code>final</code></td></tr>
+<tr><td>using a local variable of another method / before init</td><td>cannot find symbol / might not have been initialized</td><td>declare/initialise it in the right block</td></tr>
+<tr><td><code>Scanner</code> without import</td><td>cannot find symbol</td><td><code>import java.util.Scanner;</code></td></tr>
+<tr><td><code>system.out</code>, <code>Public</code>, <code>String</code> → <code>string</code></td><td>case-sensitive</td><td>correct the case</td></tr>
+<tr><td><code>x = x;</code> in a constructor</td><td>compiles but attribute stays 0/null (logic bug)</td><td><code>this.x = x;</code></td></tr>
+<tr><td><code>m = (a+b)/2;</code> with int a, b</td><td>compiles but wrong result (5.0 not 5.5)</td><td><code>/ 2.0</code> or cast</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>14. ⚠ Errata: mistakes in the slides/labs (don't copy them)</h2>
+<div class="box err">
+<ol>
+<li><b>Slide 18</b>: <code>float f = 1.5;</code> doesn't compile (1.5 is a double) → <code>float f = 1.5f;</code></li>
+<li><b>Slide 24</b>: <code>public int variable ==20;</code> → <code>= 20</code> (== compares, = assigns).</li>
+<li><b>Slide 27</b>: <code>system.out.println(i)</code> → <code>System.out.println(i);</code> (capital S + semicolon).</li>
+<li><b>Slide 41/42</b>: <code>setColor(color c)</code> → by convention the class is <code>Color</code>.</li>
+<li><b>Slide 55</b>: <code>Public Person(...)</code> → <code>public</code> (lowercase, Java is case-sensitive).</li>
+<li><b>Slide 66</b>: "<code>private</code> = class restricted to its package; default is private". Real Java: a top-level class is <code>public</code> or has <b>no modifier</b> (package/friendly). <code>private class X</code> at top level doesn't compile. If asked: "public = all classes; no modifier = same package only".</li>
+<li><b>Slide 56</b>: <code>class Circle()</code> and <code>public class MyProgram()</code> → no parentheses after a class name.</li>
+<li><b>Slide 58</b>: a method named <code>double()</code> is illegal (<code>double</code> is a reserved word) → <code>doubleLength()</code>.</li>
+<li><b>Slide 61</b>: comment says "Implicit call from the GC"; <code>System.gc()</code> is an <b>explicit</b> request (the JVM decides if it runs).</li>
+<li><b>Slide 77</b>: <code>main(String args {})</code> → <code>String args[]</code>; <code>new Parallellogramme()</code> (typo, 2 l's) → <code>Parallelogramme</code>.</li>
+<li><b>Lab 2</b>: <code>Math.Random()</code> → <code>Math.random()</code> (lowercase r), otherwise compile error.</li>
+<li><b>Slide 15</b>: "pachage" → <code>package</code>.</li>
+</ol>
+</div>
+<p class="small">Next: do the mock DS (<code>Java_DS_Blanc_Mock_Exam.pdf</code>) on paper, timed, before looking at the corrigé.</p>
+
+</body></html>

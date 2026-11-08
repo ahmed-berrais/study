@@ -1,0 +1,596 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Java Mock DS</title><style>/*STYLE*/</style></head>
+<body>
+
+<div class="cover">
+  <h1>Mock DS (DS blanc): OOP-Java</h1>
+  <div class="sub">Practice exam written for revision, in the style of Dr. Soumaya Trabelsi's labs (PRISTINI 2026-2027). <b>Not an official exam.</b><br>
+  Covers: Ch1 basics · control structures &amp; Scanner · classes/objects · constructors · <code>this</code> · access &amp; encapsulation · scope · overloading · <code>static</code>/<code>final</code> · Labs 1, 2, 3.</div>
+  <table style="margin-top:8px">
+  <tr><th>Part</th><th>Content</th><th>Points</th><th>Suggested time</th></tr>
+  <tr><td>I</td><td>QCM: 20 questions (one correct answer each)</td><td>5 pts</td><td>20 min</td></tr>
+  <tr><td>II</td><td>Questions de réflexion (short written answers)</td><td>5 pts</td><td>25 min</td></tr>
+  <tr><td>III</td><td>Exercises (lab style): trace, find the errors, write the code</td><td>10 pts</td><td>75 min</td></tr>
+  </table>
+  <p class="small">Rules: on paper, no IDE, no notes, 2 hours. Then correct yourself with the <b>Corrigé</b> at the end. Every Java program in this file (exercises and solutions) was compiled and run with <code>javac</code>/<code>java</code>, and the outputs shown are the real outputs.</p>
+</div>
+
+<!-- ====================================================== -->
+<h2>Part I: QCM (20 × 0.25 pt)</h2>
+<p class="small">Circle the single correct answer.</p>
+
+<div class="q"><b>1.</b> The Java compiler <code>javac</code> transforms <code>Hello.java</code> into:
+<div class="opts">a) machine code for the processor &nbsp; b) bytecode in <code>Hello.class</code> &nbsp; c) an <code>.exe</code> file &nbsp; d) source code for the JVM</div></div>
+
+<div class="q"><b>2.</b> Which element executes the bytecode and makes Java portable?
+<div class="opts">a) javadoc &nbsp; b) the JDK compiler &nbsp; c) the JVM &nbsp; d) the garbage collector</div></div>
+
+<div class="q"><b>3.</b> A file contains <code>public class BankAccount { … }</code>. Its name must be:
+<div class="opts">a) <code>bankaccount.java</code> &nbsp; b) <code>BankAccount.class</code> &nbsp; c) <code>BankAccount.java</code> &nbsp; d) any name ending in <code>.java</code></div></div>
+
+<div class="q"><b>4.</b> Which identifier follows the course conventions for a <b>constant</b>?
+<div class="opts">a) <code>maxSpeed</code> &nbsp; b) <code>MaxSpeed</code> &nbsp; c) <code>MAX_SPEED</code> &nbsp; d) <code>max_speed</code></div></div>
+
+<div class="q"><b>5.</b> Which conversion is done <b>implicitly</b> (without a cast)?
+<div class="opts">a) <code>double → int</code> &nbsp; b) <code>int → double</code> &nbsp; c) <code>long → int</code> &nbsp; d) <code>float → long</code></div></div>
+
+<div class="q"><b>6.</b> <code>int a = 9, b = 2; double r = a / b;</code> The value of <code>r</code> is:
+<div class="opts">a) 4.5 &nbsp; b) 4.0 &nbsp; c) 5.0 &nbsp; d) compilation error</div></div>
+
+<div class="q"><b>7.</b> Which declaration does <b>not</b> compile?
+<div class="opts">a) <code>double d = 1.5;</code> &nbsp; b) <code>float f = 1.5f;</code> &nbsp; c) <code>float f = 1.5;</code> &nbsp; d) <code>int i = (int) 1.5;</code></div></div>
+
+<div class="q"><b>8.</b> <code>System.out.println("Total: " + 4 + 6);</code> displays:
+<div class="opts">a) <code>Total: 10</code> &nbsp; b) <code>Total: 46</code> &nbsp; c) <code>Total: 4 6</code> &nbsp; d) error</div></div>
+
+<div class="q"><b>9.</b> Which loop always executes its body <b>at least once</b>?
+<div class="opts">a) <code>for</code> &nbsp; b) <code>while</code> &nbsp; c) <code>do … while</code> &nbsp; d) none</div></div>
+
+<div class="q"><b>10.</b> In a <code>switch</code>, if a <code>case</code> has no <code>break</code>:
+<div class="opts">a) compilation error &nbsp; b) the switch stops &nbsp; c) execution continues into the following cases &nbsp; d) the <code>default</code> runs</div></div>
+
+<div class="q"><b>11.</b> To use the <code>Scanner</code> class you must import the package:
+<div class="opts">a) <code>java.lang</code> &nbsp; b) <code>java.io</code> &nbsp; c) <code>java.util</code> &nbsp; d) <code>java.scanner</code></div></div>
+
+<div class="q"><b>12.</b> Which instruction reads a <b>character</b> with a Scanner <code>sc</code>?
+<div class="opts">a) <code>sc.nextChar()</code> &nbsp; b) <code>sc.next().charAt(0)</code> &nbsp; c) <code>sc.nextLine(0)</code> &nbsp; d) <code>sc.read()</code></div></div>
+
+<div class="q"><b>13.</b> Which statement about a <b>constructor</b> is TRUE?
+<div class="opts">a) its return type is <code>void</code> &nbsp; b) it has the same name as the class and no return type &nbsp; c) it can be called several times on the same object &nbsp; d) a class can only have one</div></div>
+
+<div class="q"><b>14.</b> The class <code>Person</code> only defines <code>public Person(String n)</code>. The instruction <code>Person p = new Person();</code>:
+<div class="opts">a) creates a Person with name <code>null</code> &nbsp; b) creates a Person with name <code>""</code> &nbsp; c) causes a compilation error &nbsp; d) causes an error only at run time</div></div>
+
+<div class="q"><b>15.</b> With the default constructor, an attribute <code>boolean active;</code> and an attribute <code>String name;</code> are initialised to:
+<div class="opts">a) <code>true</code> and <code>""</code> &nbsp; b) <code>false</code> and <code>null</code> &nbsp; c) <code>0</code> and <code>null</code> &nbsp; d) they are not initialised</div></div>
+
+<div class="q"><b>16.</b> The instruction <code>this(0, 0);</code> inside a constructor:
+<div class="opts">a) can be placed anywhere in the constructor &nbsp; b) must be the first statement &nbsp; c) creates a new object &nbsp; d) is only allowed in <code>main</code></div></div>
+
+<div class="q"><b>17.</b> An attribute declared <code>private</code> is accessible:
+<div class="opts">a) from every class &nbsp; b) from classes of the same package &nbsp; c) only from the methods of its own class &nbsp; d) from subclasses only</div></div>
+
+<div class="q"><b>18.</b> An attribute declared <b>without any modifier</b> (friendly) is accessible from:
+<div class="opts">a) its class only &nbsp; b) the classes of the same package &nbsp; c) every class &nbsp; d) subclasses in other packages</div></div>
+
+<div class="q"><b>19.</b> Which pair is <b>NOT</b> a valid overloading in the same class?
+<div class="opts">a) <code>void f(int x)</code> / <code>void f(double x)</code> &nbsp; b) <code>void f(int x)</code> / <code>void f(int x, int y)</code><br>
+c) <code>int f(int x)</code> / <code>double f(int x)</code> &nbsp; d) <code>void f()</code> / <code>void f(String s)</code></div></div>
+
+<div class="q"><b>20.</b> A <code>static</code> attribute:
+<div class="opts">a) can't be modified &nbsp; b) has one copy shared by all objects of the class &nbsp; c) is private by default &nbsp; d) is destroyed by the GC after each method</div></div>
+
+<!-- ====================================================== -->
+<h2>Part II: Questions de réflexion (5 pts)</h2>
+<p class="small">Answer in 3–6 lines. Use a small code example when it helps. Answer 5 of the 7 (1 pt each), or all 7 for practice.</p>
+
+<div class="q"><b>Q1.</b> Explain the difference between a <b>class</b> and an <b>object</b>. Give a real-life example and the Java line that creates the object.</div>
+<div class="q"><b>Q2.</b> What is a <b>constructor</b>? Give 3 differences between a constructor and an ordinary method. What happens to the default constructor when you write your own?</div>
+<div class="q"><b>Q3.</b> In Lab 3, the junior developer wrote <code>myAccount.balance = 500.0;</code> in <code>main</code>. Explain why this doesn't compile, and why it is <b>better</b> to go through a method <code>deposit(double amount)</code> than to make <code>balance</code> public. Which OOP principle is this?</div>
+<div class="q"><b>Q4.</b> Give the <b>three uses</b> of the keyword <code>this</code> seen in class and labs, with one line of code for each.</div>
+<div class="q"><b>Q5.</b> Compare an <b>attribute</b> (instance variable), a <b>local variable</b> and a <b>static attribute</b>: where is each declared, how long does it live, does it have a default value?</div>
+<div class="q"><b>Q6.</b> Consider:
+```java nocheck
+Person p1 = new Person("Ali", 20);
+Person p2 = p1;
+p2.age = 30;
+System.out.println(p1.age);
+```
+What is displayed? How many objects exist in memory? Explain. What happens to the object if we then write <code>p1 = null; p2 = null;</code>?</div>
+<div class="q"><b>Q7.</b> In the guessing game (Lab 1 Ex5), the course asks for a <code>do … while</code> loop rather than a <code>while</code> loop. Why is it the natural choice here? Then explain why <code>m = (a + b) / 2;</code> gives <code>5.0</code> instead of <code>5.5</code> for <code>a = 4, b = 7</code> (with <code>double m</code>) and give two fixes.</div>
+
+<!-- ====================================================== -->
+<h2>Part III: Exercises (10 pts)</h2>
+
+<h3>Exercise 1: What does this program display? <span class="pts">2 pts</span></h3>
+<p>Write the exact output, line by line. Justify the lines marked ★ in one sentence each.</p>
+```java class
+public class Mystery {
+    static int count = 0;
+    int id;
+    String label;
+
+    Mystery(String label) {
+        this.label = label;
+        count++;
+        id = count;
+    }
+    Mystery() {
+        this("none");
+    }
+    void show() {
+        System.out.println(id + ":" + label);
+    }
+    static int twice(int x)       { return x * 2; }
+    static double twice(double x) { return x * 3; }
+
+    public static void main(String[] args) {
+        int a = 7, b = 2;
+        double m = a / b;
+        System.out.println(m);                       // ★ line 1
+        System.out.println((double) a / b);          // line 2
+        System.out.println(a % b + " " + a + b);     // ★ line 3
+
+        Mystery x = new Mystery("A");
+        Mystery y = new Mystery();
+        Mystery z = x;
+        z.label = "B";
+        x.show();                                    // ★ line 4
+        y.show();                                    // line 5
+        System.out.println(Mystery.count);           // line 6
+        System.out.println(twice(4) + " " + twice(4.0)); // ★ line 7
+
+        int i = 10;
+        do {
+            System.out.print(i + " ");
+            i += 5;
+        } while (i < 10);
+        System.out.println();                        // ★ line 8
+
+        switch (b) {
+            case 1:  System.out.print("one ");
+            case 2:  System.out.print("two ");
+            case 3:  System.out.print("three ");
+                     break;
+            default: System.out.print("other");
+        }
+        System.out.println();                        // ★ line 9
+    }
+}
+```
+
+<h3>Exercise 2: Find and fix the errors (Lab 3 style) <span class="pts">2 pts</span></h3>
+<p>A junior developer wrote this code. It contains <b>6 compilation errors</b> and <b>1 logic error</b> (the code compiles but gives a wrong result).<br>
+1) For each error: give the line, explain why it is an error. 2) Rewrite the corrected code, respecting encapsulation (add what is needed).</p>
+```java nocheck
+ 1  class Product {
+ 2      private String name;
+ 3      private double price;
+ 4      public final double TVA = 0.19;
+ 5
+ 6      public void Product(String name, double price) {
+ 7          name = name;
+ 8          price = price;
+ 9      }
+10      public double priceWithTax() {
+11          double total = price + price * TVA;
+12      }
+13  }
+14  public class Shop {
+15      public static void main(String[] args) {
+16          Product p = new Product("Pen", 2.5);
+17          p.price = 3.0;
+18          int qty = 2.5;
+19          float discount = 0.1;
+20          p.TVA = 0.2;
+21          System.out.println(p.priceWithTax() * qty);
+22      }
+23  }
+```
+
+<h3>Exercise 3: Smart ATM (Lab 1 style: Scanner, switch, loops) <span class="pts">2 pts</span></h3>
+<p><b>Context:</b> a bank wants a console prototype of an ATM. Write a class <code>SmartATM</code> with only a <code>main</code> method:</p>
+<ol>
+<li>Declare a constant <code>MAX_WITHDRAW</code> = 500.0 using <code>final</code>, a <code>balance</code> initialised to 1000.0 and a counter of successful operations.</li>
+<li>Using a <code>do … while</code> loop, display the menu <code>D: Deposit | W: Withdraw | B: Balance | Q: Quit</code> and read the user's choice as a <b>character</b> with <code>Scanner</code>.</li>
+<li>Use a <code>switch</code> on the choice:
+  <ul><li><code>'D'</code>: read an amount; if it is &gt; 0, add it to the balance (count the operation), otherwise display <code>"Invalid amount!"</code>.</li>
+  <li><code>'W'</code>: read an amount; refuse it with a message if it is above <code>MAX_WITHDRAW</code>, above the balance, or ≤ 0; otherwise withdraw it (count the operation).</li>
+  <li><code>'B'</code>: display the balance. <code>'Q'</code>: display <code>"Goodbye!"</code>. <code>default</code>: <code>"Invalid choice!"</code>.</li></ul></li>
+<li>The loop stops when the user types <code>Q</code>. Then display the number of successful operations.</li>
+<li>Finally, using a <code>for</code> loop, display the balance after each of the next 3 months if it earns 1% interest per month.</li>
+</ol>
+<p>Example run (user input in brackets): [B] → <code>Balance: 1000.0</code>, [D] [250], [W] [600] → <code>Limit is 500.0</code>, [W] [300], [X] → <code>Invalid choice!</code>, [Q] → <code>Goodbye!</code> <code>Successful operations: 2</code>, then <code>Month 1: 959.50</code>, <code>Month 2: 969.10</code>, <code>Month 3: 978.79</code>.</p>
+
+<h3>Exercise 4: The Smartphone class (Labs 2–3 style: encapsulation, constructors, <code>this</code>, overloading) <span class="pts">2 pts</span></h3>
+<p><b>Context:</b> you're coding the battery manager of a smartphone. Create a class <code>Smartphone</code>:</p>
+<ol>
+<li><b>Private attributes:</b> <code>brand</code> (String), <code>battery</code> (int, between 0 and 100), <code>appsOpened</code> (int).</li>
+<li>A <b>parameterised constructor</b> <code>Smartphone(String brand, int battery)</code> that uses <code>this</code>; the battery must go through the setter (validation); <code>appsOpened</code> starts at 0.</li>
+<li>A <b>default constructor</b> that delegates to the parameterised one with <code>this(...)</code> (<code>"Generic"</code>, 50) and then prints <code>"Default constructor called."</code>.</li>
+<li>Getters <code>getBrand()</code>, <code>getBattery()</code>, and a setter <code>setBattery(int battery)</code>: below 0 → 0, above 100 → 100.</li>
+<li><code>charge(int percent)</code>: if percent &gt; 0, increases the battery (never above 100). It <b>returns the current object</b> to allow chaining.</li>
+<li><code>openApp()</code>: if the battery is ≥ 5, consumes 5% and increments <code>appsOpened</code>; otherwise prints <code>"Battery too low!"</code>. Returns the current object.</li>
+<li><b>Overload</b> <code>openApp(int n)</code>: opens <code>n</code> apps by calling <code>openApp()</code>. Returns the current object.</li>
+<li><code>display()</code> prints: <code>Brand: Nova | Battery: 2% | Apps opened: 2</code></li>
+<li>A test class <code>TestPhone</code> must produce <b>exactly</b>:</li>
+</ol>
+```text
+Default constructor called.
+Brand: Generic | Battery: 50% | Apps opened: 0
+Battery too low!
+Brand: Nova | Battery: 2% | Apps opened: 2
+Brand: Nova | Battery: 95% | Apps opened: 3
+```
+<p>Bonus question: in <code>main</code>, why does <code>p1.battery = 80;</code> not compile, and what should you write instead?</p>
+
+<h3>Exercise 5: Online shop (Lab 2 slot-machine + Lab 3 Ex3 style: objects inside objects, arrays of objects) <span class="pts">2 pts</span></h3>
+<ol>
+<li><code>Product</code>: private <code>name</code> (String) and <code>price</code> (double), a constructor initialising both, and the getters.</li>
+<li><code>ShoppingCart</code>:
+  <ul><li>private attributes: an <b>array of Products</b> <code>items</code> and an int <code>count</code> (number of products in the cart);</li>
+  <li>a constructor <code>ShoppingCart(int capacity)</code> that creates the array;</li>
+  <li><code>boolean addProduct(Product p)</code>: adds <code>p</code> if there is room and returns <code>true</code>; otherwise prints <code>"Cart is full: &lt;name&gt; not added"</code> and returns <code>false</code>;</li>
+  <li><code>double getTotal()</code> and the <b>overloaded</b> <code>double getTotal(double discountPercent)</code>;</li>
+  <li><code>int luckyDiscount()</code>: returns a random integer between 0 and 20 (inclusive) using <code>Math.random()</code>;</li>
+  <li><code>printReceipt()</code>: prints each product (<code>- Keyboard : 40.0</code>) then <code>Total: …</code>.</li></ul></li>
+<li><code>Customer</code>: private <code>name</code> and an attribute <code>cart</code> of type <code>ShoppingCart</code>, a constructor, and <code>displayProfile()</code> that prints the name, calls the cart's <code>printReceipt()</code> and prints the total after a 10% discount.</li>
+<li><code>TestShop</code>: a cart of capacity 3; add Keyboard 40.0, Mouse 20.0, Screen 140.0, Cable 5.0; create the customer "Ines" and display the profile. Expected output:</li>
+</ol>
+```text
+Cart is full: Cable not added
+Customer: Ines
+- Keyboard : 40.0
+- Mouse : 20.0
+- Screen : 140.0
+Total: 200.0
+Total after 10% discount: 180.0
+```
+
+<!-- ====================================================== -->
+<h2 class="pb">Corrigé (correction): don't read before trying!</h2>
+
+<h3>Part I: QCM answers</h3>
+<table>
+<tr><th>Q</th><th>Ans</th><th>Why</th><th>Q</th><th>Ans</th><th>Why</th></tr>
+<tr><td>1</td><td>b</td><td>javac → portable bytecode (.class)</td><td>11</td><td>c</td><td>Scanner is in <code>java.util</code></td></tr>
+<tr><td>2</td><td>c</td><td>the JVM runs bytecode on every OS</td><td>12</td><td>b</td><td>there's no <code>nextChar()</code></td></tr>
+<tr><td>3</td><td>c</td><td>file name = public class name, case-sensitive</td><td>13</td><td>b</td><td>no return type, not even void</td></tr>
+<tr><td>4</td><td>c</td><td>constants in uppercase (+ <code>final</code>)</td><td>14</td><td>c</td><td>default constructor gone once you write one</td></tr>
+<tr><td>5</td><td>b</td><td>widening: int → long → float → double</td><td>15</td><td>b</td><td>false / null (0 for numbers)</td></tr>
+<tr><td>6</td><td>b</td><td>9/2 = 4 (int division), then stored as 4.0</td><td>16</td><td>b</td><td>this(...) = first statement</td></tr>
+<tr><td>7</td><td>c</td><td>1.5 is a double → lossy into float</td><td>17</td><td>c</td><td>private = same class only</td></tr>
+<tr><td>8</td><td>b</td><td>left to right: "Total: 4" + 6 → "Total: 46"</td><td>18</td><td>b</td><td>friendly = package</td></tr>
+<tr><td>9</td><td>c</td><td>condition tested at the end</td><td>19</td><td>c</td><td>return type alone can't differ</td></tr>
+<tr><td>10</td><td>c</td><td>fall-through</td><td>20</td><td>b</td><td>class attribute, one shared copy</td></tr>
+</table>
+
+<h3>Part II: model answers</h3>
+<div class="answer"><b>Q1.</b> A class is a model (mould) describing a family of objects with the same attributes and methods; an object is a concrete <b>instance</b> of that class, with its own identity and state (attribute values). Example: the class <code>Car</code> describes every car (registration, color, speed, increaseSpeed()); my white BMW X1123 is one object: <code>Car bmw = new Car("X1123", "white", 110);</code>. One class → as many objects as we want.</div>
+<div class="answer"><b>Q2.</b> A constructor is a special method that initialises the attributes of an object when it is created. Differences: (1) same name as the class, (2) no return type, not even <code>void</code>, (3) called automatically, only once per object, by <code>new</code> (a method is called explicitly, as many times as we want). If we write no constructor, Java provides a default one (no parameters, attributes at 0/false/null). As soon as we write one constructor, the default one disappears: <code>new Person()</code> then gives a compilation error unless we also write <code>Person()</code>.</div>
+<div class="answer"><b>Q3.</b> <code>balance</code> is <code>private</code>: it can only be accessed by the methods of <code>BankAccount</code>; <code>main</code> is in another class, so the compiler says "balance has private access". Going through <code>deposit(amount)</code> lets the class <b>check</b> the value (<code>if (amount &gt; 0)</code>), so no one can put a negative or absurd balance: the object protects the integrity of its data. A public attribute could be set to anything. This is <b>encapsulation</b> (data hidden, access through the object's interface = public methods).</div>
+<div class="answer"><b>Q4.</b> (1) Remove ambiguity when a parameter has the same name as an attribute: <code>this.name = name;</code> (2) Call another constructor of the same class, as the first statement: <code>this("Unknown Model", "Petrol", 2023);</code> (3) Return (or pass) the current object, e.g. for method chaining: <code>return this;</code> → <code>s1.incrementAndReturnId().display();</code></div>
+<div class="answer"><b>Q5.</b>
+<table><tr><th></th><th>Attribute</th><th>Local variable</th><th>Static attribute</th></tr>
+<tr><td>Declared</td><td>in the class, outside methods</td><td>inside a method/block</td><td>in the class, with <code>static</code></td></tr>
+<tr><td>Copies</td><td>one per object</td><td>one per method call</td><td>one for the whole class</td></tr>
+<tr><td>Lives</td><td>as long as the object</td><td>until the end of its block</td><td>as long as the program</td></tr>
+<tr><td>Default value</td><td>0 / false / null</td><td>none (must be initialised)</td><td>0 / false / null</td></tr>
+<tr><td>Access</td><td><code>obj.attr</code> / in methods</td><td>only in its block</td><td><code>ClassName.attr</code></td></tr></table></div>
+<div class="answer"><b>Q6.</b> It displays <b>30</b>. There is only <b>one</b> object: <code>new</code> was called once. <code>p2 = p1</code> copies the <b>reference</b> (address), not the object, so p1 and p2 point to the same object, and changing it through p2 is visible through p1. After <code>p1 = null; p2 = null;</code> no reference points to the object any more: it becomes unreachable and the <b>garbage collector</b> can destroy it (we can ask with <code>System.gc()</code>).</div>
+<div class="answer"><b>Q7.</b> The player must make at least one guess before we can compare it with the secret number; <code>do … while</code> tests the condition at the end, so the body (ask, compare, count) always runs at least once. With <code>while</code> we would have to read a first guess before the loop (duplicated code).<br>
+<code>(a + b) / 2</code>: both operands are <code>int</code>, so it's an integer division: 11 / 2 = 5 (decimal part cut); only then is 5 converted to 5.0 for <code>m</code>. Fixes: <code>m = (a + b) / 2.0;</code> or <code>m = (double) (a + b) / 2;</code></div>
+
+<h3>Exercise 1: output and justification</h3>
+<div class="two"><div>
+```text
+3.0
+3.5
+1 72
+1:B
+2:none
+2
+8 12.0
+10
+two three
+```
+</div><div>
+<ul>
+<li>★ L1: <code>7 / 2</code> is int division = 3, then stored as 3.0.</li>
+<li>L2: the cast happens <b>before</b> the division: 7.0 / 2 = 3.5.</li>
+<li>★ L3: <code>a % b</code> = 1; then string concatenation left to right: "1 " + 7 → "1 7", + 2 → "1 72" (not 9!).</li>
+<li>★ L4: <code>z = x</code> copies the reference: same object, so <code>z.label = "B"</code> changes x. x was created first → id 1.</li>
+<li>L5: <code>new Mystery()</code> calls <code>this("none")</code>; count becomes 2 → id 2.</li>
+<li>L6: <code>count</code> is static: one shared counter, 2 objects created (z is not a new object).</li>
+<li>★ L7: overloading: <code>twice(4)</code> → int version (4×2 = 8); <code>twice(4.0)</code> → double version (4.0×3 = 12.0).</li>
+<li>★ L8: do…while runs once even though <code>i &lt; 10</code> is false at the start.</li>
+<li>★ L9: <code>b = 2</code> → enters case 2; no break → falls into case 3, then <code>break</code>.</li>
+</ul>
+</div></div>
+
+<h3>Exercise 2: errors</h3>
+<table>
+<tr><th>Line</th><th>Error</th><th>Fix</th></tr>
+<tr><td>6</td><td><code>void</code> makes <code>Product(...)</code> an ordinary method, <b>not a constructor</b>. So only the default constructor exists (this triggers the error at line 16).</td><td>remove <code>void</code></td></tr>
+<tr><td>7–8</td><td><b>Logic error</b>: <code>name = name</code> assigns the parameter to itself; the attributes stay <code>null</code>/0.0.</td><td><code>this.name = name; this.price = price;</code></td></tr>
+<tr><td>12</td><td>missing return statement: the method must return a double.</td><td><code>return total;</code></td></tr>
+<tr><td>16</td><td>constructor <code>Product(String, double)</code> doesn't exist (see line 6).</td><td>fixed by line 6</td></tr>
+<tr><td>17</td><td><code>price</code> has private access in Product.</td><td>add a setter <code>setPrice</code> with validation</td></tr>
+<tr><td>18</td><td>possible lossy conversion from double to int.</td><td><code>int qty = 2;</code> (or <code>double</code>)</td></tr>
+<tr><td>19</td><td>0.1 is a double → lossy conversion to float.</td><td><code>0.1f</code></td></tr>
+<tr><td>20</td><td>cannot assign a value to final variable TVA.</td><td>remove the line (a constant can't change)</td></tr>
+</table>
+```java class
+class Product {
+    private String name;
+    private double price;
+    public final double TVA = 0.19;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+    public String getName()  { return name; }
+    public double getPrice() { return price; }
+    public void setPrice(double price) {
+        if (price > 0) {
+            this.price = price;
+        }
+    }
+    public double priceWithTax() {
+        double total = price + price * TVA;
+        return total;
+    }
+}
+public class Shop {
+    public static void main(String[] args) {
+        Product p = new Product("Pen", 2.5);
+        p.setPrice(3.0);
+        int qty = 2;
+        float discount = 0.1f;
+        System.out.println(p.priceWithTax() * qty);
+    }
+}
+```
+<p class="small">Real output: <code>7.140000000000001</code> (3.0 × 1.19 × 2 = 7.14; the extra digits are normal floating-point rounding with doubles).</p>
+
+<h3>Exercise 3: SmartATM</h3>
+```java class
+import java.util.Scanner;
+
+public class SmartATM {
+    public static void main(String[] args) {
+        final double MAX_WITHDRAW = 500.0;
+        double balance = 1000.0;
+        int operations = 0;
+        char choice;
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            System.out.println("D: Deposit | W: Withdraw | B: Balance | Q: Quit");
+            System.out.print("Your choice: ");
+            choice = sc.next().charAt(0);
+
+            switch (choice) {
+                case 'D':
+                    System.out.print("Amount: ");
+                    double dep = sc.nextDouble();
+                    if (dep > 0) {
+                        balance += dep;
+                        operations++;
+                    } else {
+                        System.out.println("Invalid amount!");
+                    }
+                    break;
+                case 'W':
+                    System.out.print("Amount: ");
+                    double wd = sc.nextDouble();
+                    if (wd > MAX_WITHDRAW) {
+                        System.out.println("Limit is " + MAX_WITHDRAW);
+                    } else if (wd > balance) {
+                        System.out.println("Insufficient balance!");
+                    } else if (wd <= 0) {
+                        System.out.println("Invalid amount!");
+                    } else {
+                        balance -= wd;
+                        operations++;
+                    }
+                    break;
+                case 'B':
+                    System.out.println("Balance: " + balance);
+                    break;
+                case 'Q':
+                    System.out.println("Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        } while (choice != 'Q');
+
+        System.out.println("Successful operations: " + operations);
+
+        for (int month = 1; month <= 3; month++) {
+            balance = balance * 1.01;
+            System.out.printf("Month %d: %.2f%n", month, balance); // (extra) println is accepted too
+        }
+        sc.close();
+    }
+}
+```
+<div class="box tip"><b>Grading points</b><code>final</code> constant ✓ · Scanner + import ✓ · <code>next().charAt(0)</code> ✓ · do…while with <code>!= 'Q'</code> ✓ · switch with <code>break</code> and <code>default</code> ✓ · validations with if/else if ✓ · counter ✓ · for loop ✓.
+With <code>println</code> instead of <code>printf</code> you'd see <code>959.5</code>, <code>969.095</code>, <code>978.7859500000001</code>: also accepted.</div>
+
+<h3>Exercise 4: Smartphone</h3>
+```java class
+class Smartphone {
+    private String brand;
+    private int battery;
+    private int appsOpened;
+
+    public Smartphone(String brand, int battery) {
+        this.brand = brand;
+        setBattery(battery);          // validation goes through the setter
+        this.appsOpened = 0;
+    }
+
+    public Smartphone() {
+        this("Generic", 50);          // MUST be the first statement
+        System.out.println("Default constructor called.");
+    }
+
+    public String getBrand() { return brand; }
+    public int getBattery()  { return battery; }
+
+    public void setBattery(int battery) {
+        if (battery < 0) {
+            this.battery = 0;
+        } else if (battery > 100) {
+            this.battery = 100;
+        } else {
+            this.battery = battery;
+        }
+    }
+
+    public Smartphone charge(int percent) {
+        if (percent > 0) {
+            setBattery(battery + percent);   // capped at 100 by the setter
+        }
+        return this;
+    }
+
+    public Smartphone openApp() {
+        if (battery >= 5) {
+            battery -= 5;
+            appsOpened++;
+        } else {
+            System.out.println("Battery too low!");
+        }
+        return this;
+    }
+
+    public Smartphone openApp(int n) {      // overloading: same name, different parameters
+        for (int i = 1; i <= n; i++) {
+            openApp();
+        }
+        return this;
+    }
+
+    public void display() {
+        System.out.println("Brand: " + brand + " | Battery: " + battery
+                           + "% | Apps opened: " + appsOpened);
+    }
+}
+
+public class TestPhone {
+    public static void main(String[] args) {
+        Smartphone p1 = new Smartphone();          // Default constructor called.
+        Smartphone p2 = new Smartphone("Nova", 12);
+        p1.display();
+        p2.openApp(3);                             // 12 → 7 → 2 → "Battery too low!"
+        p2.display();
+        p2.charge(200).openApp().display();        // 2+200 → capped 100 → 95, 3 apps
+    }
+}
+```
+<div class="answer"><b>Bonus:</b> <code>battery</code> is <code>private</code>, so <code>TestPhone</code> can't access it ("battery has private access in Smartphone"). Write <code>p1.setBattery(80);</code>: the setter also checks the value stays in [0, 100].</div>
+
+<h3>Exercise 5: Online shop</h3>
+```java class
+class Product {
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+    public String getName()  { return name; }
+    public double getPrice() { return price; }
+}
+
+class ShoppingCart {
+    private Product[] items;
+    private int count;
+
+    public ShoppingCart(int capacity) {
+        items = new Product[capacity];   // array of references, all null
+        count = 0;
+    }
+
+    public boolean addProduct(Product p) {
+        if (count == items.length) {
+            System.out.println("Cart is full: " + p.getName() + " not added");
+            return false;
+        }
+        items[count] = p;
+        count++;
+        return true;
+    }
+
+    public double getTotal() {
+        double total = 0;
+        for (int i = 0; i < count; i++) {        // count, not items.length (nulls!)
+            total += items[i].getPrice();
+        }
+        return total;
+    }
+
+    public double getTotal(double discountPercent) {   // overloading
+        return getTotal() - getTotal() * discountPercent / 100;
+    }
+
+    public int luckyDiscount() {
+        return (int) (Math.random() * 21);       // 0..20 inclusive
+    }
+
+    public void printReceipt() {
+        for (int i = 0; i < count; i++) {
+            System.out.println("- " + items[i].getName() + " : " + items[i].getPrice());
+        }
+        System.out.println("Total: " + getTotal());
+    }
+}
+
+class Customer {
+    private String name;
+    private ShoppingCart cart;                   // an object inside an object
+
+    public Customer(String name, ShoppingCart cart) {
+        this.name = name;
+        this.cart = cart;
+    }
+
+    public void displayProfile() {
+        System.out.println("Customer: " + name);
+        cart.printReceipt();                     // calling the inner object's methods
+        System.out.println("Total after 10% discount: " + cart.getTotal(10));
+    }
+}
+
+public class TestShop {
+    public static void main(String[] args) {
+        ShoppingCart cart = new ShoppingCart(3);
+        cart.addProduct(new Product("Keyboard", 40.0));
+        cart.addProduct(new Product("Mouse", 20.0));
+        cart.addProduct(new Product("Screen", 140.0));
+        cart.addProduct(new Product("Cable", 5.0));   // 4th → cart full
+        Customer c = new Customer("Ines", cart);
+        c.displayProfile();
+    }
+}
+```
+<div class="box trap"><b>⚠ Classic mistakes in this exercise</b>
+Looping to <code>items.length</code> instead of <code>count</code> → <code>NullPointerException</code> on empty slots. Forgetting <code>count++</code>. Writing <code>Math.random() * 20</code> (gives 0..19 only). Writing <code>(int) Math.random() * 21</code>: the cast applies to <code>Math.random()</code> first → always 0!</div>
+
+<h3>Self-assessment</h3>
+<table>
+<tr><th>If you lost points on…</th><th>Re-read in the cheat sheet</th></tr>
+<tr><td>QCM 5–8, Ex1 lines 1–3</td><td>§2: conversions, integer division, string concatenation</td></tr>
+<tr><td>QCM 9–12, Ex3</td><td>§3: loops, switch, Scanner</td></tr>
+<tr><td>QCM 13–16, Q2, Q4, Ex4</td><td>§5 constructors, §6 <code>this</code></td></tr>
+<tr><td>QCM 17–18, Q3, Ex2</td><td>§7 access &amp; encapsulation, §13 compile errors</td></tr>
+<tr><td>QCM 19–20, Q5, Ex1 lines 6–7</td><td>§9 overloading, §10 static</td></tr>
+<tr><td>Q6, Ex5</td><td>§4 references, §11 lab patterns (composition, arrays of objects)</td></tr>
+</table>
+
+</body></html>
