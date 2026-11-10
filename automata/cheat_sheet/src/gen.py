@@ -1,6 +1,7 @@
 import re, sys
 sys.path.insert(0, __file__.rsplit("/", 1)[0])
 from diagrams import D
+import extra as X
 
 OUT = "/home/user/study/automata/cheat_sheet/automata_cheat_sheet.html"
 
@@ -64,8 +65,8 @@ footer{margin-top:30px;color:var(--muted);font-size:12px;text-align:center}
 BODY = r"""
 <header>
  <h1>Language Theory &amp; Automata — Cheat Sheet</h1>
- <p>Dr-Ing Ines Baccouche · Pristini · 2nd year Applied AI · Chapters 1–3 (RegEx · Finite Automata, Glushkov &amp; Minimisation · DFA / NFA)</p>
- <nav><a href="#style">How she writes it</a><a href="#ch1">Ch1 RegEx</a><a href="#ch2">Ch2 Finite automata</a><a href="#glushkov">Glushkov</a><a href="#min">Minimisation</a><a href="#ch3">Ch3 DFA/NFA</a><a href="#subset">NFA→DFA</a><a href="#exam">Exam checklist</a></nav>
+ <p>Dr-Ing Ines Baccouche · Pristini · 2nd year Applied AI · Chapters 1–3 complete (RegEx · Finite Automata, Glushkov &amp; Minimisation · DFA / NFA) + extra methods + preview of Ch5–6 + 20 practice exercises</p>
+ <nav><a href="#style">How she writes it</a><a href="#ch1">Ch1 RegEx</a><a href="#ch2">Ch2 Finite automata</a><a href="#glushkov">Glushkov</a><a href="#min">Minimisation</a><a href="#ch3">Ch3 DFA/NFA</a><a href="#subset">NFA→DFA</a><a href="#extra">Extra methods</a><a href="#ch5">Ch5 Turing</a><a href="#ch6">Ch6 AI</a><a href="#practice">Practice</a><a href="#exam">Exam checklist</a></nav>
 </header>
 
 <div class="grid" id="style">
@@ -198,7 +199,7 @@ BODY = r"""
  <li>Email: <code>[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}</code></li>
 </ul>
 </div>
-</div>
+{{X_REGEX}}</div>
 
 <!-- ================= CHAPTER 2 ================= -->
 <h2 id="ch2" class="pb">Chapter 2 — Finite Automata <small>principles · Glushkov · minimisation</small></h2>
@@ -247,7 +248,7 @@ BODY = r"""
 <p style="margin:4px 0">L = a(ab)*b, Q={q0,q1,q2}, V<sub>T</sub>={a,b,ab}: δ(q0,a)=q1, δ(q1,b)=q2, δ(q1,ab)=q1</p>
 <div class="fig">{{aabb_star}}</div>
 </div>
-</div>
+{{X_TRACE}}</div>
 
 <h2 id="glushkov">Glushkov construction <small>RegEx → automaton</small></h2>
 <div class="grid">
@@ -265,7 +266,7 @@ BODY = r"""
 </ol>
 <p style="margin:4px 0"><b>Rule:</b> an arc always goes INTO the state of the letter it reads: reading a<sub>j</sub> ⇒ go to state j.</p>
 </div>
-<div class="card">
+{{X_GLR}}{{X_THOM}}<div class="card">
 <h3>Example 1 — a*b(a|c)*b &nbsp;→&nbsp; a1* b2 (a3|c4)* b5</h3>
 <ul>
  <li>Start letters = {a1, b2} · End letters = {b5} ⇒ F = {5}</li>
@@ -428,7 +429,7 @@ Step3 : (6) (7,8) (3) (4) (1,2) (5)
  <li><b>DFA</b> (deterministic) = completely defined <b>AND</b> unambiguous ⇒ <b>exactly one</b> arrow per (state, symbol). <b>No ε-arrows.</b></li>
  <li><b>NFA</b> (non-deterministic) = presents <b>ambiguity</b>: several arrows with the same symbol from one state, or ε-arrows. "We cannot deduce the next state."</li>
 </ul>
-<p style="margin:4px 0"><b>How to complete a DFA:</b> add a <b>dead state</b> (trap) that receives every missing transition and loops on all symbols.</p>
+{{X_NFADEF}}<p style="margin:4px 0"><b>How to complete a DFA:</b> add a <b>dead state</b> (trap) that receives every missing transition and loops on all symbols.</p>
 <p style="margin:4px 0"><b>Every NFA has an equivalent DFA</b> (same language) → subset construction below.</p>
 </div>
 <div class="card">
@@ -529,7 +530,7 @@ Step3 : (6) (7,8) (3) (4) (1,2) (5)
 <div class="fig">{{dfa2}}</div>
 <p class="cap">[q1] and [q0,q1] are final (they contain q1). ϕ is the dead state (often not drawn).</p>
 </div>
-<div class="card wide">
+{{X_EPS}}<div class="card wide">
 <h3>Application (slide 79) — ε-NFA → DFA — solved</h3>
 <div class="two">
 <div>
@@ -594,7 +595,7 @@ Step1: (D,…,I) (A) (B) (C)
 </div>
 </div>
 
-<h2 id="exam">Exam-day checklist</h2>
+{{X_EXTRAS}}{{X_PREVIEW}}{{X_PRACTICE}}<h2 id="exam">Exam-day checklist</h2>
 <div class="grid">
 <div class="card">
 <h3>Which method for which question?</h3>
@@ -608,7 +609,7 @@ Step1: (D,…,I) (A) (B) (C)
 <tr><td>"Is it deterministic?"</td><td>Check complete + unambiguous (+ no ε)</td></tr>
 <tr><td>"Convert NFA to DFA"</td><td>Subset construction, final = contains NFA final</td></tr>
 <tr><td>"Doesn't contain / complement"</td><td>Complete DFA + flip states</td></tr>
-<tr><td>"Is word w accepted?"</td><td>Follow the path; must END in a final state</td></tr>
+<tr><td>"Is word w accepted?"</td><td>Follow the path; must END in a final state</td></tr>{{X_ROWS}}
 </table>
 </div>
 <div class="card trap">
@@ -624,14 +625,17 @@ Step1: (D,…,I) (A) (B) (C)
 <p style="margin:6px 0">Tools to check yourself: <b>regexper.com</b> (RegEx → diagram) · <b>automatonsimulator.com</b></p>
 </div>
 <div class="card">
-<h3>Still to come (course outline)</h3>
-<p style="margin:2px 0">The outline announces 6 chapters; the slides in this folder cover the first part. Still coming: <b>Turing machine</b> (application of automata) and <b>applications of automata in AI</b>. Add their slides to <code>automata/</code> and this sheet can be extended.</p>
+{{X_STILL}}
 </div>
 </div>
 <footer>Made from the course slides (chapter1_regEx, chapter2_automata, chapter3_DFA) and the board photos of 04/11. Print: Ctrl+P → A4.</footer>
 """
 
 html = BODY
+for k, v in {"X_REGEX": X.REGEX_SIMPL, "X_TRACE": X.TRACE, "X_GLR": X.GLUSHKOV_RULES, "X_THOM": X.THOMPSON,
+             "X_NFADEF": X.NFA_DEF, "X_EPS": X.EPSILON, "X_EXTRAS": X.EXTRAS, "X_PREVIEW": X.PREVIEW,
+             "X_PRACTICE": X.PRACTICE, "X_ROWS": X.CHECKLIST_ROWS, "X_STILL": X.STILL_TO_COME}.items():
+    html = html.replace("{{" + k + "}}", v)
 for k, v in D.items():
     html = html.replace("{{" + k + "}}", v)
 missing = re.findall(r"\{\{(\w+)\}\}", html)
@@ -639,7 +643,7 @@ assert not missing, missing
 
 page = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Automata Cheat Sheet</title><style>{CSS}</style></head>
+<title>Automata Cheat Sheet</title><style>{CSS}{X.CSS}</style></head>
 <body><div class="wrap">{html}</div></body></html>"""
 import os
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
