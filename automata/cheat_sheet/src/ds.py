@@ -12,7 +12,7 @@ f.loop("1", "a"); f.loop("2", "b"); f.loop("3", "a,b"); f.edge("1", "2", "b"); f
 G["s6a"] = f.svg("6a")
 
 f = FA(460, 230); f.state("1", 40, 150, init="left"); f.state("2", 170, 150); f.state("3", 300, 50); f.state("4", 420, 150, final=True)
-f.edge("1", "2", "a"); f.loop("2", "a,c", "down"); f.edge("2", "3", "b", bend=14); f.edge("3", "2", "a", bend=14)
+f.edge("1", "2", "a"); f.loop("2", "a", "down"); f.edge("2", "3", "b", bend=14); f.edge("3", "2", "a", bend=14)
 f.loop("3", "b", "up"); f.edge("3", "4", "c", bend=14); f.edge("4", "3", "b", bend=14); f.edge("4", "2", "a, c", lo=-10)
 G["s6b"] = f.svg("6b")
 
@@ -112,6 +112,41 @@ f.state("A", 50, 70, init="left", final=True); f.state("B", 180, 70, final=True)
 f.loop("A", "a"); f.edge("A", "B", "b"); f.loop("B", "b"); f.edge("B", "C", "a"); f.loop("C", "a"); f.edge("C", "X", "b"); f.loop("X", "a,b")
 G["e9e"] = f.svg("DFA a*b*a*")
 
+# --- big exercise diagrams ---
+f = FA(500, 360)
+f.state("0", 50, 180, init="left"); f.state("10", 50, 45, final=True); f.state("7", 50, 320, final=True)
+f.state("1", 190, 45); f.state("2", 190, 130); f.state("4", 190, 225); f.state("8", 190, 310)
+f.state("3", 330, 130); f.state("5", 330, 225); f.state("9", 330, 310, final=True); f.state("6", 460, 225)
+f.edge("0", "10", "ε"); f.edge("0", "7", "b", lo=-10); f.edge("0", "1", "a"); f.edge("0", "2", "b", t=0.7)
+f.edge("0", "4", "b", t=0.7, lo=-10); f.edge("0", "8", "b", lo=-10, t=0.7)
+f.loop("1", "a", "up"); f.edge("2", "3", "a"); f.edge("3", "1", "a"); f.edge("4", "5", "b"); f.edge("5", "6", "a")
+f.edge("6", "1", "a", bend=80); f.edge("8", "9", "b")
+f.note(230, 355, "1, 3, 6: same exits as 0 (see table)")
+G["b_nfa"] = f.svg("Glushkov NFA")
+f = FA(580, 460)
+f.state("A", 50, 190, init="left", final=True); f.state("B", 210, 60, final=True); f.state("C", 210, 300, final=True)
+f.state("D", 380, 190, final=True); f.state("E", 380, 390, final=True); f.state("F", 540, 300, final=True); f.state("X", 540, 400, dead=True, label="∅")
+f.edge("A", "B", "a"); f.edge("A", "C", "b", lo=-10); f.loop("B", "a", "up"); f.edge("B", "C", "b")
+f.edge("C", "D", "a", bend=14); f.edge("D", "C", "b", bend=14); f.edge("D", "B", "a"); f.edge("C", "E", "b", lo=-10)
+f.edge("E", "F", "a"); f.edge("E", "X", "b"); f.edge("F", "B", "a", bend=90); f.edge("F", "C", "b", lo=-10, t=0.3); f.loop("X", "a,b", "down")
+G["b_dfa"] = f.svg("big DFA")
+f = FA(560, 160)
+f.state("P", 70, 90, init="left", final=True, rx=34, label="A,B,D,F"); f.state("C", 230, 90, final=True); f.state("E", 370, 90, final=True); f.state("X", 510, 90, dead=True, label="∅")
+f.loop("P", "a"); f.edge("P", "C", "b", bend=-12); f.edge("C", "P", "a", bend=-12); f.edge("C", "E", "b"); f.edge("E", "P", "a", bend=-60, lo=-10)
+f.edge("E", "X", "b"); f.loop("X", "a,b")
+G["b_min"] = f.svg("big minimal")
+f = FA(650, 340)
+f.state("A", 50, 170, init="left"); f.state("B", 175, 70); f.state("C", 175, 270)
+for s, x, y in [("D", 320, 70), ("E", 320, 270), ("F", 460, 70), ("G", 460, 270), ("H", 600, 120), ("I", 600, 230)]:
+    f.state(s, x, y, final=True)
+f.edge("A", "B", "a"); f.edge("A", "C", "b", lo=-10); f.edge("B", "C", "b", bend=14); f.edge("C", "B", "a", bend=14)
+f.edge("B", "D", "a"); f.edge("C", "E", "b", lo=-10); f.loop("D", "a", "up"); f.loop("E", "b", "down")
+f.edge("D", "F", "b", bend=-12); f.edge("F", "D", "a", bend=-12); f.edge("E", "G", "a", bend=12); f.edge("G", "E", "b", bend=12)
+f.edge("F", "H", "b"); f.edge("G", "I", "a", lo=-10); f.loop("H", "b", "up"); f.loop("I", "a", "down")
+f.edge("H", "I", "a", bend=14); f.edge("I", "H", "b", bend=14)
+G["s79_dfa"] = f.svg("slide 79 DFA")
+G["enfa"] = SD["enfa"]; G["edfa"] = SD["edfa"]
+
 CSS = r"""
 :root{--ink:#1f2a6b;--pink:#c2185b;--teal:#1a8fa3}
 *{box-sizing:border-box}
@@ -146,21 +181,17 @@ th{background:#fde8ef;color:var(--ink)} td.s{background:#fde8ef;font-weight:600}
 BODY = r"""
 <header>
 <h1>Automata — DS preparation</h1>
-<p>Dr-Ing Ines Baccouche · 9 exercises covering every chapter · built from her Tutorial 1 (series.pdf), her slides and the class board · solutions at the end</p>
+<p>Dr-Ing Ines Baccouche · 7 exercises covering every chapter · built from her Tutorial 1 (series.pdf), her slides and the class board · solutions at the end</p>
 </header>
 
 <h2>How to use this in the time you have</h2>
 <table class="plan">
 <tr><th>Order</th><th>Exercise</th><th>Covers</th><th>Time</th></tr>
-<tr><td>1 ★</td><td>E5 — (a|b)*abb</td><td>Glushkov → NFA → DFA → minimal (3 chapters in 1)</td><td>20 min</td></tr>
-<tr><td>2 ★</td><td>E4 — aba / bab / bbb</td><td>explain a language, Glushkov, DFA, complement</td><td>20 min</td></tr>
-<tr><td>3 ★</td><td>E7 — read 4 automata</td><td>automaton → language, deterministic / complete</td><td>15 min</td></tr>
-<tr><td>4 ★</td><td>E8 — minimise</td><td>unreachable state, Step0/Step1…, fusion</td><td>15 min</td></tr>
-<tr><td>5 ★</td><td>E9 — NFA → DFA (+ ε)</td><td>subset construction, ε-closure, complement</td><td>15 min</td></tr>
-<tr><td>6</td><td>E3 — at least / at most / even</td><td>language → RegEx + DFA</td><td>10 min</td></tr>
-<tr><td>7</td><td>E2 — true or false</td><td>RegEx equalities, counter-examples</td><td>10 min</td></tr>
-<tr><td>8</td><td>E6 — table → automaton</td><td>drawing, traces, properties</td><td>10 min</td></tr>
-<tr><td>9</td><td>E1 — numbers</td><td>RegEx notation \d, {n}</td><td>5 min</td></tr>
+<tr><td>1–3</td><td>E1, E2, E3</td><td>RegEx notation, true/false, language → RegEx + DFA</td><td>done ✔</td></tr>
+<tr><td>4 ★</td><td>E4 — aba / bab / bbb</td><td>explain a language, Glushkov, DFA, complement</td><td>20 min</td></tr>
+<tr><td>5 ★</td><td>E5 — read 4 automata</td><td>automaton → language, deterministic / complete</td><td>15 min</td></tr>
+<tr><td>6 ★★</td><td>E6 — (a|ba|bba)*(b|bb|ε)</td><td>the big one: Glushkov → NFA with ε column → DFA → minimisation → drawings, traces</td><td>35 min</td></tr>
+<tr><td>7 ★★</td><td>E7 — slide 79 (ε-NFA)</td><td>NFA table with ε column → DFA table → drawing → minimal DFA</td><td>25 min</td></tr>
 </table>
 <div class="tip">★ = do these first: they are the long DS-style questions. Work on paper, in her format (tables, Step0…, δ'([q0],a) = …). When stuck, open the cheat sheet section given in each exercise, then continue. Check the solution only after you finish the exercise.</div>
 
@@ -192,55 +223,36 @@ For each language, explain it in words and draw an automaton that recognises it 
 <li>L = { u ∈ {a,b}* | u contains the factor bbb };</li><li>L = { u ∈ {a,b}* | u does not contain the factor bbb }. Also give its RegEx.</li></ol>
 </div>
 
-<div class="ex"><h3>E5 — The complete chain: (a|b)*abb (Ch2 + Ch3)</h3>
-<div class="meta"><span class="badge must">★ DS</span><span class="badge src">Tutorial 1 · Ex 3</span> Cheat sheet: Glushkov, NFA→DFA, Minimisation</div>
-<ol><li>Build the Glushkov automaton of <code>(a|b)*abb</code> (numbering, successors table, F, drawing).</li>
-<li>Is it deterministic? Justify.</li>
-<li>Convert it to a DFA (subset construction).</li>
-<li>Is your DFA minimal? Prove it with the Step method.</li>
-<li>Trace <b>aabb</b> and <b>abab</b> on the DFA.</li></ol>
-</div>
-
-<div class="ex"><h3>E6 — From a table to an automaton (Ch2)</h3>
-<div class="meta"><span class="badge src">Tutorial 1 · Ex 5</span> Cheat sheet: Ch2 §1, §5</div>
-<div class="row"><div>
-<table><tr><th></th><th>a</th><th>b</th></tr>
-<tr><td class="s">0</td><td>1</td><td>0</td></tr><tr><td class="s">1</td><td>0</td><td>2</td></tr>
-<tr><td class="s">2</td><td>3</td><td>0</td></tr><tr><td class="s">3</td><td>1</td><td>2</td></tr></table></div>
-<div><ol><li>Draw the automaton (0 initial, 2 final).</li><li>Is it complete? Unambiguous? Deterministic?</li>
-<li>Are <b>ab</b>, <b>aab</b>, <b>abab</b>, <b>abb</b> accepted? Write the traces.</li><li>Is it minimal? (Step method)</li></ol></div></div>
-</div>
-
-<div class="ex"><h3>E7 — Give the language of each automaton (Ch2 + Ch3)</h3>
+<div class="ex"><h3>E5 — Give the language of each automaton (Ch2 + Ch3)</h3>
 <div class="meta"><span class="badge must">★ DS</span><span class="badge src">Tutorial 1 · Ex 6</span> Cheat sheet: Ch3 §1, Extra A (Arden)</div>
 For each automaton: describe the language in words, give a RegEx, and say if it is deterministic and complete.
 <p style="margin:6px 0 0"><b>a)</b></p><div class="fig">{{s6a}}</div>
 <p style="margin:6px 0 0"><b>b)</b> alphabet {a,b,c}</p><div class="fig">{{s6b}}</div>
-<p style="font-size:12px;color:#5b6275;margin:0">The loop label on state 2 is unreadable on the scan; a,c is the reading that makes the automaton consistent.</p>
 <p style="margin:6px 0 0"><b>c)</b></p><div class="fig">{{s6c}}</div>
 <p style="margin:6px 0 0"><b>d)</b></p><div class="fig">{{s6d}}</div>
 <p style="margin:6px 0 0"><b>e)</b> What is the link between c) and d)?</p>
 </div>
 
-<div class="ex"><h3>E8 — Minimise (Ch2)</h3>
-<div class="meta"><span class="badge must">★ DS</span><span class="badge src">slides 60–61 style</span> Cheat sheet: Minimisation</div>
-<div class="row"><div>
-<table><tr><th></th><th>a</th><th>b</th></tr>
-<tr><td class="s">→1</td><td>2</td><td>5</td></tr><tr><td class="s">2</td><td>6</td><td>3</td></tr>
-<tr><td class="s">*3</td><td>6</td><td>5</td></tr><tr><td class="s">4</td><td>2</td><td>7</td></tr>
-<tr><td class="s">5</td><td>6</td><td>1</td></tr><tr><td class="s">6</td><td>2</td><td>7</td></tr>
-<tr><td class="s">*7</td><td>2</td><td>1</td></tr></table></div>
-<div><ol><li>Remove the unreachable states.</li><li>Minimise (write every Step).</li><li>Draw the minimal automaton.</li><li>Give the language (words + RegEx).</li></ol></div></div>
+<div class="ex"><h3>E6 — The big one: (a | ba | bba)* (b | bb | ε)</h3>
+<div class="meta"><span class="badge must">★★ DS</span><span class="badge src">slide 61 + class board</span> Cheat sheet: Glushkov, NFA→DFA, Minimisation</div>
+<ol>
+<li><b>Glushkov:</b> number the letters (ε gets its own number, like on the board), give start letters, end letters and the successors table.</li>
+<li><b>NFA:</b> write the transition table with columns <b>a | b | ε</b>. Is it deterministic? Why?</li>
+<li><b>NFA → DFA:</b> convert it (start = 0 + its ε cell). Give the DFA table and draw it.</li>
+<li><b>Minimise</b> the DFA (Step0, Step1…) and draw the minimal automaton.</li>
+<li>Trace <b>abbab</b> and <b>abbba</b> on the minimal DFA. What is the language, in one sentence?</li>
+</ol>
 </div>
 
-<div class="ex"><h3>E9 — NFA → DFA, ε, complement (Ch3)</h3>
-<div class="meta"><span class="badge must">★ DS</span><span class="badge src">slides 75–79 style</span> Cheat sheet: NFA→DFA, ε-closure</div>
-<div class="fig">{{s9}}</div>
-<ol><li>Why is this automaton an NFA? Give its transition table.</li>
-<li>Convert it to a DFA. What is the language?</li>
-<li>Give an automaton for the words that do <b>not</b> end with aba.</li></ol>
-<p style="margin:6px 0 0"><b>4.</b> Same question 2 for this ε-NFA (compute the ε-closures first):</p>
-<div class="fig">{{s9e}}</div>
+<div class="ex"><h3>E7 — Slide 79: create the corresponding DFA (NFA → DFA)</h3>
+<div class="meta"><span class="badge must">★★ DS</span><span class="badge src">slide 79 (class photo)</span> Cheat sheet: NFA→DFA</div>
+<div class="fig">{{enfa}}</div>
+<ol>
+<li>Write the NFA table with columns <b>a | b | ε</b>. First row: <span class="m">→0 | – | – | {1,4}</span></li>
+<li>Convert it to a DFA (start = 0 + its ε cell). Give the DFA table, mark the new states and the finals.</li>
+<li>Draw the DFA.</li>
+<li>Bonus: minimise it. What is the language?</li>
+</ol>
 </div>
 
 <h2 class="pb">Solutions</h2>
@@ -280,80 +292,133 @@ Glushkov: <span class="m">(a1 b2 a3)* | (b4 a5 b6)*</span>. Nullable ⇒ <b>0 �
 </div>
 
 <div class="ex sol"><h3>E5</h3>
-<p><b>1.</b> <span class="m">(a1 | b2)* a3 b4 b5</span> · First = {a1, b2, a3} · Last = {b5} · not nullable ⇒ <b>F = {5}</b></p>
-<div class="row"><div>
-<table><tr><th></th><th>successors</th></tr>
-<tr><td class="s">ɸ</td><td>a1, b2, a3</td></tr><tr><td class="s">a1</td><td>a1, b2, a3</td></tr>
-<tr><td class="s">b2</td><td>a1, b2, a3</td></tr><tr><td class="s">a3</td><td>b4</td></tr>
-<tr><td class="s">b4</td><td>b5</td></tr><tr class="box"><td class="s">b5</td><td>ɸ</td></tr></table></div>
-<div><div class="fig">{{e5g}}</div></div></div>
-<p><b>2.</b> Not deterministic: from 0 (and 1, 2), reading a goes to <b>1 and 3</b> ⇒ ambiguity ⇒ NFA. Also 3, 4 have no a-transition.</p>
-<p><b>3.</b> Rows 0, 1, 2 are identical ⇒ call them S. Subset construction:</p>
-<div class="steps">δ'([S],a)   = [S,3]  ← new        δ'([S],b)   = [S]
-δ'([S,3],a) = [S,3]               δ'([S,3],b) = [S,4]  ← new
-δ'([S,4],a) = [S,3]               δ'([S,4],b) = [S,5]  ← new
-δ'([S,5],a) = [S,3]               δ'([S,5],b) = [S]
-A = [S]   B = [S,3]   C = [S,4]   *D = [S,5]  (contains 5)</div>
-<div class="fig">{{e5d}}</div>
-<p><b>4.</b> Step0: (D) (A,B,C) · Step1: C –b→ D final, A and B –b→ non-final ⇒ (D) (C) (A,B) · Step2: B –b→ C, A –b→ A ⇒ (D) (C) (B) (A). All separated ⇒ <span class="ans">minimal (4 states)</span>.</p>
-<p><b>5.</b> aabb: A –a→ B –a→ B –b→ C –b→ D ✔ accepted · abab: A –a→ B –b→ C –a→ B –b→ C ✘ (C not final).</p>
-</div>
-
-<div class="ex sol"><h3>E6</h3>
-<div class="fig">{{e6}}</div>
-<ol><li>See drawing (0 loops on b).</li>
-<li>Every state has exactly one a and one b ⇒ <b>complete</b> and <b>unambiguous</b> ⇒ <b>deterministic</b>.</li>
-<li>ab: 0→1→2 ✔ · aab: 0→1→0→0 ✘ · abab: 0→1→2→3→2 ✔ · abb: 0→1→2→0 ✘</li>
-<li>Step0: (2) (0,1,3) · Step1: 1 –b→ 2 and 3 –b→ 2 (final), 0 –b→ 0 ⇒ (2) (0) (1,3) · Step2: 1 –a→ 0, 3 –a→ 1: different groups ⇒ (2) (0) (1) (3) ⇒ <span class="ans">already minimal</span>.</li></ol>
-</div>
-
-<div class="ex sol"><h3>E7</h3>
 <p><b>a)</b> Words over {a,b} that contain <b>ba</b>: <code>(a|b)*ba(a|b)*</code> = <code>a*bb*a(a|b)*</code>. Deterministic and complete.</p>
-<p><b>b)</b> Words over {a,b,c} that <b>start with a and end with bc</b>: <code>a(a|b|c)*bc</code>. State 3 = last letter b, 4 = ends with bc. Deterministic, <b>not complete</b> (state 1 has no b, c ⇒ add a dead state).</p>
+<p><b>b)</b> What each state remembers: 2 = last letter a (or "bcc"), 3 = last letter b, 4 = ends with "bc". A c is only possible from 3 or 4, so <b>every c comes right after b or after "bc"</b>, never after a, and at most 2 c in a row.<br>
+Language: words over {a,b,c} that <b>start with a</b>, <b>end with bc</b>, where every block of c's follows a b and has length 1 or 2:
+<code>a(a|b|bc|bcc)*bc</code> = <code>a(a|b(ε|c|cc))*bc</code>. Words: abc, aabc, abbc, abcbc, abccbc · ✘ acbc (c after a), abccc.<br>
+Unambiguous, but <b>not complete</b> (1 has no b, c; 2 has no c) ⇒ by her definition it is <b>not a DFA</b> until you add a dead state for the missing arrows.</p>
 <p><b>c)</b> Number of b <b>different from 2</b> (0, 1, or at least 3): <code>a* | a*ba* | a*ba*ba*b(a|b)*</code>. Deterministic and complete.</p>
 <p><b>d)</b> <b>Exactly two b</b>: <code>a*ba*ba*</code>. State 4 is a dead state. Deterministic and complete.</p>
 <p><b>e)</b> Same automaton, final and non-final states flipped ⇒ d) is the <b>complement</b> of c).</p>
 <div class="tip">Method for any automaton: find what each state "remembers" (number of b's, last letter…), then follow start → final paths: loop = *, choice = |.</div>
 </div>
 
-<div class="ex sol"><h3>E8</h3>
-<p><b>1.</b> Nothing goes to 4 ⇒ 4 is unreachable ⇒ delete it.</p>
-<div class="steps">Step0: (3,7) (1,2,5,6)
-Step1: 2 –b→ 3 and 6 –b→ 7 (final); 1 –b→ 5, 5 –b→ 1 (non-final)
-       ⇒ (3,7) (2,6) (1,5)
-Step2: 1: a→2, b→5   5: a→6, b→1   ⇒ same groups
-       2: a→6, b→3   6: a→2, b→7   ⇒ same groups
-       3: a→6, b→5   7: a→2, b→1   ⇒ same groups
-       stable ⇒ fusion: {1,5} {2,6} {3,7}</div>
-<div class="fig">{{e8}}</div>
-<p><b>4.</b> "1,5" = nothing useful, "2,6" = last letter a, "3,7" = ends with ab. Language: words ending with <b>ab</b>: <code>(a|b)*ab</code>.</p>
+
+<div class="ex sol"><h3>E6</h3>
+<p><b>1. Glushkov</b> — <span class="m">(a1 | b2 a3 | b4 b5 a6)* (b7 | b8 b9 | ε10)</span> · states 0 … 10</p>
+<div class="row"><div>
+<table><tr><th></th><th>successors</th></tr>
+<tr><td class="s">ɸ</td><td>a1 b2 b4 b7 b8 ε10</td></tr>
+<tr><td class="s">a1</td><td>a1 b2 b4 b7 b8 ε10</td></tr>
+<tr><td class="s">b2</td><td>a3</td></tr>
+<tr><td class="s">a3</td><td>a1 b2 b4 b7 b8 ε10</td></tr>
+<tr><td class="s">b4</td><td>b5</td></tr>
+<tr><td class="s">b5</td><td>a6</td></tr>
+<tr><td class="s">a6</td><td>a1 b2 b4 b7 b8 ε10</td></tr>
+<tr class="box"><td class="s">b7</td><td>ɸ</td></tr>
+<tr><td class="s">b8</td><td>b9</td></tr>
+<tr class="box"><td class="s">b9</td><td>ɸ</td></tr>
+<tr class="box"><td class="s">ε10</td><td>ɸ</td></tr>
+</table></div>
+<div>
+<ul>
+<li><b>Start letters</b> = a1, b2, b4 (start of a block) and b7, b8, ε10 (the star can be empty).</li>
+<li><b>End letters</b> = b7, b9, ε10 ⇒ <b>F = {7, 9, 10}</b>.</li>
+<li>a1, a3, a6 end a block of the star ⇒ they loop back to a1, b2, b4 <b>or</b> leave the star to b7, b8, ε10.</li>
+</ul>
+<p><b>2. NFA table</b> (rows 0, 1, 3, 6 are identical):</p>
+<table><tr><th>δ</th><th>a</th><th>b</th><th>ε</th></tr>
+<tr><td class="s">→0</td><td>1</td><td>{2,4,7,8}</td><td>10</td></tr>
+<tr><td class="s">1</td><td>1</td><td>{2,4,7,8}</td><td>10</td></tr>
+<tr><td class="s">2</td><td>3</td><td>–</td><td>–</td></tr>
+<tr><td class="s">3</td><td>1</td><td>{2,4,7,8}</td><td>10</td></tr>
+<tr><td class="s">4</td><td>–</td><td>5</td><td>–</td></tr>
+<tr><td class="s">5</td><td>6</td><td>–</td><td>–</td></tr>
+<tr><td class="s">6</td><td>1</td><td>{2,4,7,8}</td><td>10</td></tr>
+<tr><td class="s">*7</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td class="s">8</td><td>–</td><td>9</td><td>–</td></tr>
+<tr><td class="s">*9</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td class="s">*10</td><td>–</td><td>–</td><td>–</td></tr>
+</table>
+<p>Not deterministic: b goes to 4 states at once, there are ε-arrows, and many cells are empty.</p>
+</div></div>
+<div class="fig">{{b_nfa}}</div>
+<p class="cap" style="text-align:center;font-size:12px;color:#5b6275">Drawing: all exits of 0 are drawn; 1, 3 and 6 have <b>the same exits as 0</b> (a→1, b→2,4,7,8, ε→10) — see the table.</p>
+
+<p><b>3. NFA → DFA.</b> Start = 0 + its ε cell = <b>[0,10]</b>. After each move, add the ε cell of the states you land on (1, 3, 6 → add 10).</p>
+<div class="steps">δ'([0,10],a)    = {1}       + ε of 1 → [1,10]      ← new
+δ'([0,10],b)    = {2,4,7,8}             → [2,4,7,8]   ← new
+δ'([1,10],a)    = {1}       + 10        → [1,10]
+δ'([1,10],b)    = {2,4,7,8}             → [2,4,7,8]
+δ'([2,4,7,8],a) = 2→3       + ε of 3 → [3,10]      ← new
+δ'([2,4,7,8],b) = 4→5, 8→9              → [5,9]       ← new
+δ'([3,10],a)    = {1} + 10  → [1,10]    δ'([3,10],b) = [2,4,7,8]
+δ'([5,9],a)     = 5→6       + ε of 6 → [6,10]      ← new
+δ'([5,9],b)     = nothing               → ∅ (dead)
+δ'([6,10],a)    = [1,10]                δ'([6,10],b) = [2,4,7,8]</div>
+<div class="row"><div>
+<table><tr><th>δ'</th><th>a</th><th>b</th></tr>
+<tr><td class="s">→*A = [0,10]</td><td>B</td><td>C</td></tr>
+<tr><td class="s">*B = [1,10]</td><td>B</td><td>C</td></tr>
+<tr><td class="s">*C = [2,4,7,8]</td><td>D</td><td>E</td></tr>
+<tr><td class="s">*D = [3,10]</td><td>B</td><td>C</td></tr>
+<tr><td class="s">*E = [5,9]</td><td>F</td><td>∅</td></tr>
+<tr><td class="s">*F = [6,10]</td><td>B</td><td>C</td></tr>
+<tr><td class="s">∅</td><td>∅</td><td>∅</td></tr>
+</table>
+<p style="font-size:12.5px">Final = contains 7, 9 or 10 ⇒ every state except ∅.</p></div></div>
+<div class="fig">{{b_dfa}}</div>
+
+<p><b>4. Minimisation</b></p>
+<div class="steps">Step0: (A,B,C,D,E,F) (∅)                      finals / non-finals
+Step1: E –b→ ∅, the others –b→ a final  ⇒ (A,B,C,D,F) (E) (∅)
+Step2: C –b→ E, A,B,D,F –b→ C            ⇒ (A,B,D,F) (C) (E) (∅)
+Step3: A,B,D,F: a → (A,B,D,F), b → (C)   ⇒ same ⇒ stable
+fusion: {A,B,D,F} = "A,B,D,F"   C   E   ∅</div>
+<div class="row"><div>
+<table><tr><th>δ</th><th>a</th><th>b</th></tr>
+<tr><td class="s">→*(A,B,D,F)</td><td>(A,B,D,F)</td><td>C</td></tr>
+<tr><td class="s">*C</td><td>(A,B,D,F)</td><td>E</td></tr>
+<tr><td class="s">*E</td><td>(A,B,D,F)</td><td>∅</td></tr>
+<tr><td class="s">∅</td><td>∅</td><td>∅</td></tr>
+</table></div></div>
+<div class="fig">{{b_min}}</div>
+<p>Meaning of each state: "A,B,D,F" = 0 b's in a row · C = 1 b · E = 2 b's in a row · ∅ = bbb was read.</p>
+<p><b>5.</b> abbab: (A,B,D,F) –a→ (A,B,D,F) –b→ C –b→ E –a→ (A,B,D,F) –b→ C ✔ · abbba: … –b→ C –b→ E –b→ ∅ ✘</p>
+<p><b>Language:</b> all words over {a,b} that <b>never contain bbb</b> — the same answer as E4.4!</p>
+<div class="tip">On the board she minimised the Glushkov table directly (groups {7,9,10} {0,1,3,6} {8} {2} {4} {5}). If the question says "minimise" right after Glushkov, write her version (in the cheat sheet). If it says "DFA, then minimise", write this one.</div>
 </div>
 
-<div class="ex sol"><h3>E9</h3>
+<div class="ex sol"><h3>E7</h3>
 <div class="row"><div>
-<p><b>1.</b> From q0, reading a goes to q0 <b>and</b> q1 ⇒ ambiguous ⇒ NFA.</p>
-<table><tr><th></th><th>a</th><th>b</th></tr>
-<tr><td class="s">→q0</td><td>{q0,q1}</td><td>q0</td></tr><tr><td class="s">q1</td><td>-</td><td>q2</td></tr>
-<tr><td class="s">q2</td><td>q3</td><td>-</td></tr><tr><td class="s">*q3</td><td>-</td><td>-</td></tr></table></div>
-<div><p><b>2.</b></p><div class="steps">δ'([q0],a) = [q0,q1] ← new
-δ'([q0],b) = [q0]
-δ'([q0,q1],a) = [q0,q1]
-δ'([q0,q1],b) = [q0,q2] ← new
-δ'([q0,q2],a) = [q0,q1,q3] ← new
-δ'([q0,q2],b) = [q0]
-δ'([q0,q1,q3],a) = [q0,q1]
-δ'([q0,q1,q3],b) = [q0,q2]
-A=[q0] B=[q0,q1] C=[q0,q2] *D=[q0,q1,q3]</div></div></div>
-<div class="fig">{{e9}}</div>
-<p>Language: words ending with <b>aba</b>: <code>(a|b)*aba</code>.</p>
-<p><b>3.</b> The DFA is complete ⇒ flip: A, B, C final, D non-final. (Never flip the NFA directly!)</p>
-<p><b>4.</b> ε-closure(q0) = {q0,q1,q2} · ε-closure(q1) = {q1,q2} · ε-closure(q2) = {q2}</p>
-<div class="steps">A = {q0,q1,q2}* : a → {q0,q2} → closure {q0,q1,q2} = A
-                b → {q1}    → closure {q1,q2} = B*
-B = {q1,q2}*    : a → {q2} = C*      b → {q1} → {q1,q2} = B
-C = {q2}*       : a → C              b → ϕ (dead)</div>
-<div class="fig">{{e9e}}</div>
-<p>All of A, B, C contain q2 ⇒ final. Language: <code>a*b*a*</code>.</p>
+<p><b>1. NFA table</b></p>
+<table><tr><th>δ</th><th>a</th><th>b</th><th>ε</th></tr>
+<tr><td class="s">→0</td><td>–</td><td>–</td><td>{1,4}</td></tr>
+<tr><td class="s">1</td><td>{1,2}</td><td>1</td><td>–</td></tr>
+<tr><td class="s">2</td><td>3</td><td>–</td><td>–</td></tr>
+<tr><td class="s">*3</td><td>3</td><td>3</td><td>–</td></tr>
+<tr><td class="s">4</td><td>4</td><td>{4,5}</td><td>–</td></tr>
+<tr><td class="s">5</td><td>–</td><td>6</td><td>–</td></tr>
+<tr><td class="s">*6</td><td>6</td><td>6</td><td>–</td></tr>
+</table></div>
+<div><p><b>2. DFA table</b> — start = 0 + its ε cell = <b>[0,1,4]</b></p>
+<table><tr><th>δ'</th><th>a</th><th>b</th></tr>
+<tr><td class="s">→A = [0,1,4]</td><td>[1,2,4] = B ← new</td><td>[1,4,5] = C ← new</td></tr>
+<tr><td class="s">B = [1,2,4]</td><td>[1,2,3,4] = D ← new</td><td>C</td></tr>
+<tr><td class="s">C = [1,4,5]</td><td>B</td><td>[1,4,5,6] = E ← new</td></tr>
+<tr><td class="s">*D = [1,2,3,4]</td><td>D</td><td>[1,3,4,5] = F ← new</td></tr>
+<tr><td class="s">*E = [1,4,5,6]</td><td>[1,2,4,6] = G ← new</td><td>E</td></tr>
+<tr><td class="s">*F = [1,3,4,5]</td><td>D</td><td>[1,3,4,5,6] = H ← new</td></tr>
+<tr><td class="s">*G = [1,2,4,6]</td><td>[1,2,3,4,6] = I ← new</td><td>E</td></tr>
+<tr><td class="s">*H = [1,3,4,5,6]</td><td>I</td><td>H</td></tr>
+<tr><td class="s">*I = [1,2,3,4,6]</td><td>I</td><td>H</td></tr>
+</table>
+<p style="font-size:12.5px">Example cell: B with a → 1→{1,2}, 2→3, 4→4 ⇒ [1,2,3,4]. Final = contains 3 or 6.</p></div></div>
+<p><b>3. Drawing</b></p>
+<div class="fig">{{s79_dfa}}</div>
+<p><b>4. Minimal DFA</b>: Step0: (D,E,F,G,H,I) (A,B,C) · Step1: B –a→ final, C –b→ final, A never ⇒ (D…I) (A) (B) (C) · D…I only go to D…I ⇒ fusion into one final state, drawn as "F" below (= D, E, F, G, H, I together).</p>
+<div class="fig">{{edfa}}</div>
+<p>A = start · B = last letter a · C = last letter b · F = found aa or bb. <b>Language: words that contain aa or bb</b> = <code>(a|b)*(aa|bb)(a|b)*</code>.</p>
 </div>
 """
 
