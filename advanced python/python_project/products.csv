@@ -1,0 +1,40 @@
+product_id,product_name,category,unit_cost,list_price
+P001,Wireless Earbuds,Electronics,45.0,89.0
+P002,Smartphone Case,Electronics,4.0,15.0
+P003,Power Bank 10000mAh,Electronics,18.0,39.0
+P004,Bluetooth Speaker,Electronics,25.0,59.0
+P005,USB-C Cable,Electronics,2.0,9.0
+P006,Smartwatch,Electronics,60.0,129.0
+P007,Webcam HD,Electronics,22.0,49.0
+P008,Coffee Maker,Home,35.0,79.0
+P009,Olive Oil Dispenser,Home,6.0,19.0
+P010,LED Desk Lamp,Home,12.0,29.0
+P011,Bed Sheet Set,Home,20.0,55.0
+P012,Storage Boxes x3,Home,9.0,25.0
+P013,Air Fryer,Home,70.0,149.0
+P014,Kitchen Knife Set,Home,15.0,45.0
+P015,Cotton T-Shirt,Fashion,7.0,25.0
+P016,Denim Jacket,Fashion,35.0,99.0
+P017,Running Shoes,Fashion,40.0,109.0
+P018,Leather Wallet,Fashion,12.0,39.0
+P019,Winter Scarf,Fashion,6.0,22.0
+P020,Sunglasses,Fashion,10.0,35.0
+P021,Backpack,Fashion,18.0,55.0
+P022,Argan Oil 50ml,Beauty,8.0,24.0
+P023,Face Cream,Beauty,10.0,29.0
+P024,Perfume 50ml,Beauty,25.0,79.0
+P025,Hair Dryer,Beauty,20.0,49.0
+P026,Makeup Kit,Beauty,15.0,45.0
+P027,Shampoo 400ml,Beauty,3.0,12.0
+P028,Yoga Mat,Sports,8.0,25.0
+P029,Dumbbells 2x5kg,Sports,14.0,39.0
+P030,Football,Sports,9.0,29.0
+P031,Water Bottle,Sports,3.0,12.0
+P032,Resistance Bands,Sports,5.0,19.0
+P033,Jump Rope,Sports,2.0,9.0
+P034,Python Handbook,Books,15.0,45.0
+P035,Data Science Guide,Books,18.0,52.0
+P036,Novel (Arabic),Books,5.0,18.0
+P037,Cookbook,Books,8.0,28.0
+P038,Kids Story Book,Books,3.0,12.0
+P039,Language Course,Books,10.0,35.0
