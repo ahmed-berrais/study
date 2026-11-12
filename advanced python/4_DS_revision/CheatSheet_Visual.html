@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python DS Cheat Sheet</title>
+<style>
+:root{
+  --th:#6b3fa0; --th-bg:#f3ecfb;
+  --py:#1f5fae; --py-bg:#e9f1fc;
+  --np:#c8640a; --np-bg:#fdf0e3;
+  --pd:#1d7a46; --pd-bg:#e6f5ec;
+  --tr:#b3261e; --tr-bg:#fdecea;
+  --ink:#1b1f24; --mut:#5b6470; --line:#d5dbe3; --code:#f5f7fa;
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;padding:8px 16px;background:#fff;color:var(--ink);font:8.6pt/1.32 "Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--ink);padding-bottom:4px;margin-bottom:6px;gap:10px;flex-wrap:wrap}
+.top h1{margin:0;font-size:17pt;letter-spacing:.3px}
+.legend span{display:inline-block;padding:1px 7px;border-radius:9px;color:#fff;font-weight:700;font-size:8pt;margin-left:3px}
+.cols{column-count:3;column-gap:9px}
+.card{break-inside:avoid;border:1px solid var(--line);border-top:5px solid var(--c);border-radius:6px;padding:5px 7px 6px;margin:0 0 8px;background:#fff}
+.card h3{margin:0 0 4px;font-size:10pt;color:var(--c);display:flex;align-items:center;gap:5px}
+.n{background:var(--c);color:#fff;border-radius:50%;min-width:19px;height:19px;font-size:8pt;display:inline-flex;align-items:center;justify-content:center;font-weight:700}
+.th{--c:var(--th);--bg:var(--th-bg)} .py{--c:var(--py);--bg:var(--py-bg)} .np{--c:var(--np);--bg:var(--np-bg)} .pd{--c:var(--pd);--bg:var(--pd-bg)} .tr{--c:var(--tr);--bg:var(--tr-bg)}
+pre{margin:3px 0;padding:3px 5px;background:var(--code);border-left:3px solid var(--c);border-radius:3px;font:7.5pt/1.28 "DejaVu Sans Mono",Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+code{font:7.9pt "DejaVu Sans Mono",Consolas,monospace;background:var(--code);padding:0 2px;border-radius:2px}
+.r{color:#1d7a46;font-weight:700} .x{color:#b3261e;font-weight:700} .m{color:var(--mut)}
+.brain{background:var(--bg);border:1px dashed var(--c);border-radius:5px;padding:3px 6px;margin:4px 0;font-weight:600}
+.brain::before{content:"🧠 ";}
+table{border-collapse:collapse;width:100%;margin:3px 0;font-size:7.9pt}
+th,td{border:1px solid var(--line);padding:2px 4px;text-align:left;vertical-align:top}
+th{background:var(--bg)}
+.flow{display:flex;flex-wrap:wrap;gap:3px;align-items:center;margin:3px 0}
+.flow b{background:var(--c);color:#fff;padding:2px 6px;border-radius:4px;font-size:7.9pt}
+.flow i{color:var(--c);font-style:normal;font-weight:700}
+.grid{border-collapse:separate;border-spacing:2px;width:auto;margin:3px auto}
+.grid td{border:1px solid var(--c);background:var(--bg);text-align:center;min-width:22px;font:7.9pt "DejaVu Sans Mono",monospace;padding:2px 3px}
+.grid td.res{background:#fff;border:2px solid var(--c);font-weight:700}
+.grid td.lab{border:none;background:none;color:var(--mut);font-family:inherit;font-size:7.4pt}
+.grid td.hl{background:var(--c);color:#fff}
+.grid td.off{background:#fff;color:#aab}
+.xr{display:grid;grid-template-columns:1fr 1fr;gap:2px 6px;font:7.8pt "DejaVu Sans Mono",monospace}
+.xr div:nth-child(odd){color:#b3261e} .xr div:nth-child(even){color:#1d7a46}
+.chips span{display:inline-block;border:1px solid var(--c);border-radius:10px;padding:0 6px;margin:1px;background:var(--bg);font:7.9pt "DejaVu Sans Mono",monospace}
+.tree{display:grid;grid-template-columns:auto 1fr;gap:2px 5px;align-items:center}
+.tree .q{background:var(--bg);border:1px solid var(--c);border-radius:4px;padding:1px 5px;font-weight:600}
+.big{font-size:9.5pt;font-weight:700}
+h2.sec{margin:2px 0 6px;break-after:avoid;padding:3px 8px;color:#fff;background:var(--c);border-radius:4px;font-size:11pt}
+.map td:first-child{width:62%}
+@media (max-width:900px){.cols{column-count:2}}
+@media (max-width:600px){.cols{column-count:1} body{font-size:10pt} pre,code,table{font-size:9pt}}
+@page{size:A4 landscape;margin:7mm}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>🐍 Python for Data Science — visual cheat sheet</h1>
+  <div class="legend"><span style="background:var(--th)">Theory</span><span style="background:var(--py)">Python</span><span style="background:var(--np)">NumPy</span><span style="background:var(--pd)">pandas</span><span style="background:var(--tr)">Traps</span> &nbsp;<b>→</b> = result &nbsp; 💥 = error</div>
+</div>
+
+<!-- THEORY -->
+<h2 class="sec th">THEORY (paper part)</h2>
+<div class="cols">
+
+<div class="card th"><h3><span class="n">1</span>Software lifecycle = 6 phases</h3>
+<div class="flow"><b>Requirements</b><i>→</i><b>Design</b><i>→</i><b>Implementation</b><i>→</i><b>Testing</b><i>→</i><b>Deployment</b><i>→</i><b>Maintenance</b></div>
+<table><tr><td>What should it do?</td><td>How built?</td><td>Write code</td><td>Works?</td><td>Release</td><td>Fix / add</td></tr></table>
+<div class="brain">"<b>R</b>ami <b>D</b>rinks <b>I</b>ced <b>T</b>ea <b>D</b>uring <b>M</b>atches" → R D I T D M</div>
+Software = <b>instructions</b> telling the computer what to do. <b>Application</b> (Instagram, Word, games) vs <b>System</b> (Windows, Android).
+</div>
+
+<div class="card th"><h3><span class="n">2</span>Information System = 5 components</h3>
+<table><tr><th>🖥 Hardware</th><th>💾 Software</th><th>📊 Data</th><th>👥 People</th><th>🔁 Process</th></tr>
+<tr><td>servers</td><td>website</td><td>grades</td><td>students, staff</td><td>how grades are entered</td></tr></table>
+<div class="brain">"<b>H</b>appy <b>S</b>tudents <b>D</b>o <b>P</b>ython <b>P</b>rojects" → H S D P P</div>
+IS ≠ just software. Food delivery app → <i>Data</i> = order, address, menu prices.
+</div>
+
+<div class="card th"><h3><span class="n">3</span>Data science + why Python</h3>
+<div class="flow"><b>Collect</b><i>→</i><b>Store</b><i>→</i><b>Analyse 🐍</b><i>→</i><b>Decide</b></div>
+<div class="brain">"<b>C</b>ats <b>S</b>leep <b>A</b>fter <b>D</b>inner" — Python = step 3</div>
+Python = <b>interpreted</b>: the interpreter reads <b>line by line, top → bottom</b>, no compile step → notebooks are instant. Readable, versatile (data, web, automation, AI, games), huge community. Java: 4 lines to print · Python: <code>print("Hello!")</code>.
+</div>
+
+<!-- ===================== PYTHON ===================== -->
+</div>
+<h2 class="sec py">PYTHON BASICS</h2>
+<div class="cols">
+
+<div class="card py"><h3><span class="n">4</span>4 types + conversions</h3>
+<table><tr><th>int</th><th>float</th><th>str</th><th>bool</th></tr><tr><td>20, -5</td><td>19.9, 3.0</td><td>"Amine"</td><td>True False</td></tr></table>
+<pre>type(7)        <span class="r">→ &lt;class 'int'&gt;</span>
+int("7")       <span class="r">→ 7</span>      int(3.9)  <span class="r">→ 3</span> (cuts)
+float("2.5")   <span class="r">→ 2.5</span>    str(20)   <span class="r">→ "20"</span>
+int("3.5")     <span class="x">💥 ValueError</span> → int(float("3.5"))
+bool(0) <span class="r">→ False</span>  bool("") <span class="r">→ False</span>  7 == "7" <span class="r">→ False</span></pre>
+</div>
+
+<div class="card py"><h3><span class="n">5</span>input() &amp; print()</h3>
+<div class="brain">input() ALWAYS gives a str 🧵 → convert or cry</div>
+<pre>a = input("Age: ")     # types 20 → "20" (str)
+"5" + "3"  <span class="r">→ "53"</span>     int("5") + int("3")  <span class="r">→ 8</span>
+"4" * 2    <span class="r">→ "44"</span>     "5" + 3  <span class="x">💥 TypeError</span>
+print("A", "B", sep="-")      <span class="r">→ A-B</span>
+print(1, end=" "); print(2)   <span class="r">→ 1 2</span>
+print(f"{name} has {x:.2f} TND")   # 2 decimals
+f"{1234567:,}" <span class="r">→ 1,234,567</span>   f"{0.256:.1%}" <span class="r">→ 25.6%</span></pre>
+</div>
+
+<div class="card py"><h3><span class="n">6</span>Operators</h3>
+<table><tr><th>7 / 2</th><th>7 // 2</th><th>7 % 2</th><th>2 ** 3</th><th>6 / 2</th></tr>
+<tr><td class="r">3.5</td><td class="r">3</td><td class="r">1</td><td class="r">8</td><td class="r">3.0</td></tr></table>
+<div class="brain">/ → always float · // → floor · % → leftovers</div>
+<pre>n % 2 == 0     # even?       17 // 5 <span class="r">→ 3</span>   17 % 5 <span class="r">→ 2</span>
+i // ncols → row      i % ncols → column   ⭐ (card 21)
+2 + 3 * 2 ** 2 <span class="r">→ 14</span>   # ** then * then +
+==  compare      =  assign
+and (both) · or (one) · not (flip) · 1 &lt; x &lt; 18 ok</pre>
+</div>
+
+<div class="card py"><h3><span class="n">7</span>if / elif / else</h3>
+<pre>if score >= 16:
+    g = "Excellent"
+elif score >= 12:        # first True wins ✋ rest skipped
+    g = "Good"
+else:
+    g = "Fail"
+x = "adult" if age >= 18 else "minor"   # 1 line</pre>
+<div class="brain">Colon : + 4 spaces. Test the SPECIAL case first (n == 0 before n % 2 == 0)</div>
+</div>
+
+<div class="card py"><h3><span class="n">8</span>range &amp; loops</h3>
+<div class="chips">range(5) → <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span> &nbsp; range(2,10,3) → <span>2</span><span>5</span><span>8</span> <s>10</s></div>
+<div class="brain">range stops BEFORE the door 🚪 (stop excluded)</div>
+<pre>total = 0
+for i in range(1, 5):
+    total += i            # running total → 10
+count = 0
+for s in scores:
+    if s >= 10: count += 1     # counter
+for i, f in enumerate(fruits): ...   # index + item
+while n <= 3: n += 1       # forget += → infinite
+continue <span class="m">skip this turn</span> · break <span class="m">leave loop</span></pre>
+</div>
+
+<div class="card py"><h3><span class="n">9</span>Lists — index ruler</h3>
+<table class="grid"><tr><td class="lab">+</td><td class="lab">0</td><td class="lab">1</td><td class="lab">2</td><td class="lab">3</td><td class="lab">4</td></tr>
+<tr><td class="lab">lst</td><td>10</td><td>20</td><td>30</td><td>40</td><td>50</td></tr>
+<tr><td class="lab">−</td><td class="lab">-5</td><td class="lab">-4</td><td class="lab">-3</td><td class="lab">-2</td><td class="lab">-1</td></tr></table>
+<pre>lst[0] <span class="r">→ 10</span>  lst[-1] <span class="r">→ 50</span>  lst[1:4] <span class="r">→ [20, 30, 40]</span>
+lst[:2] <span class="r">→ [10, 20]</span>  lst[::2] <span class="r">→ [10, 30, 50]</span>  lst[::-1] reversed
+append(x) insert(i,x) extend([..]) remove(x) pop()
+sort() <span class="m">in place</span> · sorted(lst) <span class="m">new list</span> · len sum min max
+"x" in lst · lst.count(x) · lst.index(x) · lst[9] <span class="x">💥 IndexError</span></pre>
+</div>
+
+<div class="card py"><h3><span class="n">10</span>list vs tuple vs dict vs set</h3>
+<table><tr><th></th><th>list</th><th>tuple</th><th>dict</th><th>set</th></tr>
+<tr><td>write</td><td><code>[1,2]</code></td><td><code>(1,2)</code></td><td><code>{"k":1}</code></td><td><code>{1,2}</code></td></tr>
+<tr><td>change?</td><td>✅</td><td>❌ locked</td><td>✅</td><td>✅</td></tr>
+<tr><td>access</td><td>lst[0]</td><td>t[0]</td><td>d["k"]</td><td>—</td></tr>
+<tr><td>use for</td><td>changing data</td><td>fixed (x, y), RGB, shape</td><td>key → value</td><td>no duplicates</td></tr></table>
+<pre>x, y = (3, 7)        # unpacking   t = (5,) 1-item tuple</pre>
+</div>
+
+<div class="card py"><h3><span class="n">11</span>Dictionary</h3>
+<pre>d = {"Tunis": 3, "Sfax": 1}
+d["Sousse"] = 2          # add new key (goes at the end)
+d["Tunis"] += 1          # update → 4
+for k, v in d.items():   print(k, v)
+"Tunis" in d <span class="r">→ True</span> (tests KEYS)   d.get("X", 0) <span class="r">→ 0</span>
+d["X"]  <span class="x">💥 KeyError</span>    del d["Sfax"]   d.pop("Sfax")
+d.keys()  d.values()  len(d)
+# counting pattern ⭐
+counts[w] = counts.get(w, 0) + 1</pre>
+</div>
+
+<div class="card py"><h3><span class="n">12</span>Nested list (board) + strings</h3>
+<table class="grid"><tr><td>[0][0]</td><td>[0][1]</td><td class="hl">[0][2]</td></tr><tr><td>[1][0]</td><td class="hl">[1][1]</td><td>[1][2]</td></tr><tr><td>[2][0]</td><td>[2][1]</td><td>[2][2]</td></tr></table>
+<pre>board[row][col] = "X"      for row in board: print(" | ".join(row))
+" Hi ".strip() <span class="r">→ "Hi"</span>  "tunis".title() <span class="r">→ "Tunis"</span>  .upper() .lower()
+"a,b".split(",") <span class="r">→ ['a','b']</span>   "-".join(["a","b"]) <span class="r">→ "a-b"</span>
+.replace("l","L")  .startswith("a")  "42".isdigit()  "ell" in "hello"</pre>
+<div class="brain">strings are immutable → s = s.upper() (reassign!)</div>
+</div>
+
+<div class="card py"><h3><span class="n">13</span>Functions, lambda, comprehension</h3>
+<pre>def stock_value(stock, prices, rate=0):   # default
+    total = 0
+    for name, qty in stock.items():
+        total += qty * prices[name]
+    return round(total, 2)       # return STOPS + gives back
+sq = lambda x: x ** 2           # sq(4) → 16
+[x**2 for x in range(5)]          <span class="r">→ [0, 1, 4, 9, 16]</span>
+sorted([n for n, q in stock.items() if q < 5])</pre>
+<div class="brain">return gives a value · print only shows · no return → None</div>
+</div>
+
+<div class="card py"><h3><span class="n">14</span>import</h3>
+<pre>import random
+random.randint(1, 100)   # 1 AND 100 included
+random.choice(lst)   random.shuffle(lst)
+import math
+math.sqrt(16) <span class="r">→ 4.0</span>  math.floor(3.7) <span class="r">→ 3</span>  math.ceil(3.2) <span class="r">→ 4</span>
+from math import pi       # use pi directly
+import numpy as np  ·  import pandas as pd  ·  import matplotlib.pyplot as plt</pre>
+Library = tested ready-made code → saves time, reliable.
+</div>
+
+<!-- ===================== NUMPY ===================== -->
+</div>
+<h2 class="sec np">NUMPY</h2>
+<div class="cols">
+
+<div class="card np"><h3><span class="n">15</span>list vs array</h3>
+<table><tr><th>Python list</th><th>NumPy array</th></tr>
+<tr><td>mixed types <code>["a", 5, True]</code></td><td>ONE type only</td></tr>
+<tr><td>slow, more memory</td><td>fast, less memory</td></tr>
+<tr><td><code>[1,2]*2 → [1,2,1,2]</code></td><td><code>arr*2 → [2 4]</code> ⚡ vectorised</td></tr></table>
+<div class="flow"><b>1D = vector</b><b>2D = matrix</b><b>3D+ = tensor</b></div>
+</div>
+
+<div class="card np"><h3><span class="n">16</span>Create arrays</h3>
+<pre>np.array([3, 2, 5])            # from list
+np.array([[1, 2], [3, 4]])     # 2D from list of lists
+np.zeros((2, 3))   # shape = TUPLE (( ))
+np.ones((2, 2))   np.full((2, 2), 7)
+np.arange(4)       <span class="r">→ [0 1 2 3]</span>
+np.arange(-3, 4)   <span class="r">→ [-3 -2 -1 0 1 2 3]</span>
+np.arange(-3, 4, 3) <span class="r">→ [-3 0 3]</span>
+np.random.random((2, 4))   # floats in [0, 1)
+np.linspace(0, 1, 5) <span class="r">→ [0. 0.25 0.5 0.75 1.]</span></pre>
+</div>
+
+<div class="card np"><h3><span class="n">17</span>Attributes = NOUNS (no parentheses!)</h3>
+<div class="brain">NOUNS have no () : shape size ndim dtype · VERBS have () : sum() mean() reshape()</div>
+<pre>visits = np.array([...28 values...])
+visits.shape <span class="r">→ (28,)</span>   visits.size <span class="r">→ 28</span>
+visits.ndim  <span class="r">→ 1</span>       visits.dtype <span class="r">→ int64</span>
+weeks = visits.reshape((4, 7))
+weeks.shape  <span class="r">→ (4, 7)</span>  = (rows, cols)   weeks.ndim <span class="r">→ 2</span>
+np.zeros((3, 5)).shape <span class="r">→ (3, 5)</span>   .size <span class="r">→ 15</span></pre>
+<table><tr><th>shape</th><th>size</th><th>ndim</th><th>dtype</th></tr><tr><td>dimensions (tuple)</td><td>nb of elements</td><td>nb of axes</td><td>element type</td></tr></table>
+</div>
+
+<div class="card np"><h3><span class="n">18</span>reshape / flatten</h3>
+<table class="grid"><tr><td>1</td><td>2</td><td>5</td><td>7</td><td>6</td><td>6</td><td class="lab">size 6</td></tr></table>
+<div style="text-align:center">⬇ reshape((2, 3))</div>
+<table class="grid"><tr><td>1</td><td>2</td><td>5</td></tr><tr><td>7</td><td>6</td><td>6</td></tr></table>
+<div class="brain">rows × cols MUST = size → 2×3 ✅ 3×2 ✅ 3×3 💥</div>
+<pre>a.reshape((3, 3))  <span class="x">💥 ValueError: cannot reshape array of size 6 into shape (3,3)</span>
+a.flatten()   # back to 1D     a.reshape(2, -1)  # -1 = "you compute"</pre>
+</div>
+
+<div class="card np"><h3><span class="n">19</span>AXIS ⭐ (the one everybody forgets)</h3>
+<table class="grid">
+<tr><td class="lab"></td><td class="lab">col 0</td><td class="lab">col 1</td><td class="lab">col 2</td><td class="lab">axis=1 ➡</td></tr>
+<tr><td class="lab">row 0</td><td>1</td><td>2</td><td>3</td><td class="res">6</td></tr>
+<tr><td class="lab">row 1</td><td>4</td><td>5</td><td>6</td><td class="res">15</td></tr>
+<tr><td class="lab">axis=0 ⬇</td><td class="res">5</td><td class="res">7</td><td class="res">9</td><td class="lab">sum()=21</td></tr></table>
+<pre>a.sum(axis=0) <span class="r">→ [5 7 9]</span>  # ⬇ down → 1 result PER COLUMN
+a.sum(axis=1) <span class="r">→ [ 6 15]</span> # ➡ across → 1 result PER ROW</pre>
+<div class="brain">axis=0 ⬇ "zero falls down" · axis=1 ➡ "one line at a time"</div>
+weeks (4 weeks × 7 days): <code>weeks.mean(axis=1)</code> = per <b>week</b> (4 values) · <code>weeks.mean(axis=0)</code> = per <b>weekday</b> (7 values). Same for <code>.mean() .max() .min()</code>.
+</div>
+
+<div class="card np"><h3><span class="n">20</span>Index &amp; slice arrays</h3>
+<pre>sales = np.array([120, 150, 95, 180, 160, 210, 175])
+sales[0] <span class="r">→ 120</span>  sales[-1] <span class="r">→ 175</span>  sales[1:5] <span class="r">→ [150 95 180 160]</span>
+a = np.array([[1, 2, 3], [4, 5, 6]])
+a[1, 2] <span class="r">→ 6</span>  (row 1, col 2)   a[0] <span class="r">→ [1 2 3]</span> (row)
+a[:, 0] <span class="r">→ [1 4]</span> (column 0)     a * 10  a + a  ⚡ element-wise</pre>
+</div>
+
+<div class="card np"><h3><span class="n">21</span>Stats + argmax trick ⭐</h3>
+<pre>sales.sum() <span class="r">→ 1090</span>  sales.mean() <span class="r">→ 155.71…</span>  .min() .max() .std()
+np.median(sales) <span class="r">→ 160.0</span>   np.sort(sales)   .round(1)
+i = sales.argmax() <span class="r">→ 5</span>   # the POSITION, not the value!
+days[sales.argmax()] <span class="r">→ 'Saturday'</span>
+# 1D index → position in a (4, 7) grid
+i = visits.argmax()          # e.g. 26
+week = i // 7 + 1  <span class="r">→ 4</span>      # row (+1 for humans)
+day  = days[i % 7] <span class="r">→ 'Sat'</span>  # column</pre>
+<div class="brain">argMAX = WHERE is the max · max = WHAT is the max</div>
+</div>
+
+<div class="card np"><h3><span class="n">22</span>Boolean masks</h3>
+<pre>mask = sales > 150
+<span class="r">→ [False False False True True True True]</span>
+sales[mask] <span class="r">→ [180 160 210 175]</span>   # the values
+days[mask]  <span class="r">→ ['Thu' 'Fri' 'Sat' 'Sun']</span>  # their names
+mask.sum()  <span class="r">→ 4</span>      # True = 1 → COUNT
+days[sales >= sales.mean()]
+sales[(sales > 100) & (sales < 170)]   # & | ~ + ( )
+a[a > 2] <span class="r">→ [3 4 5 6]</span>   # 2D mask → 1D result
+np.where(sales > 150, "good", "low")</pre>
+</div>
+
+<div class="card np"><h3><span class="n">23</span>dtype &amp; type coercion ladder ⭐</h3>
+<div class="flow"><b>bool</b><i>→</i><b>int</b><i>→</i><b>float</b><i>→</i><b>str 👑</b></div>
+<div class="brain">ONE type per array → the highest type present wins · str eats everything</div>
+<pre>np.array([True, False, 42]).dtype   <span class="r">→ int64</span>
+np.array([0, 42, 42.42]).dtype      <span class="r">→ float64</span>
+np.array([2, 4.0, True]).dtype      <span class="r">→ float64</span>
+np.array([1, "2", 3.0]).dtype       <span class="r">→ &lt;U32</span>  (text)
+np.array([True, "Boop", 42]) <span class="r">→ ['True' 'Boop' '42']</span>
+np.array(["Introduction","to","NumPy"]).dtype <span class="r">→ &lt;U12</span> (12 = longest word)
+np.array([1.3, 5.7], dtype=np.float32)    # choose
+b.astype(np.int32)    # convert: True→1 False→0</pre>
+<table><tr><th>int64</th><th>int32</th><th>float64</th><th>&lt;U12</th></tr><tr><td>default int</td><td>32 bits → 2³² = 4,294,967,296 values</td><td>default decimal</td><td>string ≤ 12 chars</td></tr></table>
+</div>
+
+<!-- ===================== PANDAS ===================== -->
+</div>
+<h2 class="sec pd">PANDAS</h2>
+<div class="cols">
+
+<div class="card pd"><h3><span class="n">24</span>DataFrame anatomy</h3>
+<table class="grid">
+<tr><td class="lab">index ⬇</td><td class="lab">order_id</td><td class="hl">city</td><td class="lab">quantity</td></tr>
+<tr><td class="lab">0</td><td>O070</td><td class="hl">Tunis</td><td>1</td></tr>
+<tr><td class="lab">1</td><td>O059</td><td class="hl">Sfax</td><td>3</td></tr>
+<tr><td class="lab">2</td><td>O086</td><td class="hl">Sousse</td><td>2</td></tr></table>
+<pre>df["city"]           # 1 column = a Series (green)
+df.loc[1, "city"] <span class="r">→ 'Sfax'</span>   # 1 cell by label
+pd.DataFrame({"city": ["Tunis", "Sfax"], "q": [1, 3]})</pre>
+<div class="brain">DataFrame = table · Series = one column · index = row labels · 1 dtype per column</div>
+</div>
+
+<div class="card pd"><h3><span class="n">25</span>Load</h3>
+<pre>import pandas as pd
+raw = pd.read_csv("data/orders.csv")
+df = raw.copy()                     # ⭐ never touch raw
+pd.read_csv("f.csv", sep=";")
+pd.read_csv("f.csv", parse_dates=["order_date"])
+pd.read_excel("f.xlsx", sheet_name="Sales")
+# Colab: from google.colab import files; files.upload() → "/content/f.csv"</pre>
+read_csv: splits columns, guesses dtypes, <code>""</code> / <code>"N/A"</code> → <b>NaN</b>.
+</div>
+
+<div class="card pd"><h3><span class="n">26</span>Explore — 1 question = 1 command</h3>
+<table>
+<tr><th>Question</th><th>Command</th></tr>
+<tr><td>How big?</td><td><code>df.shape</code> → (12060, 10) <b>no ()</b></td></tr>
+<tr><td>How many cells?</td><td><code>df.size</code> → 120600 (= rows × cols)</td></tr>
+<tr><td>How many rows?</td><td><code>len(df)</code> → 12060</td></tr>
+<tr><td>First / last rows?</td><td><code>df.head(10)</code> · <code>df.tail()</code></td></tr>
+<tr><td>Types + missing?</td><td><code>df.info()</code> ⭐</td></tr>
+<tr><td>Weird numbers?</td><td><code>df.describe()</code> (max = 999 ⚠)</td></tr>
+<tr><td>Column names / types?</td><td><code>df.columns</code> · <code>df.dtypes</code></td></tr>
+<tr><td>Categories &amp; counts?</td><td><code>df["c"].value_counts()</code></td></tr>
+<tr><td>Distinct values?</td><td><code>df["c"].unique()</code> · <code>.nunique()</code> · <code>df.nunique()</code></td></tr>
+<tr><td>Frequencies in order?</td><td><code>df["q"].value_counts().sort_index()</code></td></tr></table>
+<div class="brain">NOUNS no (): shape size columns dtypes · VERBS (): head() info() describe()</div>
+</div>
+
+<div class="card pd"><h3><span class="n">27</span>Select: [ ] · loc · iloc</h3>
+<pre>df["city"]                 # Series
+df[["order_id", "city"]]   # DataFrame ⭐ DOUBLE brackets
+df.drop(columns="status")  # all except</pre>
+<table class="grid">
+<tr><td class="lab">label</td><td class="lab">loc[0:3]</td><td class="lab">iloc[0:3]</td></tr>
+<tr><td>0</td><td class="hl">✔</td><td class="hl">✔</td></tr>
+<tr><td>1</td><td class="hl">✔</td><td class="hl">✔</td></tr>
+<tr><td>2</td><td class="hl">✔</td><td class="hl">✔</td></tr>
+<tr><td>3</td><td class="hl">✔</td><td class="off">✘</td></tr>
+<tr><td class="lab"></td><td class="lab">4 rows</td><td class="lab">3 rows</td></tr></table>
+<div class="brain">loc = Label, end incLuded · iloc = integer, end excluded (like Python)</div>
+<pre>df.loc[0, "city"]   df.loc[mask, ["id", "q"]]   df.iloc[0:5, 0:3]   df.iloc[-1]</pre>
+</div>
+
+<div class="card pd"><h3><span class="n">28</span>Filter rows (masks)</h3>
+<pre>mask = (df["status"] == "Delivered") & (df["city"] == "Tunis") & (df["q"] >= 3)
+df[mask]   ·   df.loc[mask, ["order_id", "q"]]
+df.query("status == 'Delivered' and q >= 3")   # same rows ✅
+df[df["city"].isin(["Tunis", "Sfax"])]     # OR on values
+df[df["q"].between(2, 5)]                  # 2..5 both included
+df[~df["q"].between(1, 50)]                # ~ = NOT
+df[df["payment"].isna()]                   # missing rows
+mask.sum()  or  len(df[mask])              # count</pre>
+<div class="brain">pandas speaks SYMBOLS: &amp; | ~ — never and/or/not · ( ) around EACH condition</div>
+</div>
+
+<div class="card pd"><h3><span class="n">29</span>Sort &amp; top</h3>
+<pre>df.sort_values("price", ascending=False)
+df.sort_values(["region", "q"], ascending=[True, False])
+df.nlargest(5, "price")   df.nsmallest(5, "price")
+df["price"].idxmax()  → label of the max → df.loc[...]
+s.idxmax()  # best group after groupby
+df.reset_index(drop=True)   # 0..n-1 again</pre>
+</div>
+
+<div class="card pd"><h3><span class="n">30</span>Missing values — decision tree ⭐</h3>
+<div class="tree">
+<span class="q">category?</span><span>→ label <code>.fillna("Unknown")</code> or mode <code>.fillna(s.mode()[0])</code></span>
+<span class="q">number?</span><span>→ median <code>.fillna(s.median())</code> / median of the group (card 36)</span>
+<span class="q">key field?</span><span>→ drop rows <code>df.dropna(subset=["order_date"])</code></span>
+<span class="q">column mostly empty?</span><span>→ ask business, maybe <code>df.drop(columns=...)</code></span>
+<span class="q x">0 everywhere?</span><span class="x">❌ NEVER → fake values, biased averages</span></div>
+<pre>df.isna().sum()                     # per column
+(df.isna().mean() * 100).sort_values(ascending=False)   # % ⭐
+df.isna().sum().sum()               # total
+df[df.isna().any(axis=1)]           # rows with ≥ 1 NaN
+df["c"] = df["c"].fillna(...)       # ⭐ assign back</pre>
+<div class="brain">median &gt; mean when outliers (robust) · document EVERY choice</div>
+</div>
+
+<div class="card pd"><h3><span class="n">31</span>NaN facts</h3>
+<pre>NaN is a FLOAT → int column with NaN becomes 1.0, 2.0 (float64)
+pd.DataFrame({"q": [2, None, 5]})["q"].dtype <span class="r">→ float64</span>
+mean() / sum() SKIP NaN →  [2, NaN, 5, 5].mean() <span class="r">→ 4.0</span>
+isna() == isnull()   (same)   ·   notna() = opposite
+value_counts() ignores NaN → value_counts(dropna=False)
+astype("int64") with NaN  <span class="x">💥 IntCastingNaNError</span> → fill/drop first</pre>
+</div>
+
+<div class="card pd"><h3><span class="n">32</span>Duplicates</h3>
+<pre>df.duplicated().sum()            # identical rows → e.g. 60
+df[df.duplicated(keep=False)]    # see ALL copies
+df = df.drop_duplicates()        # keeps the 1st
+df["order_id"].duplicated().sum()   df["order_id"].is_unique</pre>
+<table><tr><th>duplicated ROW</th><th>duplicated ID</th></tr><tr><td>same in every column → delete ✅</td><td>same key, different content → investigate 🔍</td></tr></table>
+Not removed → revenue counted twice.
+</div>
+
+<div class="card pd"><h3><span class="n">33</span>Types &amp; dates</h3>
+<pre>df["d"] = pd.to_datetime(df["d"], errors="coerce")  # bad → NaT
+df = df.dropna(subset=["d"])
+df["p"] = pd.to_numeric(df["p"], errors="coerce")   # bad → NaN
+df["q"] = df["q"].astype("int64")       # AFTER NaN gone
+df["city"] = df["city"].astype("category")
+d = df["d"].dt
+d.year  d.month  d.day  d.quarter  d.month_name()  d.day_name()
+d.dayofweek >= 5   # weekend (Mon=0 … Sun=6)
+df[(df["d"] >= "2025-01-01") & (df["d"] <= "2025-03-31")]
+df[df["d"].dt.month.isin([12, 1, 2])]   # winter</pre>
+<div class="brain">coerce = "can't read it? make it missing" (NaT / NaN) instead of 💥</div>
+</div>
+
+<div class="card pd"><h3><span class="n">34</span>Text cleaning</h3>
+<div class="chips"><span>" tunis "</span><span>"TUNIS"</span><span>"Tunis "</span> → <span>"Tunis"</span></div>
+<pre>df["city"].nunique()                          # 50 spellings
+df["city"] = df["city"].str.strip().str.title()
+df["city"].nunique()                          # 10 ✅
+.str.lower()  .str.upper()  .str.contains("Ben")  .str.replace("a", "b")
+df["city"].replace({"Gabes": "Gabès"})</pre>
+<div class="brain">.str. = apply a string method to the WHOLE column</div>
+</div>
+
+<div class="card pd"><h3><span class="n">35</span>Outliers &amp; business rules</h3>
+<pre># rule: 1..50 units per line → remove impossible rows
+df = df[df["q"].between(1, 50)].copy()
+# rule: age 18..100 → error = missing, keep the row!
+bad = (df["age"] < 18) | (df["age"] > 100)
+df.loc[bad, "age"] = np.nan
+df["age"] = df["age"].fillna(df["age"].median())
+# unknown key (not in catalogue) → remove
+df = df[df["med_id"].isin(meds["med_id"])]
+# statistical (IQR): outside [Q1 − 1.5·IQR , Q3 + 1.5·IQR]</pre>
+<div class="brain">business rule beats statistics · "999: real or typo? who confirms?"</div>
+</div>
+
+<div class="card pd"><h3><span class="n">36</span>transform vs agg ⭐</h3>
+<table><tr><th>.groupby("p")["price"].median()</th><th>.groupby("p")["price"].transform("median")</th></tr>
+<tr><td><table class="grid"><tr><td>P1</td><td>10</td></tr><tr><td>P2</td><td>40</td></tr></table>1 value per group (short)</td>
+<td><table class="grid"><tr><td>P1</td><td>10</td></tr><tr><td>P2</td><td>40</td></tr><tr><td>P1</td><td>10</td></tr><tr><td>P2</td><td>40</td></tr></table>same length as df, aligned ✅</td></tr></table>
+<pre>med = df.groupby("product_id")["unit_price"].transform("median")
+df["unit_price"] = df["unit_price"].fillna(med)</pre>
+<div class="brain">transform = "give every row its group's value" → fillna</div>
+</div>
+
+<div class="card pd"><h3><span class="n">37</span>Cleaning workflow + export</h3>
+<div class="flow"><b>Raw (keep)</b><i>→</i><b>Explore</b><i>→</i><b>Decide</b><i>→</i><b>Clean</b><i>→</i><b>Validate</b><i>→</i><b>Export</b></div>
+<div class="brain">"Real Experts Decide, Clean, Validate, Export"</div>
+<pre>assert df.isna().sum().sum() == 0     # stops if False
+df.to_csv("clean.csv", index=False)   # no "Unnamed: 0" ⭐
+df.head(500).to_excel("sample.xlsx", index=False)
+check = pd.read_csv("clean.csv", parse_dates=["d"])
+check.shape == df.shape <span class="r">→ True</span>
+print(f"{(len(raw)-len(df))/len(raw)*100:.1f} % removed")</pre>
+Lab 2: 12,060 → −60 dup → −20 dates → −15 qty 999 → <b>11,965</b> (0.8 %).
+</div>
+
+<div class="card pd"><h3><span class="n">38</span>New columns &amp; conditions</h3>
+<pre>df["revenue"] = df["q"] * df["price"]          # ⚡ every row
+df["profit"] = df["revenue"] - df["q"] * df["cost"]
+df["sign"] = np.where(df["profit"] >= 0, "+", "-")   # 2 classes
+conds = [df["profit"] > 500, df["profit"] >= 100, df["profit"] >= 0]
+df["level"] = np.select(conds, ["High", "Med", "Low"], default="Loss")  # like elif
+df["age_group"] = pd.cut(df["age"], bins=[17, 29, 49, 64, 100],
+                         labels=["18-29", "30-49", "50-64", "65+"])     # (a, b]
+df["pay"] = df["pay"].map({"Cash": "Cash at counter"})   # dict → missing key = NaN
+df["tax"] = df["rev"].apply(lambda x: x * 0.05)          # each value
+df.apply(func, axis=1)                                    # each ROW</pre>
+</div>
+
+<div class="card pd"><h3><span class="n">39</span>groupby = split → apply → combine</h3>
+<div class="flow"><b>split by city</b><i>→</i><b>sum each group</b><i>→</i><b>1 row per city</b></div>
+<pre>df.groupby("city")["revenue"].sum().sort_values(ascending=False)
+df.groupby("city")["revenue"].agg(["sum", "mean", "count"])
+df.groupby("category").agg(                 # named agg ⭐
+    sales=("sale_id", "count"),
+    revenue=("revenue", "sum"),
+    profit=("profit", "sum"))
+s = df.groupby("city")["revenue"].sum()
+s / s.sum() * 100          # share %
+s.idxmax()                 # best group     s.rank(ascending=False)
+df.groupby(["region", "cat"])["profit"].sum().reset_index()
+(df["presc"] == "Yes").mean() * 100        # % of rows that are Yes
+# category columns → groupby(..., observed=True)</pre>
+</div>
+
+<div class="card pd"><h3><span class="n">40</span>merge (join on a key)</h3>
+<svg viewBox="0 0 300 62" width="100%" role="img" aria-label="merge types">
+<defs><clipPath id="cl"><circle cx="34" cy="30" r="22"/></clipPath><clipPath id="c2"><circle cx="134" cy="30" r="22"/></clipPath><clipPath id="c3"><circle cx="234" cy="30" r="22"/></clipPath></defs>
+<g><circle cx="52" cy="30" r="22" fill="#1d7a46" clip-path="url(#cl)"/><circle cx="34" cy="30" r="22" fill="none" stroke="#1d7a46"/><circle cx="52" cy="30" r="22" fill="none" stroke="#1d7a46"/><text x="43" y="60" font-size="9" text-anchor="middle">inner</text></g>
+<g><circle cx="134" cy="30" r="22" fill="#1d7a46"/><circle cx="152" cy="30" r="22" fill="none" stroke="#1d7a46"/><text x="143" y="60" font-size="9" text-anchor="middle">left ⭐</text></g>
+<g><circle cx="234" cy="30" r="22" fill="#1d7a46"/><circle cx="252" cy="30" r="22" fill="#1d7a46"/><text x="243" y="60" font-size="9" text-anchor="middle">outer</text></g>
+</svg>
+<pre>full = sales.merge(products, on="Product_ID", how="left")   # keep ALL sales
+# left_on="pid", right_on="Product_ID" if names differ
+sales["Product_ID"].isin(products["Product_ID"]).all()     # keys OK?
+price = sales["pid"].map(products.set_index("Product_ID")["List_Price"])
+pd.concat([jan, feb])     # stack tables</pre>
+</div>
+
+<div class="card pd"><h3><span class="n">41</span>pivot, stats, plots</h3>
+<pre>pd.pivot_table(df, values="rev", index="cat", columns="Quarter", aggfunc="sum")
+pd.crosstab(df["region"], df["pay"], normalize="index")   # % per row
+df["p"].agg(["mean", "median", "min", "max", "std", "var"])
+df["p"].quantile([0.25, 0.5, 0.75])      # Q1 median Q3
+df[["q", "price", "profit"]].corr()     # −1 … +1
+s.plot(kind="bar"); plt.show()   # line · hist · pie · barh</pre>
+<div class="brain">mean &gt; median → few huge values (right skew) · correlation ≠ causation</div>
+</div>
+
+<!-- ===================== TRAPS ===================== -->
+</div>
+<h2 class="sec tr">TRAPS &amp; ERRORS</h2>
+<div class="cols">
+
+<div class="card tr"><h3><span class="n">42</span>❌ wrong → ✅ right</h3>
+<div class="xr">
+<div>df.shape()</div><div>df.shape</div>
+<div>df["a", "b"]</div><div>df[["a", "b"]]</div>
+<div>df.dropna()   (alone)</div><div>df = df.dropna()</div>
+<div>df[a == 1 and b > 2]</div><div>df[(a == 1) &amp; (b > 2)]</div>
+<div>np.zeros(2, 3)</div><div>np.zeros((2, 3))</div>
+<div>"5" + 3</div><div>int("5") + 3</div>
+<div>int("3.5")</div><div>int(float("3.5"))</div>
+<div>astype(int) with NaN</div><div>fillna / dropna first</div>
+<div>fillna(0) everywhere</div><div>label / median / drop</div>
+<div>to_csv("f.csv")</div><div>to_csv("f.csv", index=False)</div>
+<div>if n % 2 == 0 before n == 0</div><div>test n == 0 first</div>
+<div>if x = 5:</div><div>if x == 5:</div>
+<div>b = a  (same list!)</div><div>b = a.copy()</div>
+<div>range(1, 10) = 1..10</div><div>1..9 (stop excluded)</div>
+<div>reshape to wrong size</div><div>rows × cols = size</div>
+<div>max() for the position</div><div>argmax()</div>
+</div></div>
+
+<div class="card tr"><h3><span class="n">43</span>Error names</h3>
+<table>
+<tr><td><b>SyntaxError</b></td><td>missing <code>:</code>, bracket, quote</td></tr>
+<tr><td><b>IndentationError</b></td><td>block not indented</td></tr>
+<tr><td><b>NameError</b></td><td>variable undefined / typo / cell not run</td></tr>
+<tr><td><b>TypeError</b></td><td>"5" + 3 · modify a tuple · len(5)</td></tr>
+<tr><td><b>ValueError</b></td><td>int("abc") · bad reshape · and between Series</td></tr>
+<tr><td><b>IndexError</b></td><td>lst[10] on a short list</td></tr>
+<tr><td><b>KeyError</b></td><td>dict key / column name not found (case, spaces!)</td></tr>
+<tr><td><b>ZeroDivisionError</b></td><td>x / 0</td></tr>
+<tr><td><b>FileNotFoundError</b></td><td>wrong path (Colab: /content/…)</td></tr></table>
+</div>
+
+<div class="card tr"><h3><span class="n">44</span>Practical exam order ⭐</h3>
+<div class="flow"><b>Load+look</b><i>→</i><b>% missing</b><i>→</i><b>Duplicates</b><i>→</i><b>Text</b><i>→</i><b>Dates</b><i>→</i><b>Rules</b><i>→</i><b>Fill</b><i>→</i><b>assert</b><i>→</i><b>Analyse</b><i>→</i><b>Export</b></div>
+<div class="brain">"Lazy Monkeys Drink Tea During Rainy Fridays And Always Eat"</div>
+✅ print before → after counts · ✅ one-line <code># why</code> per decision · ✅ Markdown answers in sentences · ✅ Restart &amp; Run all before submitting.
+</div>
+
+<div class="card tr" style="--c:#444;--bg:#f1f1f1"><h3><span class="n">✓</span>Mock DS → which card</h3>
+<table class="map">
+<tr><th>Mock DS question</th><th>Card</th></tr>
+<tr><td>Theory Q1–Q2 lifecycle, IS</td><td>1, 2</td></tr>
+<tr><td>Q3 input type · Q4 // % · Q5 immutable</td><td>5, 6, 10</td></tr>
+<tr><td>Q6 dtype [2, 4.0, True] · Q7 reshape(3,5)</td><td>23, 18</td></tr>
+<tr><td>Q8 info() · Q9 shape vs size</td><td>26</td></tr>
+<tr><td>Q10 masks · Q11 coerce · Q12 loc/iloc</td><td>28, 33, 27</td></tr>
+<tr><td>P1 "4"*2, / · P2 range step, end=" "</td><td>5, 6, 8</td></tr>
+<tr><td>P3 slicing · P4 dict</td><td>9, 11</td></tr>
+<tr><td>P5 shape, size, axis, a[1,2], a[a&gt;2]</td><td>17, 19, 20, 22</td></tr>
+<tr><td>P6 None → float, duplicated, strip/title</td><td>31, 32, 34</td></tr>
+<tr><td>S1–S4 float/NaN, missing, loc/iloc, transform</td><td>31, 30, 27, 36</td></tr>
+<tr><td>C1 grade() + counter + average</td><td>7, 8, 13</td></tr>
+<tr><td>C2 cleaning pipeline on orders</td><td>32, 34, 35, 36, 38, 39, 37</td></tr>
+<tr><td>PC Ex1 dict loop, function, sell(), sorted list</td><td>11, 13, 7</td></tr>
+<tr><td>PC 2.1 shape size ndim dtype reshape</td><td>17, 18</td></tr>
+<tr><td>PC 2.2 mean axis=0 / axis=1</td><td>19</td></tr>
+<tr><td>PC 2.3 argmax → week // 7, day % 7</td><td>21</td></tr>
+<tr><td>PC 2.4 mask count, coercion</td><td>22, 23</td></tr>
+<tr><td>PC 3.1 explore</td><td>25, 26</td></tr>
+<tr><td>PC 3.2 clean (10 steps)</td><td>30–37</td></tr>
+<tr><td>PC 3.3 merge, groupby, share, nlargest, dt.month, query, pd.cut</td><td>40, 39, 29, 33, 28, 38</td></tr>
+<tr><td>PC 3.4 export + reload</td><td>37</td></tr></table>
+</div>
+
+</div>
+</body>
+</html>

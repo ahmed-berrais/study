@@ -8,7 +8,7 @@
 | `2_labs/lab1_numpy/` | Lab 1 subject (PDF) + solution notebook (daily sales with NumPy) |
 | `2_labs/lab2_pandas/` | Lab 2: your notebook (`Lab2_Pandas_my_work.ipynb`) + clean solution + `data/orders.csv` (raw) & `orders_clean.csv` |
 | `3_project_techstore/` | **TechStore project** — brief (`.docx`), `data/` (sales, products, customers), `TechStore_Project_Complete.ipynb` (Parts 3 → 10, all 23 sections, answers + recommendations), `output/` clean CSVs |
-| `4_DS_revision/` | `Python_Course_Complete.pdf` (full course + cheat sheet, also `.html` for the phone) |
+| `4_DS_revision/` | ⭐ `CheatSheet_Visual.pdf` (7-page visual cheat sheet: cards, diagrams, memory tricks, mock-DS coverage map) · `Python_Course_Complete.pdf` (long version with explanations) |
 | `4_DS_revision/mock_DS/` | Mock DS: **theory on paper** (subject + correction PDF) and **practical on PC** (subject + correction notebooks, `data/pharmacy_sales.csv`, `data/medicines.csv`) |
 | `data_tunismarket/` | Other course datasets (customers, products, customer churn) for the next chapters |
 
