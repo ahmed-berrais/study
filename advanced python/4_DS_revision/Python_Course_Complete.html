@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advanced Python Course</title>
+<style>
+:root{--ink:#1b1f24;--muted:#5b6470;--line:#d9dee5;--accent:#1f5fae;--accent2:#b23b3b;--code:#f4f6f9;--out:#eef7ee;--warn:#fff4e0;--tip:#e9f1fc;}
+*{box-sizing:border-box}
+body{font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;font-size:10.5pt;line-height:1.45;margin:0;padding:0 16px}
+main{max-width:860px;margin:0 auto}
+h1{font-size:24pt;margin:.2em 0;color:var(--accent)}
+h2{font-size:16pt;color:#fff;background:var(--accent);padding:6px 10px;border-radius:4px;margin:28px 0 10px;break-after:avoid}
+h3{font-size:12.5pt;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:2px;margin:18px 0 6px;break-after:avoid}
+h4{font-size:11pt;margin:12px 0 4px;break-after:avoid}
+p{margin:4px 0 8px}
+pre{background:var(--code);border:1px solid var(--line);border-left:4px solid var(--accent);padding:7px 9px;margin:4px 0 8px;font-family:"DejaVu Sans Mono",Consolas,monospace;font-size:8.8pt;line-height:1.35;white-space:pre-wrap;word-break:break-word;break-inside:avoid}
+pre.out{background:var(--out);border-left-color:#2f8a3b}
+pre.out::before{content:"OUTPUT";display:block;font-size:7pt;color:#2f8a3b;font-weight:bold;letter-spacing:.5px}
+code{font-family:"DejaVu Sans Mono",Consolas,monospace;font-size:9pt;background:var(--code);padding:0 3px;border-radius:3px}
+table{border-collapse:collapse;width:100%;margin:6px 0 10px;font-size:9.4pt;break-inside:avoid}
+th,td{border:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top}
+th{background:#eaf0f8}
+.box{border-radius:5px;padding:7px 10px;margin:8px 0;break-inside:avoid}
+.warn{background:var(--warn);border-left:4px solid #d98a00}
+.tip{background:var(--tip);border-left:4px solid var(--accent)}
+.key{background:#fdecec;border-left:4px solid var(--accent2)}
+.cover{text-align:center;padding:40px 0 10px}
+.cover p{color:var(--muted)}
+.toc{columns:2;font-size:10pt}
+.toc li{margin:2px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.two{grid-template-columns:1fr}.toc{columns:1}}
+.page{break-before:page}
+small{color:var(--muted)}
+@page{size:A4;margin:14mm 12mm}
+</style>
+</head>
+<body>
+<main>
+
+<div class="cover">
+<h1>Advanced Python — Python for Data Science</h1>
+<p><b>Complete course + cheat sheet for the DS</b><br>Chapter 0 (Python basics) · Chapter 1 (NumPy) · Chapter 2 (pandas: load, explore, clean) · pandas analysis (TechStore project level)</p>
+<p>Everything you need: syntax, explanation, examples <i>with the output</i>, traps, and the questions she likes to ask.</p>
+</div>
+
+<div class="box key"><b>How the DS works:</b> part <b>on paper</b> (theory, predict the output, write code by hand, explain a decision) + part <b>on PC</b> (a CSV to load, explore, clean, analyse in a notebook). This document covers both. Sections marked ★ are the most likely exam material.</div>
+
+<h3>Contents</h3>
+<ol class="toc">
+<li>Theory of Chapter 0 (software, IS, data science) ★</li>
+<li>Variables, types, conversions ★</li>
+<li>print(), f-strings, input() ★</li>
+<li>Operators ★</li>
+<li>if / elif / else ★</li>
+<li>for, range, while, break/continue ★</li>
+<li>Lists &amp; slicing ★</li>
+<li>Tuples, dictionaries, sets ★</li>
+<li>Nested lists (grids)</li>
+<li>Strings methods</li>
+<li>Functions, lambda, comprehensions</li>
+<li>Libraries &amp; import ★</li>
+<li>NumPy ★</li>
+<li>pandas: Series &amp; DataFrame, loading ★</li>
+<li>pandas: exploring ★</li>
+<li>pandas: selecting &amp; filtering ★</li>
+<li>pandas: cleaning (missing, duplicates, types, text, outliers) ★</li>
+<li>pandas: export &amp; cleaning workflow ★</li>
+<li>pandas: new columns, apply/map/lambda</li>
+<li>pandas: groupby, merge, pivot, dates, stats, plots</li>
+<li>Classic errors &amp; traps ★</li>
+<li>Recap Q&amp;A (paper part) ★</li>
+<li>Practical-part checklist ★</li>
+</ol>
+
+<!-- ============================================================ -->
+<h2>1. Theory of Chapter 0 ★</h2>
+<h3>Software</h3>
+<p><b>Software</b> = a set of instructions (code) that tells a computer exactly what to do, step by step.</p>
+<table><tr><th>Application software</th><th>System software</th></tr>
+<tr><td>Programs you use directly: Instagram, Word, a calculator, a game.</td><td>Runs in the background so everything else works: Windows, macOS, Android.</td></tr></table>
+
+<h3>Software Engineering — the 6 phases of the lifecycle</h3>
+<p><b>Software engineering</b> = the discipline of designing, building, testing and maintaining software in an organised, reliable way (not just "writing some code").</p>
+<table><tr><th>#</th><th>Phase</th><th>Question</th></tr>
+<tr><td>1</td><td>Requirements</td><td>What should it do?</td></tr>
+<tr><td>2</td><td>Design</td><td>How will it be built?</td></tr>
+<tr><td>3</td><td>Implementation</td><td>Write the code</td></tr>
+<tr><td>4</td><td>Testing</td><td>Does it work correctly?</td></tr>
+<tr><td>5</td><td>Deployment</td><td>Release it to users</td></tr>
+<tr><td>6</td><td>Maintenance</td><td>Fix bugs, add features</td></tr></table>
+<p><b>Why it matters:</b> banking (a bug sends money to the wrong person), hospitals (records must be accurate, available and secure), flight booking (a crash = lost seat), cars, elevators, traffic lights…</p>
+
+<h3>Information System (IS) — 5 components</h3>
+<p>An IS is <b>not just software</b>: it combines <b>Hardware + Software + Data + People + Process</b> to produce useful information.</p>
+<table><tr><th>Component</th><th>Meaning</th><th>School portal example</th></tr>
+<tr><td>Hardware</td><td>physical machines (computers, servers, phones)</td><td>the servers</td></tr>
+<tr><td>Software</td><td>programs that run on the hardware</td><td>the website</td></tr>
+<tr><td>Data</td><td>raw facts: names, numbers, dates, transactions</td><td>the grades</td></tr>
+<tr><td>People</td><td>everyone who uses or maintains it</td><td>students, staff</td></tr>
+<tr><td>Process</td><td>the steps followed to get work done</td><td>how grades are entered</td></tr></table>
+<p>Food delivery app → <i>Data</i> = your order, your address, the restaurant's menu prices.</p>
+
+<h3>Where data science fits: Collect → Store → Analyse → Decide</h3>
+<p>1 the IS <b>collects</b> data (orders, clicks, sensors) · 2 data is <b>stored</b> in files/databases · 3 we use <b>Python to analyse</b> it (this course) · 4 people <b>decide</b> better.</p>
+
+<h3>Why Python? How does it run?</h3>
+<ul>
+<li>Reads like English, beginner-friendly, huge community, extremely versatile (data science, web — Instagram/Spotify servers, automation, AI/ML, games).</li>
+<li>Java needs a class + <code>main</code> + <code>System.out.println</code> (4 lines) — Python: <code>print("Hello!")</code> (1 line).</li>
+<li>Python is <b>interpreted</b>: you write code → the <b>interpreter</b> reads it <b>line by line, top to bottom</b> → you see the result immediately. No separate compile step → notebooks (Jupyter/Colab) are interactive.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>2. Variables, types, conversions ★</h2>
+<p>A <b>variable</b> is a named box holding a value. No type declaration: Python figures it out (<b>dynamic typing</b>). <code>=</code> assigns.</p>
+<pre>name = "Amine"      # str
+age = 20            # int
+price = 19.90       # float
+is_student = True   # bool  (capital T / F!)
+print(name, age, price, is_student)
+print(type(age), type(price))</pre>
+<pre class="out">Amine 20 19.9 True
+&lt;class 'int'&gt; &lt;class 'float'&gt;</pre>
+<table><tr><th>Type</th><th>Meaning</th><th>Examples</th><th>Convert with</th></tr>
+<tr><td><code>int</code></td><td>whole number</td><td>20, -5, 1000</td><td><code>int("7")</code> → 7, <code>int(3.9)</code> → 3 (truncates)</td></tr>
+<tr><td><code>float</code></td><td>decimal</td><td>19.90, 3.14, -0.5</td><td><code>float("2.5")</code> → 2.5, <code>float(3)</code> → 3.0</td></tr>
+<tr><td><code>str</code></td><td>text</td><td>"Amine", 'Hello!'</td><td><code>str(20)</code> → "20"</td></tr>
+<tr><td><code>bool</code></td><td>True / False</td><td>True, False</td><td><code>bool(0)</code> → False, <code>bool("")</code> → False, <code>bool("a")</code> → True</td></tr>
+<tr><td><code>NoneType</code></td><td>"no value"</td><td>None</td><td>a function without return gives None</td></tr></table>
+<pre>x = 7
+y = "7"
+z = 3.5
+print(type(x)); print(type(y)); print(type(z))
+print(x == int(y))   # int("7") -> 7
+print(x == y)        # int vs str -> never equal</pre>
+<pre class="out">&lt;class 'int'&gt;
+&lt;class 'str'&gt;
+&lt;class 'float'&gt;
+True
+False</pre>
+<div class="box warn"><b>Traps:</b> <code>int("3.5")</code> → <b>ValueError</b> (use <code>int(float("3.5"))</code>). <code>int("abc")</code> → ValueError. Names: case-sensitive (<code>Age</code> ≠ <code>age</code>), cannot start with a digit, no spaces, not a keyword (<code>for</code>, <code>if</code>, <code>class</code>…). Use clear names: <code>age</code> not <code>a</code>.</div>
+<p>Multiple assignment: <code>a, b = 1, 2</code> · swap: <code>a, b = b, a</code> · <code>x += 1</code> means <code>x = x + 1</code> (also <code>-=</code>, <code>*=</code>, <code>/=</code>).</p>
+
+<!-- ============================================================ -->
+<h2>3. print(), f-strings, input() ★</h2>
+<pre>print("Hello, world!")
+print("Age:", 20)                 # comma -> a space is added between values
+print("A", "B", "C", sep=" - ")   # sep = separator between values
+print("Line 1", end=" -> ")       # end = what is printed at the end (default "\n")
+print("Line 2")
+name = "Lina"
+print(f"Welcome, {name}!")        # f-string: variables/expressions inside { }
+price = 3.14159
+print(f"{price:.2f} TND | {7/2} | {2*5}")   # :.2f = 2 decimals</pre>
+<pre class="out">Hello, world!
+Age: 20
+A - B - C
+Line 1 -> Line 2
+Welcome, Lina!
+3.14 TND | 3.5 | 10</pre>
+<p>Other formats: <code>f"{1234567:,}"</code> → <code>1,234,567</code> · <code>f"{0.256:.1%}"</code> → <code>25.6%</code> · concatenation: <code>"Hello, " + name + "!"</code> (only str + str!).</p>
+
+<h3>input() — the #1 trap</h3>
+<pre>age_text = input("How old are you? ")   # user types 20
+print(type(age_text))                   # ALWAYS a string!
+age = int(age_text)                     # convert before maths
+print("Next year you'll be", age + 1)</pre>
+<pre class="out">&lt;class 'str'&gt;
+Next year you'll be 21</pre>
+<pre>a = "5"
+b = "3"
+print(a + b)            # string + string = concatenation
+print(int(a) + int(b))  # real addition
+print(a * 3)            # string repetition</pre>
+<pre class="out">53
+8
+555</pre>
+<div class="box warn"><code>"5" + 3</code> → <b>TypeError</b>: can only concatenate str (not "int") to str. Fix: <code>int("5") + 3</code> or <code>"5" + str(3)</code>.</div>
+
+<!-- ============================================================ -->
+<h2>4. Operators ★</h2>
+<table><tr><th>Operator</th><th>Meaning</th><th>Example → result</th></tr>
+<tr><td><code>+ - *</code></td><td>add, subtract, multiply</td><td>5 + 2 → 7</td></tr>
+<tr><td><code>/</code></td><td>division — <b>always a float</b></td><td>7 / 2 → 3.5 · 6 / 2 → 3.0</td></tr>
+<tr><td><code>//</code></td><td>integer (floor) division</td><td>7 // 2 → 3 · -7 // 2 → -4</td></tr>
+<tr><td><code>%</code></td><td>modulo = remainder</td><td>7 % 2 → 1 · 10 % 3 → 1</td></tr>
+<tr><td><code>**</code></td><td>power</td><td>2 ** 3 → 8</td></tr></table>
+<p>Even number test: <code>n % 2 == 0</code>. Last digit: <code>n % 10</code>. Divisible by 3: <code>n % 3 == 0</code>.<br>Priority: <code>**</code> &gt; <code>* / // %</code> &gt; <code>+ -</code> → <code>2 + 3 * 2 ** 2</code> = 2 + 3*4 = <b>14</b>. Parentheses first.</p>
+<table><tr><th>Comparison / logic</th><th>Meaning</th><th>Example → result</th></tr>
+<tr><td><code>== !=</code></td><td>equal / not equal</td><td>5 == 5 → True</td></tr>
+<tr><td><code>&gt; &lt; &gt;= &lt;=</code></td><td>greater / less (or equal)</td><td>7 &gt; 10 → False</td></tr>
+<tr><td><code>and</code></td><td>both true</td><td>(5 &gt; 1) and (2 &gt; 1) → True</td></tr>
+<tr><td><code>or</code></td><td>at least one true</td><td>(5 &gt; 1) or (2 &gt; 100) → True</td></tr>
+<tr><td><code>not</code></td><td>reverses</td><td>not (5 &gt; 1) → False</td></tr>
+<tr><td><code>in</code></td><td>membership</td><td>"a" in "data" → True · 3 in [1,2] → False</td></tr></table>
+<pre>age = 17
+has_ticket = True
+print(age >= 18)
+print(age >= 18 or has_ticket)
+print(age >= 18 and has_ticket)
+print(1 < age < 18)        # chained comparison</pre>
+<pre class="out">False
+True
+False
+True</pre>
+<div class="box warn"><code>=</code> assigns, <code>==</code> compares. In pandas/NumPy masks we use <code>&amp; | ~</code> instead of <code>and or not</code> (see §16).</div>
+
+<!-- ============================================================ -->
+<h2>5. if / elif / else ★</h2>
+<p>Python checks conditions <b>top to bottom</b>; the <b>first True</b> block runs, the rest are skipped. <code>else</code> catches everything else. The <b>colon</b> <code>:</code> and the <b>indentation</b> (4 spaces) are mandatory.</p>
+<pre>temperature = 8
+if temperature > 30:
+    print("It's hot!")
+elif temperature > 15:
+    print("Nice weather.")
+elif temperature > 0:
+    print("A bit cold.")
+else:
+    print("Freezing!")</pre>
+<pre class="out">A bit cold.</pre>
+<pre>score = 55
+if score >= 60:
+    print("Pass")
+elif score >= 50:
+    print("Retake")      # first True condition
+else:
+    print("Fail")
+
+# one-line (ternary) form
+status = "adult" if age >= 18 else "minor"</pre>
+<pre class="out">Retake</pre>
+<div class="box warn"><b>Order matters:</b> test the most specific case first. In "even/odd/zero", check <code>n == 0</code> <i>before</i> <code>n % 2 == 0</code>, otherwise 0 is printed as "Even". Two separate <code>if</code>s can both run; <code>if/elif</code> runs only one.</div>
+
+<!-- ============================================================ -->
+<h2>6. Loops: for, range, while ★</h2>
+<table><tr><th>range</th><th>gives</th></tr>
+<tr><td><code>range(5)</code></td><td>0, 1, 2, 3, 4 (5 numbers, starts at 0, <b>stop excluded</b>)</td></tr>
+<tr><td><code>range(1, 11)</code></td><td>1 … 10</td></tr>
+<tr><td><code>range(0, 10, 2)</code></td><td>0, 2, 4, 6, 8 (step 2)</td></tr>
+<tr><td><code>range(5, 0, -1)</code></td><td>5, 4, 3, 2, 1</td></tr></table>
+<pre>total = 0
+for i in range(1, 5):
+    total = total + i
+    print("i =", i, "total =", total)</pre>
+<pre class="out">i = 1 total = 1
+i = 2 total = 3
+i = 3 total = 6
+i = 4 total = 10</pre>
+<pre>fruits = ["apple", "banana", "cherry"]
+for f in fruits:                       # loop directly on the items
+    print("I like", f)
+for i, f in enumerate(fruits):         # index + item
+    print(i, f)
+total = 0
+for i in range(1, 101):
+    total += i
+print(total)                           # 5050</pre>
+<pre class="out">I like apple
+I like banana
+I like cherry
+0 apple
+1 banana
+2 cherry
+5050</pre>
+<h4>while, break, continue</h4>
+<pre>n = 1
+while n <= 3:          # repeats while the condition is True
+    print(n)
+    n += 1             # forget this -> infinite loop!
+
+for i in range(10):
+    if i == 2:
+        continue       # skip the rest of THIS iteration
+    if i == 4:
+        break          # leave the loop completely
+    print(i)</pre>
+<pre class="out">1
+2
+3
+0
+1
+3</pre>
+<p>Patterns to know by heart: <b>running total</b> (<code>total += x</code>), <b>counter</b> (<code>count += 1</code> inside an if), <b>max by hand</b> (<code>best = lst[0]</code>, then <code>if x &gt; best: best = x</code>), <b>multiplication table</b> (<code>for i in range(1, 11): print(n, "x", i, "=", n*i)</code>).</p>
+
+<!-- ============================================================ -->
+<h2>7. Lists ★</h2>
+<p>Ordered, <b>mutable</b> (can change), can hold mixed types. Indexing starts at <b>0</b>; negative index counts from the end.</p>
+<pre>fruits = ["apple", "banana", "cherry"]
+print(fruits[0], fruits[-1], len(fruits))
+fruits.append("mango")        # add at the end
+fruits[0] = "pear"            # change an item
+print(fruits)
+print("kiwi" in fruits)</pre>
+<pre class="out">apple cherry 3
+['pear', 'banana', 'cherry', 'mango']
+False</pre>
+<table><tr><th>Operation</th><th>Code</th><th>Result / note</th></tr>
+<tr><td>add at end</td><td><code>lst.append(x)</code></td><td>modifies the list, returns None</td></tr>
+<tr><td>insert at position</td><td><code>lst.insert(1, x)</code></td><td></td></tr>
+<tr><td>add several</td><td><code>lst.extend([a, b])</code> / <code>lst + [a, b]</code></td><td></td></tr>
+<tr><td>remove by value</td><td><code>lst.remove(x)</code></td><td>first occurrence; ValueError if absent</td></tr>
+<tr><td>remove by index</td><td><code>lst.pop()</code> / <code>lst.pop(0)</code> / <code>del lst[0]</code></td><td>pop returns the item</td></tr>
+<tr><td>sort</td><td><code>lst.sort()</code> (in place) / <code>sorted(lst)</code> (new list)</td><td><code>reverse=True</code> for descending</td></tr>
+<tr><td>stats</td><td><code>len, sum, min, max</code></td><td><code>sum(lst)/len(lst)</code> = average</td></tr>
+<tr><td>count / find</td><td><code>lst.count(x)</code> / <code>lst.index(x)</code></td><td></td></tr></table>
+<h4>Slicing <code>lst[start:stop:step]</code> — stop is excluded</h4>
+<pre>n = [10, 20, 30, 40, 50]
+print(n[1:3])    # index 1, 2
+print(n[:2])     # first 2
+print(n[2:])     # from index 2 to the end
+print(n[-2:])    # last 2
+print(n[::2])    # every 2nd
+print(n[::-1])   # reversed</pre>
+<pre class="out">[20, 30]
+[10, 20]
+[30, 40, 50]
+[40, 50]
+[10, 30, 50]
+[50, 40, 30, 20, 10]</pre>
+<div class="box warn"><code>b = a</code> does <b>not</b> copy a list: both names point to the same list (changing b changes a). Copy with <code>b = a.copy()</code> or <code>a[:]</code>. <code>lst[10]</code> on a short list → <b>IndexError</b>.</div>
+
+<!-- ============================================================ -->
+<h2>8. Tuples, dictionaries, sets ★</h2>
+<div class="two">
+<div><h4>Tuple — like a list but locked (immutable)</h4>
+<pre>point = (3, 7)
+x, y = point          # unpacking
+print(x, y)
+# point[0] = 5  -> TypeError!
+single = (5,)         # 1-element tuple needs a comma</pre>
+<pre class="out">3 7</pre>
+<p>Use for <b>fixed data</b>: coordinates, RGB colours, <code>df.shape</code> (a tuple!).</p></div>
+<div><h4>List vs tuple</h4>
+<table><tr><th>List <code>[ ]</code></th><th>Tuple <code>( )</code></th></tr>
+<tr><td>mutable</td><td>immutable</td></tr>
+<tr><td>append, remove…</td><td>only count, index</td></tr>
+<tr><td>data that changes</td><td>fixed data, safer, a bit faster</td></tr></table></div></div>
+<h4>Dictionary — key → value pairs</h4>
+<pre>student = {"name": "Salma", "age": 21, "grade": "A"}
+print(student["name"])          # access by KEY, not by number
+student["city"] = "Tunis"       # add (or update) a key
+student["age"] = 22             # update
+for key, value in student.items():
+    print(key, "->", value)
+print(student.get("phone", "N/A"))   # safe access with default
+print(list(student.keys()), len(student))</pre>
+<pre class="out">Salma
+name -> Salma
+age -> 22
+grade -> A
+city -> Tunis
+N/A
+['name', 'age', 'grade', 'city'] 4</pre>
+<p><code>.keys()</code>, <code>.values()</code>, <code>.items()</code>, <code>"age" in student</code> (tests keys), <code>del student["city"]</code>, <code>student.pop("age")</code>. Keys are unique; <code>student["phone"]</code> on a missing key → <b>KeyError</b>.</p>
+<pre># Counting with a dict (classic exam exercise)
+words = ["tunis", "sfax", "tunis", "sousse", "tunis"]
+counts = {}
+for w in words:
+    counts[w] = counts.get(w, 0) + 1
+print(counts)</pre>
+<pre class="out">{'tunis': 3, 'sfax': 1, 'sousse': 1}</pre>
+<p><b>Set</b> <code>{1, 2, 3}</code>: no duplicates, no order → <code>set([1,1,2])</code> → <code>{1, 2}</code>; <code>len(set(lst))</code> = number of distinct values.</p>
+
+<!-- ============================================================ -->
+<h2>9. Nested lists — a grid (Tic-Tac-Toe)</h2>
+<pre>board = [["_", "_", "_"],
+         ["_", "_", "_"],
+         ["_", "_", "_"]]
+board[1][1] = "X"          # board[row][col] -> centre
+board[0][2] = "O"          # top-right
+for row in board:          # each row is a list
+    print(" | ".join(row))</pre>
+<pre class="out">_ | _ | O
+_ | X | _
+_ | _ | _</pre>
+<p><code>board[1]</code> = the whole middle row (a list); <code>board[1][2]</code> = one cell. Whose turn: <code>player = "X" if turn % 2 == 0 else "O"</code>. Empty cell check: <code>if board[r][c] == "_":</code>.</p>
+
+<!-- ============================================================ -->
+<h2>10. Strings</h2>
+<pre>s = "  Hello Data  "
+print(s.strip())            # remove spaces at both ends
+print(s.lower(), s.upper())
+print("tunis city".title()) # first letter of each word in capital
+print("a,b,c".split(","))   # str -> list
+print("-".join(["a", "b"])) # list -> str
+print("Hello".replace("l", "L"), len("Hello"), "Hello"[1:3])
+print("data" in "big data", "abc".startswith("a"), "42".isdigit())</pre>
+<pre class="out">Hello Data
+  hello data     HELLO DATA
+Tunis City
+['a', 'b', 'c']
+a-b
+HeLLo 5 el
+True True True</pre>
+<p>Strings are <b>immutable</b>: <code>s.upper()</code> returns a new string, you must re-assign <code>s = s.upper()</code>. Same idea in pandas: <code>df["c"] = df["c"].str.strip()</code>.</p>
+
+<!-- ============================================================ -->
+<h2>11. Functions, lambda, comprehensions</h2>
+<pre>def total_price(price, quantity, discount=0):     # discount has a default value
+    """Return the price after discount."""
+    total = price * quantity
+    return total * (1 - discount / 100)
+
+print(total_price(10, 3))           # 30.0
+print(total_price(10, 3, 10))       # 27.0
+print(total_price(quantity=2, price=5))   # keyword arguments -> 10.0</pre>
+<pre class="out">30.0
+27.0
+10.0</pre>
+<p><code>return</code> sends a value back and <b>stops</b> the function; <code>print</code> only displays. A function without return returns <code>None</code>. Variables created inside a function are <b>local</b>.</p>
+<pre>square = lambda x: x ** 2           # anonymous one-line function
+print(square(4))                    # 16
+squares = [x ** 2 for x in range(5)]            # list comprehension
+evens = [x for x in range(10) if x % 2 == 0]
+prices = {"pen": 1.5, "book": 12}
+expensive = {k: v for k, v in prices.items() if v > 5}
+print(squares, evens, expensive)</pre>
+<pre class="out">16
+[0, 1, 4, 9, 16] [0, 2, 4, 6, 8] {'book': 12}</pre>
+<p>Error handling (bonus): <code>try: n = int(input()) except ValueError: print("Not a number")</code>.</p>
+
+<!-- ============================================================ -->
+<h2>12. Libraries &amp; import ★</h2>
+<p>A <b>library</b> = a toolbox of ready-made, tested code → saves time, reliable.</p>
+<pre>import random
+print(random.randint(1, 100))     # random int, 1 and 100 INCLUDED
+print(random.choice(["a", "b"]))  # random element
+lst = [1, 2, 3]; random.shuffle(lst)
+
+import math
+print(math.sqrt(16))              # 4.0 (always a float)
+print(math.floor(3.7), math.ceil(3.2), round(3.14159, 2))
+
+from math import pi               # import just one piece -> use pi directly
+print(pi)
+
+import numpy as np                # alias
+import pandas as pd</pre>
+<pre class="out">(random value)
+(random value)
+4.0
+3 4 3.14
+3.141592653589793</pre>
+<p>Other libraries met: <code>datetime</code> (dates), <code>matplotlib</code> (charts), <code>numpy</code>, <code>pandas</code>.</p>
+
+<!-- ============================================================ -->
+<h2 class="page">13. NumPy (Chapter 1 + Lab 1) ★</h2>
+<p><b>NumPy</b> = the base library for numerical computing; pandas is built on it. Its object is the <b>ndarray</b>.</p>
+<table><tr><th>Python list</th><th>NumPy array</th></tr>
+<tr><td>can contain <b>different</b> types: <code>["beep", False, 56, .945, [3, 2, 5]]</code></td><td>only <b>one</b> data type (homogeneous)</td></tr>
+<tr><td>slower, more memory</td><td>less memory, much faster</td></tr>
+<tr><td><code>[1,2] * 2</code> → <code>[1, 2, 1, 2]</code></td><td><code>np.array([1,2]) * 2</code> → <code>[2 4]</code> (<b>vectorised</b>, element by element)</td></tr></table>
+<h3>Creating arrays</h3>
+<pre>import numpy as np
+arr = np.array([3, 2, 5, 8, 4, 9, 7, 6, 1])        # 1D from a list
+print(type(arr))
+m = np.array([[3, 2, 5], [9, 7, 1], [4, 3, 6]])     # 2D from a list of lists
+print(np.zeros((2, 3)))                              # shape passed as a TUPLE
+print(np.arange(-3, 4))       # like range: stop excluded
+print(np.arange(4), np.arange(-3, 4, 3))
+r = np.random.random((2, 4))   # floats in [0, 1), shape 2x4</pre>
+<pre class="out">&lt;class 'numpy.ndarray'&gt;
+[[0. 0. 0.]
+ [0. 0. 0.]]
+[-3 -2 -1  0  1  2  3]
+[0 1 2 3] [-3  0  3]</pre>
+<p>Also: <code>np.ones((2,2))</code>, <code>np.linspace(0, 1, 5)</code> → <code>[0. 0.25 0.5 0.75 1.]</code>, <code>np.full((2,2), 7)</code>.</p>
+<h3>Dimensions &amp; shape</h3>
+<p><b>1D = vector</b> · <b>2D = matrix</b> · <b>3D or more = tensor</b>. In 2D: rows are the 1st dimension, columns the 2nd. A 3D array = an array of 2D arrays (<code>np.array([a2d, b2d, c2d])</code> → shape <code>(3, 2, 2)</code>).</p>
+<pre>array = np.zeros((3, 5))
+print(array.shape, array.ndim, array.size)     # (rows, cols), nb of dims, nb of elements
+a = np.array([[1, 2], [5, 7], [6, 6]])
+print(a.flatten())                 # -> 1D
+print(a.reshape((2, 3)))           # same 6 elements, new shape
+# a.reshape((3, 3)) -> ValueError: cannot reshape array of size 6 into shape (3,3)</pre>
+<pre class="out">(3, 5) 2 15
+[1 2 5 7 6 6]
+[[1 2 5]
+ [7 6 6]]</pre>
+<div class="box tip"><b>reshape rule:</b> the product of the new shape must equal <code>size</code> (6 = 2×3 = 3×2 = 6×1). <code>reshape(-1)</code> = flatten; <code>reshape(2, -1)</code> lets NumPy compute the missing dimension.</div>
+<h3>Data types (dtype)</h3>
+<table><tr><th>Python</th><th>NumPy</th><th>note</th></tr>
+<tr><td>int</td><td><code>np.int64</code>, <code>np.int32</code></td><td>int64 = default for integers</td></tr>
+<tr><td>float</td><td><code>np.float64</code>, <code>np.float32</code></td><td>float64 = default for decimals</td></tr>
+<tr><td>str</td><td><code>&lt;U12</code></td><td>Unicode string, max 12 characters</td></tr>
+<tr><td>bool</td><td><code>np.bool_</code></td><td></td></tr></table>
+<p><b>Bits:</b> <code>int32</code> uses 32 bits → can store 2<sup>32</sup> = <b>4,294,967,296</b> different integers; <code>int64</code> uses 64 bits (bigger numbers, more memory). Smaller dtype = less memory.</p>
+<pre>print(np.array([1.32, 5.78, 175.55]).dtype)
+print(np.array([[1, 2, 3], [4, 5, 6]]).dtype)
+print(np.array(["Introduction", "to", "NumPy"]).dtype)       # longest word = 12 chars
+f32 = np.array([1.32, 5.78, 175.55], dtype=np.float32)      # choose the dtype
+print(f32.dtype)
+b = np.array([[True, False], [False, False]], dtype=np.bool_)
+print(b.astype(np.int32))                                    # conversion</pre>
+<pre class="out">float64
+int64
+&lt;U12
+float32
+[[1 0]
+ [0 0]]</pre>
+<h4>Type coercion ★ — an array has ONE type, so NumPy converts everything to the most general one</h4>
+<pre>print(np.array([True, "Boop", 42, 42.42]))   # a string present -> everything becomes str
+print(np.array([0, 42, 42.42]).dtype)        # int + float -> float
+print(np.array([True, False, 42]).dtype)     # bool + int -> int</pre>
+<pre class="out">['True' 'Boop' '42' '42.42']
+float64
+int64</pre>
+<p>Hierarchy: <b>bool → int → float → str</b> (the "biggest" type present wins).</p>
+<h3>Indexing, slicing, statistics, masks (Lab 1)</h3>
+<pre>days = np.array(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])
+sales = np.array([120, 150, 95, 180, 160, 210, 175])
+print(sales[0], sales[-1], sales[1:5])          # first, last, Tue..Fri
+print(sales.sum(), sales.mean().round(2), sales.min(), sales.max())
+print(sales.argmax(), days[sales.argmax()])     # INDEX of the max -> use it on days
+mask = sales > 150                              # boolean array
+print(mask)
+print(sales[mask], days[mask], mask.sum())      # filter + count (True = 1)
+print(days[sales >= sales.mean()])
+print(days[(sales > 100) & (sales < 170)])      # & | ~ with parentheses</pre>
+<pre class="out">120 175 [150  95 180 160]
+1090 155.71 95 210
+5 Sat
+[False False False  True  True  True  True]
+[180 160 210 175] ['Thu' 'Fri' 'Sat' 'Sun'] 4
+['Thu' 'Fri' 'Sat' 'Sun']
+['Mon' 'Tue' 'Fri']</pre>
+<pre>m = np.array([[1, 2, 3], [4, 5, 6]])
+print(m[0, 1], m[1], m[:, 0])     # row 0 col 1 | row 1 | column 0
+print(m.sum(axis=0), m.sum(axis=1))   # axis=0 -> per column, axis=1 -> per row
+print(m * 10, m + m)              # vectorised maths
+print(np.sort(np.array([3, 1, 2])), np.median(sales), sales.std().round(2))</pre>
+<pre class="out">2 [4 5 6] [1 4]
+[5 7 9] [ 6 15]
+[[10 20 30]
+ [40 50 60]] [[ 2  4  6]
+ [ 8 10 12]]
+[1 2 3] 160.0 35.7</pre>
+<p>Also: <code>np.where(sales &gt; 150, "good", "low")</code>, <code>np.unique()</code>, <code>np.round()</code>, <code>argmin()</code>, <code>cumsum()</code>. Plot: <code>plt.scatter(np.arange(0, 7), np.arange(-3, 4)); plt.show()</code>.</p>
+
+<!-- ============================================================ -->
+<h2 class="page">14. pandas — Series, DataFrame, loading (Chapter 2) ★</h2>
+<p><b>DataFrame</b> = a table; each <b>column is a Series</b> with <b>one dtype</b>. The <b>index</b> = row labels (0, 1, 2…). Think: a spreadsheet, or a dictionary of lists.</p>
+<pre>import pandas as pd
+df = pd.DataFrame({"city": ["Tunis", "Sfax", "Sousse"], "quantity": [1, 3, 2]})
+print(df)
+print(type(df["city"]))         # one column -> Series
+print(df.loc[0, "city"])        # one cell by label
+s = pd.Series([10, 20, 30], index=["a", "b", "c"])
+print(s["b"], s.mean())</pre>
+<pre class="out">     city  quantity
+0   Tunis         1
+1    Sfax         3
+2  Sousse         2
+&lt;class 'pandas.core.series.Series'&gt;
+Tunis
+20 20.0</pre>
+<h3>Loading</h3>
+<pre>orders = pd.read_csv("data/orders.csv")                 # CSV -> DataFrame
+# pd.read_csv("f.csv", sep=";")                         # other separator
+# pd.read_csv("f.csv", parse_dates=["order_date"])      # read dates directly
+# pd.read_excel("file.xlsx", sheet_name="Sales")        # Excel (needs openpyxl)
+# also: pd.read_json, pd.read_sql, pd.read_parquet
+# Colab: from google.colab import files; files.upload()  -> file goes to /content</pre>
+<p><code>read_csv</code> splits each line into columns, <b>infers the dtype</b>, and turns empty cells and texts like <code>N/A</code>, <code>NaN</code>, <code>null</code> into missing values (<code>NaN</code>).</p>
+
+<!-- ============================================================ -->
+<h2>15. pandas — exploring ("always look before you clean") ★</h2>
+<table><tr><th>Code</th><th>What it shows</th></tr>
+<tr><td><code>df.head(10)</code> / <code>df.tail(5)</code></td><td>first / last rows (default 5)</td></tr>
+<tr><td><code>df.shape</code></td><td>tuple <code>(rows, columns)</code> e.g. <code>(12060, 10)</code> — attribute, <b>no ()</b></td></tr>
+<tr><td><code>df.size</code></td><td>number of cells = rows × columns</td></tr>
+<tr><td><code>len(df)</code></td><td>number of rows</td></tr>
+<tr><td><code>df.columns</code> / <code>df.dtypes</code></td><td>column names / type of each column</td></tr>
+<tr><td><code>df.info()</code></td><td><b>types + non-null counts</b> (→ missing values) + memory</td></tr>
+<tr><td><code>df.describe()</code></td><td>count, mean, std, min, 25%, 50%, 75%, max of numeric columns → spot impossible values (quantity max = 999)</td></tr>
+<tr><td><code>df.describe(include="all")</code></td><td>also text columns (unique, top, freq)</td></tr>
+<tr><td><code>df["status"].value_counts()</code></td><td>frequency of each category (<code>normalize=True</code> → proportions, <code>dropna=False</code> → count NaN too)</td></tr>
+<tr><td><code>df["city"].unique()</code> / <code>.nunique()</code></td><td>distinct values / how many (<code>df.nunique()</code> for all columns)</td></tr>
+<tr><td><code>df["q"].mean() .median() .min() .max() .sum() .std()</code></td><td>column statistics (NaN ignored)</td></tr>
+<tr><td><code>df["price"].idxmax()</code></td><td>index label of the max → <code>df.loc[df["price"].idxmax()]</code></td></tr></table>
+<div class="box tip">dtypes in pandas: <code>int64</code>, <code>float64</code> (also used when an int column has NaN), <code>object</code> / <code>str</code> (text — pandas 3 uses a dedicated <code>str</code> dtype), <code>bool</code>, <code>datetime64[ns]</code>, <code>category</code>.</div>
+
+<!-- ============================================================ -->
+<h2>16. pandas — selecting &amp; filtering ★</h2>
+<pre>orders["city"]                                   # one column -> Series
+orders[["order_id", "city", "status"]]           # several columns -> DataFrame (double brackets!)
+orders.drop(columns="status")                    # all except one
+orders.loc[0, "city"]                            # cell by LABEL
+orders.loc[0:4, ["order_id", "city"]]            # labels 0..4 INCLUDED
+orders.iloc[0:5, 0:3]                            # POSITIONS 0..4 (5 excluded), first 3 columns
+orders.iloc[-1]                                  # last row</pre>
+<table><tr><th></th><th><code>[]</code></th><th><code>.loc[rows, cols]</code></th><th><code>.iloc[rows, cols]</code></th></tr>
+<tr><td>selects by</td><td>column name(s) or a boolean mask (rows)</td><td><b>labels</b> (index, column names) or mask</td><td><b>integer positions</b></td></tr>
+<tr><td>slice end</td><td>—</td><td><b>included</b></td><td><b>excluded</b></td></tr></table>
+<h3>Boolean masks</h3>
+<pre>mask = (
+    (orders["status"] == "Delivered")
+    & (orders["city"] == "Tunis")
+    & (orders["quantity"] >= 3)
+)
+orders.loc[mask, ["order_id", "quantity"]]           # filter rows + choose columns
+orders[mask]                                         # same rows, all columns
+orders.query("status == 'Delivered' and quantity >= 3")   # readable alternative
+
+orders[orders["city"].isin(["Tunis", "Sfax"])]       # several values (= OR)
+orders[orders["quantity"].between(2, 5)]             # 2 <= q <= 5 (both included)
+orders[~(orders["status"] == "Returned")]            # ~ = NOT
+orders[(orders["city"] == "Tunis") | (orders["city"] == "Sfax")]
+orders[orders["payment_method"].isna()]              # rows where a value is missing
+len(orders[mask]) ;  mask.sum()                      # count the rows</pre>
+<div class="box key"><b>Rules:</b> combine with <code>&amp;</code> (and), <code>|</code> (or), <code>~</code> (not) — <b>never</b> <code>and/or</code> on columns (→ ValueError: truth value of a Series is ambiguous). Put <b>parentheses around every condition</b> (<code>&amp;</code> is evaluated before <code>==</code>).</div>
+<h3>Sorting</h3>
+<pre>orders.sort_values("unit_price", ascending=False).head(5)       # top 5 prices
+orders.sort_values(["city", "quantity"], ascending=[True, False])
+orders.nlargest(5, "unit_price") ; orders.nsmallest(3, "quantity")
+orders.sort_index() ; orders.reset_index(drop=True)             # rebuild 0..n-1 index</pre>
+
+<!-- ============================================================ -->
+<h2 class="page">17. pandas — cleaning ★★</h2>
+<h3>Missing values: choose, don't guess</h3>
+<pre>orders.isna().sum()                                   # missing per column
+(orders.isna().mean() * 100).sort_values(ascending=False)   # % missing per column
+orders.isna().sum().sum()                             # total missing
+orders[orders.isna().any(axis=1)]                     # rows with at least one NaN
+orders["payment_method"] = orders["payment_method"].fillna("Unknown")    # label
+orders["age"] = orders["age"].fillna(orders["age"].median())             # median
+orders["region"] = orders["region"].fillna(orders["region"].mode()[0])   # most frequent
+orders = orders.dropna(subset=["order_date"])         # drop rows missing a KEY field
+orders = orders.drop(columns=["useless_col"])         # drop a column</pre>
+<table><tr><th>Situation</th><th>Typical action</th><th>Example</th></tr>
+<tr><td>missing category</td><td>fill with a label (or the mode)</td><td><code>payment_method</code> → "Unknown"</td></tr>
+<tr><td>missing number, a business rule exists</td><td>impute (median of the group)</td><td><code>unit_price</code> → median price of the same product</td></tr>
+<tr><td>missing key field</td><td>drop the rows</td><td><code>order_date</code> missing → cannot place it in time</td></tr>
+<tr><td>many missing in a column</td><td>ask the business; maybe drop the column</td><td>age missing for 3 % of customers</td></tr></table>
+<div class="box key"><b>Never replace all missing values by 0</b>: it creates fake data and biases the averages (a price of 0, an age of 0 don't exist). <b>Median</b> &gt; mean when there are outliers (robust). <b>Document every choice.</b> <code>isna()</code> = <code>isnull()</code> (aliases); <code>notna()</code> = the opposite.</div>
+<h3>Duplicates</h3>
+<pre>orders.duplicated().sum()                  # fully identical rows (60 in Lab 2)
+orders[orders.duplicated(keep=False)]      # show all copies
+orders = orders.drop_duplicates()          # keep the first occurrence
+orders["order_id"].duplicated().sum()      # duplicated IDs (different problem!)
+orders["order_id"].is_unique
+orders.drop_duplicates(subset=["order_id"], keep="last")</pre>
+<p><b>Duplicated row</b> = identical in every column → safe to delete. <b>Duplicated ID</b> = same key but maybe different content → investigate. Not removing duplicates → revenue counted twice.</p>
+<h3>Data types</h3>
+<pre>orders["order_date"] = pd.to_datetime(orders["order_date"], errors="coerce")   # invalid -> NaT
+orders = orders.dropna(subset=["order_date"])
+orders["quantity"] = orders["quantity"].astype("int64")   # only AFTER NaN are handled
+orders["price"] = pd.to_numeric(orders["price"], errors="coerce")   # text -> number, bad -> NaN
+orders["city"] = orders["city"].astype("category")
+orders.dtypes</pre>
+<p><code>errors="coerce"</code> turns invalid values into missing (<code>NaT</code> for dates, <code>NaN</code> for numbers) instead of crashing. The right types unlock the <code>.dt</code> and <code>.str</code> tools. A column with NaN cannot be <code>int64</code> (NaN is a float) → that's why quantity is read as <code>1.0, 2.0</code>.</p>
+<h3>Text cleaning</h3>
+<pre>orders["city"].nunique()                                    # 50 spellings!
+orders["city"] = orders["city"].str.strip().str.title()     # ' tunis ' / 'TUNIS' -> 'Tunis'
+orders["city"].nunique()                                    # 10
+orders["city"] = orders["city"].replace({"Gabes": "Gabès"}) # fix a specific typo
+orders["email"].str.lower() ; orders["name"].str.contains("Ben") ; orders["code"].str[:3]</pre>
+<h3>Outliers — business rule beats statistics</h3>
+<pre>orders["quantity"].value_counts().sort_index()        # see the 999
+orders = orders[orders["quantity"] <= 10].copy()      # rule: max 10 units per line
+# statistical rule (IQR):
+q1, q3 = orders["unit_price"].quantile([0.25, 0.75])
+iqr = q3 - q1
+outliers = orders[(orders["unit_price"] < q1 - 1.5 * iqr) | (orders["unit_price"] > q3 + 1.5 * iqr)]</pre>
+<p>Ask: is 999 a real order or a data-entry error? Who can confirm?</p>
+<h3>Group-wise imputation with transform ★</h3>
+<pre>by_product = orders.groupby("product_id")["unit_price"]
+median = by_product.transform("median")        # a column ALIGNED with the rows (same length)
+orders["unit_price"] = orders["unit_price"].fillna(median)</pre>
+<div class="box tip"><code>groupby(...).median()</code> → one value per product (short table). <code>groupby(...).transform("median")</code> → the product's median repeated on <b>every row</b> → perfect for <code>fillna</code>.</div>
+
+<!-- ============================================================ -->
+<h2>18. Export, validation &amp; the cleaning workflow ★</h2>
+<pre>orders.to_csv("orders_clean.csv", index=False)          # index=False: no 'Unnamed: 0' column
+orders.head(500).to_excel("orders_sample.xlsx", index=False)
+check = pd.read_csv("orders_clean.csv", parse_dates=["order_date"])
+assert check.shape == orders.shape                      # validate: stops with an error if False
+assert orders["unit_price"].isna().sum() == 0
+print(f"Removed: {(12060 - len(orders)) / 12060 * 100:.1f} %")</pre>
+<table><tr><th>1 Raw file</th><th>2 Explore</th><th>3 Decide</th><th>4 Clean</th><th>5 Validate</th><th>6 Export</th></tr>
+<tr><td>keep it untouched</td><td>head, info, describe, value_counts</td><td>drop, fill or fix? write it down</td><td>code the decisions in order</td><td>assert / counts before–after</td><td>new file: clean CSV / Excel</td></tr></table>
+<p>Lab 2 result: 12,060 raw rows → 60 duplicates → 12,000 → 20 bad dates → 11,980 → 15 quantities of 999 → <b>11,965 clean rows (0.8 % removed)</b>.</p>
+<h3>A reusable cleaning function</h3>
+<pre>def clean_orders(raw):
+    df = raw.drop_duplicates().copy()
+    df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
+    df = df.dropna(subset=["order_date"])
+    df = df[df["quantity"] <= 10]
+    df["payment_method"] = df["payment_method"].fillna("Unknown")
+    return df
+
+orders = clean_orders(pd.read_csv("data/orders.csv"))   # same input -> same output, every night</pre>
+<h3>Modern pandas good habits (pandas 3)</h3>
+<ul>
+<li><b>Copy-on-Write</b>: a filtered DataFrame is a safe copy; add <code>.copy()</code> when you plan to edit it (avoids <i>SettingWithCopyWarning</i> in pandas 2).</li>
+<li><b>String dtype</b>: text columns use a dedicated <code>str</code> dtype by default.</li>
+<li><b>Avoid <code>inplace=True</code></b>: assign the result back: <code>df["a"] = df["a"].fillna(0)</code>.</li>
+<li><b>Method chaining</b>: <code>df.assign(total=df.q * df.p).query("total &gt; 100").sort_values("total")</code>.</li>
+<li><b>Keep the raw data</b>: work on <code>clean = raw.copy()</code>.</li>
+</ul>
+<p>Industry: banking (duplicated transactions → wrong balances, false fraud alerts), healthcare (different date formats → wrong patient timelines), telecom (missing usage records → under-billing), retail (typos in city names → wrong regional reports).</p>
+
+<!-- ============================================================ -->
+<h2 class="page">19. pandas — new columns, conditions, apply / map / lambda</h2>
+<pre>df["Gross_Revenue"] = df["Quantity"] * df["Unit_Price"]          # vectorised, row by row
+df["Net_Revenue"] = df["Gross_Revenue"] * (1 - df["Discount"] / 100)
+df["Profit"] = df["Net_Revenue"] - df["Quantity"] * df["Cost_Price"]
+df["Margin"] = np.where(df["Net_Revenue"] != 0, df["Profit"] / df["Net_Revenue"] * 100, np.nan)  # avoid /0
+df = df.assign(Tax=df["Net_Revenue"] * 0.05)                     # same, chainable
+df = df.rename(columns={"qty": "Quantity"})</pre>
+<h4>Conditional classification — 3 ways</h4>
+<pre>import numpy as np
+df["Sign"] = np.where(df["Profit"] >= 0, "Positive", "Negative")        # 2 classes
+
+conds = [df["Profit"] > 500, df["Profit"] >= 100, df["Profit"] >= 0]   # first True wins (like elif)
+df["Level"] = np.select(conds, ["High", "Medium", "Low"], default="Loss")
+
+df["Age_Group"] = pd.cut(df["Age"], bins=[0, 29, 49, 120], labels=["Young", "Adult", "Senior"])  # intervals (a, b]</pre>
+<h4>apply, map, lambda</h4>
+<pre>df["Tax"] = df["Net_Revenue"].apply(lambda x: x * 0.05)          # function on each VALUE
+def age_group(age):
+    if age < 30: return "Young"
+    elif age < 50: return "Adult"
+    return "Senior"
+df["Age_Group"] = df["Age"].apply(age_group)
+df["Pay"] = df["Payment"].map({"Cash": "Cash at counter", "Online": "Online payment"})  # dict (missing key -> NaN)
+df["Margin2"] = df.apply(lambda row: row["Profit"] / row["Net_Revenue"] * 100, axis=1)  # each ROW</pre>
+<p><b>map</b> (Series) = replace each value via a dict/Series/function. <b>apply</b> = run a function on each value (Series) or each row/column (DataFrame, <code>axis=1</code> = rows). <b>lambda</b> = small anonymous function. Use <code>def</code> when the logic has several steps or must be reused. Vectorised code (<code>*</code>, <code>np.where</code>) is faster than <code>apply</code>.</p>
+
+<!-- ============================================================ -->
+<h2>20. pandas — groupby, merge, pivot, dates, statistics, plots</h2>
+<h3>groupby → split / apply / combine</h3>
+<pre>df.groupby("Region")["Net_Revenue"].sum()                         # one stat
+df.groupby("Region")["Net_Revenue"].agg(["sum", "mean", "count"])   # several
+df.groupby("Region").agg(                                           # named aggregation ★
+    Revenue=("Net_Revenue", "sum"),
+    Profit=("Profit", "sum"),
+    Orders=("Order_ID", "count"),
+    Avg_Discount=("Discount", "mean"),
+).sort_values("Revenue", ascending=False)
+df.groupby(["Region", "Category"])["Profit"].sum().reset_index()  # 2 keys -> back to a table
+share = df.groupby("Region")["Net_Revenue"].sum() / df["Net_Revenue"].sum() * 100   # % contribution
+df.groupby("Region")["Profit"].sum().rank(ascending=False)       # ranking
+df.groupby("Region")["Profit"].sum().idxmax()                    # best group</pre>
+<p>Category columns: add <code>observed=True</code> to <code>groupby</code> to avoid empty groups.</p>
+<h3>merge (join two tables on a key)</h3>
+<pre>full = sales.merge(products, on="Product_ID", how="left")     # keep ALL sales rows
+# how: "inner" (only matching keys), "left", "right", "outer" (all)
+# different key names: left_on="prod", right_on="Product_ID"
+sales["Product_ID"].isin(products["Product_ID"]).all()       # every sale has a product?
+price = sales["Product_ID"].map(products.set_index("Product_ID")["List_Price"])  # lookup without merge
+pd.concat([df_jan, df_feb])                                  # stack tables vertically</pre>
+<h3>Dates (.dt)</h3>
+<pre>d = df["Order_Date"].dt          # column must be datetime64 first!
+df["Year"], df["Month"], df["Day"] = d.year, d.month, d.day
+df["Month_Name"], df["Day_Name"], df["Quarter"] = d.month_name(), d.day_name(), d.quarter
+df["Is_Weekend"] = d.dayofweek >= 5          # Monday = 0 ... Sunday = 6
+df[(df["Order_Date"] >= "2025-01-01") & (df["Order_Date"] <= "2025-03-31")]   # date filter
+df["Season"] = df["Month"].map({12: "Winter", 1: "Winter", 2: "Winter", 3: "Spring"})  # ...
+(df["Order_Date"].max() - df["Order_Date"].min()).days
+df.set_index("Order_Date").resample("ME")["Net_Revenue"].sum()   # monthly total ("M" in pandas &lt; 2.2)</pre>
+<h3>pivot_table &amp; crosstab</h3>
+<pre>pd.pivot_table(df, values="Net_Revenue", index="Category", columns="Quarter", aggfunc="sum", margins=True)
+pd.crosstab(df["Region"], df["Payment_Method"])                    # counts
+pd.crosstab(df["Region"], df["Payment_Method"], normalize="index") # % per row</pre>
+<h3>Statistics</h3>
+<pre>df["Profit"].describe()
+df["Profit"].agg(["mean", "median", "min", "max", "std", "var"])
+df["Profit"].quantile([0.25, 0.5, 0.75])      # Q1, median, Q3
+df[["Quantity", "Unit_Price", "Profit"]].corr()   # correlation matrix (-1 .. +1)</pre>
+<p><b>Mean</b> sensitive to extremes; <b>median</b> = middle value, robust. Mean &gt; median → right-skewed (few big values). <b>Std</b> = typical distance to the mean. <b>Q3 (75th percentile)</b> = 75 % of the values are below. <b>Correlation ≠ causation.</b></p>
+<h3>Plots (matplotlib / pandas)</h3>
+<pre>import matplotlib.pyplot as plt
+df.groupby("Region")["Net_Revenue"].sum().plot(kind="bar", title="Revenue by region")
+plt.show()
+monthly.plot(kind="line", marker="o") ; df["Age"].plot(kind="hist", bins=10)
+plt.scatter(df["Unit_Price"], df["Profit"]); plt.xlabel("Price"); plt.ylabel("Profit"); plt.show()
+df["Category"].value_counts().plot(kind="pie", autopct="%1.0f%%")</pre>
+
+<!-- ============================================================ -->
+<h2 class="page">21. Classic errors &amp; traps ★</h2>
+<table><tr><th>Error</th><th>Typical cause</th><th>Fix</th></tr>
+<tr><td><code>SyntaxError</code></td><td>missing <code>:</code> after if/for/def, unclosed bracket/quote, <code>=</code> instead of <code>==</code> in an if</td><td>check the line (and the one before)</td></tr>
+<tr><td><code>IndentationError</code></td><td>block not indented / mixed spaces</td><td>4 spaces under if/for/def</td></tr>
+<tr><td><code>NameError</code></td><td>variable not defined / typo / cell not run / string without quotes</td><td>define it, run cells in order</td></tr>
+<tr><td><code>TypeError</code></td><td><code>"5" + 3</code>, calling <code>len(5)</code>, modifying a tuple, mean of a text column</td><td>convert types</td></tr>
+<tr><td><code>ValueError</code></td><td><code>int("abc")</code>, <code>int("3.5")</code>, bad reshape, <code>and</code> between Series</td><td>check the value / use &amp; |</td></tr>
+<tr><td><code>IndexError</code></td><td><code>lst[5]</code> on a 3-item list</td><td>valid indices: 0 … len-1</td></tr>
+<tr><td><code>KeyError</code></td><td>dict key or DataFrame column name doesn't exist (case! spaces!)</td><td>check <code>df.columns</code></td></tr>
+<tr><td><code>ZeroDivisionError</code></td><td><code>x / 0</code></td><td>test before dividing / <code>np.where</code></td></tr>
+<tr><td><code>FileNotFoundError</code></td><td>wrong path (Colab: <code>/content/file.csv</code>)</td><td>check the path / upload</td></tr>
+<tr><td><code>IntCastingNaNError</code></td><td><code>astype(int)</code> on a column with NaN</td><td>fillna / dropna first</td></tr></table>
+<div class="box warn"><ul style="margin:0">
+<li><code>df.shape</code>, <code>df.columns</code>, <code>df.dtypes</code>, <code>df.size</code> are <b>attributes</b> (no parentheses); <code>df.info()</code>, <code>df.head()</code>, <code>df.describe()</code> are <b>methods</b>.</li>
+<li><code>df["a", "b"]</code> is wrong → <code>df[["a", "b"]]</code>.</li>
+<li>A pandas method returns a <b>new</b> object: <code>df.dropna()</code> alone changes nothing → <code>df = df.dropna()</code>.</li>
+<li><code>loc</code> slice includes the end; <code>iloc</code> and Python slices exclude it. After filtering, labels have gaps → <code>reset_index(drop=True)</code>.</li>
+<li><code>value_counts()</code> ignores NaN unless <code>dropna=False</code>. <code>mean()</code> skips NaN silently.</li>
+<li><code>range(1, 10)</code> stops at 9. <code>random.randint(1, 10)</code> includes 10. <code>np.arange(1, 10)</code> stops at 9.</li>
+<li><code>7 / 2 = 3.5</code>, <code>7 // 2 = 3</code>, <code>6 / 2 = 3.0</code> (float!).</li>
+</ul></div>
+
+<!-- ============================================================ -->
+<h2>22. Recap Q&amp;A — the paper part ★</h2>
+<table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>6 phases of the software lifecycle?</td><td>Requirements, Design, Implementation, Testing, Deployment, Maintenance</td></tr>
+<tr><td>5 components of an IS?</td><td>Hardware, Software, Data, People, Process</td></tr>
+<tr><td>Is Instagram software? Why?</td><td>Yes — a program (set of instructions) running on your phone (application software)</td></tr>
+<tr><td>4 steps where data science fits?</td><td>Collect → Store → Analyse → Decide</td></tr>
+<tr><td>How does Python run?</td><td>An interpreter reads the code line by line, top to bottom, no separate compile step</td></tr>
+<tr><td>4 basic types?</td><td>int, float, str, bool — check with <code>type()</code></td></tr>
+<tr><td>What type does input() return?</td><td>Always <code>str</code></td></tr>
+<tr><td><code>"5" + "3"</code>?</td><td><code>"53"</code> (concatenation)</td></tr>
+<tr><td><code>len([1,2,3,4])</code>?</td><td>4</td></tr>
+<tr><td>Which type cannot be changed after creation?</td><td>tuple (immutable)</td></tr>
+<tr><td>Which type for a fixed (x, y) coordinate?</td><td>a tuple</td></tr>
+<tr><td>Set the top-right cell of a 2×2 board to "O"?</td><td><code>board[0][1] = "O"</code></td></tr>
+<tr><td>Why use a library?</td><td>tested, reliable code that already exists → saves time</td></tr>
+<tr><td>Python list vs NumPy array?</td><td>list: mixed types, slower; array: one type, less memory, fast, vectorised</td></tr>
+<tr><td>Matrix vs tensor?</td><td>matrix = 2 dimensions; tensor = 3 or more</td></tr>
+<tr><td><code>np.array([0, 42, 42.42]).dtype</code>?</td><td><code>float64</code> (type coercion)</td></tr>
+<tr><td>What does <code>.flatten()</code> do? <code>.reshape((3,3))</code> on 6 elements?</td><td>returns a 1D copy; ValueError (size must stay the same)</td></tr>
+<tr><td>How many integers can int32 store?</td><td>2<sup>32</sup> = 4,294,967,296</td></tr>
+<tr><td>Series vs DataFrame?</td><td>Series = one column (1D, labelled); DataFrame = table of Series sharing the same index</td></tr>
+<tr><td>Which method shows types and missing counts?</td><td><code>df.info()</code></td></tr>
+<tr><td>Why not fill all missing values with 0?</td><td>it creates fake values and biases statistics</td></tr>
+<tr><td>What does <code>errors="coerce"</code> do in <code>to_datetime</code>?</td><td>turns invalid dates into missing values (NaT) instead of an error</td></tr>
+<tr><td>Fill a missing price with the product's median?</td><td><code>df["p"].fillna(df.groupby("product_id")["p"].transform("median"))</code></td></tr>
+<tr><td><code>loc</code> vs <code>iloc</code>?</td><td>labels (end included) vs integer positions (end excluded)</td></tr>
+<tr><td>Why parentheses in masks?</td><td><code>&amp;</code> / <code>|</code> have higher priority than <code>==</code>, <code>&gt;</code>…</td></tr>
+<tr><td>shape vs size?</td><td>(rows, cols) vs rows × cols</td></tr>
+<tr><td>Why <code>index=False</code>?</td><td>to not write the index as an extra column (<code>Unnamed: 0</code>)</td></tr>
+<tr><td>Why keep the raw file untouched?</td><td>reproducibility, possibility to redo/check the cleaning, audit</td></tr>
+<tr><td>Duplicated row vs duplicated ID?</td><td>identical everywhere (delete) vs same key, different content (investigate)</td></tr>
+<tr><td>Why did <code>quantity</code> load as float (1.0)?</td><td>it contains NaN, and NaN is a float</td></tr>
+<tr><td>Business rule vs statistical rule for outliers?</td><td>the business rule (e.g. max 10 units) is more reliable: it knows what is <i>possible</i></td></tr>
+<tr><td>transform vs agg?</td><td>transform returns a column aligned with the rows; agg returns one value per group</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>23. Practical part — checklist (do it in this order) ★</h2>
+<pre># 0. imports
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 1. load + look
+df_raw = pd.read_csv("file.csv")          # Colab: files.upload() then "/content/file.csv"
+df = df_raw.copy()                        # keep the raw data!
+df.head(); df.shape; df.info(); df.describe(); df.nunique()
+for col in df.select_dtypes(exclude="number").columns:   # text columns
+    print(col, df[col].unique()[:20])
+
+# 2. missing values
+(df.isna().mean() * 100).sort_values(ascending=False)
+# decide column by column -> fillna(label / median / mode / group median) or dropna(subset=[...])
+
+# 3. duplicates
+df.duplicated().sum(); df = df.drop_duplicates()
+
+# 4. types & text
+df["date"] = pd.to_datetime(df["date"], errors="coerce")
+df["col"] = df["col"].str.strip().str.title()
+df["qty"] = df["qty"].astype("int64")
+
+# 5. impossible values (business rules)
+df = df[(df["qty"] > 0) & (df["qty"] <= 10)].copy()
+
+# 6. validate
+assert df[["date", "qty"]].isna().sum().sum() == 0
+
+# 7. analyse
+df["revenue"] = df["qty"] * df["price"]
+df.groupby("city")["revenue"].agg(["sum", "mean", "count"]).sort_values("sum", ascending=False)
+
+# 8. export + report
+df.to_csv("clean.csv", index=False)
+print(len(df_raw), "->", len(df), f"({(len(df_raw) - len(df)) / len(df_raw):.1%} removed)")</pre>
+<div class="box key"><b>Marks are won by:</b> printing the result of each step (before → after counts), a <b>one-line comment per decision</b> ("# median because outliers", "# drop: key field"), clean variable names, Markdown titles per exercise, and answering the written questions in sentences. Run <b>Restart &amp; Run all</b> before submitting.</div>
+
+<p style="text-align:center;margin-top:24px"><small>Built from the Chapter 0, 1, 2 slides, Labs 0–2 and the TechStore project · good luck tomorrow 💪</small></p>
+</main>
+</body>
+</html>

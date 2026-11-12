@@ -1,0 +1,25 @@
+med_id,med_name,category,cost_price,list_price
+M001,Doliprane 1g,Pain relief,2.1,3.9
+M002,Efferalgan 500,Pain relief,1.8,3.4
+M003,Ibuprofen 400,Pain relief,2.6,4.8
+M004,Aspirin 500,Pain relief,1.5,2.9
+M005,Amoxicillin 1g,Antibiotics,5.2,9.5
+M006,Augmentin 1g,Antibiotics,8.9,15.6
+M007,Azithromycin 250,Antibiotics,7.4,13.2
+M008,Vitamin C 1000,Vitamins,3.1,6.9
+M009,Vitamin D3,Vitamins,4.0,8.5
+M010,Magnesium B6,Vitamins,5.5,10.9
+M011,Omega 3,Vitamins,9.0,17.5
+M012,Cough syrup,Cold & Flu,3.8,7.2
+M013,Nasal spray,Cold & Flu,2.9,5.9
+M014,Throat lozenges,Cold & Flu,1.9,4.2
+M015,Sunscreen SPF50,Dermatology,14.0,29.0
+M016,Moisturizing cream,Dermatology,9.5,19.9
+M017,Anti-acne gel,Dermatology,11.2,22.5
+M018,Baby milk 1st age,Baby care,18.0,27.5
+M019,Baby diapers x40,Baby care,15.5,24.9
+M020,Thermometer,Devices,12.0,25.0
+M021,Blood pressure monitor,Devices,65.0,119.0
+M022,Glucose test strips,Devices,22.0,39.0
+M023,Insulin pen,Diabetes,28.0,42.0
+M024,Metformin 850,Diabetes,3.2,6.1
