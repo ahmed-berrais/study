@@ -1,0 +1,251 @@
+Customer_ID,Customer_Name,Age,Gender,City,Customer_Type,Age_Group
+C0001,Omar Ben Amor,24.0,Male,Sousse,New,Young
+C0002,Walid Jaziri,52.0,Female,Bizerte,New,Senior
+C0003,Salma Bouazizi,69.0,Male,Tunis,New,Senior
+C0004,Omar Saidi,63.0,Male,Kairouan,Returning,Senior
+C0005,Karim Trabelsi,32.0,Female,Ben Arous,Returning,Adult
+C0006,Ines Jebali,42.0,Female,Unknown,New,Adult
+C0007,Anis Ben Amor,46.0,Female,Sousse,New,Adult
+C0008,Anis Hamdi,31.0,Female,Ariana,Returning,Adult
+C0009,Ines Khaled,32.0,Male,Ariana,New,Adult
+C0010,Rania Chaabane,30.0,Male,Kairouan,Returning,Adult
+C0011,Ines Gharbi,70.0,Female,Monastir,Returning,Senior
+C0012,Karim Mabrouk,57.0,Female,Gafsa,New,Senior
+C0013,Marwa Khelifi,62.0,Female,Nabeul,New,Senior
+C0014,Fares Hamdi,46.0,Male,Kairouan,New,Adult
+C0015,Mehdi Jaziri,68.0,Female,Sousse,Returning,Senior
+C0016,Salma Mansour,23.0,Female,Tunis,New,Young
+C0017,Omar Ayari,64.0,Male,Tunis,New,Senior
+C0018,Bilel Trabelsi,21.0,Female,Bizerte,New,Young
+C0019,Rania Hamdi,43.0,Female,Gafsa,New,Adult
+C0020,Yasmine Khelifi,49.0,Male,Tunis,Returning,Adult
+C0021,Mouna Ben Amor,36.0,Male,Bizerte,New,Adult
+C0022,Sonia Gharbi,25.0,Female,Sfax,Returning,Young
+C0023,Sara Jebali,28.0,Male,Gafsa,Returning,Young
+C0024,Salma Mabrouk,61.0,Male,Gabes,Returning,Senior
+C0025,Sonia Hamdi,34.0,Male,Kairouan,New,Adult
+C0026,Marwa Haddad,34.0,Male,Gabes,Returning,Adult
+C0027,Nour Chaabane,66.0,Female,Ben Arous,Returning,Senior
+C0028,Rami Ben Salah,46.0,Female,Kairouan,New,Adult
+C0029,Mehdi Khaled,66.0,Male,Tunis,Returning,Senior
+C0030,Anis Saidi,66.0,Female,Mahdia,Returning,Senior
+C0031,Dorra Ben Amor,49.0,Female,Gabes,New,Adult
+C0032,Nour Jebali,26.0,Male,Gabes,Returning,Young
+C0033,Fares Ben Ali,26.0,Female,Bizerte,Returning,Young
+C0034,Bilel Gharbi,33.0,Male,Kairouan,Returning,Adult
+C0035,Sara Chaabane,48.0,Female,Bizerte,Returning,Adult
+C0036,Tarek Haddad,26.0,Female,Tunis,Returning,Young
+C0037,Rami Khaled,42.0,Female,Mahdia,Returning,Adult
+C0038,Sonia Chaabane,24.0,Male,Sousse,New,Young
+C0039,Hatem Mansour,46.0,Female,Sfax,Returning,Adult
+C0040,Mehdi Saidi,19.0,Male,Ben Arous,Returning,Young
+C0041,Dorra Jaziri,55.0,Male,Sousse,New,Senior
+C0042,Mouna Hamdi,20.0,Male,Mahdia,Returning,Young
+C0043,Walid Saidi,28.0,Female,Nabeul,New,Young
+C0044,Omar Ben Ali,27.0,Male,Tunis,New,Young
+C0045,Marwa Hamdi,62.0,Female,Gafsa,New,Senior
+C0046,Salma Hamdi,20.0,Female,Ariana,New,Young
+C0047,Rania Gharbi,40.0,Male,Monastir,New,Adult
+C0048,Bilel Ben Ali,49.0,Male,Gabes,New,Adult
+C0049,Amira Saidi,45.0,Male,Ariana,Returning,Adult
+C0050,Walid Khaled,54.0,Female,Tunis,Returning,Senior
+C0051,Tarek Haddad,60.0,Female,Kairouan,Returning,Senior
+C0052,Tarek Ben Salah,38.0,Male,Bizerte,New,Adult
+C0053,Tarek Hamdi,61.0,Female,Gabes,Returning,Senior
+C0054,Marwa Khelifi,34.0,Male,Mahdia,Returning,Adult
+C0055,Rami Saidi,70.0,Female,Ben Arous,New,Senior
+C0056,Yasmine Hamdi,44.0,Female,Gabes,New,Adult
+C0057,Mehdi Chaabane,57.0,Female,Monastir,Returning,Senior
+C0058,Ines Mejri,64.0,Female,Sousse,New,Senior
+C0059,Ali Khaled,60.0,Female,Bizerte,Returning,Senior
+C0060,Amira Khaled,63.0,Male,Mahdia,Returning,Senior
+C0061,Salma Saidi,46.0,Male,Ariana,New,Adult
+C0062,Walid Chaabane,20.0,Male,Bizerte,New,Young
+C0063,Rania Mejri,44.0,Female,Kairouan,Returning,Adult
+C0064,Sara Ben Amor,27.0,Female,Mahdia,Returning,Young
+C0065,Mehdi Khelifi,65.0,Female,Mahdia,New,Senior
+C0066,Mehdi Ayari,30.0,Female,Monastir,Returning,Adult
+C0067,Omar Mejri,46.0,Male,Gabes,Returning,Adult
+C0068,Tarek Ben Ali,31.0,Female,Ben Arous,Returning,Adult
+C0069,Lina Ben Salah,52.0,Male,Nabeul,Returning,Senior
+C0070,Nour Jaziri,48.0,Male,Bizerte,New,Adult
+C0071,Seif Haddad,46.0,Female,Sfax,New,Adult
+C0072,Yasmine Jaziri,40.0,Female,Monastir,Returning,Adult
+C0073,Seif Bouazizi,32.0,Female,Ariana,New,Adult
+C0074,Ali Mansour,20.0,Male,Unknown,Returning,Young
+C0075,Tarek Trabelsi,46.0,Female,Mahdia,Returning,Adult
+C0076,Rania Ben Ali,37.0,Male,Sousse,New,Adult
+C0077,Dorra Ben Ali,67.0,Female,Gabes,Returning,Senior
+C0078,Salma Khelifi,45.0,Female,Sfax,New,Adult
+C0079,Mouna Mejri,65.0,Male,Gabes,Returning,Senior
+C0080,Ines Hamdi,23.0,Male,Unknown,New,Young
+C0081,Seif Khelifi,22.0,Male,Nabeul,Returning,Young
+C0082,Fares Jaziri,62.0,Female,Gabes,Returning,Senior
+C0083,Salma Hamdi,23.0,Male,Nabeul,Returning,Young
+C0084,Hatem Haddad,20.0,Female,Kairouan,Returning,Young
+C0085,Nour Ben Salah,39.0,Female,Ariana,Returning,Adult
+C0086,Omar Trabelsi,67.0,Female,Gafsa,Returning,Senior
+C0087,Marwa Ben Amor,54.0,Male,Ben Arous,Returning,Senior
+C0088,Sonia Chaabane,23.0,Female,Monastir,Returning,Young
+C0089,Anis Khaled,62.0,Male,Kairouan,Returning,Senior
+C0090,Bilel Ayari,62.0,Female,Bizerte,Returning,Senior
+C0091,Dorra Khaled,60.0,Female,Ariana,New,Senior
+C0092,Rami Saidi,65.0,Female,Sfax,Returning,Senior
+C0093,Rami Chaabane,30.0,Female,Sfax,Returning,Adult
+C0094,Mouna Gharbi,69.0,Male,Ariana,Returning,Senior
+C0095,Amira Ben Ali,34.0,Female,Sousse,New,Adult
+C0096,Sonia Khelifi,60.0,Male,Gafsa,Returning,Senior
+C0097,Lina Gharbi,48.0,Male,Mahdia,Returning,Adult
+C0098,Seif Trabelsi,59.0,Male,Gabes,Returning,Senior
+C0099,Nour Khaled,51.0,Male,Gabes,New,Senior
+C0100,Nour Jebali,52.0,Male,Ben Arous,Returning,Senior
+C0101,Nour Mabrouk,50.0,Male,Tunis,New,Senior
+C0102,Rami Saidi,59.0,Male,Bizerte,New,Senior
+C0103,Salma Mansour,57.0,Female,Nabeul,Returning,Senior
+C0104,Marwa Jebali,25.0,Female,Mahdia,Returning,Young
+C0105,Yasmine Hamdi,61.0,Male,Sousse,New,Senior
+C0106,Yasmine Saidi,46.0,Male,Nabeul,Returning,Adult
+C0107,Marwa Chaabane,35.0,Male,Bizerte,Returning,Adult
+C0108,Anis Mansour,45.0,Female,Sfax,Returning,Adult
+C0109,Sara Trabelsi,69.0,Male,Sfax,Returning,Senior
+C0110,Salma Mabrouk,63.0,Male,Bizerte,Returning,Senior
+C0111,Mouna Chaabane,62.0,Male,Tunis,Returning,Senior
+C0112,Sonia Haddad,42.0,Male,Tunis,Returning,Adult
+C0113,Anis Ben Ali,59.0,Male,Bizerte,Returning,Senior
+C0114,Tarek Mejri,38.0,Female,Sousse,Returning,Adult
+C0115,Mehdi Haddad,46.0,Female,Ariana,New,Adult
+C0116,Rami Bouazizi,46.0,Female,Tunis,Returning,Adult
+C0117,Ali Ben Amor,31.0,Female,Monastir,Returning,Adult
+C0118,Rami Saidi,32.0,Female,Nabeul,Returning,Adult
+C0119,Walid Jaziri,21.0,Male,Gafsa,New,Young
+C0120,Hatem Khelifi,25.0,Female,Ben Arous,New,Young
+C0121,Mouna Mejri,40.0,Female,Mahdia,Returning,Adult
+C0122,Omar Khelifi,43.0,Male,Bizerte,New,Adult
+C0123,Walid Trabelsi,26.0,Female,Nabeul,Returning,Young
+C0124,Marwa Jaziri,40.0,Male,Nabeul,Returning,Adult
+C0125,Marwa Ben Salah,50.0,Female,Mahdia,Returning,Senior
+C0126,Karim Chaabane,30.0,Female,Gafsa,Returning,Adult
+C0127,Karim Ben Ali,35.0,Female,Gafsa,Returning,Adult
+C0128,Walid Khaled,37.0,Female,Kairouan,New,Adult
+C0129,Sonia Trabelsi,44.0,Female,Ariana,Returning,Adult
+C0130,Karim Mejri,37.0,Female,Ariana,Returning,Adult
+C0131,Tarek Haddad,46.0,Female,Gafsa,Returning,Adult
+C0132,Hatem Mabrouk,35.0,Male,Monastir,Returning,Adult
+C0133,Seif Mejri,46.0,Female,Bizerte,Returning,Adult
+C0134,Salma Gharbi,38.0,Female,Mahdia,Returning,Adult
+C0135,Lina Mejri,27.0,Male,Bizerte,New,Young
+C0136,Hatem Ben Salah,54.0,Male,Unknown,Returning,Senior
+C0137,Mouna Jebali,30.0,Female,Ariana,Returning,Adult
+C0138,Salma Chaabane,33.0,Male,Monastir,New,Adult
+C0139,Rami Hamdi,60.0,Male,Mahdia,New,Senior
+C0140,Sara Trabelsi,68.0,Male,Mahdia,Returning,Senior
+C0141,Yasmine Chaabane,53.0,Male,Monastir,New,Senior
+C0142,Sonia Chaabane,66.0,Male,Ariana,Returning,Senior
+C0143,Salma Mabrouk,63.0,Female,Gafsa,New,Senior
+C0144,Mouna Mejri,43.0,Male,Gabes,New,Adult
+C0145,Mehdi Chaabane,58.0,Female,Sousse,Returning,Senior
+C0146,Tarek Mansour,35.0,Female,Ben Arous,Returning,Adult
+C0147,Dorra Ben Ali,42.0,Male,Ben Arous,New,Adult
+C0148,Mehdi Ayari,46.0,Male,Ben Arous,New,Adult
+C0149,Rania Jaziri,68.0,Female,Tunis,New,Senior
+C0150,Yasmine Ben Salah,62.0,Male,Monastir,Returning,Senior
+C0151,Nour Hamdi,43.0,Male,Mahdia,Returning,Adult
+C0152,Ali Mabrouk,52.0,Female,Sousse,New,Senior
+C0153,Mehdi Khaled,28.0,Female,Monastir,New,Young
+C0154,Hatem Ayari,60.0,Female,Monastir,Returning,Senior
+C0155,Hatem Trabelsi,47.0,Male,Unknown,Returning,Adult
+C0156,Walid Saidi,46.0,Female,Sfax,Returning,Adult
+C0157,Omar Ben Ali,58.0,Female,Bizerte,Returning,Senior
+C0158,Amira Khelifi,51.0,Male,Mahdia,New,Senior
+C0159,Anis Ben Amor,21.0,Female,Tunis,New,Young
+C0160,Dorra Ben Amor,33.0,Male,Monastir,New,Adult
+C0161,Hatem Trabelsi,27.0,Male,Tunis,Returning,Young
+C0162,Lina Mabrouk,56.0,Female,Ariana,Returning,Senior
+C0163,Seif Mansour,19.0,Male,Monastir,Returning,Young
+C0164,Amira Ben Salah,28.0,Male,Kairouan,Returning,Young
+C0165,Mouna Ayari,49.0,Female,Ben Arous,Returning,Adult
+C0166,Mehdi Gharbi,54.0,Female,Kairouan,Returning,Senior
+C0167,Hatem Hamdi,44.0,Female,Ben Arous,New,Adult
+C0168,Rami Hamdi,63.0,Female,Nabeul,New,Senior
+C0169,Seif Ben Ali,46.0,Female,Mahdia,New,Adult
+C0170,Karim Jebali,25.0,Male,Nabeul,Returning,Young
+C0171,Walid Ben Ali,68.0,Male,Gafsa,New,Senior
+C0172,Lina Ayari,50.0,Male,Gafsa,Returning,Senior
+C0173,Bilel Mansour,51.0,Male,Ben Arous,Returning,Senior
+C0174,Seif Mabrouk,23.0,Female,Gabes,Returning,Young
+C0175,Karim Khaled,50.0,Male,Monastir,New,Senior
+C0176,Ines Ben Salah,56.0,Male,Kairouan,New,Senior
+C0177,Hatem Jaziri,48.0,Male,Gabes,New,Adult
+C0178,Seif Jebali,22.0,Male,Mahdia,Returning,Young
+C0179,Mouna Mabrouk,45.0,Female,Monastir,Returning,Adult
+C0180,Omar Ben Amor,67.0,Male,Kairouan,Returning,Senior
+C0181,Rania Mabrouk,56.0,Male,Nabeul,New,Senior
+C0182,Amira Mabrouk,25.0,Male,Sousse,Returning,Young
+C0183,Omar Ayari,68.0,Female,Sousse,Returning,Senior
+C0184,Rami Ben Ali,68.0,Female,Ariana,Returning,Senior
+C0185,Ali Ben Amor,26.0,Female,Monastir,Returning,Young
+C0186,Nour Khelifi,60.0,Male,Sfax,New,Senior
+C0187,Fares Gharbi,39.0,Male,Nabeul,Returning,Adult
+C0188,Bilel Trabelsi,49.0,Female,Ben Arous,New,Adult
+C0189,Anis Ben Amor,41.0,Female,Monastir,Returning,Adult
+C0190,Fares Mansour,59.0,Female,Gafsa,New,Senior
+C0191,Ali Mabrouk,70.0,Female,Kairouan,New,Senior
+C0192,Dorra Mansour,60.0,Female,Ariana,Returning,Senior
+C0193,Ali Khaled,67.0,Male,Gafsa,New,Senior
+C0194,Sara Hamdi,68.0,Male,Nabeul,Returning,Senior
+C0195,Bilel Khaled,22.0,Female,Sfax,Returning,Young
+C0196,Anis Haddad,31.0,Male,Tunis,New,Adult
+C0197,Nour Mejri,56.0,Female,Gafsa,Returning,Senior
+C0198,Anis Bouazizi,49.0,Male,Gafsa,Returning,Adult
+C0199,Sara Haddad,20.0,Female,Gabes,Returning,Young
+C0200,Yasmine Ben Ali,23.0,Female,Sfax,New,Young
+C0201,Seif Ben Amor,45.0,Female,Monastir,Returning,Adult
+C0202,Hatem Jebali,50.0,Female,Tunis,New,Senior
+C0203,Rami Ayari,26.0,Female,Tunis,New,Young
+C0204,Salma Khaled,27.0,Female,Sousse,New,Young
+C0205,Dorra Ben Salah,24.0,Male,Ariana,Returning,Young
+C0206,Karim Mansour,47.0,Female,Tunis,Returning,Adult
+C0207,Yasmine Khaled,18.0,Female,Gafsa,Returning,Young
+C0208,Ali Saidi,48.0,Male,Nabeul,Returning,Adult
+C0209,Seif Khaled,43.0,Male,Monastir,Returning,Adult
+C0210,Hatem Ayari,42.0,Female,Ariana,Returning,Adult
+C0211,Dorra Saidi,54.0,Female,Kairouan,Returning,Senior
+C0212,Marwa Mejri,45.0,Male,Monastir,Returning,Adult
+C0213,Salma Haddad,56.0,Male,Unknown,New,Senior
+C0214,Rania Hamdi,58.0,Male,Unknown,New,Senior
+C0215,Ali Saidi,66.0,Male,Mahdia,Returning,Senior
+C0216,Omar Ben Amor,60.0,Female,Sfax,Returning,Senior
+C0217,Tarek Khaled,45.0,Male,Ben Arous,Returning,Adult
+C0218,Salma Khaled,44.0,Male,Bizerte,New,Adult
+C0219,Mehdi Mabrouk,46.0,Female,Kairouan,Returning,Adult
+C0220,Sara Jaziri,49.0,Male,Tunis,New,Adult
+C0221,Seif Ben Ali,25.0,Male,Mahdia,New,Young
+C0222,Mouna Chaabane,67.0,Female,Gabes,New,Senior
+C0223,Ines Khelifi,62.0,Female,Nabeul,New,Senior
+C0224,Hatem Jebali,24.0,Female,Sousse,Returning,Young
+C0225,Ines Ben Ali,59.0,Female,Unknown,New,Senior
+C0226,Seif Mabrouk,24.0,Male,Monastir,Returning,Young
+C0227,Rami Ben Salah,56.0,Female,Nabeul,Returning,Senior
+C0228,Lina Ayari,22.0,Female,Bizerte,Returning,Young
+C0229,Mouna Khelifi,43.0,Female,Sousse,Returning,Adult
+C0230,Rania Trabelsi,52.0,Female,Bizerte,New,Senior
+C0231,Anis Khaled,56.0,Female,Sfax,Returning,Senior
+C0232,Anis Jaziri,40.0,Female,Tunis,Returning,Adult
+C0233,Ali Jebali,66.0,Male,Monastir,Returning,Senior
+C0234,Mouna Mejri,46.0,Female,Sfax,Returning,Adult
+C0235,Karim Mabrouk,29.0,Male,Bizerte,New,Young
+C0236,Anis Hamdi,53.0,Female,Mahdia,Returning,Senior
+C0237,Salma Chaabane,56.0,Female,Sfax,New,Senior
+C0238,Walid Hamdi,35.0,Female,Tunis,New,Adult
+C0239,Rania Ben Salah,57.0,Female,Sfax,New,Senior
+C0240,Walid Trabelsi,65.0,Male,Ariana,Returning,Senior
+C0241,Yasmine Hamdi,61.0,Female,Monastir,Returning,Senior
+C0242,Yasmine Hamdi,58.0,Female,Nabeul,Returning,Senior
+C0243,Rami Mansour,51.0,Male,Tunis,Returning,Senior
+C0244,Nour Ayari,32.0,Male,Monastir,New,Adult
+C0245,Marwa Mejri,60.0,Male,Bizerte,Returning,Senior
+C0246,Dorra Bouazizi,37.0,Female,Nabeul,Returning,Adult
+C0247,Marwa Mejri,46.0,Male,Ariana,Returning,Adult
+C0248,Yasmine Jaziri,34.0,Female,Kairouan,New,Adult
+C0249,Omar Gharbi,34.0,Male,Nabeul,Returning,Adult
+C0250,Dorra Jaziri,26.0,Female,Mahdia,New,Young
