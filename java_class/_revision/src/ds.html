@@ -4,21 +4,345 @@
 
 <div class="cover">
   <h1>Mock DS (DS blanc): OOP-Java</h1>
-  <div class="sub">Practice exam written for revision, in the style of Dr. Soumaya Trabelsi's labs (PRISTINI 2026-2027). <b>Not an official exam.</b><br>
-  Covers: Ch1 basics · control structures &amp; Scanner · classes/objects · constructors · <code>this</code> · access &amp; encapsulation · scope · overloading · <code>static</code>/<code>final</code> · Labs 1, 2, 3.</div>
-  <table style="margin-top:8px">
-  <tr><th>Part</th><th>Content</th><th>Points</th><th>Suggested time</th></tr>
-  <tr><td>I</td><td>QCM: 20 questions (one correct answer each)</td><td>5 pts</td><td>20 min</td></tr>
-  <tr><td>II</td><td>Questions de réflexion (short written answers)</td><td>5 pts</td><td>25 min</td></tr>
-  <tr><td>III</td><td>Exercises (lab style): trace, find the errors, write the code</td><td>10 pts</td><td>75 min</td></tr>
+  <div class="sub">Pristini School of AI · JAVA Programming · AY 2026-2027 · <b>practice exam written for revision, in the style of Dr. Soumaya Trabelsi's labs and chapter exercises. Not an official exam.</b></div>
+  <p style="margin-top:8px">3 exercises. Each one is built like her sheets: <b>Part A</b> = a chapter-style question ("What will the following program display?" / "A junior developer wrote… correct it"), <b>Part B</b> = a lab-style problem (context → classes, attributes, methods → problem setup in <code>main</code> → expected execution result).
+  Each exercise mixes <b>all</b> the chapters.</p>
+  <table>
+  <tr><th>Chapter / notion</th><th>Ex 1: Library</th><th>Ex 2: Classroom</th><th>Ex 3: Treasure hunt</th></tr>
+  <tr><td>Types, conversions, integer division, operators</td><td>A</td><td>A, B</td><td>A</td></tr>
+  <tr><td>if / switch / for / while / do…while, Scanner</td><td>B</td><td>B</td><td>A, B</td></tr>
+  <tr><td>Class, attributes, methods, objects</td><td>A, B</td><td>A, B</td><td>B</td></tr>
+  <tr><td>Constructors, overloading, <code>this</code>, <code>this(…)</code></td><td>A, B</td><td>A, B</td><td>A, B</td></tr>
+  <tr><td>Access modifiers, encapsulation, getters/setters</td><td>B</td><td>A, B</td><td>B</td></tr>
+  <tr><td><code>static</code>, <code>final</code>, scope</td><td>A, B</td><td>A, B</td><td>A, B</td></tr>
+  <tr><td>References, <code>null</code>, destructor / garbage collector</td><td>A, B</td><td>A</td><td>A, B</td></tr>
+  <tr><td>Arrays 1D / 2D, arrays of objects, <code>length</code>, foreach</td><td>A, B</td><td>A, B</td><td>A, B</td></tr>
   </table>
-  <p class="small">Rules: on paper, no IDE, no notes, 2 hours. Then correct yourself with the <b>Corrigé</b> at the end. Every Java program in this file (exercises and solutions) was compiled and run with <code>javac</code>/<code>java</code>, and the outputs shown are the real outputs.</p>
+  <p class="small">Duration: about 2h30 (Ex1 /7, Ex2 /6, Ex3 /7). On paper, no IDE. A bonus QCM + questions de cours section follows the exercises. The corrigé is at the end; every program was compiled and run, and the outputs shown are the real ones.</p>
 </div>
 
 <!-- ====================================================== -->
-<h2>Part I: QCM (20 × 0.25 pt)</h2>
-<p class="small">Circle the single correct answer.</p>
+<h2>Exercise 1: Library Management <span class="pts" style="color:#fff">7 pts</span></h2>
 
+<h3>Part A: What will the following program display? <span class="pts">2 pts</span></h3>
+```java class
+class Book {
+    String title;
+    int copies;
+    static int created = 0;
+
+    Book(String title, int copies) {
+        this.title = title;
+        this.copies = copies;
+        created++;
+    }
+    Book(String title) {
+        this(title, 1);
+    }
+}
+
+public class TraceLibrary {
+    public static void main(String[] args) {
+        Book b1 = new Book("Java", 3);
+        Book b2 = new Book("UML");
+        Book b3 = b2;
+        b3.copies = b3.copies + 4;
+        b1 = b3;
+        System.out.println(b1.title + " " + b1.copies);
+        System.out.println(b2.title + " " + b2.copies);
+        System.out.println(Book.created);
+
+        Book[] shelf = new Book[3];
+        shelf[0] = b2;
+        System.out.println(shelf.length + " " + shelf[1]);
+
+        int total = 0;
+        for (Book b : shelf) {
+            if (b != null) {
+                total += b.copies;
+            }
+        }
+        System.out.println(total / 2 + " " + total / 2.0);
+    }
+}
+```
+<ol>
+<li>Write the exact output of this program.</li>
+<li>How many <code>Book</code> objects exist in memory? After the instruction <code>b1 = b3;</code>, what happens to the book "Java"? Justify.</li>
+<li>Why does the 4th line display <code>null</code>? What would happen with <code>System.out.println(shelf[1].title);</code>?</li>
+</ol>
+
+<h3>Part B: The City Library <span class="pts">5 pts</span></h3>
+<p><b>Context:</b> A municipal library wants a small console program to manage its books and their loans.</p>
+<p><b>Your Task:</b></p>
+<ol>
+<li><b>The <code>Book</code> class</b>
+  <ul>
+  <li>Attributes (not accessible from outside the class): <code>id</code> (int), <code>title</code> (String), <code>author</code> (String), <code>available</code> (boolean).</li>
+  <li>A counter <code>bookCount</code> of all the books created, common to all the books.</li>
+  <li>Constructors:
+    <ul><li><code>Book(int id, String title, String author)</code>: a new book is available.</li>
+    <li><code>Book(int id, String title)</code>: the author is <code>"Unknown"</code>. This constructor must reuse the first one.</li></ul></li>
+  <li>The getters of the attributes and of <code>bookCount</code>.</li>
+  <li><code>borrowBook()</code>: if the book is available, it becomes borrowed and the method returns <code>true</code>; otherwise it returns <code>false</code>.</li>
+  <li><code>returnBook()</code>: the opposite (returns <code>false</code> if the book was not borrowed).</li>
+  <li><code>display()</code>: displays the book in the format <code>101 | Clean Code | R. Martin | Available</code> (or <code>Borrowed</code>).</li>
+  </ul></li>
+<li><b>The <code>Library</code> class</b>
+  <ul>
+  <li>Attributes: <code>name</code> (String), <code>books</code> (an array of <code>Book</code>), <code>count</code> (number of books in the array) and a constant <code>MAX_BOOKS</code> equal to 5.</li>
+  <li>A constructor <code>Library(String name)</code> that creates the array.</li>
+  <li><code>addBook(Book b)</code>: adds the book if there is room; otherwise displays <code>Library full: &lt;title&gt; not added</code>.</li>
+  <li>An overloaded version <code>addBook(int id, String title, String author)</code> that creates the book and adds it.</li>
+  <li><code>searchById(int id)</code>: returns the book having this id, or <code>null</code> if it doesn't exist.</li>
+  <li><code>removeBook(int id)</code>: removes the book from the array (the following books are shifted to the left) and returns <code>true</code>, or <code>false</code> if not found.</li>
+  <li><code>countAvailable()</code>: returns the number of available books (with a <i>foreach</i> loop).</li>
+  <li><code>displayAll()</code>: displays the name of the library, all its books and the line <code>Available: 3 / 4</code>.</li>
+  </ul></li>
+<li><b>The Problem Setup (Main method)</b>: in a class <code>TestLibrary</code>:
+  <ul>
+  <li>Create the library <code>"City Library"</code> and add: (101, "Clean Code", "R. Martin"), (102, "Effective Java", "J. Bloch") as <code>Book</code> objects, (103, "UML Distilled", "M. Fowler") with the overloaded method, and (104, "Algorithms") without author.</li>
+  <li>Display repeatedly the menu <code>1: Borrow | 2: Return | 3: Display | 0: Quit</code> and read the user's choice from the keyboard. For 1 and 2, read a book id and display <code>Book borrowed: …</code>, <code>Already borrowed: …</code>, <code>Book not found</code>, <code>Book returned: …</code> or <code>Return impossible</code>. Any other choice displays <code>Invalid choice</code>. The program stops on 0 (<code>Goodbye</code>).</li>
+  <li>At the end, remove the book 104, ask the garbage collector to run, and display the number of books created.</li>
+  </ul></li>
+<li>Explain in 2 lines what happens to the <code>Book</code> object 104 after <code>removeBook(104)</code>.</li>
+</ol>
+<p><b>Expected Execution Result</b> (the user types 1, 102, 1, 102, 1, 999, 3, 0):</p>
+```text
+1: Borrow | 2: Return | 3: Display | 0: Quit
+1
+Book id: 102
+Book borrowed: Effective Java
+1: Borrow | 2: Return | 3: Display | 0: Quit
+1
+Book id: 102
+Already borrowed: Effective Java
+1: Borrow | 2: Return | 3: Display | 0: Quit
+1
+Book id: 999
+Book not found
+1: Borrow | 2: Return | 3: Display | 0: Quit
+3
+=== City Library ===
+101 | Clean Code | R. Martin | Available
+102 | Effective Java | J. Bloch | Borrowed
+103 | UML Distilled | M. Fowler | Available
+104 | Algorithms | Unknown | Available
+Available: 3 / 4
+1: Borrow | 2: Return | 3: Display | 0: Quit
+0
+Goodbye
+Books created: 4
+```
+
+<!-- ====================================================== -->
+<h2>Exercise 2: Classroom Statistics <span class="pts" style="color:#fff">6 pts</span></h2>
+
+<h3>Part A: Correct the code <span class="pts">2 pts</span></h3>
+<p>A junior developer wrote the following classes to compute the average of a student, but the code fails to compile, and even once it compiles it doesn't give the right results.</p>
+```java nocheck
+ 1  class Student {
+ 2      private String name;
+ 3      private double[] grades;
+ 4      private final int NB_GRADES = 3;
+ 5
+ 6      public void Student(String name) {
+ 7          name = name;
+ 8          grades = new double[NB_GRADES];
+ 9      }
+10
+11      public double average() {
+12          int sum = 0;
+13          for (int i = 0; i <= grades.length; i++) {
+14              sum += grades[i];
+15          }
+16          return sum / grades.length;
+17      }
+18  }
+19
+20  public class TestStudent {
+21      public static void main(String[] args) {
+22          Student s = new Student("Amira");
+23          s.grades[0] = 15.5;
+24          s.NB_GRADES = 4;
+25          System.out.println(s.average());
+26      }
+27  }
+```
+<ol>
+<li>Explain why the compiler throws errors on lines 22, 23 and 24.</li>
+<li>Find the errors that are <b>not</b> detected by the compiler (one makes the program crash, the others give a wrong result). Explain each one.</li>
+<li>Rewrite the <code>Student</code> class and the <code>main</code> method correctly, respecting encapsulation (a method <code>setGrade(int index, double grade)</code> that accepts only grades between 0 and 20 and a valid index).</li>
+</ol>
+
+<h3>Part B: Class statistics <span class="pts">4 pts</span></h3>
+<p><b>Context:</b> The school wants a program that computes the averages and mentions of a class. Each student has 3 grades (one per subject).</p>
+<p><b>Your Task:</b> Create a Java class named <code>Classroom</code>.</p>
+<ol>
+<li><b>Attributes:</b>
+  <ul>
+  <li><code>className</code> (String), <code>names</code> (array of String: the students' names), <code>grades</code> (two-dimensional array of double: row = student, column = subject);</li>
+  <li>a constant <code>NB_SUBJECTS</code> equal to 3, the same for the whole program;</li>
+  <li>a counter <code>classroomCount</code> of created classrooms.</li>
+  </ul></li>
+<li><b>Methods:</b>
+  <ul>
+  <li><code>Classroom(String className, int nbStudents)</code>: creates the arrays.</li>
+  <li><code>setStudent(int index, String name, double g1, double g2, double g3)</code>: stores the student at position <code>index</code>. An invalid index displays <code>Invalid index!</code>. A grade outside [0, 20] is replaced by 0 and the message <code>Invalid grade for Lina: 25.0 replaced by 0</code> is displayed.</li>
+  <li><code>average(int student)</code>: returns the average of a student (use a <i>foreach</i> loop on its row).</li>
+  <li><code>average()</code>: an overloaded version that returns the average of the whole class.</li>
+  <li><code>mention(int student)</code>: returns, using a <code>switch</code>: "Very good" (average ≥ 16), "Good" (≥ 14), "Fairly good" (≥ 12), "Passable" (≥ 10), "Fail" otherwise.</li>
+  <li><code>bestStudent()</code>: returns the name of the student with the best average.</li>
+  <li><code>display()</code>: displays each student's name, average (2 decimals) and mention, then the class average and the best student.</li>
+  </ul></li>
+<li><b>The Problem Setup (Main method):</b> in a class <code>TestClassroom</code>, read the number of students from the keyboard (ask again while it is ≤ 0), create the classroom "GLSI2", read for each student their name and their 3 grades, then display the results and the number of classrooms created.</li>
+</ol>
+<p><b>Expected Execution Result</b> (the user types 0, then 3, then the three lines):</p>
+```text
+Number of students: 0
+Number of students: 3
+Name and 3 grades: Amira 15 17 16.5
+Name and 3 grades: Youssef 12 11 13
+Name and 3 grades: Lina 14 25 13
+Invalid grade for Lina: 25.0 replaced by 0
+=== Class GLSI2 ===
+Amira    16.17 Very good
+Youssef  12.00 Fairly good
+Lina     9.00 Fail
+Class average: 12.39
+Best student: Amira
+Classrooms created: 1
+```
+
+<!-- ====================================================== -->
+<h2>Exercise 3: Treasure Hunt Game <span class="pts" style="color:#fff">7 pts</span></h2>
+
+<h3>Part A: What will the following program display? <span class="pts">2 pts</span></h3>
+```java class
+public class Mystery2 {
+    static int calls = 0;
+    int value;
+
+    Mystery2(int value) {
+        this.value = value;
+        calls++;
+    }
+    static int f(int x)           { return x + 1; }
+    static int f(int x, int y)    { return x * y; }
+    static double f(double x)     { return x / 2; }
+
+    public static void main(String[] args) {
+        int[] a = {4, 7, 1};
+        int[] b = a;
+        b[2] = 9;
+        System.out.println(a[2] + " " + a.length);
+
+        int[][] m = new int[2][3];
+        m[1][2] = f(3, 4);
+        System.out.println(m.length + " " + m[0].length + " " + m[1][2] + " " + m[0][0]);
+
+        System.out.println(f(5) + " " + f(5.0) + " " + 7 / 2 + " " + 7 % 2);
+
+        Mystery2 p = new Mystery2(3);
+        Mystery2 q = new Mystery2(8);
+        p = q;
+        q.value = 20;
+        System.out.println(p.value + " " + calls);
+
+        int sum = 0;
+        for (int x : a) {
+            sum += x;
+        }
+        System.out.println("sum = " + sum);
+
+        int k = 3;
+        switch (k) {
+            case 3: System.out.print("C");
+            case 4: System.out.print("D");
+                    break;
+            case 5: System.out.print("E");
+        }
+        System.out.println();
+
+        int n = 0;
+        do {
+            n += 2;
+        } while (n < 1);
+        System.out.println(n);
+    }
+}
+```
+<ol>
+<li>Write the exact output of this program.</li>
+<li>After <code>p = q;</code>, which <code>Mystery2</code> object can be destroyed, by what, and why?</li>
+<li>Rewrite the <i>foreach</i> loop with a classic <code>for</code> loop.</li>
+</ol>
+
+<h3>Part B: The treasure hunt <span class="pts">5 pts</span></h3>
+<p>We propose to create a treasure hunt game. The board is a square of 5 × 5 cells. A treasure is hidden in a random cell. The player starts in the top-left cell (0, 0) and moves one cell at a time: Up, Down, Left or Right. He has at most 10 moves to find the treasure.
+After each move, the game displays <code>Hot!</code> if the treasure is at a distance ≤ 2 from the player, and <code>Cold...</code> otherwise (distance = |difference of rows| + |difference of columns|).</p>
+<p><b>Tasks to complete:</b></p>
+<ul>
+<li>A <code>Position</code> class characterized by the attributes <code>row</code> and <code>col</code>, and:
+  <ul>
+  <li>two constructors: <code>Position(int row, int col)</code>, and <code>Position()</code> which creates the position (0, 0);</li>
+  <li>the getters;</li>
+  <li><code>move(char direction)</code>: moves the position by one cell according to <code>'U'</code>, <code>'D'</code>, <code>'L'</code> or <code>'R'</code>. If the move leaves the board, the position doesn't change and <code>Move impossible!</code> is displayed; an unknown letter displays <code>Unknown direction!</code>. Returns <code>true</code> if the position changed;</li>
+  <li><code>sameAs(Position other)</code>: returns <code>true</code> if the two positions are the same cell;</li>
+  <li><code>distanceTo(Position other)</code>: returns the distance between the two positions.</li>
+  </ul>
+  Knowing that: <code>Math.abs(x)</code> returns the absolute value of <code>x</code>.</li>
+<li>A <code>Board</code> class which includes:
+  <ul>
+  <li>two constants <code>SIZE</code> (5) and <code>MAX_MOVES</code> (10), usable by all the classes of the program,</li>
+  <li>a two-dimensional array of characters <code>cells</code> (each cell contains <code>'.'</code> at the beginning, and <code>'x'</code> once visited) and the position of the treasure,</li>
+  <li>a constructor <code>Board()</code> that hides the treasure in a random cell, and a constructor <code>Board(int row, int col)</code> that hides it in a given cell (used to test the game),</li>
+  <li><code>markVisited(Position p)</code> and <code>display(Position player)</code>, which displays the board with <code>P</code> on the player's cell.</li>
+  </ul>
+  Knowing that: <code>Math.random()</code> generates a random number between 0 and 1.</li>
+<li>A <code>Player</code> class characterized by a name, a position and the number of moves left, with a counter of created players common to all players; a constructor <code>Player(String name)</code> (the player starts at (0, 0) with <code>MAX_MOVES</code> moves), the getters, and <code>play(char direction)</code> which uses one move and moves the player.</li>
+<li>A <code>TestGame</code> class that reads the player's name, then repeats: display the board, read a direction, mark the current cell as visited, move the player and display <code>Hot!</code> or <code>Cold...</code>, until the treasure is found or there are no moves left. It then displays one of these messages:
+<div style="text-align:center;margin:4px 0"><code>Bravo Sami! Treasure found in 4 moves.</code> or <code>Game over! The treasure was at (0, 4)</code></div>
+Finally, the <code>Player</code> object must be destroyed: write the corresponding instructions and explain in a comment what happens.</li>
+</ul>
+<p><b>Expected Execution Result</b> (tested with <code>new Board(1, 2)</code>; the user types Sami, R, R, U, D):</p>
+```text
+Your name: Sami
+P . . . .
+. . . . .
+. . . . .
+. . . . .
+. . . . .
+Move (U/D/L/R), 10 left: R
+Hot!
+x P . . .
+. . . . .
+. . . . .
+. . . . .
+. . . . .
+Move (U/D/L/R), 9 left: R
+Hot!
+x x P . .
+. . . . .
+. . . . .
+. . . . .
+. . . . .
+Move (U/D/L/R), 8 left: U
+Move impossible!
+Hot!
+x x P . .
+. . . . .
+. . . . .
+. . . . .
+. . . . .
+Move (U/D/L/R), 7 left: D
+Bravo Sami! Treasure found in 4 moves.
+```
+
+<!-- ====================================================== -->
+<h2 class="pb">Bonus training: QCM &amp; questions de cours</h2>
+<p class="small">Not part of the 20 points: quick checks of the course, to do after the exercises. One correct answer per QCM question.</p>
+<h3>QCM</h3>
 <div class="q"><b>1.</b> The Java compiler <code>javac</code> transforms <code>Hello.java</code> into:
 <div class="opts">a) machine code for the processor &nbsp; b) bytecode in <code>Hello.class</code> &nbsp; c) an <code>.exe</code> file &nbsp; d) source code for the JVM</div></div>
 
@@ -80,10 +404,24 @@ c) <code>int f(int x)</code> / <code>double f(int x)</code> &nbsp; d) <code>void
 <div class="q"><b>20.</b> A <code>static</code> attribute:
 <div class="opts">a) can't be modified &nbsp; b) has one copy shared by all objects of the class &nbsp; c) is private by default &nbsp; d) is destroyed by the GC after each method</div></div>
 
-<!-- ====================================================== -->
-<h2>Part II: Questions de réflexion (5 pts)</h2>
-<p class="small">Answer in 3–6 lines. Use a small code example when it helps. Answer 5 of the 7 (1 pt each), or all 7 for practice.</p>
+<div class="q"><b>21.</b> After <code>int[] t = new int[4];</code> the value of <code>t[3]</code> is:
+<div class="opts">a) <code>null</code> &nbsp; b) 0 &nbsp; c) undefined (garbage) &nbsp; d) compilation error</div></div>
+<div class="q"><b>22.</b> Which declaration is correct?
+<div class="opts">a) <code>int t[5];</code> &nbsp; b) <code>int[5] t;</code> &nbsp; c) <code>int[] t = new int[5];</code> &nbsp; d) <code>int t = new int[5];</code></div></div>
+<div class="q"><b>23.</b> For <code>double[][] m = new double[3][5];</code>, <code>m.length</code> is:
+<div class="opts">a) 5 &nbsp; b) 3 &nbsp; c) 15 &nbsp; d) 8</div></div>
+<div class="q"><b>24.</b> The instruction <code>t[t.length] = 1;</code>:
+<div class="opts">a) adds a cell at the end &nbsp; b) doesn't compile &nbsp; c) compiles but throws <code>ArrayIndexOutOfBoundsException</code> &nbsp; d) writes in the last cell</div></div>
+<div class="q"><b>25.</b> <code>Point a = new Point(1, 1); Point b = a; b.x = 5;</code> Then <code>a.x</code> is:
+<div class="opts">a) 1 &nbsp; b) 5 &nbsp; c) 0 &nbsp; d) error</div></div>
+<div class="q"><b>26.</b> The correct order of what <code>new</code> does is:
+<div class="opts">a) constructor → allocation → reference &nbsp; b) allocation + default values → explicit initialisation → constructor → reference returned &nbsp; c) explicit initialisation → allocation → constructor &nbsp; d) reference → constructor → allocation</div></div>
+<div class="q"><b>27.</b> In Java, an object is destroyed:
+<div class="opts">a) by calling its destructor <code>~Point()</code> &nbsp; b) when <code>System.gc()</code> is written, immediately &nbsp; c) by the garbage collector, when no reference points to it any more &nbsp; d) never</div></div>
+<div class="q"><b>28.</b> After <code>int[] t = {1, 2, 3}; for (int x : t) { x = 0; }</code> the array contains:
+<div class="opts">a) 0 0 0 &nbsp; b) 1 2 3 &nbsp; c) 0 2 3 &nbsp; d) error</div></div>
 
+<h3>Questions de réflexion</h3>
 <div class="q"><b>Q1.</b> Explain the difference between a <b>class</b> and an <b>object</b>. Give a real-life example and the Java line that creates the object.</div>
 <div class="q"><b>Q2.</b> What is a <b>constructor</b>? Give 3 differences between a constructor and an ordinary method. What happens to the default constructor when you write your own?</div>
 <div class="q"><b>Q3.</b> In Lab 3, the junior developer wrote <code>myAccount.balance = 500.0;</code> in <code>main</code>. Explain why this doesn't compile, and why it is <b>better</b> to go through a method <code>deposit(double amount)</code> than to make <code>balance</code> public. Which OOP principle is this?</div>
@@ -99,158 +437,555 @@ System.out.println(p1.age);
 What is displayed? How many objects exist in memory? Explain. What happens to the object if we then write <code>p1 = null; p2 = null;</code>?</div>
 <div class="q"><b>Q7.</b> In the guessing game (Lab 1 Ex5), the course asks for a <code>do … while</code> loop rather than a <code>while</code> loop. Why is it the natural choice here? Then explain why <code>m = (a + b) / 2;</code> gives <code>5.0</code> instead of <code>5.5</code> for <code>a = 4, b = 7</code> (with <code>double m</code>) and give two fixes.</div>
 
-<!-- ====================================================== -->
-<h2>Part III: Exercises (10 pts)</h2>
-
-<h3>Exercise 1: What does this program display? <span class="pts">2 pts</span></h3>
-<p>Write the exact output, line by line. Justify the lines marked ★ in one sentence each.</p>
-```java class
-public class Mystery {
-    static int count = 0;
-    int id;
-    String label;
-
-    Mystery(String label) {
-        this.label = label;
-        count++;
-        id = count;
-    }
-    Mystery() {
-        this("none");
-    }
-    void show() {
-        System.out.println(id + ":" + label);
-    }
-    static int twice(int x)       { return x * 2; }
-    static double twice(double x) { return x * 3; }
-
-    public static void main(String[] args) {
-        int a = 7, b = 2;
-        double m = a / b;
-        System.out.println(m);                       // ★ line 1
-        System.out.println((double) a / b);          // line 2
-        System.out.println(a % b + " " + a + b);     // ★ line 3
-
-        Mystery x = new Mystery("A");
-        Mystery y = new Mystery();
-        Mystery z = x;
-        z.label = "B";
-        x.show();                                    // ★ line 4
-        y.show();                                    // line 5
-        System.out.println(Mystery.count);           // line 6
-        System.out.println(twice(4) + " " + twice(4.0)); // ★ line 7
-
-        int i = 10;
-        do {
-            System.out.print(i + " ");
-            i += 5;
-        } while (i < 10);
-        System.out.println();                        // ★ line 8
-
-        switch (b) {
-            case 1:  System.out.print("one ");
-            case 2:  System.out.print("two ");
-            case 3:  System.out.print("three ");
-                     break;
-            default: System.out.print("other");
-        }
-        System.out.println();                        // ★ line 9
-    }
-}
-```
-
-<h3>Exercise 2: Find and fix the errors (Lab 3 style) <span class="pts">2 pts</span></h3>
-<p>A junior developer wrote this code. It contains <b>6 compilation errors</b> and <b>1 logic error</b> (the code compiles but gives a wrong result).<br>
-1) For each error: give the line, explain why it is an error. 2) Rewrite the corrected code, respecting encapsulation (add what is needed).</p>
-```java nocheck
- 1  class Product {
- 2      private String name;
- 3      private double price;
- 4      public final double TVA = 0.19;
- 5
- 6      public void Product(String name, double price) {
- 7          name = name;
- 8          price = price;
- 9      }
-10      public double priceWithTax() {
-11          double total = price + price * TVA;
-12      }
-13  }
-14  public class Shop {
-15      public static void main(String[] args) {
-16          Product p = new Product("Pen", 2.5);
-17          p.price = 3.0;
-18          int qty = 2.5;
-19          float discount = 0.1;
-20          p.TVA = 0.2;
-21          System.out.println(p.priceWithTax() * qty);
-22      }
-23  }
-```
-
-<h3>Exercise 3: Smart ATM (Lab 1 style: Scanner, switch, loops) <span class="pts">2 pts</span></h3>
-<p><b>Context:</b> a bank wants a console prototype of an ATM. Write a class <code>SmartATM</code> with only a <code>main</code> method:</p>
-<ol>
-<li>Declare a constant <code>MAX_WITHDRAW</code> = 500.0 using <code>final</code>, a <code>balance</code> initialised to 1000.0 and a counter of successful operations.</li>
-<li>Using a <code>do … while</code> loop, display the menu <code>D: Deposit | W: Withdraw | B: Balance | Q: Quit</code> and read the user's choice as a <b>character</b> with <code>Scanner</code>.</li>
-<li>Use a <code>switch</code> on the choice:
-  <ul><li><code>'D'</code>: read an amount; if it is &gt; 0, add it to the balance (count the operation), otherwise display <code>"Invalid amount!"</code>.</li>
-  <li><code>'W'</code>: read an amount; refuse it with a message if it is above <code>MAX_WITHDRAW</code>, above the balance, or ≤ 0; otherwise withdraw it (count the operation).</li>
-  <li><code>'B'</code>: display the balance. <code>'Q'</code>: display <code>"Goodbye!"</code>. <code>default</code>: <code>"Invalid choice!"</code>.</li></ul></li>
-<li>The loop stops when the user types <code>Q</code>. Then display the number of successful operations.</li>
-<li>Finally, using a <code>for</code> loop, display the balance after each of the next 3 months if it earns 1% interest per month.</li>
-</ol>
-<p>Example run (user input in brackets): [B] → <code>Balance: 1000.0</code>, [D] [250], [W] [600] → <code>Limit is 500.0</code>, [W] [300], [X] → <code>Invalid choice!</code>, [Q] → <code>Goodbye!</code> <code>Successful operations: 2</code>, then <code>Month 1: 959.50</code>, <code>Month 2: 969.10</code>, <code>Month 3: 978.79</code>.</p>
-
-<h3>Exercise 4: The Smartphone class (Labs 2–3 style: encapsulation, constructors, <code>this</code>, overloading) <span class="pts">2 pts</span></h3>
-<p><b>Context:</b> you're coding the battery manager of a smartphone. Create a class <code>Smartphone</code>:</p>
-<ol>
-<li><b>Private attributes:</b> <code>brand</code> (String), <code>battery</code> (int, between 0 and 100), <code>appsOpened</code> (int).</li>
-<li>A <b>parameterised constructor</b> <code>Smartphone(String brand, int battery)</code> that uses <code>this</code>; the battery must go through the setter (validation); <code>appsOpened</code> starts at 0.</li>
-<li>A <b>default constructor</b> that delegates to the parameterised one with <code>this(...)</code> (<code>"Generic"</code>, 50) and then prints <code>"Default constructor called."</code>.</li>
-<li>Getters <code>getBrand()</code>, <code>getBattery()</code>, and a setter <code>setBattery(int battery)</code>: below 0 → 0, above 100 → 100.</li>
-<li><code>charge(int percent)</code>: if percent &gt; 0, increases the battery (never above 100). It <b>returns the current object</b> to allow chaining.</li>
-<li><code>openApp()</code>: if the battery is ≥ 5, consumes 5% and increments <code>appsOpened</code>; otherwise prints <code>"Battery too low!"</code>. Returns the current object.</li>
-<li><b>Overload</b> <code>openApp(int n)</code>: opens <code>n</code> apps by calling <code>openApp()</code>. Returns the current object.</li>
-<li><code>display()</code> prints: <code>Brand: Nova | Battery: 2% | Apps opened: 2</code></li>
-<li>A test class <code>TestPhone</code> must produce <b>exactly</b>:</li>
-</ol>
-```text
-Default constructor called.
-Brand: Generic | Battery: 50% | Apps opened: 0
-Battery too low!
-Brand: Nova | Battery: 2% | Apps opened: 2
-Brand: Nova | Battery: 95% | Apps opened: 3
-```
-<p>Bonus question: in <code>main</code>, why does <code>p1.battery = 80;</code> not compile, and what should you write instead?</p>
-
-<h3>Exercise 5: Online shop (Lab 2 slot-machine + Lab 3 Ex3 style: objects inside objects, arrays of objects) <span class="pts">2 pts</span></h3>
-<ol>
-<li><code>Product</code>: private <code>name</code> (String) and <code>price</code> (double), a constructor initialising both, and the getters.</li>
-<li><code>ShoppingCart</code>:
-  <ul><li>private attributes: an <b>array of Products</b> <code>items</code> and an int <code>count</code> (number of products in the cart);</li>
-  <li>a constructor <code>ShoppingCart(int capacity)</code> that creates the array;</li>
-  <li><code>boolean addProduct(Product p)</code>: adds <code>p</code> if there is room and returns <code>true</code>; otherwise prints <code>"Cart is full: &lt;name&gt; not added"</code> and returns <code>false</code>;</li>
-  <li><code>double getTotal()</code> and the <b>overloaded</b> <code>double getTotal(double discountPercent)</code>;</li>
-  <li><code>int luckyDiscount()</code>: returns a random integer between 0 and 20 (inclusive) using <code>Math.random()</code>;</li>
-  <li><code>printReceipt()</code>: prints each product (<code>- Keyboard : 40.0</code>) then <code>Total: …</code>.</li></ul></li>
-<li><code>Customer</code>: private <code>name</code> and an attribute <code>cart</code> of type <code>ShoppingCart</code>, a constructor, and <code>displayProfile()</code> that prints the name, calls the cart's <code>printReceipt()</code> and prints the total after a 10% discount.</li>
-<li><code>TestShop</code>: a cart of capacity 3; add Keyboard 40.0, Mouse 20.0, Screen 140.0, Cable 5.0; create the customer "Ines" and display the profile. Expected output:</li>
-</ol>
-```text
-Cart is full: Cable not added
-Customer: Ines
-- Keyboard : 40.0
-- Mouse : 20.0
-- Screen : 140.0
-Total: 200.0
-Total after 10% discount: 180.0
-```
+<div class="q"><b>Q8.</b> Give the course definition of a <b>reference</b>. Then trace slide 81: <code>Point p1 = new Point(4,3); Point p2 = new Point(23,32); Point p3 = p2; p3.x = 12; p1 = p3;</code>. Draw the memory, give the values of <code>p1.x</code> and <code>p2.x</code>, and say what happens to the Point (4, 3).</div>
+<div class="q"><b>Q9.</b> What is a <b>destructor</b>? How are objects destroyed in Java? What does <code>System.gc()</code> do?</div>
+<div class="q"><b>Q10.</b> <code>length</code> is a <code>public</code> attribute of every array. Doesn't that break encapsulation? Then explain why <code>Book[] t = new Book[3]; t[0].display();</code> crashes.</div>
 
 <!-- ====================================================== -->
 <h2 class="pb">Corrigé (correction): don't read before trying!</h2>
 
-<h3>Part I: QCM answers</h3>
+<h3>Exercise 1, Part A</h3>
+<div class="two"><div>
+```text
+UML 5
+UML 5
+2
+3 null
+2 2.5
+```
+</div><div>
+<ul>
+<li><code>new Book("UML")</code> calls <code>this("UML", 1)</code> → copies = 1. <code>b3 = b2</code> copies the <b>reference</b>: <code>b3.copies + 4</code> changes the UML book to 5.</li>
+<li><code>b1 = b3</code> → b1, b2, b3 all point to the UML book: lines 1 and 2 are identical.</li>
+<li><code>created</code> is <code>static</code>: 2 calls to <code>new</code> → 2 (the <code>this(...)</code> call doesn't create a second object).</li>
+<li><code>new Book[3]</code> creates 3 <b>references</b> initialised to <code>null</code>; only <code>shelf[0]</code> was filled.</li>
+<li>foreach: total = 5 (null cells skipped). <code>5 / 2</code> = 2 (int division), <code>5 / 2.0</code> = 2.5.</li>
+</ul>
+</div></div>
+<div class="answer"><b>Q2.</b> 2 objects ("Java" and "UML"); 3 variables but only 2 <code>new</code>. After <code>b1 = b3</code>, no reference points to "Java" any more → it is unreachable and will be destroyed by the <b>garbage collector</b> (we can ask for it with <code>System.gc()</code>).<br>
+<b>Q3.</b> An array of objects contains references initialised to <code>null</code>; <code>shelf[1]</code> was never given an object. <code>shelf[1].title</code> compiles but throws a <b><code>NullPointerException</code></b> at run time.</div>
+
+<h3>Exercise 1, Part B</h3>
+```java class
+import java.util.Scanner;
+
+class Book {
+    private int id;
+    private String title;
+    private String author;
+    private boolean available;
+    private static int bookCount = 0;        // shared by all the books
+
+    public Book(int id, String title, String author) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.available = true;
+        bookCount++;
+    }
+
+    public Book(int id, String title) {
+        this(id, title, "Unknown");          // reuse the first constructor
+    }
+
+    public int getId()               { return id; }
+    public String getTitle()         { return title; }
+    public String getAuthor()        { return author; }
+    public boolean isAvailable()     { return available; }
+    public static int getBookCount() { return bookCount; }
+
+    public boolean borrowBook() {
+        if (available) {
+            available = false;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean returnBook() {
+        if (!available) {
+            available = true;
+            return true;
+        }
+        return false;
+    }
+
+    public void display() {
+        String state;
+        if (available) {
+            state = "Available";
+        } else {
+            state = "Borrowed";
+        }
+        System.out.println(id + " | " + title + " | " + author + " | " + state);
+    }
+}
+
+class Library {
+    public static final int MAX_BOOKS = 5;
+    private String name;
+    private Book[] books;
+    private int count;
+
+    public Library(String name) {
+        this.name = name;
+        this.books = new Book[MAX_BOOKS];    // 5 references, all null
+        this.count = 0;
+    }
+
+    public void addBook(Book b) {
+        if (count < books.length) {
+            books[count] = b;
+            count++;
+        } else {
+            System.out.println("Library full: " + b.getTitle() + " not added");
+        }
+    }
+
+    public void addBook(int id, String title, String author) {   // overloading
+        addBook(new Book(id, title, author));
+    }
+
+    public Book searchById(int id) {
+        for (int i = 0; i < count; i++) {
+            if (books[i].getId() == id) {
+                return books[i];
+            }
+        }
+        return null;
+    }
+
+    public boolean removeBook(int id) {
+        for (int i = 0; i < count; i++) {
+            if (books[i].getId() == id) {
+                for (int j = i; j < count - 1; j++) {
+                    books[j] = books[j + 1];     // shift left
+                }
+                books[count - 1] = null;          // last cell emptied
+                count--;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int countAvailable() {
+        int n = 0;
+        for (Book b : books) {                    // foreach visits null cells too
+            if (b != null && b.isAvailable()) {
+                n++;
+            }
+        }
+        return n;
+    }
+
+    public void displayAll() {
+        System.out.println("=== " + name + " ===");
+        for (int i = 0; i < count; i++) {
+            books[i].display();
+        }
+        System.out.println("Available: " + countAvailable() + " / " + count);
+    }
+}
+
+public class TestLibrary {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Library lib = new Library("City Library");
+        lib.addBook(new Book(101, "Clean Code", "R. Martin"));
+        lib.addBook(new Book(102, "Effective Java", "J. Bloch"));
+        lib.addBook(103, "UML Distilled", "M. Fowler");
+        lib.addBook(new Book(104, "Algorithms"));
+
+        int choice;
+        do {
+            System.out.println("1: Borrow | 2: Return | 3: Display | 0: Quit");
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.print("Book id: ");
+                    Book b = lib.searchById(sc.nextInt());
+                    if (b == null) {
+                        System.out.println("Book not found");
+                    } else if (b.borrowBook()) {
+                        System.out.println("Book borrowed: " + b.getTitle());
+                    } else {
+                        System.out.println("Already borrowed: " + b.getTitle());
+                    }
+                    break;
+                case 2:
+                    System.out.print("Book id: ");
+                    Book r = lib.searchById(sc.nextInt());
+                    if (r != null && r.returnBook()) {
+                        System.out.println("Book returned: " + r.getTitle());
+                    } else {
+                        System.out.println("Return impossible");
+                    }
+                    break;
+                case 3:
+                    lib.displayAll();
+                    break;
+                case 0:
+                    System.out.println("Goodbye");
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
+        } while (choice != 0);
+
+        lib.removeBook(104);
+        System.gc();
+        System.out.println("Books created: " + Book.getBookCount());
+        sc.close();
+    }
+}
+```
+<div class="answer"><b>Q4.</b> The book 104 was only referenced by the array. <code>removeBook</code> overwrites/empties its cell, so <b>no reference points to it any more</b>: it is unreachable and the <b>garbage collector</b> will destroy it (free its memory). <code>System.gc()</code> asks the GC to run. <code>bookCount</code> stays 4: it counts the books <i>created</i>.</div>
+
+<h3>Exercise 2, Part A</h3>
+<table>
+<tr><th>Line</th><th>Error</th><th>Kind</th><th>Fix</th></tr>
+<tr><td>6</td><td><code>void</code> turns the constructor into an ordinary method → only the default constructor exists, so <code>new Student("Amira")</code> (line 22) doesn't compile.</td><td>compile (line 22)</td><td>remove <code>void</code></td></tr>
+<tr><td>23</td><td><code>grades</code> is <code>private</code>: not accessible from <code>TestStudent</code>.</td><td>compile</td><td>a method <code>setGrade</code></td></tr>
+<tr><td>24</td><td><code>NB_GRADES</code> is <code>private</code> <b>and</b> <code>final</code> (a constant can't be changed).</td><td>compile</td><td>remove the line</td></tr>
+<tr><td>7</td><td><code>name = name</code> assigns the parameter to itself; the attribute stays <code>null</code>.</td><td>logic</td><td><code>this.name = name;</code></td></tr>
+<tr><td>13</td><td><code>i &lt;= grades.length</code> reads <code>grades[3]</code>, which doesn't exist (indices 0..2).</td><td>run time: <code>ArrayIndexOutOfBoundsException</code></td><td><code>i &lt; grades.length</code></td></tr>
+<tr><td>12, 14</td><td><code>int sum</code> with <code>sum += grades[i]</code> compiles (hidden cast) but loses the decimals: 15.5 becomes 15.</td><td>logic</td><td><code>double sum = 0;</code></td></tr>
+<tr><td>16</td><td>with <code>int sum</code>, <code>sum / grades.length</code> is an <b>integer division</b>.</td><td>logic</td><td>fixed by <code>double sum</code></td></tr>
+</table>
+```java class
+class Student {
+    private String name;
+    private double[] grades;
+    private final int NB_GRADES = 3;
+
+    public Student(String name) {
+        this.name = name;
+        grades = new double[NB_GRADES];
+    }
+
+    public void setGrade(int index, double grade) {
+        if (index >= 0 && index < grades.length && grade >= 0 && grade <= 20) {
+            grades[index] = grade;
+        }
+    }
+
+    public double average() {
+        double sum = 0;
+        for (int i = 0; i < grades.length; i++) {
+            sum += grades[i];
+        }
+        return sum / grades.length;
+    }
+}
+
+public class TestStudent {
+    public static void main(String[] args) {
+        Student s = new Student("Amira");
+        s.setGrade(0, 15.5);
+        s.setGrade(1, 12);
+        s.setGrade(2, 14);
+        System.out.println(s.average());     // 13.833333333333334
+    }
+}
+```
+
+<h3>Exercise 2, Part B</h3>
+```java class
+import java.util.Scanner;
+
+class Classroom {
+    public static final int NB_SUBJECTS = 3;
+    private static int classroomCount = 0;
+    private String className;
+    private String[] names;
+    private double[][] grades;
+
+    public Classroom(String className, int nbStudents) {
+        this.className = className;
+        names = new String[nbStudents];
+        grades = new double[nbStudents][NB_SUBJECTS];
+        classroomCount++;
+    }
+
+    public static int getClassroomCount() { return classroomCount; }
+
+    public void setStudent(int index, String name, double g1, double g2, double g3) {
+        if (index < 0 || index >= names.length) {
+            System.out.println("Invalid index!");
+            return;
+        }
+        names[index] = name;
+        double[] g = {g1, g2, g3};
+        for (int j = 0; j < NB_SUBJECTS; j++) {
+            if (g[j] >= 0 && g[j] <= 20) {
+                grades[index][j] = g[j];
+            } else {
+                System.out.println("Invalid grade for " + name + ": " + g[j] + " replaced by 0");
+                grades[index][j] = 0;
+            }
+        }
+    }
+
+    public double average(int student) {
+        double sum = 0;
+        for (double x : grades[student]) {      // grades[student] is a row = a 1D array
+            sum += x;
+        }
+        return sum / NB_SUBJECTS;
+    }
+
+    public double average() {                   // overloading
+        double sum = 0;
+        for (int i = 0; i < names.length; i++) {
+            sum += average(i);
+        }
+        return sum / names.length;
+    }
+
+    public String mention(int student) {
+        int level = (int) (average(student) / 2);   // 16..20 → 8..10, 14 → 7, ...
+        switch (level) {
+            case 10:
+            case 9:
+            case 8:
+                return "Very good";
+            case 7:
+                return "Good";
+            case 6:
+                return "Fairly good";
+            case 5:
+                return "Passable";
+            default:
+                return "Fail";
+        }
+    }
+
+    public String bestStudent() {
+        int best = 0;
+        for (int i = 1; i < names.length; i++) {    // classic for: we need the index
+            if (average(i) > average(best)) {
+                best = i;
+            }
+        }
+        return names[best];
+    }
+
+    public void display() {
+        System.out.println("=== Class " + className + " ===");
+        for (int i = 0; i < names.length; i++) {
+            System.out.printf("%-8s %.2f %s%n", names[i], average(i), mention(i));
+        }
+        System.out.printf("Class average: %.2f%n", average());
+        System.out.println("Best student: " + bestStudent());
+    }
+}
+
+public class TestClassroom {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n;
+        do {
+            System.out.print("Number of students: ");
+            n = sc.nextInt();
+        } while (n <= 0);
+
+        Classroom c = new Classroom("GLSI2", n);
+        for (int i = 0; i < n; i++) {
+            System.out.print("Name and 3 grades: ");
+            String name = sc.next();
+            double g1 = sc.nextDouble();
+            double g2 = sc.nextDouble();
+            double g3 = sc.nextDouble();
+            c.setStudent(i, name, g1, g2, g3);
+        }
+        c.display();
+        System.out.println("Classrooms created: " + Classroom.getClassroomCount());
+        sc.close();
+    }
+}
+```
+<p class="small">The <code>switch</code> works on an <code>int</code>, not on a <code>double</code>: that's why we switch on <code>(int) (average / 2)</code>. An <code>if / else if</code> chain would also be accepted if the statement doesn't impose a switch. <code>printf("%.2f")</code> is (extra); <code>println</code> with the full decimals is also correct.</p>
+
+<h3>Exercise 3, Part A</h3>
+<div class="two"><div>
+```text
+9 3
+2 3 12 0
+6 2.5 3 1
+20 2
+sum = 20
+CD
+2
+```
+</div><div>
+<ul>
+<li><code>b = a</code>: same array → <code>b[2] = 9</code> changes <code>a[2]</code>.</li>
+<li><code>m.length</code> = rows (2), <code>m[0].length</code> = columns (3); <code>f(3, 4)</code> = 12; untouched cells = 0.</li>
+<li>Overloading: <code>f(5)</code> → int version (6), <code>f(5.0)</code> → double version (2.5); <code>7 / 2</code> = 3, <code>7 % 2</code> = 1.</li>
+<li><code>p = q</code>: both point to the object 8, changed to 20; <code>calls</code> is static = 2.</li>
+<li>foreach on {4, 7, 9} = 20. Switch: case 3 without break falls into case 4 → "CD". do…while runs once → 2.</li>
+</ul>
+</div></div>
+<div class="answer"><b>Q2.</b> The object created with <code>new Mystery2(3)</code>: after <code>p = q</code> no reference points to it, so it is unreachable and the <b>garbage collector</b> can destroy it (free its memory).<br>
+<b>Q3.</b> <code>for (int i = 0; i &lt; a.length; i++) { sum += a[i]; }</code></div>
+
+<h3>Exercise 3, Part B</h3>
+```java class
+import java.util.Scanner;
+
+class Position {
+    private int row;
+    private int col;
+
+    public Position(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
+
+    public Position() {
+        this(0, 0);
+    }
+
+    public int getRow() { return row; }
+    public int getCol() { return col; }
+
+    public boolean move(char direction) {
+        int r = row, c = col;
+        switch (direction) {
+            case 'U': r--; break;
+            case 'D': r++; break;
+            case 'L': c--; break;
+            case 'R': c++; break;
+            default:
+                System.out.println("Unknown direction!");
+                return false;
+        }
+        if (r < 0 || r >= Board.SIZE || c < 0 || c >= Board.SIZE) {
+            System.out.println("Move impossible!");
+            return false;
+        }
+        row = r;
+        col = c;
+        return true;
+    }
+
+    public boolean sameAs(Position other) {
+        return row == other.row && col == other.col;
+    }
+
+    public int distanceTo(Position other) {
+        return Math.abs(row - other.row) + Math.abs(col - other.col);
+    }
+}
+
+class Board {
+    public static final int SIZE = 5;
+    public static final int MAX_MOVES = 10;
+    private char[][] cells;
+    private Position treasure;
+
+    public Board() {
+        this((int) (Math.random() * SIZE), (int) (Math.random() * SIZE));
+    }
+
+    public Board(int row, int col) {
+        cells = new char[SIZE][SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                cells[i][j] = '.';
+            }
+        }
+        treasure = new Position(row, col);
+    }
+
+    public Position getTreasure() { return treasure; }
+
+    public void markVisited(Position p) {
+        cells[p.getRow()][p.getCol()] = 'x';
+    }
+
+    public void display(Position player) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (i == player.getRow() && j == player.getCol()) {
+                    System.out.print("P ");
+                } else {
+                    System.out.print(cells[i][j] + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
+
+class Player {
+    private static int playersCount = 0;
+    private String name;
+    private Position position;
+    private int movesLeft;
+
+    public Player(String name) {
+        this.name = name;
+        this.position = new Position();
+        this.movesLeft = Board.MAX_MOVES;
+        playersCount++;
+    }
+
+    public String getName()             { return name; }
+    public Position getPosition()       { return position; }
+    public int getMovesLeft()           { return movesLeft; }
+    public static int getPlayersCount() { return playersCount; }
+
+    public boolean play(char direction) {
+        if (movesLeft == 0) {
+            return false;
+        }
+        movesLeft--;
+        return position.move(direction);
+    }
+}
+
+public class TestGame {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Board board = new Board();               // new Board(1, 2) to test
+        System.out.print("Your name: ");
+        Player player = new Player(sc.next());
+        boolean found = false;
+
+        do {
+            board.display(player.getPosition());
+            System.out.print("Move (U/D/L/R), " + player.getMovesLeft() + " left: ");
+            char dir = sc.next().charAt(0);
+            board.markVisited(player.getPosition());
+            player.play(dir);
+            if (player.getPosition().sameAs(board.getTreasure())) {
+                found = true;
+            } else if (player.getPosition().distanceTo(board.getTreasure()) <= 2) {
+                System.out.println("Hot!");
+            } else {
+                System.out.println("Cold...");
+            }
+        } while (!found && player.getMovesLeft() > 0);
+
+        int used = Board.MAX_MOVES - player.getMovesLeft();
+        if (found) {
+            System.out.println("Bravo " + player.getName() + "! Treasure found in " + used + " moves.");
+        } else {
+            System.out.println("Game over! The treasure was at (" + board.getTreasure().getRow()
+                               + ", " + board.getTreasure().getCol() + ")");
+        }
+        player = null;      // the Player object has no reference any more: it is unreachable
+        System.gc();        // explicit request: the garbage collector frees its memory
+        sc.close();
+    }
+}
+```
+<div class="box trap"><b>⚠ Points examiners check in this exercise</b>
+<code>(int) (Math.random() * SIZE)</code>: parentheses around the product, otherwise <code>(int) Math.random()</code> = 0 every time. The board is <code>char[][]</code> with <code>'.'</code> (single quotes: char). <code>SIZE</code> and <code>MAX_MOVES</code> are <code>public static final</code> so <code>Position</code> and <code>Player</code> can use <code>Board.SIZE</code>. A move refused by <code>move()</code> still costs a move (like the expected result: 4 moves).</div>
+
+<h3>Bonus: QCM answers</h3>
 <table>
 <tr><th>Q</th><th>Ans</th><th>Why</th><th>Q</th><th>Ans</th><th>Why</th></tr>
 <tr><td>1</td><td>b</td><td>javac → portable bytecode (.class)</td><td>11</td><td>c</td><td>Scanner is in <code>java.util</code></td></tr>
@@ -265,7 +1000,19 @@ Total after 10% discount: 180.0
 <tr><td>10</td><td>c</td><td>fall-through</td><td>20</td><td>b</td><td>class attribute, one shared copy</td></tr>
 </table>
 
-<h3>Part II: model answers</h3>
+<table>
+<tr><th>Q</th><th>Ans</th><th>Why</th></tr>
+<tr><td>21</td><td>b</td><td>arrays of primitives are initialised to 0</td></tr>
+<tr><td>22</td><td>c</td><td>the size is never given at declaration, only with <code>new</code></td></tr>
+<tr><td>23</td><td>b</td><td><code>m.length</code> = number of rows</td></tr>
+<tr><td>24</td><td>c</td><td>last index is <code>length - 1</code>; Java checks the index at run time</td></tr>
+<tr><td>25</td><td>b</td><td><code>b = a</code> copies the reference: same object</td></tr>
+<tr><td>26</td><td>b</td><td>slide 79: allocation + defaults → explicit init → constructor → reference</td></tr>
+<tr><td>27</td><td>c</td><td>no destructor in Java; <code>System.gc()</code> is only a request</td></tr>
+<tr><td>28</td><td>b</td><td><code>x</code> is a copy of each element</td></tr>
+</table>
+
+<h3>Bonus: model answers</h3>
 <div class="answer"><b>Q1.</b> A class is a model (mould) describing a family of objects with the same attributes and methods; an object is a concrete <b>instance</b> of that class, with its own identity and state (attribute values). Example: the class <code>Car</code> describes every car (registration, color, speed, increaseSpeed()); my white BMW X1123 is one object: <code>Car bmw = new Car("X1123", "white", 110);</code>. One class → as many objects as we want.</div>
 <div class="answer"><b>Q2.</b> A constructor is a special method that initialises the attributes of an object when it is created. Differences: (1) same name as the class, (2) no return type, not even <code>void</code>, (3) called automatically, only once per object, by <code>new</code> (a method is called explicitly, as many times as we want). If we write no constructor, Java provides a default one (no parameters, attributes at 0/false/null). As soon as we write one constructor, the default one disappears: <code>new Person()</code> then gives a compilation error unless we also write <code>Person()</code>.</div>
 <div class="answer"><b>Q3.</b> <code>balance</code> is <code>private</code>: it can only be accessed by the methods of <code>BankAccount</code>; <code>main</code> is in another class, so the compiler says "balance has private access". Going through <code>deposit(amount)</code> lets the class <b>check</b> the value (<code>if (amount &gt; 0)</code>), so no one can put a negative or absurd balance: the object protects the integrity of its data. A public attribute could be set to anything. This is <b>encapsulation</b> (data hidden, access through the object's interface = public methods).</div>
@@ -281,316 +1028,8 @@ Total after 10% discount: 180.0
 <div class="answer"><b>Q7.</b> The player must make at least one guess before we can compare it with the secret number; <code>do … while</code> tests the condition at the end, so the body (ask, compare, count) always runs at least once. With <code>while</code> we would have to read a first guess before the loop (duplicated code).<br>
 <code>(a + b) / 2</code>: both operands are <code>int</code>, so it's an integer division: 11 / 2 = 5 (decimal part cut); only then is 5 converted to 5.0 for <code>m</code>. Fixes: <code>m = (a + b) / 2.0;</code> or <code>m = (double) (a + b) / 2;</code></div>
 
-<h3>Exercise 1: output and justification</h3>
-<div class="two"><div>
-```text
-3.0
-3.5
-1 72
-1:B
-2:none
-2
-8 12.0
-10
-two three
-```
-</div><div>
-<ul>
-<li>★ L1: <code>7 / 2</code> is int division = 3, then stored as 3.0.</li>
-<li>L2: the cast happens <b>before</b> the division: 7.0 / 2 = 3.5.</li>
-<li>★ L3: <code>a % b</code> = 1; then string concatenation left to right: "1 " + 7 → "1 7", + 2 → "1 72" (not 9!).</li>
-<li>★ L4: <code>z = x</code> copies the reference: same object, so <code>z.label = "B"</code> changes x. x was created first → id 1.</li>
-<li>L5: <code>new Mystery()</code> calls <code>this("none")</code>; count becomes 2 → id 2.</li>
-<li>L6: <code>count</code> is static: one shared counter, 2 objects created (z is not a new object).</li>
-<li>★ L7: overloading: <code>twice(4)</code> → int version (4×2 = 8); <code>twice(4.0)</code> → double version (4.0×3 = 12.0).</li>
-<li>★ L8: do…while runs once even though <code>i &lt; 10</code> is false at the start.</li>
-<li>★ L9: <code>b = 2</code> → enters case 2; no break → falls into case 3, then <code>break</code>.</li>
-</ul>
-</div></div>
-
-<h3>Exercise 2: errors</h3>
-<table>
-<tr><th>Line</th><th>Error</th><th>Fix</th></tr>
-<tr><td>6</td><td><code>void</code> makes <code>Product(...)</code> an ordinary method, <b>not a constructor</b>. So only the default constructor exists (this triggers the error at line 16).</td><td>remove <code>void</code></td></tr>
-<tr><td>7–8</td><td><b>Logic error</b>: <code>name = name</code> assigns the parameter to itself; the attributes stay <code>null</code>/0.0.</td><td><code>this.name = name; this.price = price;</code></td></tr>
-<tr><td>12</td><td>missing return statement: the method must return a double.</td><td><code>return total;</code></td></tr>
-<tr><td>16</td><td>constructor <code>Product(String, double)</code> doesn't exist (see line 6).</td><td>fixed by line 6</td></tr>
-<tr><td>17</td><td><code>price</code> has private access in Product.</td><td>add a setter <code>setPrice</code> with validation</td></tr>
-<tr><td>18</td><td>possible lossy conversion from double to int.</td><td><code>int qty = 2;</code> (or <code>double</code>)</td></tr>
-<tr><td>19</td><td>0.1 is a double → lossy conversion to float.</td><td><code>0.1f</code></td></tr>
-<tr><td>20</td><td>cannot assign a value to final variable TVA.</td><td>remove the line (a constant can't change)</td></tr>
-</table>
-```java class
-class Product {
-    private String name;
-    private double price;
-    public final double TVA = 0.19;
-
-    public Product(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-    public String getName()  { return name; }
-    public double getPrice() { return price; }
-    public void setPrice(double price) {
-        if (price > 0) {
-            this.price = price;
-        }
-    }
-    public double priceWithTax() {
-        double total = price + price * TVA;
-        return total;
-    }
-}
-public class Shop {
-    public static void main(String[] args) {
-        Product p = new Product("Pen", 2.5);
-        p.setPrice(3.0);
-        int qty = 2;
-        float discount = 0.1f;
-        System.out.println(p.priceWithTax() * qty);
-    }
-}
-```
-<p class="small">Real output: <code>7.140000000000001</code> (3.0 × 1.19 × 2 = 7.14; the extra digits are normal floating-point rounding with doubles).</p>
-
-<h3>Exercise 3: SmartATM</h3>
-```java class
-import java.util.Scanner;
-
-public class SmartATM {
-    public static void main(String[] args) {
-        final double MAX_WITHDRAW = 500.0;
-        double balance = 1000.0;
-        int operations = 0;
-        char choice;
-        Scanner sc = new Scanner(System.in);
-
-        do {
-            System.out.println("D: Deposit | W: Withdraw | B: Balance | Q: Quit");
-            System.out.print("Your choice: ");
-            choice = sc.next().charAt(0);
-
-            switch (choice) {
-                case 'D':
-                    System.out.print("Amount: ");
-                    double dep = sc.nextDouble();
-                    if (dep > 0) {
-                        balance += dep;
-                        operations++;
-                    } else {
-                        System.out.println("Invalid amount!");
-                    }
-                    break;
-                case 'W':
-                    System.out.print("Amount: ");
-                    double wd = sc.nextDouble();
-                    if (wd > MAX_WITHDRAW) {
-                        System.out.println("Limit is " + MAX_WITHDRAW);
-                    } else if (wd > balance) {
-                        System.out.println("Insufficient balance!");
-                    } else if (wd <= 0) {
-                        System.out.println("Invalid amount!");
-                    } else {
-                        balance -= wd;
-                        operations++;
-                    }
-                    break;
-                case 'B':
-                    System.out.println("Balance: " + balance);
-                    break;
-                case 'Q':
-                    System.out.println("Goodbye!");
-                    break;
-                default:
-                    System.out.println("Invalid choice!");
-            }
-        } while (choice != 'Q');
-
-        System.out.println("Successful operations: " + operations);
-
-        for (int month = 1; month <= 3; month++) {
-            balance = balance * 1.01;
-            System.out.printf("Month %d: %.2f%n", month, balance); // (extra) println is accepted too
-        }
-        sc.close();
-    }
-}
-```
-<div class="box tip"><b>Grading points</b><code>final</code> constant ✓ · Scanner + import ✓ · <code>next().charAt(0)</code> ✓ · do…while with <code>!= 'Q'</code> ✓ · switch with <code>break</code> and <code>default</code> ✓ · validations with if/else if ✓ · counter ✓ · for loop ✓.
-With <code>println</code> instead of <code>printf</code> you'd see <code>959.5</code>, <code>969.095</code>, <code>978.7859500000001</code>: also accepted.</div>
-
-<h3>Exercise 4: Smartphone</h3>
-```java class
-class Smartphone {
-    private String brand;
-    private int battery;
-    private int appsOpened;
-
-    public Smartphone(String brand, int battery) {
-        this.brand = brand;
-        setBattery(battery);          // validation goes through the setter
-        this.appsOpened = 0;
-    }
-
-    public Smartphone() {
-        this("Generic", 50);          // MUST be the first statement
-        System.out.println("Default constructor called.");
-    }
-
-    public String getBrand() { return brand; }
-    public int getBattery()  { return battery; }
-
-    public void setBattery(int battery) {
-        if (battery < 0) {
-            this.battery = 0;
-        } else if (battery > 100) {
-            this.battery = 100;
-        } else {
-            this.battery = battery;
-        }
-    }
-
-    public Smartphone charge(int percent) {
-        if (percent > 0) {
-            setBattery(battery + percent);   // capped at 100 by the setter
-        }
-        return this;
-    }
-
-    public Smartphone openApp() {
-        if (battery >= 5) {
-            battery -= 5;
-            appsOpened++;
-        } else {
-            System.out.println("Battery too low!");
-        }
-        return this;
-    }
-
-    public Smartphone openApp(int n) {      // overloading: same name, different parameters
-        for (int i = 1; i <= n; i++) {
-            openApp();
-        }
-        return this;
-    }
-
-    public void display() {
-        System.out.println("Brand: " + brand + " | Battery: " + battery
-                           + "% | Apps opened: " + appsOpened);
-    }
-}
-
-public class TestPhone {
-    public static void main(String[] args) {
-        Smartphone p1 = new Smartphone();          // Default constructor called.
-        Smartphone p2 = new Smartphone("Nova", 12);
-        p1.display();
-        p2.openApp(3);                             // 12 → 7 → 2 → "Battery too low!"
-        p2.display();
-        p2.charge(200).openApp().display();        // 2+200 → capped 100 → 95, 3 apps
-    }
-}
-```
-<div class="answer"><b>Bonus:</b> <code>battery</code> is <code>private</code>, so <code>TestPhone</code> can't access it ("battery has private access in Smartphone"). Write <code>p1.setBattery(80);</code>: the setter also checks the value stays in [0, 100].</div>
-
-<h3>Exercise 5: Online shop</h3>
-```java class
-class Product {
-    private String name;
-    private double price;
-
-    public Product(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-    public String getName()  { return name; }
-    public double getPrice() { return price; }
-}
-
-class ShoppingCart {
-    private Product[] items;
-    private int count;
-
-    public ShoppingCart(int capacity) {
-        items = new Product[capacity];   // array of references, all null
-        count = 0;
-    }
-
-    public boolean addProduct(Product p) {
-        if (count == items.length) {
-            System.out.println("Cart is full: " + p.getName() + " not added");
-            return false;
-        }
-        items[count] = p;
-        count++;
-        return true;
-    }
-
-    public double getTotal() {
-        double total = 0;
-        for (int i = 0; i < count; i++) {        // count, not items.length (nulls!)
-            total += items[i].getPrice();
-        }
-        return total;
-    }
-
-    public double getTotal(double discountPercent) {   // overloading
-        return getTotal() - getTotal() * discountPercent / 100;
-    }
-
-    public int luckyDiscount() {
-        return (int) (Math.random() * 21);       // 0..20 inclusive
-    }
-
-    public void printReceipt() {
-        for (int i = 0; i < count; i++) {
-            System.out.println("- " + items[i].getName() + " : " + items[i].getPrice());
-        }
-        System.out.println("Total: " + getTotal());
-    }
-}
-
-class Customer {
-    private String name;
-    private ShoppingCart cart;                   // an object inside an object
-
-    public Customer(String name, ShoppingCart cart) {
-        this.name = name;
-        this.cart = cart;
-    }
-
-    public void displayProfile() {
-        System.out.println("Customer: " + name);
-        cart.printReceipt();                     // calling the inner object's methods
-        System.out.println("Total after 10% discount: " + cart.getTotal(10));
-    }
-}
-
-public class TestShop {
-    public static void main(String[] args) {
-        ShoppingCart cart = new ShoppingCart(3);
-        cart.addProduct(new Product("Keyboard", 40.0));
-        cart.addProduct(new Product("Mouse", 20.0));
-        cart.addProduct(new Product("Screen", 140.0));
-        cart.addProduct(new Product("Cable", 5.0));   // 4th → cart full
-        Customer c = new Customer("Ines", cart);
-        c.displayProfile();
-    }
-}
-```
-<div class="box trap"><b>⚠ Classic mistakes in this exercise</b>
-Looping to <code>items.length</code> instead of <code>count</code> → <code>NullPointerException</code> on empty slots. Forgetting <code>count++</code>. Writing <code>Math.random() * 20</code> (gives 0..19 only). Writing <code>(int) Math.random() * 21</code>: the cast applies to <code>Math.random()</code> first → always 0!</div>
-
-<h3>Self-assessment</h3>
-<table>
-<tr><th>If you lost points on…</th><th>Re-read in the cheat sheet</th></tr>
-<tr><td>QCM 5–8, Ex1 lines 1–3</td><td>§2: conversions, integer division, string concatenation</td></tr>
-<tr><td>QCM 9–12, Ex3</td><td>§3: loops, switch, Scanner</td></tr>
-<tr><td>QCM 13–16, Q2, Q4, Ex4</td><td>§5 constructors, §6 <code>this</code></td></tr>
-<tr><td>QCM 17–18, Q3, Ex2</td><td>§7 access &amp; encapsulation, §13 compile errors</td></tr>
-<tr><td>QCM 19–20, Q5, Ex1 lines 6–7</td><td>§9 overloading, §10 static</td></tr>
-<tr><td>Q6, Ex5</td><td>§4 references, §11 lab patterns (composition, arrays of objects)</td></tr>
-</table>
+<div class="answer"><b>Q8.</b> A reference is a kind of pointer whose manipulation is transparent; it contains <code>null</code> if it points to no object; several references can point to the same object. Trace: p1 → (4,3); p2 → (23,32); p3 → same object as p2; <code>p3.x = 12</code> → that object becomes (12,32); <code>p1 = p3</code> → p1, p2, p3 all point to (12,32). <code>p1.x = p2.x = 12</code>. The Point (4,3) has no reference any more → destroyed by the garbage collector.</div>
+<div class="answer"><b>Q9.</b> A destructor is a method called to destroy an object, i.e. free the resources its constructor allocated. In Java there is none to write: the <b>garbage collector</b> automatically destroys the objects that are no longer referenced (e.g. after <code>obj = null</code>). <code>System.gc()</code> explicitly asks the GC to reclaim memory at that moment.</div>
+<div class="answer"><b>Q10.</b> No: <code>length</code> is <code>public final</code>, so it can be read by everyone but never modified after the array is created; the integrity of the data is kept. <code>new Book[3]</code> creates 3 references initialised to <code>null</code>, not 3 books; <code>t[0].display()</code> calls a method on <code>null</code> → <code>NullPointerException</code>. We must first do <code>t[0] = new Book(…);</code>.</div>
 
 </body></html>
