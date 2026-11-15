@@ -1,0 +1,1501 @@
+customer_id,name,city,signup_date,segment,age
+C0001,Mariem Nasri,Sousse,2024-06-23,Regular,24.0
+C0002,Salma Chaabane,Kairouan,2022-07-06,Regular,39.0
+C0003,Omar Sassi,Ariana,2024-03-17,Premium,28.0
+C0004,Mariem Mejri,Ben Arous,2023-11-02,Regular,18.0
+C0005,Mohamed Trabelsi,Bizerte,2024-07-30,Regular,31.0
+C0006,Walid Belhaj,Sfax,2024-05-31,Regular,47.0
+C0007,Anis Nasri,Nabeul,2023-10-04,Regular,39.0
+C0008,Anis Nasri,Ben Arous,2024-01-05,Regular,54.0
+C0009,Walid Trabelsi,Tunis,2025-02-14,New,36.0
+C0010,Skander Chaabane,Nabeul,2024-10-05,Regular,58.0
+C0011,Walid Bouazizi,Tunis,2023-12-15,Regular,
+C0012,Ines Zouari,Tunis,2023-02-20,Regular,34.0
+C0013,Emna Karray,Sousse,2023-08-26,New,21.0
+C0014,Omar Sassi,Nabeul,2023-05-07,Regular,45.0
+C0015,Walid Chaabane,Monastir,2023-07-02,Regular,29.0
+C0016,Rania Mansouri,Tunis,2024-05-03,Regular,28.0
+C0017,Mariem Haddad,Tunis,2023-05-13,Regular,47.0
+C0018,Yasmine Ben Ali,Kairouan,2025-09-11,Regular,46.0
+C0019,Yasmine Sassi,Tunis,2022-12-16,New,45.0
+C0020,Sarra Karray,Tunis,2022-10-30,Regular,30.0
+C0021,Ines Nasri,Ariana,2023-10-15,Regular,33.0
+C0022,Anis Bouazizi,Sfax,2025-05-23,Regular,33.0
+C0023,Mariem Belhaj,Monastir,2024-04-27,New,42.0
+C0024,Omar Zouari,Nabeul,2022-11-16,New,50.0
+C0025,Salma Nasri,Sousse,2023-10-31,Premium,38.0
+C0026,Emna Gharbi,Tunis,2022-08-27,Regular,54.0
+C0027,Nour Dridi,Ariana,2023-09-24,Premium,43.0
+C0028,Rania Ben Ali,Sfax,2023-02-07,Premium,32.0
+C0029,Walid Gharbi,Tunis,2024-07-20,Regular,42.0
+C0030,Anis Mejri,Tunis,2023-07-24,Regular,51.0
+C0031,Fares Nasri,Ariana,2023-02-06,New,54.0
+C0032,Nour Belhaj,Tunis,2024-02-29,Regular,46.0
+C0033,Omar Jebali,Sfax,2024-02-17,Premium,34.0
+C0034,Fares Bouazizi,Sousse,2023-02-17,Regular,32.0
+C0035,Mariem Dridi,Tunis,2023-12-13,Regular,40.0
+C0036,Emna Gharbi,Sfax,2024-06-29,Regular,
+C0037,Rania Trabelsi,Bizerte,2023-04-13,Premium,38.0
+C0038,Salma Dridi,Nabeul,2024-09-02,New,39.0
+C0039,Karim Mansouri,Bizerte,2023-09-18,Regular,35.0
+C0040,Amal Mejri,Ben Arous,2024-10-16,Regular,31.0
+C0041,Fares Chaabane,Bizerte,2024-07-07,Regular,32.0
+C0042,Ines Sassi,Tunis,2025-02-03,Regular,35.0
+C0043,Hedi Mejri,Ariana,2024-01-16,New,51.0
+C0044,Mariem Jebali,Tunis,2024-06-09,Regular,32.0
+C0045,Emna Sassi,Ben Arous,2023-08-14,Regular,35.0
+C0046,Omar Sassi,Ben Arous,2024-05-30,Regular,25.0
+C0047,Skander Bouazizi,Tunis,2025-02-04,New,41.0
+C0048,Yasmine Jebali,Nabeul,2024-06-30,Regular,48.0
+C0049,Mohamed Mejri,Ariana,2024-08-03,Premium,50.0
+C0050,Hedi Gharbi,Tunis,2024-12-15,Regular,36.0
+C0051,Skander Gharbi,Tunis,2023-11-19,Regular,40.0
+C0052,Skander Ben Ali,Ben Arous,2024-09-12,Premium,32.0
+C0053,Emna Nasri,Ariana,2024-03-21,Regular,39.0
+C0054,Emna Karray,Ariana,2024-11-16,Premium,37.0
+C0055,Rania Mejri,Tunis,2023-07-16,Regular,
+C0056,Sarra Nasri,Nabeul,2022-06-10,Premium,35.0
+C0057,Amal Chaabane,Gabès,2025-08-10,New,39.0
+C0058,Walid Haddad,Sfax,2024-04-24,Premium,31.0
+C0059,Ahmed Gharbi,Sousse,2022-12-06,Regular,32.0
+C0060,Mohamed Trabelsi,Monastir,2025-03-03,Premium,51.0
+C0061,Omar Mejri,Kairouan,2024-05-20,New,61.0
+C0062,Salma Dridi,Sousse,2022-08-05,Regular,22.0
+C0063,Yasmine Haddad,Monastir,2024-03-24,Regular,21.0
+C0064,Mariem Nasri,Gabès,2025-07-17,New,24.0
+C0065,Amal Karray,Bizerte,2023-10-26,Regular,33.0
+C0066,Amal Haddad,Ben Arous,2025-05-11,Premium,43.0
+C0067,Mariem Haddad,Tunis,2024-01-27,New,40.0
+C0068,Emna Jebali,Tunis,2023-12-30,Regular,36.0
+C0069,Hedi Ben Ali,Sfax,2024-05-31,Regular,39.0
+C0070,Karim Chaabane,Sfax,2023-01-30,Regular,27.0
+C0071,Lina Mansouri,Ben Arous,2025-02-12,Regular,32.0
+C0072,Sarra Chaabane,Sfax,2024-06-11,New,34.0
+C0073,Lina Sassi,Sfax,2022-12-16,Regular,18.0
+C0074,Ahmed Mansouri,Bizerte,2024-09-07,Regular,22.0
+C0075,Skander Ben Ali,Tunis,2023-03-27,New,23.0
+C0076,Yasmine Jebali,Tunis,2024-03-31,Regular,42.0
+C0077,Fares Jebali,Bizerte,2025-04-01,New,36.0
+C0078,Omar Karray,Monastir,2024-04-30,Regular,40.0
+C0079,Youssef Haddad,Kairouan,2024-02-02,Regular,18.0
+C0080,Walid Nasri,Monastir,2024-02-16,Regular,
+C0081,Lina Karray,Monastir,2022-03-26,Premium,41.0
+C0082,Omar Chaabane,Ariana,2023-09-07,New,18.0
+C0083,Omar Sassi,Ben Arous,2024-11-25,New,46.0
+C0084,Karim Gharbi,Tunis,2022-10-21,New,18.0
+C0085,Karim Ben Ali,Sfax,2022-09-03,Premium,42.0
+C0086,Youssef Trabelsi,Gabès,2022-07-09,New,25.0
+C0087,Emna Mejri,Ariana,2024-10-06,Regular,44.0
+C0088,Salma Chaabane,Sfax,2023-06-01,New,66.0
+C0089,Anis Gharbi,Ariana,2023-06-04,Premium,18.0
+C0090,Fares Dridi,Tunis,2023-08-17,New,41.0
+C0091,Fares Gharbi,Tunis,2023-10-26,Regular,18.0
+C0092,Rania Mejri,Tunis,2023-05-10,Regular,38.0
+C0093,Rania Chaabane,Gabès,2024-09-26,Premium,32.0
+C0094,Ines Bouazizi,Ben Arous,2024-05-17,Regular,35.0
+C0095,Mohamed Jebali,Bizerte,2024-05-09,Regular,25.0
+C0096,Salma Karray,Sousse,2024-04-09,New,42.0
+C0097,Hedi Bouazizi,Tunis,2023-12-06,Regular,20.0
+C0098,Lina Trabelsi,Tunis,2022-12-30,Regular,46.0
+C0099,Karim Trabelsi,Bizerte,2022-06-15,Regular,30.0
+C0100,Karim Belhaj,Tunis,2024-01-19,Regular,20.0
+C0101,Nour Zouari,Gabès,2023-11-07,Premium,50.0
+C0102,Rania Mejri,Tunis,2022-04-05,New,33.0
+C0103,Rania Mansouri,Sousse,2023-07-28,New,53.0
+C0104,Emna Belhaj,Bizerte,2024-03-20,Premium,46.0
+C0105,Sarra Nasri,Tunis,2022-07-04,Premium,26.0
+C0106,Sarra Mejri,Tunis,2023-05-01,Regular,33.0
+C0107,Emna Chaabane,Kairouan,2024-12-17,New,35.0
+C0108,Anis Jebali,Tunis,2022-10-17,Regular,49.0
+C0109,Mariem Trabelsi,Ben Arous,2023-05-02,Regular,38.0
+C0110,Omar Zouari,Ben Arous,2022-10-24,New,
+C0111,Youssef Chaabane,Tunis,2022-05-16,New,32.0
+C0112,Anis Mansouri,Nabeul,2023-04-29,Regular,33.0
+C0113,Anis Jebali,Nabeul,2023-12-26,Premium,47.0
+C0114,Skander Haddad,Ariana,2024-02-06,Regular,34.0
+C0115,Walid Gharbi,Bizerte,2025-03-07,Regular,30.0
+C0116,Rania Sassi,Tunis,2024-12-15,Regular,28.0
+C0117,Ahmed Nasri,Tunis,2023-07-20,Regular,28.0
+C0118,Rania Mejri,Sfax,2025-06-10,Regular,20.0
+C0119,Salma Chaabane,Kairouan,2023-07-03,Regular,26.0
+C0120,Karim Karray,Tunis,2025-01-20,Regular,49.0
+C0121,Youssef Haddad,Tunis,2025-05-30,Regular,32.0
+C0122,Mariem Karray,Sfax,2023-12-10,New,41.0
+C0123,Hedi Trabelsi,Bizerte,2024-01-29,Premium,18.0
+C0124,Emna Chaabane,Tunis,2023-05-24,New,40.0
+C0125,Emna Ben Ali,Ben Arous,2025-06-24,Regular,32.0
+C0126,Ines Dridi,Nabeul,2024-08-21,Premium,29.0
+C0127,Ines Jebali,Ariana,2024-02-11,New,36.0
+C0128,Salma Gharbi,Tunis,2022-05-11,Regular,29.0
+C0129,Salma Trabelsi,Tunis,2024-10-19,Regular,18.0
+C0130,Ines Haddad,Ben Arous,2024-02-12,Regular,
+C0131,Emna Gharbi,Sfax,2024-06-24,Regular,36.0
+C0132,Sarra Zouari,Monastir,2023-11-21,Regular,31.0
+C0133,Lina Haddad,Sousse,2024-02-26,Regular,24.0
+C0134,Omar Bouazizi,Sousse,2024-01-14,Regular,19.0
+C0135,Hedi Haddad,Kairouan,2022-11-09,Premium,36.0
+C0136,Sarra Ben Ali,Ben Arous,2024-03-13,Regular,50.0
+C0137,Ines Belhaj,Ben Arous,2024-01-03,Regular,36.0
+C0138,Omar Dridi,Gabès,2023-11-28,Premium,20.0
+C0139,Rania Nasri,Tunis,2025-06-21,Regular,36.0
+C0140,Mariem Trabelsi,Nabeul,2024-10-13,Regular,33.0
+C0141,Sarra Dridi,Nabeul,2024-08-19,Regular,43.0
+C0142,Salma Dridi,Tunis,2025-07-04,Regular,40.0
+C0143,Omar Belhaj,Ben Arous,2023-10-10,Regular,18.0
+C0144,Ines Haddad,Tunis,2023-05-01,Regular,39.0
+C0145,Walid Dridi,Tunis,2024-01-29,Regular,24.0
+C0146,Skander Jebali,Ben Arous,2023-06-12,New,20.0
+C0147,Lina Jebali,Ariana,2024-01-14,New,32.0
+C0148,Walid Dridi,Bizerte,2022-08-13,Regular,38.0
+C0149,Skander Chaabane,Gabès,2024-11-26,Regular,18.0
+C0150,Sarra Ben Ali,Bizerte,2023-09-16,Regular,41.0
+C0151,Nour Sassi,Tunis,2024-09-17,New,42.0
+C0152,Ahmed Zouari,Tunis,2023-04-12,New,34.0
+C0153,Walid Gharbi,Tunis,2023-04-04,Regular,25.0
+C0154,Karim Haddad,Tunis,2023-11-13,Regular,24.0
+C0155,Karim Trabelsi,Gabès,2024-03-30,Regular,44.0
+C0156,Salma Mejri,Ben Arous,2023-06-09,New,19.0
+C0157,Youssef Jebali,Tunis,2025-06-07,New,45.0
+C0158,Mohamed Karray,Monastir,2024-08-26,Regular,32.0
+C0159,Anis Mejri,Ben Arous,2023-09-23,Regular,33.0
+C0160,Fares Nasri,Tunis,2024-09-17,Regular,18.0
+C0161,Karim Trabelsi,Tunis,2024-10-01,Premium,33.0
+C0162,Hedi Zouari,Sousse,2024-07-04,New,40.0
+C0163,Lina Mansouri,Bizerte,2024-05-24,Regular,21.0
+C0164,Mohamed Ben Ali,Tunis,2025-01-05,Regular,
+C0165,Youssef Haddad,Gabès,2025-01-25,Regular,35.0
+C0166,Walid Bouazizi,Monastir,2023-07-06,Regular,28.0
+C0167,Karim Sassi,Monastir,2024-07-12,New,43.0
+C0168,Rania Sassi,Tunis,2023-05-19,Regular,18.0
+C0169,Lina Jebali,Tunis,2022-12-07,New,37.0
+C0170,Mohamed Belhaj,Monastir,2023-01-22,Regular,50.0
+C0171,Hedi Jebali,Ariana,2023-01-30,Regular,48.0
+C0172,Hedi Dridi,Sousse,2024-04-01,Regular,38.0
+C0173,Fares Mansouri,Nabeul,2023-07-27,Regular,31.0
+C0174,Lina Belhaj,Tunis,2024-12-17,Regular,28.0
+C0175,Ines Gharbi,Bizerte,2025-01-15,Premium,31.0
+C0176,Walid Ben Ali,Gabès,2023-03-05,Regular,39.0
+C0177,Sarra Chaabane,Nabeul,2024-01-12,Regular,26.0
+C0178,Lina Belhaj,Ben Arous,2024-06-30,Regular,42.0
+C0179,Ines Zouari,Monastir,2023-04-11,Regular,
+C0180,Mariem Nasri,Sfax,2022-09-24,New,33.0
+C0181,Skander Zouari,Nabeul,2023-12-07,New,21.0
+C0182,Mohamed Zouari,Bizerte,2023-08-14,Regular,21.0
+C0183,Youssef Dridi,Nabeul,2025-05-21,New,42.0
+C0184,Rania Jebali,Ariana,2023-06-16,Premium,33.0
+C0185,Ahmed Nasri,Tunis,2024-09-03,New,
+C0186,Karim Karray,Tunis,2023-08-10,Regular,29.0
+C0187,Omar Bouazizi,Sfax,2023-05-13,Regular,42.0
+C0188,Yasmine Trabelsi,Sfax,2023-04-15,Regular,32.0
+C0189,Anis Nasri,Sfax,2023-10-29,New,27.0
+C0190,Nour Mansouri,Ben Arous,2024-12-27,Premium,30.0
+C0191,Ahmed Belhaj,Bizerte,2023-12-23,Regular,22.0
+C0192,Fares Mansouri,Gabès,2024-12-03,Regular,54.0
+C0193,Ahmed Trabelsi,Tunis,2024-03-21,Premium,33.0
+C0194,Mariem Sassi,Nabeul,2025-04-18,New,40.0
+C0195,Yasmine Gharbi,Sousse,2024-08-19,Regular,29.0
+C0196,Anis Gharbi,Sfax,2024-08-18,Premium,23.0
+C0197,Nour Haddad,Tunis,2023-10-18,Regular,32.0
+C0198,Anis Zouari,Bizerte,2023-12-16,Regular,45.0
+C0199,Ahmed Gharbi,Kairouan,2023-10-31,Regular,
+C0200,Sarra Jebali,Nabeul,2024-03-23,New,25.0
+C0201,Lina Nasri,Gabès,2023-03-08,New,36.0
+C0202,Karim Belhaj,Kairouan,2022-12-11,Regular,39.0
+C0203,Rania Dridi,Ariana,2024-07-27,Regular,50.0
+C0204,Omar Gharbi,Sousse,2024-03-01,Regular,38.0
+C0205,Fares Ben Ali,Sfax,2025-10-07,Regular,40.0
+C0206,Ines Mansouri,Kairouan,2022-10-25,Regular,41.0
+C0207,Sarra Trabelsi,Tunis,2024-04-12,Regular,22.0
+C0208,Ahmed Mejri,Ben Arous,2023-04-06,Regular,24.0
+C0209,Lina Trabelsi,Monastir,2024-04-21,Regular,23.0
+C0210,Sarra Dridi,Ariana,2023-12-05,Regular,21.0
+C0211,Fares Mejri,Bizerte,2024-05-29,New,42.0
+C0212,Emna Haddad,Ben Arous,2023-02-02,Regular,37.0
+C0213,Omar Gharbi,Kairouan,2023-08-07,Premium,35.0
+C0214,Yasmine Sassi,Monastir,2024-12-12,New,18.0
+C0215,Ahmed Mejri,Ariana,2022-11-14,Regular,55.0
+C0216,Mariem Nasri,Nabeul,2023-08-02,Regular,25.0
+C0217,Skander Trabelsi,Ariana,2024-06-19,Regular,55.0
+C0218,Omar Trabelsi,Sfax,2025-01-14,Regular,20.0
+C0219,Amal Zouari,Sousse,2024-10-27,Regular,26.0
+C0220,Mariem Bouazizi,Bizerte,2022-04-16,Regular,18.0
+C0221,Lina Jebali,Tunis,2023-06-21,Regular,38.0
+C0222,Youssef Dridi,Tunis,2024-05-03,Regular,23.0
+C0223,Walid Karray,Sousse,2024-04-04,Regular,23.0
+C0224,Karim Belhaj,Sfax,2023-07-19,Premium,20.0
+C0225,Walid Jebali,Sfax,2025-01-08,Regular,42.0
+C0226,Lina Zouari,Tunis,2023-12-06,Regular,41.0
+C0227,Rania Ben Ali,Ariana,2022-10-29,New,52.0
+C0228,Amal Haddad,Monastir,2023-05-17,Regular,27.0
+C0229,Youssef Karray,Tunis,2024-06-06,Premium,36.0
+C0230,Skander Trabelsi,Ben Arous,2024-12-29,Regular,21.0
+C0231,Anis Gharbi,Gabès,2024-02-28,Regular,31.0
+C0232,Anis Chaabane,Tunis,2023-05-21,New,29.0
+C0233,Ahmed Belhaj,Nabeul,2024-04-02,Regular,39.0
+C0234,Ines Haddad,Tunis,2024-10-22,Regular,44.0
+C0235,Ines Zouari,Monastir,2022-06-27,New,44.0
+C0236,Anis Sassi,Nabeul,2023-03-03,Premium,26.0
+C0237,Omar Dridi,Monastir,2022-09-16,Premium,44.0
+C0238,Hedi Nasri,Tunis,2024-09-12,Regular,34.0
+C0239,Skander Ben Ali,Sfax,2023-05-06,Regular,31.0
+C0240,Salma Trabelsi,Nabeul,2024-05-21,Premium,27.0
+C0241,Sarra Sassi,Tunis,2022-12-24,Regular,28.0
+C0242,Sarra Nasri,Tunis,2024-06-01,Regular,51.0
+C0243,Rania Mansouri,Tunis,2023-11-07,New,37.0
+C0244,Karim Dridi,Kairouan,2023-09-29,Regular,36.0
+C0245,Emna Karray,Sousse,2022-09-22,Regular,31.0
+C0246,Fares Zouari,Sousse,2023-07-25,Regular,58.0
+C0247,Emna Karray,Nabeul,2024-01-20,Regular,47.0
+C0248,Sarra Chaabane,Sfax,2023-05-02,Premium,27.0
+C0249,Youssef Bouazizi,Sfax,2025-01-14,New,31.0
+C0250,Fares Chaabane,Ben Arous,2025-08-13,Regular,32.0
+C0251,Youssef Karray,Sousse,2023-12-02,Regular,35.0
+C0252,Lina Zouari,Tunis,2024-06-09,Regular,27.0
+C0253,Sarra Chaabane,Monastir,2023-11-12,Regular,38.0
+C0254,Walid Mansouri,Bizerte,2022-12-03,Regular,49.0
+C0255,Sarra Mansouri,Ariana,2023-10-22,New,21.0
+C0256,Lina Nasri,Sfax,2025-08-24,Regular,23.0
+C0257,Skander Sassi,Tunis,2023-01-15,Regular,29.0
+C0258,Lina Trabelsi,Kairouan,2022-08-31,New,30.0
+C0259,Yasmine Ben Ali,Gabès,2024-03-01,Regular,54.0
+C0260,Rania Haddad,Gabès,2022-12-13,New,44.0
+C0261,Nour Gharbi,Ariana,2024-06-19,Regular,43.0
+C0262,Ines Sassi,Tunis,2024-07-31,Regular,31.0
+C0263,Karim Jebali,Tunis,2024-07-30,New,31.0
+C0264,Fares Gharbi,Tunis,2024-01-11,Regular,19.0
+C0265,Fares Zouari,Tunis,2023-11-09,Regular,42.0
+C0266,Amal Gharbi,Tunis,2025-03-25,Regular,39.0
+C0267,Ines Jebali,Kairouan,2024-05-16,Premium,47.0
+C0268,Amal Gharbi,Tunis,2024-11-03,Regular,32.0
+C0269,Rania Trabelsi,Tunis,2024-01-08,Regular,33.0
+C0270,Walid Ben Ali,Bizerte,2024-07-04,Premium,36.0
+C0271,Anis Ben Ali,Sfax,2023-06-11,Premium,43.0
+C0272,Ines Gharbi,Nabeul,2022-07-23,Regular,19.0
+C0273,Skander Ben Ali,Sousse,2024-01-07,Regular,41.0
+C0274,Omar Haddad,Monastir,2024-04-15,Regular,34.0
+C0275,Walid Mejri,Sousse,2023-01-19,Regular,23.0
+C0276,Skander Bouazizi,Sfax,2025-08-02,Regular,18.0
+C0277,Skander Jebali,Sousse,2025-07-08,Regular,33.0
+C0278,Lina Dridi,Ben Arous,2024-04-21,Regular,48.0
+C0279,Anis Zouari,Ariana,2024-10-06,Regular,51.0
+C0280,Emna Sassi,Ben Arous,2023-10-04,Premium,38.0
+C0281,Walid Ben Ali,Tunis,2024-12-28,Regular,54.0
+C0282,Rania Gharbi,Bizerte,2023-09-05,New,34.0
+C0283,Yasmine Mansouri,Tunis,2024-06-30,New,44.0
+C0284,Mohamed Mansouri,Tunis,2024-12-24,Regular,29.0
+C0285,Hedi Haddad,Tunis,2024-01-13,New,29.0
+C0286,Fares Chaabane,Monastir,2023-01-15,New,27.0
+C0287,Sarra Ben Ali,Ariana,2025-04-13,Regular,18.0
+C0288,Ahmed Bouazizi,Sousse,2024-12-01,Premium,47.0
+C0289,Fares Dridi,Monastir,2025-02-19,Regular,28.0
+C0290,Yasmine Trabelsi,Tunis,2024-03-12,Premium,26.0
+C0291,Mariem Sassi,Nabeul,2025-02-01,Regular,22.0
+C0292,Youssef Ben Ali,Ariana,2023-12-18,Regular,32.0
+C0293,Omar Zouari,Tunis,2025-06-02,Regular,52.0
+C0294,Salma Trabelsi,Sousse,2023-02-26,New,55.0
+C0295,Skander Sassi,Gabès,2023-12-10,Regular,18.0
+C0296,Skander Zouari,Ariana,2023-05-19,Regular,30.0
+C0297,Mohamed Belhaj,Sfax,2025-06-13,Regular,24.0
+C0298,Karim Sassi,Ariana,2022-07-21,Regular,44.0
+C0299,Amal Nasri,Sfax,2024-07-01,New,37.0
+C0300,Hedi Karray,Sousse,2024-01-07,New,28.0
+C0301,Hedi Nasri,Sousse,2024-03-09,Regular,35.0
+C0302,Anis Gharbi,Sousse,2024-04-14,Regular,29.0
+C0303,Skander Haddad,Tunis,2025-02-20,Regular,50.0
+C0304,Karim Dridi,Sousse,2024-06-04,Regular,39.0
+C0305,Lina Sassi,Sousse,2024-11-30,New,41.0
+C0306,Skander Chaabane,Sousse,2024-09-13,Premium,18.0
+C0307,Emna Bouazizi,Tunis,2022-11-09,Regular,33.0
+C0308,Salma Karray,Ben Arous,2024-10-24,Regular,55.0
+C0309,Mohamed Mansouri,Ben Arous,2023-06-02,Regular,47.0
+C0310,Mariem Gharbi,Tunis,2024-05-18,Regular,18.0
+C0311,Omar Dridi,Tunis,2024-01-18,Regular,31.0
+C0312,Ines Chaabane,Ben Arous,2024-09-03,Premium,22.0
+C0313,Hedi Mansouri,Nabeul,2024-02-07,Regular,51.0
+C0314,Karim Bouazizi,Tunis,2025-06-26,New,36.0
+C0315,Walid Bouazizi,Bizerte,2023-03-20,Regular,26.0
+C0316,Anis Jebali,Sfax,2025-08-25,Regular,34.0
+C0317,Omar Bouazizi,Nabeul,2023-06-29,Regular,18.0
+C0318,Ines Mejri,Sfax,2023-04-07,Regular,23.0
+C0319,Mohamed Jebali,Sfax,2024-06-14,Regular,34.0
+C0320,Emna Belhaj,Sousse,2025-01-06,Regular,42.0
+C0321,Salma Zouari,Gabès,2022-10-07,Premium,18.0
+C0322,Yasmine Dridi,Sfax,2023-01-22,Regular,30.0
+C0323,Emna Jebali,Sfax,2023-10-27,Premium,44.0
+C0324,Rania Haddad,Sfax,2023-01-09,Premium,19.0
+C0325,Lina Sassi,Nabeul,2023-09-28,Regular,
+C0326,Rania Karray,Tunis,2025-06-11,Regular,35.0
+C0327,Mohamed Sassi,Sfax,2024-06-16,Regular,51.0
+C0328,Amal Dridi,Sfax,2023-05-07,Regular,32.0
+C0329,Emna Karray,Gabès,2024-12-12,New,32.0
+C0330,Mariem Jebali,Sfax,2023-08-05,New,43.0
+C0331,Ines Nasri,Ben Arous,2024-03-23,Regular,21.0
+C0332,Ahmed Mansouri,Kairouan,2023-03-25,Regular,32.0
+C0333,Amal Mejri,Ben Arous,2024-05-05,Premium,29.0
+C0334,Walid Sassi,Tunis,2024-11-04,Premium,33.0
+C0335,Fares Trabelsi,Tunis,2025-09-16,Regular,42.0
+C0336,Lina Karray,Tunis,2024-09-17,New,40.0
+C0337,Hedi Trabelsi,Tunis,2023-09-11,Regular,27.0
+C0338,Hedi Mejri,Ben Arous,2025-03-03,Regular,35.0
+C0339,Amal Trabelsi,Nabeul,2023-12-11,Regular,49.0
+C0340,Walid Belhaj,Nabeul,2023-08-27,Regular,26.0
+C0341,Anis Gharbi,Tunis,2024-05-20,New,35.0
+C0342,Lina Belhaj,Sfax,2022-06-19,Regular,32.0
+C0343,Ines Sassi,Tunis,2024-05-31,Regular,33.0
+C0344,Omar Haddad,Gabès,2024-05-22,Regular,18.0
+C0345,Omar Nasri,Tunis,2024-01-02,Regular,48.0
+C0346,Lina Nasri,Sousse,2023-04-10,Regular,26.0
+C0347,Fares Belhaj,Ariana,2023-06-05,Regular,44.0
+C0348,Mariem Mansouri,Sousse,2023-11-17,Premium,28.0
+C0349,Anis Haddad,Ben Arous,2023-03-06,Regular,28.0
+C0350,Mariem Trabelsi,Nabeul,2023-01-23,New,46.0
+C0351,Walid Karray,Tunis,2023-12-12,Regular,44.0
+C0352,Ines Gharbi,Gabès,2025-01-14,Premium,36.0
+C0353,Youssef Haddad,Sfax,2024-03-29,New,42.0
+C0354,Ahmed Haddad,Nabeul,2023-05-05,Regular,31.0
+C0355,Rania Chaabane,Monastir,2024-01-08,Regular,34.0
+C0356,Salma Dridi,Kairouan,2024-12-04,New,27.0
+C0357,Anis Nasri,Tunis,2022-10-21,Regular,43.0
+C0358,Fares Nasri,Ariana,2024-04-08,Premium,27.0
+C0359,Walid Dridi,Tunis,2024-02-12,Regular,49.0
+C0360,Mohamed Haddad,Tunis,2024-10-21,Regular,31.0
+C0361,Youssef Zouari,Sfax,2024-01-21,Regular,34.0
+C0362,Skander Trabelsi,Kairouan,2023-03-10,New,42.0
+C0363,Emna Trabelsi,Kairouan,2024-01-24,Regular,34.0
+C0364,Anis Trabelsi,Sfax,2024-08-28,New,31.0
+C0365,Rania Karray,Sousse,2022-11-03,Premium,34.0
+C0366,Anis Chaabane,Monastir,2024-01-15,Regular,43.0
+C0367,Fares Nasri,Gabès,2023-10-03,Regular,27.0
+C0368,Mohamed Mejri,Tunis,2023-09-23,Regular,33.0
+C0369,Anis Bouazizi,Sfax,2025-02-27,Regular,34.0
+C0370,Anis Zouari,Bizerte,2024-11-16,Premium,43.0
+C0371,Skander Nasri,Ariana,2022-02-27,Regular,33.0
+C0372,Hedi Jebali,Ben Arous,2024-05-14,Regular,52.0
+C0373,Emna Bouazizi,Kairouan,2023-01-08,Premium,32.0
+C0374,Walid Jebali,Kairouan,2023-03-27,Regular,32.0
+C0375,Karim Gharbi,Gabès,2024-04-15,Regular,32.0
+C0376,Lina Gharbi,Bizerte,2023-07-28,Regular,21.0
+C0377,Mariem Belhaj,Tunis,2024-07-09,Regular,24.0
+C0378,Amal Chaabane,Ariana,2024-09-16,Premium,29.0
+C0379,Anis Bouazizi,Sfax,2024-06-11,Regular,45.0
+C0380,Youssef Mejri,Sfax,2023-08-12,Regular,34.0
+C0381,Ines Haddad,Sfax,2024-02-20,Regular,29.0
+C0382,Fares Belhaj,Sousse,2023-10-04,Regular,
+C0383,Nour Nasri,Ben Arous,2024-08-21,Premium,50.0
+C0384,Hedi Dridi,Nabeul,2024-04-26,Regular,47.0
+C0385,Youssef Bouazizi,Ariana,2025-02-24,New,25.0
+C0386,Salma Belhaj,Ariana,2023-04-11,New,29.0
+C0387,Ahmed Mejri,Tunis,2023-09-04,Regular,52.0
+C0388,Skander Belhaj,Tunis,2023-10-27,Premium,36.0
+C0389,Omar Trabelsi,Monastir,2025-03-25,Regular,31.0
+C0390,Sarra Sassi,Ben Arous,2023-01-23,New,41.0
+C0391,Yasmine Karray,Tunis,2022-11-28,Regular,44.0
+C0392,Youssef Trabelsi,Nabeul,2024-12-26,Regular,28.0
+C0393,Rania Haddad,Sfax,2024-02-18,Regular,36.0
+C0394,Ahmed Mejri,Tunis,2023-04-24,Regular,43.0
+C0395,Walid Ben Ali,Ariana,2024-04-30,Premium,
+C0396,Mariem Chaabane,Tunis,2023-12-30,Regular,34.0
+C0397,Anis Sassi,Sousse,2024-08-08,Regular,23.0
+C0398,Omar Jebali,Tunis,2025-06-11,Regular,24.0
+C0399,Lina Chaabane,Tunis,2024-07-29,New,28.0
+C0400,Karim Chaabane,Tunis,2022-09-23,New,39.0
+C0401,Ahmed Jebali,Sfax,2023-02-26,Regular,31.0
+C0402,Walid Zouari,Tunis,2023-05-01,Regular,28.0
+C0403,Anis Nasri,Monastir,2024-01-19,Regular,35.0
+C0404,Walid Trabelsi,Tunis,2024-01-28,New,23.0
+C0405,Nour Belhaj,Sfax,2023-08-22,Premium,38.0
+C0406,Ahmed Zouari,Ben Arous,2024-01-21,Regular,45.0
+C0407,Salma Jebali,Ben Arous,2024-01-08,New,33.0
+C0408,Emna Sassi,Tunis,2024-02-17,Regular,32.0
+C0409,Ahmed Trabelsi,Bizerte,2023-03-05,Premium,38.0
+C0410,Salma Belhaj,Monastir,2022-04-14,Regular,18.0
+C0411,Ahmed Karray,Tunis,2022-05-25,Regular,39.0
+C0412,Youssef Karray,Tunis,2024-05-09,Regular,65.0
+C0413,Hedi Trabelsi,Gabès,2024-03-26,Regular,33.0
+C0414,Salma Zouari,Sfax,2025-12-21,New,
+C0415,Yasmine Ben Ali,Tunis,2023-10-19,Regular,41.0
+C0416,Mohamed Mansouri,Tunis,2025-10-08,New,50.0
+C0417,Rania Gharbi,Sousse,2024-11-29,Premium,44.0
+C0418,Yasmine Nasri,Nabeul,2023-12-30,Premium,18.0
+C0419,Skander Gharbi,Sfax,2022-02-26,New,40.0
+C0420,Ahmed Zouari,Kairouan,2024-08-08,Regular,60.0
+C0421,Sarra Karray,Sfax,2023-06-05,Regular,40.0
+C0422,Fares Ben Ali,Ariana,2023-12-06,Regular,22.0
+C0423,Ahmed Ben Ali,Sfax,2024-09-15,Regular,37.0
+C0424,Ines Ben Ali,Ariana,2022-11-10,New,21.0
+C0425,Skander Karray,Tunis,2022-04-27,Regular,46.0
+C0426,Lina Sassi,Tunis,2023-10-23,Regular,24.0
+C0427,Lina Mansouri,Ariana,2024-01-12,Regular,35.0
+C0428,Sarra Sassi,Sousse,2023-05-15,Regular,25.0
+C0429,Mohamed Ben Ali,Tunis,2024-07-08,Premium,29.0
+C0430,Salma Sassi,Ben Arous,2024-05-25,Regular,49.0
+C0431,Lina Zouari,Sousse,2022-12-20,New,35.0
+C0432,Youssef Nasri,Sousse,2022-09-08,Premium,28.0
+C0433,Skander Mejri,Nabeul,2024-05-04,New,23.0
+C0434,Skander Sassi,Bizerte,2024-04-14,Regular,18.0
+C0435,Omar Ben Ali,Sousse,2024-02-09,Premium,21.0
+C0436,Rania Mansouri,Tunis,2024-04-16,Regular,
+C0437,Youssef Trabelsi,Sfax,2022-09-28,Regular,44.0
+C0438,Salma Dridi,Sfax,2024-04-21,Premium,
+C0439,Walid Nasri,Tunis,2023-12-28,Premium,50.0
+C0440,Walid Karray,Tunis,2023-08-17,Regular,27.0
+C0441,Mariem Sassi,Tunis,2023-08-03,New,
+C0442,Omar Gharbi,Ben Arous,2025-05-11,Regular,
+C0443,Skander Nasri,Ben Arous,2024-01-26,Regular,44.0
+C0444,Mariem Gharbi,Tunis,2022-09-01,New,55.0
+C0445,Ahmed Jebali,Bizerte,2025-11-30,Regular,18.0
+C0446,Mariem Mejri,Gabès,2023-07-11,New,31.0
+C0447,Walid Belhaj,Tunis,2024-11-09,Regular,47.0
+C0448,Anis Karray,Gabès,2023-01-02,New,20.0
+C0449,Walid Ben Ali,Tunis,2024-10-12,Premium,40.0
+C0450,Mariem Karray,Gabès,2023-11-16,Premium,46.0
+C0451,Ahmed Ben Ali,Kairouan,2023-09-04,Regular,35.0
+C0452,Mohamed Zouari,Tunis,2022-10-16,Premium,40.0
+C0453,Rania Mejri,Nabeul,2023-11-09,Regular,52.0
+C0454,Omar Gharbi,Kairouan,2022-10-03,New,53.0
+C0455,Nour Trabelsi,Gabès,2024-05-16,Regular,33.0
+C0456,Emna Gharbi,Kairouan,2023-11-21,Regular,29.0
+C0457,Nour Belhaj,Sfax,2024-10-13,New,25.0
+C0458,Amal Chaabane,Tunis,2023-09-10,Regular,44.0
+C0459,Walid Nasri,Monastir,2025-03-30,Regular,20.0
+C0460,Sarra Karray,Sousse,2024-05-03,Premium,31.0
+C0461,Yasmine Haddad,Sousse,2024-05-29,Regular,35.0
+C0462,Omar Gharbi,Ben Arous,2023-04-19,Regular,29.0
+C0463,Mohamed Belhaj,Sfax,2024-09-18,Regular,
+C0464,Walid Jebali,Tunis,2024-08-28,Regular,60.0
+C0465,Omar Haddad,Nabeul,2023-11-04,Regular,33.0
+C0466,Walid Mejri,Tunis,2024-02-16,Regular,30.0
+C0467,Sarra Karray,Nabeul,2023-09-09,Regular,44.0
+C0468,Omar Belhaj,Monastir,2024-04-08,Regular,36.0
+C0469,Ines Gharbi,Sfax,2022-12-28,Regular,48.0
+C0470,Rania Dridi,Sfax,2024-06-01,Premium,36.0
+C0471,Salma Chaabane,Ariana,2024-05-28,Premium,32.0
+C0472,Fares Dridi,Kairouan,2023-11-18,Regular,18.0
+C0473,Youssef Trabelsi,Nabeul,2023-12-22,Regular,18.0
+C0474,Lina Gharbi,Ariana,2022-07-14,New,18.0
+C0475,Fares Jebali,Tunis,2023-10-14,Regular,
+C0476,Mariem Jebali,Tunis,2024-05-13,Regular,20.0
+C0477,Hedi Chaabane,Ben Arous,2023-08-23,Regular,47.0
+C0478,Emna Karray,Gabès,2025-04-09,Regular,34.0
+C0479,Omar Karray,Nabeul,2023-07-05,New,32.0
+C0480,Lina Chaabane,Tunis,2025-05-07,New,26.0
+C0481,Ines Chaabane,Monastir,2024-06-12,New,40.0
+C0482,Skander Mansouri,Ariana,2024-03-01,Regular,26.0
+C0483,Fares Haddad,Monastir,2023-03-13,Regular,24.0
+C0484,Hedi Jebali,Tunis,2023-09-21,Regular,46.0
+C0485,Fares Ben Ali,Sousse,2024-01-06,Regular,38.0
+C0486,Sarra Chaabane,Gabès,2022-04-29,Regular,32.0
+C0487,Rania Dridi,Tunis,2024-02-09,Premium,40.0
+C0488,Youssef Mansouri,Sousse,2024-01-19,Regular,34.0
+C0489,Mariem Haddad,Kairouan,2023-10-02,New,38.0
+C0490,Nour Haddad,Tunis,2024-03-31,Regular,26.0
+C0491,Amal Mejri,Tunis,2022-09-21,Regular,55.0
+C0492,Walid Karray,Sousse,2022-12-01,New,28.0
+C0493,Amal Karray,Ariana,2024-09-29,Premium,50.0
+C0494,Hedi Jebali,Tunis,2023-07-02,Regular,32.0
+C0495,Mohamed Nasri,Sfax,2025-02-17,Regular,42.0
+C0496,Karim Haddad,Nabeul,2023-04-21,Regular,41.0
+C0497,Ines Chaabane,Ariana,2024-03-18,Regular,45.0
+C0498,Walid Karray,Ariana,2022-12-03,Regular,26.0
+C0499,Walid Bouazizi,Monastir,2023-08-30,Regular,45.0
+C0500,Lina Dridi,Sfax,2023-06-02,Premium,52.0
+C0501,Skander Nasri,Monastir,2025-01-18,Regular,31.0
+C0502,Amal Zouari,Ben Arous,2023-06-28,Premium,34.0
+C0503,Youssef Zouari,Kairouan,2023-07-07,New,29.0
+C0504,Yasmine Dridi,Sousse,2023-08-11,Regular,31.0
+C0505,Anis Dridi,Tunis,2025-01-23,Regular,51.0
+C0506,Sarra Nasri,Monastir,2025-02-28,Regular,24.0
+C0507,Mohamed Jebali,Sfax,2022-12-06,New,25.0
+C0508,Walid Sassi,Tunis,2023-07-04,Premium,50.0
+C0509,Nour Dridi,Tunis,2023-04-03,Premium,40.0
+C0510,Ahmed Trabelsi,Sousse,2025-01-01,Regular,55.0
+C0511,Mariem Trabelsi,Tunis,2024-07-31,Regular,29.0
+C0512,Yasmine Sassi,Ariana,2022-10-06,Regular,35.0
+C0513,Skander Ben Ali,Tunis,2023-12-16,Regular,27.0
+C0514,Mariem Jebali,Ben Arous,2024-10-14,Premium,35.0
+C0515,Amal Bouazizi,Ben Arous,2023-12-23,Regular,18.0
+C0516,Rania Gharbi,Sfax,2023-09-09,Regular,41.0
+C0517,Anis Jebali,Tunis,2024-04-09,Regular,37.0
+C0518,Mariem Nasri,Tunis,2023-03-12,Regular,33.0
+C0519,Fares Ben Ali,Sousse,2024-02-04,Premium,30.0
+C0520,Omar Sassi,Ariana,2025-02-19,Regular,25.0
+C0521,Anis Sassi,Sousse,2024-07-24,New,41.0
+C0522,Omar Bouazizi,Tunis,2024-05-15,New,22.0
+C0523,Anis Gharbi,Tunis,2025-09-03,New,39.0
+C0524,Mohamed Karray,Tunis,2022-12-14,Premium,55.0
+C0525,Salma Trabelsi,Ben Arous,2023-10-14,Premium,49.0
+C0526,Walid Bouazizi,Ben Arous,2025-09-18,Premium,19.0
+C0527,Walid Belhaj,Bizerte,2025-01-26,Regular,29.0
+C0528,Mariem Belhaj,Ariana,2023-02-18,Regular,38.0
+C0529,Omar Nasri,Sfax,2023-03-04,Regular,33.0
+C0530,Omar Jebali,Sfax,2024-06-14,Regular,20.0
+C0531,Emna Mejri,Tunis,2024-05-18,Regular,38.0
+C0532,Youssef Mejri,Sfax,2024-08-22,New,34.0
+C0533,Emna Bouazizi,Ariana,2024-04-19,Regular,53.0
+C0534,Fares Karray,Ben Arous,2024-02-15,Regular,31.0
+C0535,Karim Ben Ali,Tunis,2023-09-02,Premium,46.0
+C0536,Salma Mansouri,Bizerte,2023-05-19,Regular,21.0
+C0537,Emna Dridi,Gabès,2025-03-28,New,24.0
+C0538,Rania Gharbi,Tunis,2022-04-11,Regular,41.0
+C0539,Anis Gharbi,Sfax,2023-12-31,New,45.0
+C0540,Omar Sassi,Nabeul,2025-02-28,New,24.0
+C0541,Fares Belhaj,Ariana,2023-12-01,Regular,34.0
+C0542,Lina Haddad,Bizerte,2022-07-11,Regular,20.0
+C0543,Mohamed Sassi,Sousse,2025-05-02,Regular,32.0
+C0544,Skander Belhaj,Gabès,2023-03-14,Regular,42.0
+C0545,Salma Gharbi,Kairouan,2024-06-26,Regular,30.0
+C0546,Walid Chaabane,Tunis,2023-05-07,New,32.0
+C0547,Skander Bouazizi,Ben Arous,2023-06-21,Regular,23.0
+C0548,Karim Trabelsi,Sfax,2024-05-20,New,28.0
+C0549,Skander Nasri,Tunis,2024-04-29,Regular,52.0
+C0550,Ahmed Chaabane,Ariana,2024-03-08,New,35.0
+C0551,Rania Dridi,Kairouan,2023-05-26,Regular,24.0
+C0552,Fares Gharbi,Tunis,2024-04-03,Regular,31.0
+C0553,Karim Gharbi,Ben Arous,2024-07-05,Regular,18.0
+C0554,Mohamed Zouari,Monastir,2024-05-03,Regular,24.0
+C0555,Fares Ben Ali,Ariana,2024-07-25,New,48.0
+C0556,Hedi Mansouri,Sfax,2024-04-04,Regular,33.0
+C0557,Ines Jebali,Kairouan,2024-12-02,Regular,53.0
+C0558,Ines Dridi,Sfax,2024-04-24,Regular,33.0
+C0559,Lina Haddad,Tunis,2023-05-22,Premium,34.0
+C0560,Anis Dridi,Tunis,2025-08-07,Regular,40.0
+C0561,Ahmed Trabelsi,Gabès,2023-07-06,Regular,18.0
+C0562,Sarra Mansouri,Tunis,2023-09-10,Regular,36.0
+C0563,Skander Sassi,Sfax,2023-05-31,Regular,34.0
+C0564,Yasmine Karray,Tunis,2024-08-23,Regular,49.0
+C0565,Amal Karray,Ben Arous,2025-06-22,New,44.0
+C0566,Omar Mejri,Gabès,2024-09-23,Regular,23.0
+C0567,Emna Nasri,Sfax,2024-03-21,Premium,46.0
+C0568,Hedi Ben Ali,Kairouan,2024-11-26,Regular,31.0
+C0569,Anis Bouazizi,Tunis,2025-04-21,Regular,25.0
+C0570,Anis Haddad,Sfax,2023-11-13,Regular,36.0
+C0571,Yasmine Bouazizi,Monastir,2022-06-13,Regular,32.0
+C0572,Fares Sassi,Ben Arous,2023-07-05,Regular,49.0
+C0573,Karim Dridi,Tunis,2025-04-02,Regular,37.0
+C0574,Walid Nasri,Monastir,2023-05-16,Regular,36.0
+C0575,Salma Sassi,Ben Arous,2025-05-15,New,43.0
+C0576,Nour Dridi,Sfax,2024-11-07,Regular,45.0
+C0577,Omar Zouari,Kairouan,2024-12-27,Regular,42.0
+C0578,Karim Haddad,Tunis,2024-07-30,Regular,48.0
+C0579,Youssef Sassi,Ariana,2023-10-27,Regular,40.0
+C0580,Nour Bouazizi,Tunis,2024-10-10,Premium,36.0
+C0581,Amal Dridi,Ben Arous,2024-11-11,Regular,46.0
+C0582,Skander Dridi,Tunis,2024-03-06,Regular,33.0
+C0583,Walid Trabelsi,Sousse,2023-10-18,Regular,34.0
+C0584,Ahmed Bouazizi,Tunis,2024-01-26,Regular,51.0
+C0585,Lina Zouari,Sousse,2023-12-08,New,50.0
+C0586,Hedi Karray,Tunis,2023-02-11,Regular,34.0
+C0587,Nour Gharbi,Ariana,2024-04-02,New,29.0
+C0588,Ahmed Bouazizi,Ariana,2024-11-12,Regular,49.0
+C0589,Karim Gharbi,Sousse,2025-01-10,New,42.0
+C0590,Sarra Ben Ali,Ben Arous,2023-12-27,Regular,37.0
+C0591,Hedi Zouari,Ariana,2025-01-09,Regular,31.0
+C0592,Salma Chaabane,Monastir,2022-08-03,New,37.0
+C0593,Omar Jebali,Sfax,2024-07-31,Regular,34.0
+C0594,Youssef Haddad,Tunis,2022-12-21,Regular,27.0
+C0595,Amal Ben Ali,Gabès,2022-10-09,New,35.0
+C0596,Omar Jebali,Ariana,2023-07-16,Regular,37.0
+C0597,Ines Mejri,Tunis,2022-12-12,Premium,30.0
+C0598,Walid Karray,Sfax,2023-10-11,Premium,43.0
+C0599,Anis Belhaj,Tunis,2023-11-26,New,47.0
+C0600,Skander Karray,Tunis,2025-05-19,New,44.0
+C0601,Yasmine Dridi,Nabeul,2024-08-10,Regular,31.0
+C0602,Lina Nasri,Tunis,2024-01-06,Regular,42.0
+C0603,Salma Zouari,Bizerte,2023-06-01,Regular,35.0
+C0604,Walid Mejri,Gabès,2024-09-13,Premium,22.0
+C0605,Sarra Belhaj,Sfax,2023-06-20,New,41.0
+C0606,Hedi Nasri,Sousse,2024-08-01,Regular,35.0
+C0607,Rania Zouari,Sousse,2023-03-30,Regular,
+C0608,Mariem Trabelsi,Kairouan,2022-11-25,Regular,49.0
+C0609,Walid Mejri,Ariana,2025-02-20,Regular,41.0
+C0610,Skander Chaabane,Tunis,2024-03-21,New,36.0
+C0611,Hedi Haddad,Sfax,2023-12-19,Regular,36.0
+C0612,Lina Karray,Sfax,2025-08-09,Premium,24.0
+C0613,Omar Belhaj,Tunis,2022-07-11,New,18.0
+C0614,Youssef Belhaj,Sousse,2024-06-17,New,25.0
+C0615,Ines Jebali,Tunis,2024-03-17,Regular,34.0
+C0616,Skander Nasri,Gabès,2025-11-08,New,18.0
+C0617,Lina Nasri,Tunis,2023-04-18,Premium,29.0
+C0618,Hedi Bouazizi,Tunis,2023-08-05,New,32.0
+C0619,Ahmed Trabelsi,Tunis,2024-03-16,Regular,32.0
+C0620,Sarra Ben Ali,Tunis,2025-06-16,Regular,27.0
+C0621,Walid Nasri,Tunis,2024-09-27,Premium,31.0
+C0622,Lina Dridi,Tunis,2024-01-25,Regular,51.0
+C0623,Yasmine Belhaj,Tunis,2023-11-14,Regular,41.0
+C0624,Yasmine Chaabane,Tunis,2023-07-15,Regular,28.0
+C0625,Karim Belhaj,Ariana,2024-06-11,Regular,33.0
+C0626,Mohamed Chaabane,Ben Arous,2023-03-26,Regular,34.0
+C0627,Mariem Nasri,Ariana,2023-04-30,Regular,26.0
+C0628,Hedi Trabelsi,Ariana,2023-12-09,Regular,26.0
+C0629,Mohamed Haddad,Tunis,2023-07-19,New,44.0
+C0630,Walid Sassi,Tunis,2023-08-27,New,30.0
+C0631,Sarra Zouari,Tunis,2023-04-21,Regular,23.0
+C0632,Omar Sassi,Nabeul,2025-06-14,Regular,34.0
+C0633,Mohamed Ben Ali,Kairouan,2024-12-05,Regular,35.0
+C0634,Mariem Bouazizi,Gabès,2023-02-02,Regular,18.0
+C0635,Lina Ben Ali,Sfax,2023-09-28,New,34.0
+C0636,Nour Trabelsi,Sfax,2025-03-09,Regular,43.0
+C0637,Fares Mejri,Ariana,2025-06-10,Regular,39.0
+C0638,Emna Mejri,Nabeul,2025-08-25,Regular,56.0
+C0639,Salma Nasri,Nabeul,2024-03-08,Regular,47.0
+C0640,Ahmed Sassi,Monastir,2023-09-28,New,48.0
+C0641,Anis Nasri,Monastir,2024-11-19,Premium,62.0
+C0642,Nour Sassi,Ben Arous,2024-10-04,Regular,42.0
+C0643,Nour Ben Ali,Nabeul,2022-11-12,Regular,36.0
+C0644,Fares Mansouri,Bizerte,2024-06-05,New,44.0
+C0645,Youssef Karray,Ariana,2023-08-11,Regular,28.0
+C0646,Mohamed Sassi,Gabès,2023-06-05,New,35.0
+C0647,Omar Ben Ali,Tunis,2025-09-18,New,28.0
+C0648,Lina Dridi,Kairouan,2022-10-01,Regular,38.0
+C0649,Sarra Mejri,Nabeul,2023-02-04,New,27.0
+C0650,Walid Ben Ali,Tunis,2022-11-07,Regular,27.0
+C0651,Emna Chaabane,Sousse,2025-03-24,Premium,38.0
+C0652,Salma Zouari,Tunis,2023-02-13,Regular,33.0
+C0653,Hedi Mejri,Nabeul,2023-01-05,Regular,18.0
+C0654,Sarra Mansouri,Bizerte,2024-06-26,Regular,19.0
+C0655,Omar Sassi,Sfax,2024-09-07,Regular,23.0
+C0656,Walid Bouazizi,Monastir,2023-06-15,Regular,
+C0657,Emna Sassi,Tunis,2022-05-06,Regular,38.0
+C0658,Fares Jebali,Tunis,2023-04-21,Regular,36.0
+C0659,Anis Haddad,Ben Arous,2024-09-15,Regular,45.0
+C0660,Omar Bouazizi,Tunis,2024-06-16,Regular,42.0
+C0661,Youssef Jebali,Ben Arous,2024-03-14,New,45.0
+C0662,Walid Zouari,Tunis,2022-11-07,New,40.0
+C0663,Yasmine Gharbi,Ben Arous,2023-09-15,Regular,36.0
+C0664,Salma Trabelsi,Ben Arous,2024-01-01,Regular,45.0
+C0665,Salma Bouazizi,Monastir,2023-03-15,Premium,43.0
+C0666,Omar Mejri,Tunis,2025-05-28,Premium,38.0
+C0667,Omar Sassi,Monastir,2024-01-20,Regular,47.0
+C0668,Walid Belhaj,Ben Arous,2024-02-19,Premium,18.0
+C0669,Hedi Jebali,Ariana,2024-01-14,Regular,31.0
+C0670,Emna Chaabane,Sfax,2024-05-07,Regular,31.0
+C0671,Walid Gharbi,Ben Arous,2025-05-21,Premium,46.0
+C0672,Youssef Haddad,Tunis,2025-02-21,Premium,50.0
+C0673,Ines Belhaj,Sfax,2023-12-06,New,19.0
+C0674,Yasmine Mejri,Tunis,2024-01-11,Regular,48.0
+C0675,Anis Haddad,Ariana,2022-12-03,Regular,22.0
+C0676,Mariem Bouazizi,Sfax,2023-06-21,Regular,23.0
+C0677,Rania Zouari,Ben Arous,2022-09-11,Regular,32.0
+C0678,Mohamed Dridi,Bizerte,2023-07-25,Regular,31.0
+C0679,Karim Gharbi,Tunis,2023-07-17,Regular,18.0
+C0680,Youssef Bouazizi,Kairouan,2023-04-26,Regular,40.0
+C0681,Mariem Trabelsi,Bizerte,2024-07-30,Premium,41.0
+C0682,Nour Mansouri,Kairouan,2023-07-10,Regular,45.0
+C0683,Amal Ben Ali,Bizerte,2024-01-04,Regular,30.0
+C0684,Karim Chaabane,Tunis,2023-11-21,Premium,34.0
+C0685,Lina Karray,Sfax,2024-05-26,Regular,34.0
+C0686,Yasmine Bouazizi,Tunis,2025-05-10,New,51.0
+C0687,Omar Chaabane,Bizerte,2024-06-27,Regular,18.0
+C0688,Yasmine Belhaj,Sfax,2024-03-02,Regular,24.0
+C0689,Lina Nasri,Tunis,2022-11-27,New,34.0
+C0690,Walid Haddad,Gabès,2023-06-08,Regular,23.0
+C0691,Lina Jebali,Tunis,2023-07-02,Premium,31.0
+C0692,Karim Zouari,Sfax,2023-04-21,Premium,33.0
+C0693,Nour Mansouri,Nabeul,2022-10-10,Regular,27.0
+C0694,Amal Jebali,Tunis,2023-08-05,Premium,35.0
+C0695,Yasmine Zouari,Sfax,2024-01-09,New,40.0
+C0696,Karim Dridi,Bizerte,2024-01-24,New,32.0
+C0697,Lina Nasri,Tunis,2022-11-26,Regular,29.0
+C0698,Mohamed Haddad,Sfax,2023-10-30,Regular,32.0
+C0699,Hedi Karray,Tunis,2024-05-14,New,34.0
+C0700,Ahmed Jebali,Sousse,2025-01-09,Regular,18.0
+C0701,Yasmine Mansouri,Tunis,2023-02-07,Regular,39.0
+C0702,Sarra Jebali,Gabès,2024-07-11,Regular,29.0
+C0703,Ines Gharbi,Monastir,2024-02-17,Regular,47.0
+C0704,Karim Zouari,Tunis,2025-01-31,Regular,40.0
+C0705,Ahmed Jebali,Ariana,2023-02-02,Regular,46.0
+C0706,Mariem Haddad,Sfax,2025-01-15,Regular,24.0
+C0707,Sarra Nasri,Sousse,2024-11-22,Regular,30.0
+C0708,Amal Nasri,Ben Arous,2023-12-15,New,22.0
+C0709,Hedi Chaabane,Tunis,2024-03-23,Regular,27.0
+C0710,Yasmine Dridi,Tunis,2024-10-28,Regular,47.0
+C0711,Fares Belhaj,Kairouan,2024-10-01,Regular,49.0
+C0712,Amal Mejri,Ben Arous,2023-06-24,Regular,23.0
+C0713,Sarra Sassi,Monastir,2024-10-17,New,29.0
+C0714,Salma Zouari,Sfax,2024-04-20,New,33.0
+C0715,Sarra Nasri,Gabès,2022-03-26,Regular,40.0
+C0716,Rania Gharbi,Tunis,2024-06-30,Regular,18.0
+C0717,Ines Haddad,Tunis,2024-01-20,Regular,18.0
+C0718,Karim Trabelsi,Gabès,2024-06-23,Regular,39.0
+C0719,Omar Karray,Gabès,2024-08-18,Regular,18.0
+C0720,Karim Belhaj,Ariana,2023-09-15,Regular,30.0
+C0721,Emna Dridi,Ariana,2022-11-27,Regular,36.0
+C0722,Fares Chaabane,Ben Arous,2024-01-03,Regular,38.0
+C0723,Youssef Ben Ali,Ben Arous,2024-11-17,Regular,33.0
+C0724,Fares Belhaj,Tunis,2024-12-18,Regular,30.0
+C0725,Anis Trabelsi,Monastir,2025-03-26,Regular,42.0
+C0726,Sarra Ben Ali,Tunis,2024-05-15,Regular,37.0
+C0727,Mariem Mansouri,Sousse,2023-06-30,Regular,28.0
+C0728,Amal Ben Ali,Tunis,2023-10-23,Regular,34.0
+C0729,Lina Chaabane,Tunis,2024-06-05,Regular,38.0
+C0730,Sarra Dridi,Sousse,2024-11-27,Regular,51.0
+C0731,Emna Jebali,Ariana,2023-04-05,New,42.0
+C0732,Ahmed Ben Ali,Sousse,2023-11-16,New,46.0
+C0733,Yasmine Trabelsi,Tunis,2024-07-24,Regular,28.0
+C0734,Hedi Bouazizi,Gabès,2023-10-17,Regular,29.0
+C0735,Emna Ben Ali,Nabeul,2024-01-19,Premium,32.0
+C0736,Yasmine Mejri,Monastir,2024-06-08,Premium,33.0
+C0737,Omar Mansouri,Tunis,2025-02-16,Regular,24.0
+C0738,Lina Jebali,Ariana,2024-05-14,Regular,47.0
+C0739,Rania Bouazizi,Ariana,2024-04-19,Regular,43.0
+C0740,Mohamed Chaabane,Sfax,2024-02-01,Regular,31.0
+C0741,Ines Ben Ali,Ariana,2025-05-26,Regular,40.0
+C0742,Sarra Trabelsi,Tunis,2024-02-13,Regular,36.0
+C0743,Omar Sassi,Ariana,2024-01-16,Regular,41.0
+C0744,Ines Ben Ali,Tunis,2025-07-10,Regular,21.0
+C0745,Youssef Dridi,Ben Arous,2023-06-16,Regular,33.0
+C0746,Sarra Dridi,Tunis,2024-01-24,Premium,33.0
+C0747,Ahmed Jebali,Tunis,2024-10-14,Regular,40.0
+C0748,Omar Chaabane,Sousse,2024-06-11,Regular,28.0
+C0749,Amal Nasri,Ben Arous,2024-02-13,Regular,18.0
+C0750,Rania Sassi,Ariana,2024-12-23,New,23.0
+C0751,Walid Mansouri,Sfax,2023-10-10,Regular,33.0
+C0752,Mohamed Jebali,Nabeul,2023-06-17,Regular,35.0
+C0753,Amal Mansouri,Ariana,2022-11-10,Regular,51.0
+C0754,Fares Dridi,Sfax,2025-01-06,New,40.0
+C0755,Yasmine Mejri,Kairouan,2024-04-18,New,35.0
+C0756,Karim Mansouri,Sfax,2023-02-16,New,34.0
+C0757,Anis Jebali,Gabès,2024-01-25,Premium,45.0
+C0758,Mohamed Zouari,Bizerte,2024-09-07,Regular,28.0
+C0759,Rania Ben Ali,Tunis,2024-06-09,Regular,33.0
+C0760,Rania Chaabane,Ben Arous,2023-11-29,Regular,23.0
+C0761,Yasmine Mejri,Sousse,2025-03-17,Premium,48.0
+C0762,Ines Gharbi,Kairouan,2024-11-20,Regular,38.0
+C0763,Hedi Ben Ali,Ben Arous,2025-04-14,Regular,27.0
+C0764,Karim Gharbi,Tunis,2023-07-10,New,33.0
+C0765,Ahmed Zouari,Sfax,2023-02-19,Regular,39.0
+C0766,Mariem Ben Ali,Tunis,2023-01-05,Regular,31.0
+C0767,Fares Gharbi,Nabeul,2022-12-15,Regular,29.0
+C0768,Skander Ben Ali,Sfax,2023-11-28,New,27.0
+C0769,Ines Trabelsi,Nabeul,2023-04-03,New,37.0
+C0770,Anis Karray,Monastir,2024-08-12,Regular,30.0
+C0771,Rania Mansouri,Sousse,2023-07-26,New,29.0
+C0772,Mariem Haddad,Sousse,2022-09-02,New,21.0
+C0773,Mohamed Haddad,Nabeul,2022-04-28,New,35.0
+C0774,Salma Sassi,Monastir,2023-11-29,New,32.0
+C0775,Rania Ben Ali,Monastir,2022-04-13,Regular,31.0
+C0776,Sarra Sassi,Tunis,2023-10-28,New,36.0
+C0777,Walid Karray,Sfax,2024-06-21,Regular,41.0
+C0778,Rania Gharbi,Tunis,2024-07-16,Premium,41.0
+C0779,Yasmine Nasri,Monastir,2024-01-22,Regular,40.0
+C0780,Lina Sassi,Sousse,2025-01-19,Premium,32.0
+C0781,Sarra Mansouri,Ben Arous,2023-07-07,New,28.0
+C0782,Mohamed Zouari,Tunis,2024-07-04,Regular,24.0
+C0783,Amal Chaabane,Ariana,2023-03-18,New,28.0
+C0784,Lina Karray,Sousse,2023-08-30,Regular,34.0
+C0785,Fares Belhaj,Tunis,2025-02-10,Regular,26.0
+C0786,Mariem Bouazizi,Tunis,2022-02-13,Regular,35.0
+C0787,Anis Sassi,Monastir,2022-10-22,New,24.0
+C0788,Youssef Jebali,Nabeul,2024-09-16,Regular,18.0
+C0789,Walid Nasri,Tunis,2024-07-12,Regular,42.0
+C0790,Youssef Karray,Ariana,2023-06-21,Premium,29.0
+C0791,Sarra Mansouri,Kairouan,2023-02-16,Regular,26.0
+C0792,Walid Chaabane,Sousse,2022-08-29,Regular,23.0
+C0793,Hedi Jebali,Sousse,2022-06-02,New,38.0
+C0794,Skander Trabelsi,Ariana,2023-11-30,Premium,48.0
+C0795,Yasmine Ben Ali,Ariana,2022-09-28,New,30.0
+C0796,Anis Bouazizi,Tunis,2025-02-27,Regular,32.0
+C0797,Nour Ben Ali,Nabeul,2025-06-02,New,45.0
+C0798,Anis Gharbi,Tunis,2023-06-27,Regular,18.0
+C0799,Salma Mejri,Tunis,2023-03-14,Regular,54.0
+C0800,Skander Mejri,Nabeul,2023-07-15,Regular,58.0
+C0801,Karim Nasri,Gabès,2024-04-08,Regular,18.0
+C0802,Skander Jebali,Nabeul,2024-05-12,Premium,33.0
+C0803,Youssef Zouari,Sfax,2023-12-05,Premium,27.0
+C0804,Youssef Haddad,Sfax,2023-05-29,Regular,31.0
+C0805,Mohamed Trabelsi,Ben Arous,2023-10-12,Regular,30.0
+C0806,Emna Gharbi,Ariana,2023-10-30,Premium,42.0
+C0807,Salma Mejri,Sfax,2023-12-13,New,33.0
+C0808,Mariem Gharbi,Ben Arous,2023-02-19,Regular,
+C0809,Emna Dridi,Sfax,2025-05-02,Regular,32.0
+C0810,Youssef Belhaj,Monastir,2023-05-30,Regular,39.0
+C0811,Sarra Ben Ali,Kairouan,2022-06-23,Regular,22.0
+C0812,Fares Ben Ali,Tunis,2022-05-22,Regular,18.0
+C0813,Amal Belhaj,Ben Arous,2023-12-31,Regular,54.0
+C0814,Amal Haddad,Tunis,2024-10-13,Premium,28.0
+C0815,Nour Trabelsi,Ariana,2023-05-03,Regular,33.0
+C0816,Amal Zouari,Ariana,2023-08-22,Regular,30.0
+C0817,Mariem Zouari,Tunis,2023-08-10,Regular,39.0
+C0818,Omar Haddad,Nabeul,2023-11-22,New,52.0
+C0819,Ines Karray,Sfax,2023-01-06,Regular,40.0
+C0820,Ines Jebali,Gabès,2024-03-19,Regular,19.0
+C0821,Anis Ben Ali,Tunis,2023-10-03,Regular,20.0
+C0822,Omar Haddad,Tunis,2023-09-25,Premium,30.0
+C0823,Youssef Jebali,Ben Arous,2023-04-13,New,31.0
+C0824,Karim Karray,Tunis,2024-04-17,Regular,18.0
+C0825,Lina Sassi,Tunis,2023-12-22,Regular,42.0
+C0826,Ines Ben Ali,Kairouan,2024-09-11,Regular,23.0
+C0827,Mariem Haddad,Tunis,2023-07-23,Premium,49.0
+C0828,Ines Mansouri,Tunis,2024-09-07,New,52.0
+C0829,Skander Zouari,Sfax,2023-05-20,Regular,32.0
+C0830,Skander Mansouri,Sfax,2024-09-05,Regular,38.0
+C0831,Hedi Karray,Sfax,2022-10-31,New,22.0
+C0832,Ines Haddad,Ariana,2024-01-13,Premium,40.0
+C0833,Walid Bouazizi,Bizerte,2024-07-22,Regular,
+C0834,Emna Mejri,Tunis,2022-10-20,Regular,23.0
+C0835,Walid Mejri,Ben Arous,2025-11-07,Regular,31.0
+C0836,Emna Haddad,Sousse,2023-03-28,New,29.0
+C0837,Sarra Nasri,Monastir,2023-05-15,Premium,31.0
+C0838,Anis Belhaj,Ariana,2024-12-16,Premium,43.0
+C0839,Youssef Chaabane,Sfax,2025-02-23,New,26.0
+C0840,Fares Dridi,Tunis,2023-03-22,Regular,51.0
+C0841,Fares Ben Ali,Tunis,2025-03-15,Regular,21.0
+C0842,Ahmed Nasri,Tunis,2024-03-15,Regular,50.0
+C0843,Nour Dridi,Nabeul,2023-05-28,New,24.0
+C0844,Omar Chaabane,Ariana,2024-09-23,Regular,34.0
+C0845,Fares Trabelsi,Nabeul,2024-01-21,Regular,29.0
+C0846,Emna Zouari,Tunis,2024-09-02,Regular,31.0
+C0847,Salma Bouazizi,Monastir,2024-04-14,Premium,42.0
+C0848,Ines Mejri,Bizerte,2023-10-15,Premium,49.0
+C0849,Rania Gharbi,Tunis,2024-09-26,Premium,46.0
+C0850,Nour Belhaj,Tunis,2025-04-09,Regular,30.0
+C0851,Sarra Gharbi,Tunis,2023-07-21,New,36.0
+C0852,Salma Gharbi,Monastir,2024-01-21,New,26.0
+C0853,Fares Sassi,Tunis,2023-05-04,Premium,24.0
+C0854,Lina Zouari,Sfax,2025-01-18,Premium,23.0
+C0855,Mohamed Mansouri,Ben Arous,2023-05-16,New,30.0
+C0856,Karim Dridi,Bizerte,2024-03-19,New,36.0
+C0857,Yasmine Nasri,Sfax,2024-06-25,Regular,18.0
+C0858,Hedi Zouari,Sfax,2023-06-18,Regular,34.0
+C0859,Hedi Bouazizi,Kairouan,2024-07-02,Regular,49.0
+C0860,Omar Dridi,Tunis,2024-02-27,New,45.0
+C0861,Mariem Nasri,Bizerte,2022-11-30,Premium,28.0
+C0862,Salma Mejri,Tunis,2024-04-29,Regular,20.0
+C0863,Walid Nasri,Sfax,2025-03-08,Regular,39.0
+C0864,Fares Haddad,Monastir,2023-02-20,New,18.0
+C0865,Omar Trabelsi,Sousse,2023-12-18,New,45.0
+C0866,Emna Zouari,Sousse,2023-06-07,New,32.0
+C0867,Salma Sassi,Tunis,2023-10-19,Regular,52.0
+C0868,Yasmine Nasri,Ben Arous,2024-06-22,New,18.0
+C0869,Walid Trabelsi,Ariana,2023-06-27,New,43.0
+C0870,Ahmed Mansouri,Sfax,2025-09-07,Regular,33.0
+C0871,Omar Nasri,Ben Arous,2025-08-20,Regular,31.0
+C0872,Rania Ben Ali,Ariana,2024-06-27,New,20.0
+C0873,Mohamed Belhaj,Ariana,2023-04-30,Regular,40.0
+C0874,Lina Bouazizi,Tunis,2023-07-21,Regular,41.0
+C0875,Skander Mejri,Ariana,2024-12-10,Premium,52.0
+C0876,Fares Zouari,Tunis,2023-08-16,Premium,44.0
+C0877,Hedi Bouazizi,Monastir,2023-06-15,Regular,28.0
+C0878,Hedi Jebali,Sfax,2024-02-15,Premium,24.0
+C0879,Karim Karray,Tunis,2024-09-14,Regular,20.0
+C0880,Amal Haddad,Sousse,2023-10-18,New,49.0
+C0881,Nour Chaabane,Monastir,2023-11-04,Regular,26.0
+C0882,Ahmed Karray,Tunis,2023-08-20,Premium,49.0
+C0883,Amal Belhaj,Tunis,2023-04-21,New,39.0
+C0884,Walid Dridi,Tunis,2025-01-26,Regular,37.0
+C0885,Mariem Gharbi,Tunis,2025-11-23,Regular,31.0
+C0886,Karim Bouazizi,Nabeul,2025-01-09,New,41.0
+C0887,Nour Bouazizi,Kairouan,2023-06-15,Regular,34.0
+C0888,Emna Trabelsi,Tunis,2024-12-11,Regular,30.0
+C0889,Karim Gharbi,Nabeul,2025-08-07,Regular,41.0
+C0890,Karim Mejri,Tunis,2022-10-21,New,33.0
+C0891,Ahmed Bouazizi,Sfax,2025-09-08,Regular,26.0
+C0892,Ahmed Belhaj,Nabeul,2024-05-13,Regular,40.0
+C0893,Anis Mansouri,Ariana,2025-10-26,New,33.0
+C0894,Ines Trabelsi,Tunis,2022-11-17,Regular,39.0
+C0895,Rania Nasri,Sfax,2022-10-19,Regular,29.0
+C0896,Amal Zouari,Kairouan,2024-04-03,Regular,22.0
+C0897,Karim Jebali,Tunis,2024-10-25,Regular,51.0
+C0898,Rania Mansouri,Tunis,2023-09-11,Regular,49.0
+C0899,Lina Gharbi,Tunis,2023-12-01,Premium,43.0
+C0900,Rania Dridi,Sfax,2022-07-25,Regular,30.0
+C0901,Mariem Dridi,Sfax,2025-04-16,Premium,31.0
+C0902,Rania Mansouri,Bizerte,2023-01-10,Regular,48.0
+C0903,Youssef Ben Ali,Nabeul,2022-07-08,Regular,30.0
+C0904,Ahmed Dridi,Monastir,2024-06-29,Regular,28.0
+C0905,Mariem Belhaj,Bizerte,2024-05-31,Regular,53.0
+C0906,Mohamed Karray,Tunis,2024-03-18,Premium,34.0
+C0907,Salma Dridi,Sfax,2024-02-16,Regular,52.0
+C0908,Yasmine Trabelsi,Ariana,2025-02-27,Regular,20.0
+C0909,Mohamed Mansouri,Ariana,2023-09-27,Regular,39.0
+C0910,Youssef Jebali,Gabès,2023-07-06,New,55.0
+C0911,Karim Nasri,Sousse,2024-07-24,Regular,34.0
+C0912,Karim Zouari,Kairouan,2023-12-09,New,31.0
+C0913,Emna Zouari,Ben Arous,2023-11-15,Regular,22.0
+C0914,Youssef Belhaj,Sfax,2022-07-04,Regular,45.0
+C0915,Hedi Belhaj,Sfax,2024-12-17,Premium,
+C0916,Nour Belhaj,Tunis,2022-04-27,Regular,33.0
+C0917,Amal Trabelsi,Tunis,2025-01-05,Regular,22.0
+C0918,Omar Gharbi,Sfax,2024-11-09,New,50.0
+C0919,Fares Jebali,Tunis,2025-05-01,Regular,46.0
+C0920,Mohamed Haddad,Gabès,2022-10-27,Regular,34.0
+C0921,Omar Trabelsi,Tunis,2025-01-04,Regular,22.0
+C0922,Skander Sassi,Tunis,2024-06-30,Regular,49.0
+C0923,Anis Karray,Nabeul,2023-07-15,New,30.0
+C0924,Omar Haddad,Tunis,2023-02-19,Regular,23.0
+C0925,Walid Gharbi,Gabès,2023-06-09,New,18.0
+C0926,Mariem Mansouri,Nabeul,2024-11-20,Premium,28.0
+C0927,Rania Gharbi,Tunis,2023-10-01,New,19.0
+C0928,Youssef Sassi,Sousse,2023-08-26,New,28.0
+C0929,Nour Haddad,Sousse,2023-08-29,New,
+C0930,Walid Nasri,Nabeul,2023-08-20,Premium,30.0
+C0931,Anis Jebali,Bizerte,2023-12-27,Regular,38.0
+C0932,Skander Bouazizi,Sousse,2022-10-15,Regular,27.0
+C0933,Skander Chaabane,Sfax,2024-01-10,Premium,35.0
+C0934,Youssef Nasri,Ariana,2024-02-13,Regular,53.0
+C0935,Ahmed Nasri,Sousse,2023-11-24,Premium,
+C0936,Ahmed Mansouri,Kairouan,2023-07-17,Regular,38.0
+C0937,Hedi Belhaj,Sfax,2023-06-02,New,18.0
+C0938,Omar Trabelsi,Sousse,2025-05-01,Regular,49.0
+C0939,Mohamed Zouari,Ben Arous,2022-12-04,New,29.0
+C0940,Anis Trabelsi,Nabeul,2023-06-09,Regular,45.0
+C0941,Nour Mansouri,Kairouan,2023-04-22,Regular,33.0
+C0942,Ines Sassi,Tunis,2023-06-27,New,40.0
+C0943,Hedi Gharbi,Tunis,2023-08-11,New,41.0
+C0944,Salma Chaabane,Sfax,2023-02-19,Premium,29.0
+C0945,Mariem Chaabane,Sfax,2023-11-28,New,45.0
+C0946,Ines Mansouri,Sfax,2023-07-26,Regular,26.0
+C0947,Yasmine Mejri,Tunis,2024-01-24,New,42.0
+C0948,Youssef Sassi,Ben Arous,2023-06-28,Regular,30.0
+C0949,Amal Zouari,Sfax,2024-11-24,Regular,
+C0950,Anis Bouazizi,Sfax,2023-05-02,Regular,29.0
+C0951,Walid Dridi,Sousse,2023-10-04,Regular,34.0
+C0952,Anis Mansouri,Nabeul,2024-11-18,Regular,23.0
+C0953,Karim Mansouri,Sousse,2023-10-25,Premium,36.0
+C0954,Sarra Gharbi,Bizerte,2023-07-22,Regular,34.0
+C0955,Ahmed Belhaj,Sousse,2024-12-01,New,29.0
+C0956,Mariem Zouari,Sfax,2022-07-15,Regular,33.0
+C0957,Ahmed Nasri,Sfax,2025-07-31,Regular,35.0
+C0958,Karim Dridi,Tunis,2023-04-02,Premium,28.0
+C0959,Sarra Dridi,Tunis,2024-03-26,Regular,33.0
+C0960,Rania Dridi,Sfax,2023-05-21,Regular,24.0
+C0961,Nour Haddad,Monastir,2024-12-02,Premium,57.0
+C0962,Skander Chaabane,Sousse,2025-01-25,Regular,45.0
+C0963,Nour Trabelsi,Tunis,2024-09-12,Regular,37.0
+C0964,Nour Trabelsi,Sfax,2022-08-28,Premium,46.0
+C0965,Ines Belhaj,Tunis,2024-10-10,Regular,18.0
+C0966,Mariem Dridi,Nabeul,2023-10-16,New,18.0
+C0967,Skander Belhaj,Bizerte,2022-12-28,New,30.0
+C0968,Youssef Gharbi,Sfax,2024-06-03,Regular,20.0
+C0969,Nour Haddad,Sfax,2024-04-27,Regular,32.0
+C0970,Lina Mansouri,Ariana,2022-09-27,Regular,36.0
+C0971,Ines Mansouri,Ben Arous,2024-09-19,Premium,43.0
+C0972,Yasmine Ben Ali,Monastir,2022-11-05,Regular,23.0
+C0973,Nour Trabelsi,Nabeul,2024-07-15,New,38.0
+C0974,Ines Zouari,Sfax,2023-06-02,Regular,34.0
+C0975,Ahmed Jebali,Ariana,2025-01-01,Premium,37.0
+C0976,Fares Karray,Tunis,2024-03-30,Regular,29.0
+C0977,Mariem Chaabane,Tunis,2023-05-05,Regular,48.0
+C0978,Lina Chaabane,Tunis,2024-08-28,Regular,33.0
+C0979,Walid Dridi,Ariana,2024-01-08,Regular,52.0
+C0980,Salma Gharbi,Gabès,2024-04-25,New,26.0
+C0981,Skander Belhaj,Sfax,2024-09-06,Regular,
+C0982,Youssef Sassi,Tunis,2024-05-22,Regular,33.0
+C0983,Skander Nasri,Tunis,2023-12-24,Regular,31.0
+C0984,Nour Dridi,Ariana,2025-08-26,Regular,
+C0985,Skander Gharbi,Bizerte,2022-05-11,New,31.0
+C0986,Skander Zouari,Ben Arous,2023-03-30,New,18.0
+C0987,Salma Bouazizi,Nabeul,2023-11-12,New,
+C0988,Amal Ben Ali,Bizerte,2023-10-19,Regular,47.0
+C0989,Fares Bouazizi,Tunis,2024-04-26,Regular,
+C0990,Mariem Nasri,Sfax,2025-03-06,Premium,53.0
+C0991,Salma Karray,Kairouan,2023-09-13,Regular,34.0
+C0992,Mariem Nasri,Ben Arous,2022-11-24,Premium,21.0
+C0993,Hedi Nasri,Tunis,2024-06-15,Regular,30.0
+C0994,Skander Mansouri,Gabès,2024-04-10,Regular,34.0
+C0995,Mohamed Zouari,Monastir,2023-02-16,New,24.0
+C0996,Walid Chaabane,Sfax,2022-07-12,Regular,50.0
+C0997,Sarra Karray,Sfax,2025-04-09,New,56.0
+C0998,Emna Ben Ali,Tunis,2023-08-10,Regular,39.0
+C0999,Amal Belhaj,Bizerte,2024-05-17,Regular,34.0
+C1000,Sarra Jebali,Sfax,2023-11-23,Regular,21.0
+C1001,Yasmine Ben Ali,Tunis,2022-10-01,Regular,49.0
+C1002,Nour Chaabane,Sousse,2023-11-08,Regular,35.0
+C1003,Emna Trabelsi,Kairouan,2022-08-15,Regular,31.0
+C1004,Omar Gharbi,Bizerte,2023-02-28,Premium,39.0
+C1005,Emna Karray,Tunis,2023-07-15,New,
+C1006,Rania Bouazizi,Tunis,2024-05-16,Regular,35.0
+C1007,Ines Zouari,Gabès,2023-09-11,Regular,20.0
+C1008,Hedi Jebali,Gabès,2023-10-10,Regular,45.0
+C1009,Omar Mejri,Sfax,2022-02-05,New,33.0
+C1010,Anis Chaabane,Sousse,2024-04-03,Regular,46.0
+C1011,Karim Karray,Ben Arous,2025-04-17,Regular,32.0
+C1012,Salma Haddad,Ben Arous,2023-01-04,Regular,33.0
+C1013,Mariem Dridi,Tunis,2024-03-14,Regular,22.0
+C1014,Hedi Belhaj,Tunis,2023-01-26,Regular,42.0
+C1015,Walid Bouazizi,Tunis,2024-04-06,Regular,25.0
+C1016,Amal Gharbi,Bizerte,2023-04-24,New,29.0
+C1017,Mariem Mejri,Tunis,2023-10-13,Regular,34.0
+C1018,Lina Sassi,Tunis,2024-07-20,Regular,35.0
+C1019,Amal Ben Ali,Sfax,2024-12-04,Regular,18.0
+C1020,Lina Chaabane,Tunis,2024-01-02,Regular,32.0
+C1021,Sarra Zouari,Tunis,2024-02-15,Regular,42.0
+C1022,Anis Nasri,Sfax,2024-01-01,Regular,30.0
+C1023,Sarra Belhaj,Ariana,2024-04-03,Regular,32.0
+C1024,Rania Dridi,Sousse,2024-05-12,Premium,36.0
+C1025,Emna Karray,Gabès,2024-08-15,Regular,33.0
+C1026,Ines Jebali,Tunis,2022-08-04,New,24.0
+C1027,Nour Belhaj,Gabès,2024-07-13,Regular,34.0
+C1028,Anis Bouazizi,Gabès,2023-09-10,Regular,44.0
+C1029,Anis Nasri,Bizerte,2024-12-19,New,23.0
+C1030,Nour Chaabane,Sousse,2023-07-15,New,30.0
+C1031,Yasmine Haddad,Sousse,2023-08-18,Regular,20.0
+C1032,Youssef Mejri,Sousse,2023-07-07,New,43.0
+C1033,Amal Dridi,Sousse,2022-10-23,Regular,33.0
+C1034,Anis Zouari,Tunis,2023-08-18,Regular,25.0
+C1035,Karim Chaabane,Kairouan,2023-04-20,New,35.0
+C1036,Ines Karray,Sfax,2025-04-15,New,22.0
+C1037,Omar Bouazizi,Bizerte,2024-12-20,Regular,24.0
+C1038,Salma Chaabane,Ariana,2024-07-01,Premium,19.0
+C1039,Rania Chaabane,Tunis,2022-06-08,Regular,23.0
+C1040,Sarra Trabelsi,Sfax,2023-12-26,Regular,48.0
+C1041,Skander Trabelsi,Sfax,2023-12-17,New,27.0
+C1042,Karim Mejri,Ben Arous,2024-12-14,Regular,39.0
+C1043,Youssef Karray,Ariana,2023-09-22,Regular,26.0
+C1044,Anis Karray,Tunis,2023-03-23,Regular,42.0
+C1045,Karim Ben Ali,Sfax,2022-07-29,Regular,24.0
+C1046,Yasmine Jebali,Ariana,2025-05-24,Regular,34.0
+C1047,Skander Gharbi,Kairouan,2024-03-19,New,35.0
+C1048,Ines Nasri,Tunis,2024-12-17,Premium,57.0
+C1049,Fares Sassi,Ariana,2022-08-03,Premium,40.0
+C1050,Emna Mansouri,Ariana,2023-05-31,Regular,28.0
+C1051,Fares Mejri,Sfax,2023-10-10,Regular,41.0
+C1052,Ines Trabelsi,Sfax,2023-03-22,Regular,55.0
+C1053,Yasmine Jebali,Sousse,2023-08-29,Regular,18.0
+C1054,Emna Gharbi,Kairouan,2024-08-04,Regular,26.0
+C1055,Sarra Jebali,Ariana,2024-01-06,Premium,32.0
+C1056,Sarra Mejri,Sousse,2025-05-28,New,30.0
+C1057,Fares Zouari,Tunis,2025-01-13,Regular,31.0
+C1058,Anis Mansouri,Tunis,2022-11-27,Regular,21.0
+C1059,Lina Haddad,Ben Arous,2023-03-29,Premium,48.0
+C1060,Walid Mejri,Tunis,2024-06-07,Regular,20.0
+C1061,Emna Belhaj,Sousse,2024-12-19,New,32.0
+C1062,Amal Karray,Sousse,2023-12-02,Regular,44.0
+C1063,Anis Mansouri,Nabeul,2023-12-31,Regular,34.0
+C1064,Karim Karray,Sfax,2024-09-04,Regular,24.0
+C1065,Mariem Jebali,Sfax,2024-03-15,New,21.0
+C1066,Anis Belhaj,Ben Arous,2024-04-14,Regular,32.0
+C1067,Walid Bouazizi,Tunis,2025-07-22,Premium,26.0
+C1068,Omar Mejri,Tunis,2023-12-07,Regular,36.0
+C1069,Walid Ben Ali,Sousse,2022-10-29,Regular,20.0
+C1070,Walid Chaabane,Kairouan,2024-05-20,New,42.0
+C1071,Anis Zouari,Tunis,2025-04-09,Regular,35.0
+C1072,Lina Karray,Sfax,2022-09-22,Regular,36.0
+C1073,Nour Chaabane,Nabeul,2024-08-04,Regular,48.0
+C1074,Ines Belhaj,Bizerte,2025-05-13,New,30.0
+C1075,Skander Sassi,Sfax,2024-07-27,Regular,27.0
+C1076,Karim Jebali,Sousse,2023-04-01,Regular,29.0
+C1077,Yasmine Haddad,Sousse,2023-07-15,New,32.0
+C1078,Anis Dridi,Monastir,2025-09-05,Premium,33.0
+C1079,Omar Karray,Tunis,2025-05-05,New,26.0
+C1080,Skander Bouazizi,Gabès,2024-08-08,New,18.0
+C1081,Skander Mansouri,Tunis,2023-09-17,Premium,28.0
+C1082,Omar Zouari,Bizerte,2022-05-24,Regular,38.0
+C1083,Lina Zouari,Tunis,2023-01-21,Regular,35.0
+C1084,Karim Sassi,Tunis,2023-01-16,Premium,46.0
+C1085,Fares Belhaj,Tunis,2023-04-24,Premium,54.0
+C1086,Ahmed Nasri,Ben Arous,2022-05-19,New,42.0
+C1087,Lina Nasri,Ariana,2024-08-18,Regular,48.0
+C1088,Mohamed Nasri,Tunis,2024-09-23,Regular,42.0
+C1089,Youssef Dridi,Ben Arous,2024-10-06,Regular,51.0
+C1090,Hedi Chaabane,Ben Arous,2024-12-16,Premium,53.0
+C1091,Salma Mansouri,Nabeul,2023-07-08,Regular,44.0
+C1092,Hedi Karray,Monastir,2023-11-13,New,41.0
+C1093,Hedi Jebali,Sousse,2023-07-29,Regular,32.0
+C1094,Karim Mansouri,Tunis,2023-12-06,Regular,34.0
+C1095,Rania Haddad,Ariana,2022-05-27,Regular,31.0
+C1096,Nour Chaabane,Gabès,2023-03-09,Premium,40.0
+C1097,Sarra Mansouri,Tunis,2025-09-03,New,27.0
+C1098,Salma Sassi,Ben Arous,2024-11-02,Regular,32.0
+C1099,Sarra Sassi,Gabès,2024-02-10,Regular,18.0
+C1100,Amal Gharbi,Kairouan,2023-09-04,Regular,51.0
+C1101,Nour Ben Ali,Ben Arous,2024-09-20,Regular,32.0
+C1102,Ahmed Bouazizi,Sousse,2023-03-21,Regular,39.0
+C1103,Rania Nasri,Ben Arous,2023-03-17,New,49.0
+C1104,Youssef Sassi,Nabeul,2024-04-28,New,37.0
+C1105,Mohamed Gharbi,Tunis,2023-10-24,Regular,48.0
+C1106,Salma Nasri,Tunis,2025-04-22,Regular,22.0
+C1107,Hedi Trabelsi,Sousse,2024-05-05,Regular,58.0
+C1108,Youssef Bouazizi,Tunis,2023-08-30,Regular,45.0
+C1109,Rania Belhaj,Sousse,2024-11-22,Regular,36.0
+C1110,Sarra Gharbi,Ariana,2023-06-10,Premium,48.0
+C1111,Fares Gharbi,Monastir,2024-04-30,Regular,22.0
+C1112,Ahmed Chaabane,Bizerte,2022-08-27,Premium,31.0
+C1113,Omar Karray,Sfax,2022-11-27,Regular,48.0
+C1114,Yasmine Zouari,Nabeul,2024-02-11,Premium,18.0
+C1115,Sarra Belhaj,Tunis,2023-04-16,Premium,40.0
+C1116,Hedi Trabelsi,Sfax,2022-11-03,Regular,39.0
+C1117,Fares Gharbi,Tunis,2024-07-09,Regular,54.0
+C1118,Amal Nasri,Monastir,2024-08-20,New,18.0
+C1119,Mohamed Jebali,Bizerte,2023-03-05,Premium,50.0
+C1120,Rania Zouari,Gabès,2024-03-24,Regular,28.0
+C1121,Mohamed Karray,Monastir,2023-01-04,Regular,30.0
+C1122,Rania Trabelsi,Kairouan,2023-08-14,Regular,22.0
+C1123,Anis Sassi,Tunis,2024-07-20,Premium,23.0
+C1124,Amal Gharbi,Gabès,2024-08-03,Premium,38.0
+C1125,Ines Chaabane,Sfax,2024-04-24,Regular,23.0
+C1126,Walid Haddad,Ben Arous,2022-09-16,Premium,41.0
+C1127,Mohamed Dridi,Sfax,2023-10-16,Premium,27.0
+C1128,Sarra Mejri,Ariana,2025-04-09,New,22.0
+C1129,Emna Karray,Ariana,2023-12-23,Regular,29.0
+C1130,Ahmed Belhaj,Tunis,2022-01-23,Regular,37.0
+C1131,Ahmed Belhaj,Tunis,2024-03-31,Regular,31.0
+C1132,Ahmed Dridi,Sfax,2023-08-14,Regular,34.0
+C1133,Youssef Trabelsi,Monastir,2023-04-26,Regular,41.0
+C1134,Salma Mejri,Sousse,2024-02-24,Regular,45.0
+C1135,Youssef Belhaj,Sfax,2025-08-05,Regular,31.0
+C1136,Karim Jebali,Ben Arous,2024-08-11,Premium,24.0
+C1137,Sarra Chaabane,Ben Arous,2022-11-29,Regular,35.0
+C1138,Ines Chaabane,Tunis,2024-01-13,Premium,39.0
+C1139,Mohamed Ben Ali,Bizerte,2025-01-23,Regular,19.0
+C1140,Nour Mejri,Tunis,2024-03-07,Regular,25.0
+C1141,Emna Bouazizi,Sousse,2024-10-26,Regular,27.0
+C1142,Karim Nasri,Nabeul,2024-02-15,New,32.0
+C1143,Salma Sassi,Sfax,2023-10-25,New,26.0
+C1144,Fares Sassi,Monastir,2024-10-27,Regular,41.0
+C1145,Fares Chaabane,Ariana,2023-08-14,Premium,18.0
+C1146,Nour Jebali,Monastir,2024-08-15,Regular,18.0
+C1147,Mohamed Nasri,Nabeul,2023-08-02,Regular,31.0
+C1148,Anis Sassi,Bizerte,2023-03-25,Regular,32.0
+C1149,Ines Dridi,Sousse,2025-01-26,Regular,19.0
+C1150,Mohamed Zouari,Monastir,2023-10-05,Regular,28.0
+C1151,Sarra Gharbi,Kairouan,2024-08-02,New,30.0
+C1152,Amal Zouari,Ben Arous,2024-04-30,Regular,30.0
+C1153,Fares Trabelsi,Bizerte,2024-05-13,Regular,36.0
+C1154,Karim Gharbi,Nabeul,2022-06-24,Regular,27.0
+C1155,Karim Haddad,Ben Arous,2023-03-12,Regular,49.0
+C1156,Sarra Trabelsi,Gabès,2024-12-20,Regular,39.0
+C1157,Walid Ben Ali,Ben Arous,2023-04-20,New,26.0
+C1158,Mohamed Ben Ali,Sfax,2024-03-10,New,35.0
+C1159,Mariem Chaabane,Tunis,2024-02-25,Regular,35.0
+C1160,Yasmine Nasri,Tunis,2025-09-10,Premium,46.0
+C1161,Mariem Ben Ali,Monastir,2025-10-16,Regular,28.0
+C1162,Karim Karray,Ben Arous,2022-09-04,Regular,42.0
+C1163,Anis Sassi,Ben Arous,2024-01-17,Regular,34.0
+C1164,Karim Gharbi,Tunis,2024-04-17,Regular,49.0
+C1165,Ahmed Gharbi,Sfax,2023-05-24,Regular,47.0
+C1166,Mariem Sassi,Bizerte,2023-05-02,Premium,36.0
+C1167,Sarra Sassi,Monastir,2024-07-28,Regular,31.0
+C1168,Amal Haddad,Tunis,2023-07-04,New,39.0
+C1169,Rania Sassi,Sfax,2023-04-04,Premium,32.0
+C1170,Ahmed Trabelsi,Ben Arous,2023-11-07,New,51.0
+C1171,Omar Bouazizi,Sousse,2023-07-24,Premium,35.0
+C1172,Walid Nasri,Ben Arous,2022-07-17,New,30.0
+C1173,Amal Mansouri,Ben Arous,2022-07-14,Regular,29.0
+C1174,Karim Nasri,Sfax,2023-04-04,Regular,22.0
+C1175,Mohamed Dridi,Sfax,2025-09-06,Regular,40.0
+C1176,Walid Nasri,Sfax,2023-01-31,New,26.0
+C1177,Anis Chaabane,Sfax,2024-02-06,Regular,45.0
+C1178,Karim Bouazizi,Bizerte,2023-06-20,Regular,21.0
+C1179,Omar Mansouri,Nabeul,2024-05-22,New,35.0
+C1180,Hedi Mansouri,Ariana,2025-01-14,Regular,46.0
+C1181,Hedi Nasri,Bizerte,2024-11-24,New,18.0
+C1182,Lina Trabelsi,Monastir,2022-08-26,Regular,54.0
+C1183,Emna Trabelsi,Tunis,2023-12-01,Regular,30.0
+C1184,Karim Gharbi,Sfax,2023-08-05,Regular,35.0
+C1185,Ines Gharbi,Ariana,2024-11-27,Regular,40.0
+C1186,Ahmed Sassi,Nabeul,2023-07-12,Regular,41.0
+C1187,Mariem Bouazizi,Tunis,2023-03-26,Regular,37.0
+C1188,Salma Belhaj,Sousse,2024-04-18,Regular,44.0
+C1189,Yasmine Gharbi,Tunis,2024-07-20,New,39.0
+C1190,Lina Karray,Sfax,2025-05-16,New,52.0
+C1191,Ines Chaabane,Gabès,2023-09-26,Regular,39.0
+C1192,Fares Bouazizi,Ben Arous,2023-11-27,Regular,54.0
+C1193,Ines Zouari,Monastir,2024-11-06,Regular,43.0
+C1194,Lina Belhaj,Kairouan,2023-10-18,New,18.0
+C1195,Lina Zouari,Monastir,2023-06-04,Premium,60.0
+C1196,Rania Gharbi,Tunis,2023-12-28,Regular,28.0
+C1197,Hedi Mansouri,Bizerte,2024-10-31,Regular,49.0
+C1198,Rania Karray,Tunis,2023-02-20,New,34.0
+C1199,Fares Jebali,Ben Arous,2024-05-29,New,45.0
+C1200,Sarra Nasri,Monastir,2024-10-15,Regular,27.0
+C1201,Ahmed Haddad,Sousse,2023-10-02,New,40.0
+C1202,Anis Haddad,Sfax,2023-10-17,Regular,31.0
+C1203,Nour Sassi,Ben Arous,2025-06-20,Regular,50.0
+C1204,Nour Mejri,Bizerte,2023-11-17,New,38.0
+C1205,Rania Ben Ali,Sousse,2025-05-19,Regular,43.0
+C1206,Walid Ben Ali,Ben Arous,2024-04-23,Regular,18.0
+C1207,Fares Karray,Monastir,2023-03-14,New,33.0
+C1208,Nour Dridi,Tunis,2023-08-31,New,38.0
+C1209,Hedi Mansouri,Tunis,2024-02-08,Regular,36.0
+C1210,Sarra Chaabane,Sousse,2023-12-01,Premium,44.0
+C1211,Sarra Nasri,Kairouan,2022-12-08,New,30.0
+C1212,Youssef Sassi,Tunis,2025-05-17,Regular,34.0
+C1213,Karim Haddad,Tunis,2024-09-18,New,46.0
+C1214,Ines Bouazizi,Tunis,2025-08-14,Premium,18.0
+C1215,Emna Jebali,Monastir,2024-07-15,Regular,40.0
+C1216,Youssef Dridi,Tunis,2024-02-20,Regular,31.0
+C1217,Ines Jebali,Sfax,2024-03-04,New,25.0
+C1218,Rania Haddad,Kairouan,2024-07-28,New,37.0
+C1219,Hedi Mejri,Tunis,2024-10-01,Regular,46.0
+C1220,Skander Ben Ali,Sfax,2025-01-12,Regular,44.0
+C1221,Nour Ben Ali,Sfax,2024-09-15,New,33.0
+C1222,Ahmed Mansouri,Bizerte,2023-03-06,Regular,43.0
+C1223,Amal Zouari,Ariana,2024-09-17,Regular,43.0
+C1224,Emna Karray,Ben Arous,2024-06-05,New,33.0
+C1225,Emna Gharbi,Tunis,2024-10-29,New,27.0
+C1226,Skander Zouari,Nabeul,2024-02-03,New,28.0
+C1227,Mariem Dridi,Bizerte,2025-10-02,Premium,42.0
+C1228,Skander Dridi,Tunis,2024-03-06,Regular,34.0
+C1229,Skander Belhaj,Ben Arous,2024-02-27,New,24.0
+C1230,Rania Ben Ali,Monastir,2024-04-14,Regular,18.0
+C1231,Karim Mansouri,Tunis,2024-01-18,Regular,42.0
+C1232,Rania Haddad,Ariana,2022-11-06,New,29.0
+C1233,Rania Gharbi,Sfax,2023-11-22,Premium,37.0
+C1234,Karim Mejri,Ariana,2024-03-21,New,46.0
+C1235,Ahmed Mansouri,Tunis,2024-11-08,Regular,21.0
+C1236,Yasmine Trabelsi,Ben Arous,2024-11-09,New,34.0
+C1237,Omar Mansouri,Tunis,2023-03-13,Premium,32.0
+C1238,Youssef Chaabane,Sfax,2023-08-27,Premium,38.0
+C1239,Walid Gharbi,Sousse,2024-11-11,New,46.0
+C1240,Mariem Gharbi,Sfax,2022-12-09,Regular,21.0
+C1241,Salma Sassi,Tunis,2023-01-23,Premium,40.0
+C1242,Ines Jebali,Monastir,2023-04-30,Premium,44.0
+C1243,Karim Bouazizi,Tunis,2025-04-08,New,32.0
+C1244,Mohamed Ben Ali,Nabeul,2023-09-07,New,33.0
+C1245,Walid Bouazizi,Ariana,2023-05-11,Premium,38.0
+C1246,Karim Mansouri,Bizerte,2024-02-14,Regular,37.0
+C1247,Fares Karray,Tunis,2023-11-16,Regular,40.0
+C1248,Omar Mansouri,Tunis,2022-08-30,New,40.0
+C1249,Skander Zouari,Sfax,2025-01-27,New,24.0
+C1250,Ahmed Zouari,Tunis,2023-11-06,New,44.0
+C1251,Salma Trabelsi,Tunis,2023-09-27,Regular,46.0
+C1252,Emna Trabelsi,Nabeul,2023-03-21,Regular,36.0
+C1253,Mariem Trabelsi,Bizerte,2023-04-20,New,19.0
+C1254,Rania Karray,Tunis,2023-09-05,New,33.0
+C1255,Omar Trabelsi,Monastir,2025-01-17,Regular,36.0
+C1256,Ines Sassi,Bizerte,2023-01-18,Premium,23.0
+C1257,Lina Nasri,Monastir,2023-08-16,Regular,30.0
+C1258,Youssef Sassi,Sousse,2024-07-04,Regular,20.0
+C1259,Salma Dridi,Sousse,2024-03-02,Regular,40.0
+C1260,Youssef Belhaj,Sfax,2023-09-04,Regular,36.0
+C1261,Omar Ben Ali,Sousse,2025-07-05,Regular,18.0
+C1262,Mohamed Chaabane,Gabès,2024-10-31,New,38.0
+C1263,Mariem Jebali,Tunis,2024-01-17,Premium,33.0
+C1264,Rania Belhaj,Ariana,2022-09-17,New,
+C1265,Mariem Haddad,Tunis,2023-07-26,Regular,30.0
+C1266,Fares Sassi,Gabès,2023-04-03,Regular,26.0
+C1267,Fares Gharbi,Ben Arous,2022-11-21,Regular,26.0
+C1268,Skander Belhaj,Sousse,2024-02-11,Premium,29.0
+C1269,Karim Dridi,Monastir,2023-04-09,Regular,34.0
+C1270,Walid Dridi,Kairouan,2024-07-04,Premium,35.0
+C1271,Sarra Belhaj,Tunis,2024-05-31,New,32.0
+C1272,Lina Bouazizi,Bizerte,2025-09-15,New,30.0
+C1273,Skander Bouazizi,Monastir,2023-11-14,Regular,30.0
+C1274,Emna Haddad,Tunis,2022-12-18,Regular,59.0
+C1275,Rania Trabelsi,Nabeul,2024-11-18,Regular,26.0
+C1276,Salma Jebali,Ariana,2023-11-16,Regular,28.0
+C1277,Mohamed Gharbi,Sousse,2025-02-14,Premium,67.0
+C1278,Lina Trabelsi,Sfax,2023-10-31,Regular,38.0
+C1279,Emna Sassi,Tunis,2023-04-15,Premium,20.0
+C1280,Ahmed Haddad,Tunis,2024-02-04,Regular,42.0
+C1281,Amal Bouazizi,Tunis,2023-10-14,New,25.0
+C1282,Salma Chaabane,Tunis,2023-11-07,New,43.0
+C1283,Omar Chaabane,Sousse,2022-10-27,Regular,32.0
+C1284,Skander Karray,Ariana,2025-06-17,New,30.0
+C1285,Nour Zouari,Tunis,2024-04-19,Regular,50.0
+C1286,Skander Zouari,Sousse,2023-05-29,Premium,40.0
+C1287,Anis Bouazizi,Sousse,2023-03-07,New,44.0
+C1288,Emna Jebali,Sfax,2024-12-14,New,38.0
+C1289,Sarra Chaabane,Gabès,2023-03-22,New,30.0
+C1290,Lina Haddad,Ben Arous,2024-08-13,Regular,
+C1291,Nour Chaabane,Bizerte,2023-10-02,New,46.0
+C1292,Sarra Karray,Tunis,2023-05-15,Premium,35.0
+C1293,Nour Haddad,Nabeul,2024-09-01,Regular,52.0
+C1294,Nour Jebali,Kairouan,2023-08-30,Regular,
+C1295,Lina Bouazizi,Monastir,2024-05-30,New,36.0
+C1296,Mariem Bouazizi,Sfax,2024-09-25,Premium,37.0
+C1297,Walid Trabelsi,Sousse,2024-02-15,Regular,35.0
+C1298,Karim Gharbi,Ariana,2023-10-27,New,21.0
+C1299,Walid Mejri,Sousse,2024-10-31,Premium,33.0
+C1300,Lina Bouazizi,Nabeul,2023-11-03,Regular,36.0
+C1301,Yasmine Mansouri,Kairouan,2023-11-02,Regular,30.0
+C1302,Emna Haddad,Sfax,2024-12-31,Premium,37.0
+C1303,Emna Nasri,Tunis,2023-09-03,New,34.0
+C1304,Walid Mansouri,Sfax,2025-01-27,Regular,42.0
+C1305,Walid Sassi,Tunis,2023-03-14,Regular,41.0
+C1306,Lina Zouari,Tunis,2023-06-04,Premium,36.0
+C1307,Ines Haddad,Ariana,2024-02-11,Premium,20.0
+C1308,Youssef Mejri,Nabeul,2024-02-21,New,
+C1309,Lina Ben Ali,Tunis,2024-01-09,Regular,33.0
+C1310,Salma Belhaj,Tunis,2024-04-20,New,33.0
+C1311,Skander Bouazizi,Tunis,2024-01-25,Regular,31.0
+C1312,Youssef Zouari,Monastir,2025-01-09,Regular,29.0
+C1313,Fares Haddad,Sousse,2024-02-05,Premium,49.0
+C1314,Lina Ben Ali,Tunis,2025-07-10,Premium,48.0
+C1315,Hedi Ben Ali,Tunis,2023-03-05,Regular,38.0
+C1316,Fares Mejri,Sfax,2023-12-02,New,33.0
+C1317,Fares Haddad,Ariana,2023-05-25,Regular,40.0
+C1318,Mariem Ben Ali,Sfax,2023-12-28,Regular,35.0
+C1319,Karim Nasri,Ben Arous,2024-06-10,Regular,32.0
+C1320,Ines Sassi,Gabès,2024-03-19,Regular,
+C1321,Mohamed Dridi,Ariana,2024-07-17,Premium,30.0
+C1322,Mohamed Chaabane,Sousse,2024-04-26,New,37.0
+C1323,Rania Ben Ali,Tunis,2023-06-20,Premium,36.0
+C1324,Amal Nasri,Kairouan,2022-04-16,Regular,
+C1325,Fares Jebali,Kairouan,2024-06-22,Regular,28.0
+C1326,Yasmine Zouari,Nabeul,2023-09-16,Regular,41.0
+C1327,Lina Bouazizi,Ben Arous,2023-12-18,Premium,25.0
+C1328,Yasmine Haddad,Tunis,2022-12-11,Regular,28.0
+C1329,Mariem Jebali,Bizerte,2024-06-21,Regular,29.0
+C1330,Salma Gharbi,Nabeul,2024-01-13,New,23.0
+C1331,Omar Nasri,Tunis,2025-05-20,Premium,44.0
+C1332,Youssef Dridi,Ben Arous,2024-09-16,Regular,24.0
+C1333,Mohamed Haddad,Ben Arous,2025-03-26,Regular,27.0
+C1334,Mohamed Belhaj,Bizerte,2024-08-24,Premium,47.0
+C1335,Mariem Belhaj,Sousse,2025-03-18,Regular,28.0
+C1336,Emna Sassi,Sousse,2023-10-10,Regular,32.0
+C1337,Yasmine Gharbi,Sousse,2022-08-23,New,24.0
+C1338,Fares Haddad,Tunis,2023-03-31,Regular,42.0
+C1339,Lina Zouari,Ariana,2025-02-20,Regular,42.0
+C1340,Amal Bouazizi,Tunis,2023-11-14,Regular,41.0
+C1341,Youssef Trabelsi,Bizerte,2022-10-23,Regular,39.0
+C1342,Nour Sassi,Ben Arous,2023-11-22,Regular,35.0
+C1343,Walid Dridi,Ben Arous,2023-08-06,Regular,29.0
+C1344,Mohamed Haddad,Tunis,2023-02-21,Regular,26.0
+C1345,Hedi Belhaj,Tunis,2023-07-21,Regular,47.0
+C1346,Anis Karray,Sfax,2024-08-19,New,42.0
+C1347,Fares Chaabane,Tunis,2024-05-29,New,27.0
+C1348,Fares Bouazizi,Tunis,2023-10-07,Regular,34.0
+C1349,Youssef Chaabane,Nabeul,2022-11-11,Regular,31.0
+C1350,Youssef Trabelsi,Ariana,2023-08-09,New,23.0
+C1351,Yasmine Nasri,Ben Arous,2022-12-10,New,36.0
+C1352,Mohamed Sassi,Ben Arous,2023-01-01,New,30.0
+C1353,Mariem Jebali,Bizerte,2024-05-04,Regular,24.0
+C1354,Anis Jebali,Ariana,2023-09-24,Regular,19.0
+C1355,Anis Zouari,Nabeul,2023-04-16,Regular,
+C1356,Mariem Ben Ali,Gabès,2023-02-18,New,
+C1357,Fares Dridi,Sousse,2023-09-10,Regular,33.0
+C1358,Walid Chaabane,Ben Arous,2023-12-01,Regular,25.0
+C1359,Omar Mejri,Nabeul,2022-10-27,Regular,
+C1360,Amal Gharbi,Ben Arous,2023-12-15,Regular,33.0
+C1361,Hedi Mejri,Ben Arous,2025-10-18,Premium,40.0
+C1362,Youssef Bouazizi,Sfax,2023-02-21,Regular,32.0
+C1363,Emna Karray,Ariana,2025-08-10,Premium,26.0
+C1364,Youssef Ben Ali,Tunis,2025-06-18,Premium,35.0
+C1365,Amal Chaabane,Ben Arous,2023-08-15,Premium,21.0
+C1366,Lina Dridi,Tunis,2024-10-23,Regular,39.0
+C1367,Fares Mansouri,Ben Arous,2022-09-30,New,25.0
+C1368,Omar Gharbi,Sfax,2023-10-09,Premium,43.0
+C1369,Amal Gharbi,Gabès,2025-04-23,Regular,31.0
+C1370,Rania Bouazizi,Tunis,2024-10-13,Regular,45.0
+C1371,Ines Trabelsi,Sousse,2022-06-29,Premium,23.0
+C1372,Walid Belhaj,Ben Arous,2024-12-11,Regular,27.0
+C1373,Ines Chaabane,Tunis,2024-06-02,Regular,38.0
+C1374,Mohamed Sassi,Tunis,2024-12-16,Regular,46.0
+C1375,Omar Belhaj,Tunis,2024-01-11,Regular,51.0
+C1376,Mohamed Trabelsi,Tunis,2022-07-27,Regular,34.0
+C1377,Amal Karray,Tunis,2023-05-29,Premium,52.0
+C1378,Lina Zouari,Ben Arous,2023-05-13,Regular,31.0
+C1379,Yasmine Karray,Sfax,2023-12-30,Premium,45.0
+C1380,Nour Chaabane,Tunis,2023-11-04,Regular,25.0
+C1381,Youssef Chaabane,Tunis,2023-07-18,Regular,38.0
+C1382,Nour Ben Ali,Tunis,2024-01-02,Regular,18.0
+C1383,Mohamed Haddad,Sfax,2024-01-28,New,23.0
+C1384,Nour Belhaj,Ariana,2023-06-06,New,39.0
+C1385,Rania Belhaj,Sfax,2023-01-22,Regular,21.0
+C1386,Salma Ben Ali,Tunis,2025-07-27,Regular,38.0
+C1387,Mohamed Mejri,Tunis,2023-10-11,Regular,43.0
+C1388,Walid Jebali,Gabès,2024-09-26,Regular,29.0
+C1389,Walid Zouari,Tunis,2024-08-24,New,24.0
+C1390,Nour Ben Ali,Tunis,2022-09-20,Regular,29.0
+C1391,Karim Belhaj,Tunis,2023-10-30,New,24.0
+C1392,Emna Sassi,Kairouan,2024-01-26,Regular,33.0
+C1393,Fares Trabelsi,Sousse,2024-10-20,Regular,35.0
+C1394,Sarra Ben Ali,Sousse,2024-03-01,New,31.0
+C1395,Ahmed Sassi,Kairouan,2023-10-21,Regular,51.0
+C1396,Fares Gharbi,Tunis,2024-11-19,New,27.0
+C1397,Anis Haddad,Kairouan,2023-08-09,Regular,48.0
+C1398,Mariem Zouari,Tunis,2025-01-21,New,24.0
+C1399,Yasmine Haddad,Sousse,2025-05-22,Regular,35.0
+C1400,Anis Bouazizi,Ben Arous,2023-03-08,Regular,46.0
+C1401,Emna Chaabane,Ben Arous,2022-10-09,New,
+C1402,Lina Ben Ali,Gabès,2023-12-02,Regular,30.0
+C1403,Ines Belhaj,Tunis,2024-12-18,Regular,40.0
+C1404,Sarra Jebali,Kairouan,2025-06-16,New,38.0
+C1405,Emna Gharbi,Ariana,2024-05-14,Regular,29.0
+C1406,Walid Jebali,Sousse,2024-02-27,New,40.0
+C1407,Ines Belhaj,Kairouan,2023-10-29,Premium,53.0
+C1408,Ines Trabelsi,Tunis,2023-12-15,Premium,39.0
+C1409,Salma Zouari,Gabès,2023-08-01,Regular,40.0
+C1410,Youssef Mejri,Sfax,2024-12-07,Regular,41.0
+C1411,Walid Sassi,Sousse,2024-04-23,New,19.0
+C1412,Youssef Belhaj,Tunis,2024-05-13,Regular,39.0
+C1413,Hedi Sassi,Sfax,2024-01-15,Regular,24.0
+C1414,Nour Belhaj,Sousse,2023-08-21,Regular,28.0
+C1415,Hedi Trabelsi,Ben Arous,2024-11-11,Regular,56.0
+C1416,Fares Nasri,Tunis,2023-10-30,Regular,31.0
+C1417,Karim Haddad,Tunis,2022-12-27,New,27.0
+C1418,Nour Haddad,Monastir,2023-03-19,New,46.0
+C1419,Lina Zouari,Tunis,2023-08-25,New,25.0
+C1420,Mohamed Belhaj,Sousse,2024-03-07,Regular,30.0
+C1421,Omar Mejri,Kairouan,2024-01-11,Regular,46.0
+C1422,Emna Dridi,Tunis,2023-02-09,Regular,34.0
+C1423,Rania Chaabane,Tunis,2024-12-09,Premium,18.0
+C1424,Yasmine Bouazizi,Sousse,2023-04-25,Regular,39.0
+C1425,Sarra Bouazizi,Tunis,2022-10-20,Regular,30.0
+C1426,Ines Bouazizi,Sfax,2022-09-02,Regular,49.0
+C1427,Youssef Trabelsi,Sousse,2023-04-08,New,28.0
+C1428,Anis Trabelsi,Sfax,2024-06-06,New,45.0
+C1429,Amal Nasri,Ariana,2023-07-23,New,52.0
+C1430,Anis Chaabane,Sousse,2022-08-24,Regular,25.0
+C1431,Ines Zouari,Sfax,2023-12-08,New,32.0
+C1432,Skander Karray,Tunis,2022-08-22,Regular,38.0
+C1433,Mariem Ben Ali,Sfax,2024-06-04,Regular,25.0
+C1434,Karim Gharbi,Monastir,2022-11-14,Regular,37.0
+C1435,Yasmine Mansouri,Sousse,2023-11-26,Regular,32.0
+C1436,Sarra Belhaj,Sfax,2023-09-18,Regular,32.0
+C1437,Skander Mansouri,Ariana,2024-05-18,Regular,34.0
+C1438,Nour Dridi,Tunis,2024-02-12,Regular,35.0
+C1439,Salma Belhaj,Tunis,2024-08-12,Premium,36.0
+C1440,Yasmine Belhaj,Tunis,2023-07-10,New,28.0
+C1441,Ahmed Mansouri,Kairouan,2023-11-10,Premium,28.0
+C1442,Amal Ben Ali,Tunis,2024-07-15,Regular,33.0
+C1443,Nour Gharbi,Bizerte,2024-09-17,Regular,34.0
+C1444,Fares Ben Ali,Tunis,2023-07-13,New,30.0
+C1445,Youssef Gharbi,Ariana,2022-09-08,Regular,37.0
+C1446,Youssef Haddad,Ben Arous,2023-08-05,Regular,18.0
+C1447,Nour Zouari,Ariana,2023-11-09,Regular,27.0
+C1448,Sarra Haddad,Bizerte,2023-03-22,Premium,31.0
+C1449,Salma Karray,Kairouan,2024-06-06,Regular,25.0
+C1450,Emna Mansouri,Monastir,2023-05-09,Premium,50.0
+C1451,Walid Sassi,Tunis,2022-09-01,Regular,34.0
+C1452,Yasmine Karray,Nabeul,2023-09-17,Regular,36.0
+C1453,Salma Sassi,Tunis,2023-01-11,Regular,29.0
+C1454,Hedi Belhaj,Gabès,2023-02-24,Regular,34.0
+C1455,Youssef Bouazizi,Sfax,2024-08-01,Regular,22.0
+C1456,Youssef Trabelsi,Ariana,2023-12-24,Premium,32.0
+C1457,Rania Mansouri,Tunis,2024-03-01,Regular,25.0
+C1458,Omar Chaabane,Tunis,2024-03-27,Regular,31.0
+C1459,Hedi Belhaj,Tunis,2024-08-24,Premium,18.0
+C1460,Skander Bouazizi,Gabès,2024-06-05,Regular,23.0
+C1461,Karim Nasri,Bizerte,2023-10-23,Regular,49.0
+C1462,Youssef Haddad,Kairouan,2023-01-18,Regular,42.0
+C1463,Omar Gharbi,Tunis,2025-05-06,Regular,47.0
+C1464,Hedi Jebali,Sfax,2023-06-17,Regular,48.0
+C1465,Ines Karray,Tunis,2024-11-03,Premium,
+C1466,Ines Mejri,Sfax,2024-06-08,Regular,29.0
+C1467,Ines Chaabane,Ariana,2024-02-09,New,24.0
+C1468,Skander Mansouri,Ariana,2023-04-30,Regular,45.0
+C1469,Emna Mejri,Sfax,2022-12-29,Premium,35.0
+C1470,Fares Gharbi,Tunis,2025-05-24,New,59.0
+C1471,Anis Belhaj,Ben Arous,2023-10-10,Regular,30.0
+C1472,Emna Gharbi,Sousse,2022-08-12,Regular,54.0
+C1473,Skander Trabelsi,Tunis,2024-03-19,Regular,32.0
+C1474,Amal Dridi,Gabès,2025-01-15,New,47.0
+C1475,Walid Dridi,Sfax,2023-05-30,New,51.0
+C1476,Ahmed Dridi,Bizerte,2022-10-10,Regular,24.0
+C1477,Fares Chaabane,Sousse,2023-08-12,New,29.0
+C1478,Sarra Belhaj,Sousse,2022-12-27,Regular,24.0
+C1479,Mariem Dridi,Sousse,2023-12-11,Regular,22.0
+C1480,Walid Dridi,Monastir,2024-03-08,Premium,41.0
+C1481,Fares Chaabane,Sousse,2024-09-14,Regular,32.0
+C1482,Lina Trabelsi,Tunis,2024-08-17,Regular,35.0
+C1483,Anis Haddad,Tunis,2024-10-22,New,40.0
+C1484,Mohamed Mansouri,Sfax,2025-04-28,Regular,18.0
+C1485,Anis Karray,Tunis,2024-05-15,Premium,47.0
+C1486,Hedi Ben Ali,Tunis,2024-04-12,Regular,31.0
+C1487,Amal Belhaj,Tunis,2023-11-19,Regular,39.0
+C1488,Ahmed Dridi,Sfax,2023-03-13,Regular,
+C1489,Rania Zouari,Tunis,2023-12-26,New,48.0
+C1490,Sarra Dridi,Sousse,2024-05-13,Regular,33.0
+C1491,Anis Ben Ali,Bizerte,2023-10-23,Regular,18.0
+C1492,Skander Sassi,Bizerte,2023-04-14,Premium,35.0
+C1493,Anis Karray,Ariana,2025-08-02,New,36.0
+C1494,Anis Nasri,Sfax,2024-06-16,New,24.0
+C1495,Fares Chaabane,Sfax,2022-04-30,Regular,35.0
+C1496,Rania Karray,Sfax,2023-03-28,Regular,30.0
+C1497,Ines Sassi,Sousse,2022-11-29,Regular,21.0
+C1498,Emna Karray,Tunis,2025-02-04,New,41.0
+C1499,Karim Bouazizi,Kairouan,2023-01-09,New,28.0
+C1500,Omar Karray,Tunis,2025-02-20,New,30.0

@@ -1,0 +1,25 @@
+Product_ID,Product_Name,Category,Supplier,Cost_Price,List_Price
+P001,Laptop Pro 14,Computers,Supplier A,850,1250
+P002,Laptop Air 13,Computers,Supplier A,720,1100
+P003,Gaming Laptop,Computers,Supplier B,1050,1650
+P004,Smartphone X,Smartphones,Supplier C,520,850
+P005,Smartphone Lite,Smartphones,Supplier C,260,420
+P006,Tablet Plus,Tablets,Supplier D,230,390
+P007,Tablet Mini,Tablets,Supplier D,180,310
+P008,Monitor 24,Monitors,Supplier E,105,180
+P009,Gaming Monitor 27,Monitors,Supplier E,310,480
+P010,Wireless Mouse,Accessories,Supplier F,12,28
+P011,Mechanical Keyboard,Accessories,Supplier F,45,90
+P012,USB-C Hub,Accessories,Supplier F,25,55
+P013,Webcam HD,Accessories,Supplier G,38,75
+P014,Headphones,Audio,Supplier G,65,125
+P015,Bluetooth Speaker,Audio,Supplier G,42,85
+P016,External SSD 1TB,Storage,Supplier H,75,135
+P017,External HDD 2TB,Storage,Supplier H,55,105
+P018,Phone Case,Accessories,Supplier C,5,18
+P019,Smartwatch,Wearables,Supplier D,95,175
+P020,Printer,Office Equipment,Supplier I,110,195
+P021,Router Wi-Fi 6,Networking,Supplier I,70,140
+P022,Docking Station,Accessories,Supplier F,85,155
+P023,Graphics Tablet,Computers,Supplier B,125,230
+P024,Projector,Office Equipment,Supplier I,290,490
